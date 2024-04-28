@@ -5,54 +5,122 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class MenuAcademia {
+    private static Scanner scanner = new Scanner(System.in);
+    private static Academia academia = null;
+    private static Pessoa[] alunos = new Pessoa[100];
+    private static int numAlunos = 0;
+    private static Pessoa administrador = null;
+    private static Pessoa professorInstrutor = null;
+
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        Academia academia = null;
-        Pessoa[] alunos = new Pessoa[100]; // Array para armazenar os alunos
-        int numAlunos = 0; // Número atual de alunos
+        criarAdministrador();
+        criarProfessorInstrutor();
 
-        boolean sair = false;
-        while (!sair) {
+        while (true) {
             if (academia == null) {
-                System.out.println("----- Criação da Academia -----");
-                academia = criarAcademia(scanner);
-                if (academia == null) {
-                    System.out.println("Não foi possível criar a academia. Encerrando o programa.");
-                    return;
-                }
+                criarAcademia();
             } else {
-                System.out.println("----- Menu da Academia -----");
-                System.out.println("1. Exibir Detalhes da Academia");
-                System.out.println("2. Criar Aluno");
-                System.out.println("3. Exibir Dados do Aluno por ID");
-                System.out.println("4. Sair");
-                System.out.print("Escolha uma opção: ");
-
-                int opcao = scanner.nextInt();
-                scanner.nextLine(); // Limpar o buffer do teclado
-
-                switch (opcao) {
-                    case 1:
-                        exibirDetalhesAcademia(academia);
-                        break;
-                    case 2:
-                        criarAluno(scanner, alunos, numAlunos);
-                        numAlunos++;
-                        break;
-                    case 3:
-                        exibirDadosAlunoPorId(scanner, alunos, numAlunos);
-                        break;
-                    case 4:
-                        sair = true;
-                        System.out.println("Saindo do programa...");
-                        break;
-                    default:
-                        System.out.println("Opção inválida! Tente novamente.");
+                if (efetuarLogin()) {
+                    exibirMenu();
+                } else {
+                    System.out.println("Login ou senha incorretos. Tente novamente.");
                 }
             }
         }
+    }
 
-        scanner.close();
+    private static void criarAcademia() {
+        System.out.println("----- Criação da Academia -----");
+        academia = criarAcademia(scanner);
+        if (academia == null) {
+            System.out.println("Não foi possível criar a academia. Encerrando o programa.");
+            System.exit(1);
+        }
+    }
+
+    private static void criarAdministrador() {
+        System.out.println("----- Criação do Administrador -----");
+        administrador = criarUsuario("Administrador");
+    }
+
+    private static void criarProfessorInstrutor() {
+        System.out.println("----- Criação do Professor/Instrutor -----");
+        professorInstrutor = criarUsuario("Professor/Instrutor");
+
+    }
+
+    private static Pessoa criarUsuario(String tipoUsuario) {
+        System.out.println("Informe os dados para criar o " + tipoUsuario + ":");
+        System.out.print("Nome: ");
+        String nome = scanner.nextLine();
+        System.out.print("Login: ");
+        String login = scanner.nextLine();
+        System.out.print("Senha: ");
+        String senha = scanner.nextLine();
+        Date dataCriacao = Calendar.getInstance().getTime();
+        Date dataModificacao = Calendar.getInstance().getTime();
+        return new Pessoa(0, nome, 'M', null, login, senha, tipoUsuario, dataCriacao, dataModificacao);
+    }
+
+    private static boolean efetuarLogin() {
+        System.out.println("----- Login -----");
+        System.out.print("Login: ");
+        String login = scanner.nextLine();
+        if (login.equalsIgnoreCase("sair")) {
+            System.out.println("Saindo do programa...");
+            System.exit(0); // Terminar o programa
+        }
+        System.out.print("Senha: ");
+        String senha = scanner.nextLine();
+
+        if (login.equals(administrador.getLogin()) && senha.equals(administrador.getSenha())) {
+            System.out.println("Login de Administrador bem-sucedido!");
+            return true;
+        } else if (login.equals(professorInstrutor.getLogin()) && senha.equals(professorInstrutor.getSenha())) {
+            System.out.println("Login de Professor/Instrutor bem-sucedido!");
+            return true;
+        } else {
+            for (int i = 0; i < numAlunos; i++) {
+                if (login.equals(alunos[i].getLogin()) && senha.equals(alunos[i].getSenha())) {
+                    System.out.println("Login de Aluno bem-sucedido!");
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private static void exibirMenu() {
+        boolean loggedOut = false;
+        while (!loggedOut) {
+            System.out.println("----- Menu da Academia -----");
+            System.out.println("1. Exibir Detalhes da Academia");
+            System.out.println("2. Criar Aluno");
+            System.out.println("3. Exibir Dados do Aluno por ID");
+            System.out.println("4. Sair");
+            System.out.print("Escolha uma opção: ");
+
+            int opcao = scanner.nextInt();
+            scanner.nextLine(); // Limpar o buffer do teclado
+
+            switch (opcao) {
+                case 1:
+                    exibirDetalhesAcademia(academia);
+                    break;
+                case 2:
+                    criarAluno();
+                    break;
+                case 3:
+                    exibirDadosAlunoPorId();
+                    break;
+                case 4:
+                    System.out.println("Deslogando...");
+                    loggedOut = true;
+                    break;
+                default:
+                    System.out.println("Opção inválida! Tente novamente.");
+            }
+        }
     }
 
     private static Academia criarAcademia(Scanner scanner) {
@@ -78,7 +146,7 @@ public class MenuAcademia {
         }
     }
 
-    private static void criarAluno(Scanner scanner, Pessoa[] alunos, int numAlunos) {
+    private static void criarAluno() {
         System.out.println("Informe os detalhes do aluno:");
         System.out.print("ID: ");
         int idAluno = scanner.nextInt();
@@ -101,13 +169,21 @@ public class MenuAcademia {
         Date dataCriacao = Calendar.getInstance().getTime(); // Obter a data atual
         Date dataModificacao = Calendar.getInstance().getTime(); // Obter a data atual
         String tipoUsuario = "Aluno";
-        // Criar um novo aluno
-        Pessoa aluno = new Pessoa(idAluno, nomeAluno, sexoAluno, dtNascimento, null, null, tipoUsuario, dataCriacao, dataModificacao);
+
+        // Solicitar ao professor/administrador para criar login e senha para o aluno
+        System.out.print("Criar login para o aluno: ");
+        String loginAluno = scanner.nextLine();
+        System.out.print("Criar senha para o aluno: ");
+        String senhaAluno = scanner.nextLine();
+
+        // Criar um novo aluno com login e senha
+        Pessoa aluno = new Pessoa(idAluno, nomeAluno, sexoAluno, dtNascimento, loginAluno, senhaAluno, tipoUsuario, dataCriacao, dataModificacao);
         alunos[numAlunos] = aluno;
         System.out.println("Aluno criado com sucesso!");
+        numAlunos++;
     }
 
-    private static void exibirDadosAlunoPorId(Scanner scanner, Pessoa[] alunos, int numAlunos) {
+    private static void exibirDadosAlunoPorId() {
         System.out.print("Informe o ID do aluno: ");
         int idBusca = scanner.nextInt();
         scanner.nextLine(); // Limpar o buffer do teclado
