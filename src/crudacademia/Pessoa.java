@@ -1,3 +1,4 @@
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Pessoa {
@@ -96,4 +97,20 @@ public class Pessoa {
     public void setDataModificacao(Date dataModificacao) {
         this.dataModificacao = dataModificacao;
     }
+
+    public void exibirDetalhes() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+        System.out.println("ID: " + id);
+        System.out.println("Nome: " + nome);
+        System.out.println("Sexo: " + sexo);
+        System.out.println("Data de Nascimento: " + sdf.format(nascimento));
+        System.out.println("Login: " + login);
+        System.out.println("Senha: " + senha);
+        System.out.println("Tipo de Usuário: " + tipoUsuario);
+        System.out.println("Data de Criação: " + sdf.format(dataCriacao));
+        System.out.println("Data de Modificação: " + sdf.format(dataModificacao));
+    }
+
+
 }
