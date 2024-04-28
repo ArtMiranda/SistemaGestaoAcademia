@@ -1,22 +1,28 @@
+import java.util.Date;
+
 public class CrudAcademia {
 
     public static void main(String[] args) {
 
-       AcademiaDAO academiaDAO = new AcademiaDAO();
-       academiaDAO.criaAcademia(1, "Academia XYZ", "Rua ABC, 123");
+        Academia academia = Academia.criarAcademia(1, "Academia TopFit", "Rua das Academias, 123");
 
-        Academia[] academias = academiaDAO.listarAcademias();
+        // Exibindo os detalhes da academia
+        System.out.println("Detalhes da Academia:");
+        academia.exibirDetalhes();
+        System.out.println();
 
-        // Exibe as informações da academia criada
-        for (Academia academia : academias) {
-            System.out.println("ID: " + academia.getId());
-            System.out.println("Nome: " + academia.getNome());
-            System.out.println("Endereço: " + academia.getEndereco());
-            System.out.println("Data de Criação: " + academia.getDataCriacao());
-            System.out.println("Data de Modificação: " + academia.getDataModificacao());
-        }
+        // Criando uma pessoa
+        Pessoa pessoa = new Pessoa(1, "João", 'M', new Date(), "joao123", "senha", "aluno", new Date(), new Date());
 
+        // Matriculando a pessoa na academia
+        academia.matricularAluno(pessoa);
+
+        // Exibindo os detalhes da academia após a matrícula
+        System.out.println("Detalhes da Academia após a matrícula:");
+        academia.exibirDetalhes();
 
     }
 
 }
+
+
