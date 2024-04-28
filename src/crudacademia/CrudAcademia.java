@@ -1,20 +1,22 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
-package crudacademia;
-
-/**
- *
- * @author artur.miranda
- */
 public class CrudAcademia {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        // TODO code application logic here
+
+       AcademiaDAO academiaDAO = new AcademiaDAO();
+       academiaDAO.criaAcademia(1, "Academia XYZ", "Rua ABC, 123");
+
+        Academia[] academias = academiaDAO.listarAcademias();
+
+        // Exibe as informações da academia criada
+        for (Academia academia : academias) {
+            System.out.println("ID: " + academia.getId());
+            System.out.println("Nome: " + academia.getNome());
+            System.out.println("Endereço: " + academia.getEndereco());
+            System.out.println("Data de Criação: " + academia.getDataCriacao());
+            System.out.println("Data de Modificação: " + academia.getDataModificacao());
+        }
+
+
     }
-    
+
 }
