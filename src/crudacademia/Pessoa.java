@@ -13,7 +13,8 @@ public class Pessoa {
     private Date dataModificacao;
 
     // Construtor
-    public Pessoa(int id, String nome, char sexo, Date nascimento, String login, String senha, String tipoUsuario, Date dataCriacao, Date dataModificacao) {
+    public Pessoa(int id, String nome, char sexo, Date nascimento, String login, String senha, String tipoUsuario,
+            Date dataCriacao, Date dataModificacao) {
         this.id = id;
         this.nome = nome;
         this.sexo = sexo;
@@ -98,19 +99,20 @@ public class Pessoa {
         this.dataModificacao = dataModificacao;
     }
 
-    public void exibirDetalhes() {
+    public String exibirDetalhes() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
-        System.out.println("ID: " + id);
-        System.out.println("Nome: " + nome);
-        System.out.println("Sexo: " + sexo);
-        System.out.println("Data de Nascimento: " + sdf.format(nascimento));
-        System.out.println("Login: " + login);
-        System.out.println("Senha: " + senha);
-        System.out.println("Tipo de Usuário: " + tipoUsuario);
-        System.out.println("Data de Criação: " + sdf.format(dataCriacao));
-        System.out.println("Data de Modificação: " + sdf.format(dataModificacao));
-    }
+        String detalhes = "ID: " + id + "\n";
+        detalhes += "Nome: " + nome + "\n";
+        detalhes += "Sexo: " + sexo + "\n";
+        detalhes += "Data de Nascimento: " + sdf.format(nascimento) + "\n";
+        detalhes += "Login: " + login + "\n";
+        detalhes += "Senha: " + senha + "\n";
+        detalhes += "Tipo de Usuário: " + tipoUsuario + "\n";
+        detalhes += "Data de Criação: " + sdf.format(dataCriacao) + "\n";
+        detalhes += "Data de Modificação: " + sdf.format(dataModificacao) + "\n";
 
+        return detalhes;
+    }
 
 }

@@ -26,29 +26,29 @@ public class Academia {
         return new Academia(id, nome, endereco, dataCriacao, dataModificacao);
     }
 
-    public void exibirDetalhes() {
-        System.out.println("ID: " + id);
-        System.out.println("Nome: " + nome);
-        System.out.println("Endereço: " + endereco);
-        System.out.println("Data de Criação: " + dataCriacao);
-        System.out.println("Data de Modificação: " + dataModificacao);
+    public String exibirDetalhes() {
+        String detalhes = "ID: " + id + "\n";
+        detalhes += "Nome: " + nome + "\n";
+        detalhes += "Endereço: " + endereco + "\n";
+        detalhes += "Data de Criação: " + dataCriacao + "\n";
+        detalhes += "Data de Modificação: " + dataModificacao + "\n";
         if (numAlunosMatriculados > 0) {
-            System.out.println("Alunos Matriculados:");
+            detalhes += "Alunos Matriculados:\n";
             for (int i = 0; i < numAlunosMatriculados; i++) {
-                System.out.println("Nome: " + alunosMatriculados[i].getNome());
+                detalhes += "Nome: " + alunosMatriculados[i].getNome() + "\n";
             }
         } else {
-            System.out.println("Nenhum aluno matriculado.");
+            detalhes += "Nenhum aluno matriculado.\n";
         }
+        return detalhes;
     }
 
     // Método para matricular um aluno
-    public void matricularAluno(Pessoa aluno) {
+    public int matricularAluno(Pessoa aluno) {
         alunosMatriculados[numAlunosMatriculados] = aluno;
         numAlunosMatriculados++;
-        System.out.println("Aluno matriculado com sucesso!");
+        return 1;
     }
-
 
     // Getters e Setters
     public int getId() {
@@ -90,6 +90,5 @@ public class Academia {
     public void setDataModificacao(Date dataModificacao) {
         this.dataModificacao = dataModificacao;
     }
-
 
 }
