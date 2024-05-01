@@ -15,8 +15,7 @@ public class MenuAcademia {
     private static int numProfessoresInstrutores = 0;
 
     public static void main(String[] args) {
-        criarContaAdministrador();
-        criarContaProfessor();
+        criarAdministradorPadrao();
 
         while (true) {
             if (academia == null) {
@@ -29,6 +28,30 @@ public class MenuAcademia {
                 }
             }
         }
+    }
+
+    private static void criarAdministradorPadrao() {
+        System.out.println("\n\n----- Criando Administrador Padrão -----");
+
+        // Definir os dados do administrador padrão
+        String nomePadrao = "Administrador Padrão";
+        char sexoPadrao = 'F';
+        String loginPadrao = "adm";
+        String senhaPadrao = "adm";
+
+        // Definir a data de nascimento como a data atual
+        Date dataAtual = Calendar.getInstance().getTime();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String dataNascimentoPadrao = sdf.format(dataAtual);
+
+        // Criar o objeto Pessoa para representar o administrador padrão
+        Pessoa administradorPadrao = new Pessoa(0, nomePadrao, sexoPadrao, dataAtual, loginPadrao, senhaPadrao,
+                "Administrador", dataAtual, dataAtual);
+
+        // Adicionar o administrador padrão ao array de administradores
+        administradores[numAdministradores++] = administradorPadrao;
+
+        System.out.println("Administrador padrão criado com sucesso!");
     }
 
     private static void criarContaAdministrador() {
@@ -52,6 +75,35 @@ public class MenuAcademia {
             nome = scanner.nextLine().trim();
         }
 
+        // Sexo do administrador
+        System.out.print("Sexo (M/F): ");
+        char sexoAdmin;
+        String sexoInput = scanner.nextLine();
+        while (!(sexoInput.equalsIgnoreCase("M") || sexoInput.equalsIgnoreCase("F"))) {
+            System.out.print("Sexo inválido. Digite M para Masculino ou F para Feminino: ");
+            sexoInput = scanner.nextLine();
+        }
+        sexoAdmin = sexoInput.toUpperCase().charAt(0);
+
+        // Data de nascimento do administrador
+        Date dtNascimento = null;
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        boolean dataValida = false;
+        while (!dataValida) {
+            try {
+                System.out.print("Data de nascimento (dd/MM/yyyy): ");
+                String dtNascimentoStr = scanner.nextLine();
+                dtNascimento = sdf.parse(dtNascimentoStr);
+                if (dtNascimento.after(Calendar.getInstance().getTime())) {
+                    System.out.println("Data de nascimento inválida! Informe uma data anterior à data atual.");
+                } else {
+                    dataValida = true;
+                }
+            } catch (ParseException e) {
+                System.out.println("Formato de data inválido! Use o formato dd/MM/yyyy.");
+            }
+        }
+
         // Login do administrador
         System.out.print("Login: ");
         String login = scanner.nextLine().trim();
@@ -73,7 +125,7 @@ public class MenuAcademia {
         Date dataModificacao = Calendar.getInstance().getTime();
 
         // Criar o objeto Pessoa para representar o administrador
-        return new Pessoa(numAdministradores, nome, 'M', null, login, senha, "Administrador", dataCriacao,
+        return new Pessoa(numAdministradores, nome, sexoAdmin, dtNascimento, login, senha, "Administrador", dataCriacao,
                 dataModificacao);
     }
 
@@ -86,6 +138,35 @@ public class MenuAcademia {
         while (nome.isEmpty()) {
             System.out.print("Nome não pode estar vazio. Informe novamente: ");
             nome = scanner.nextLine().trim();
+        }
+
+        // Sexo do professor/instrutor
+        System.out.print("Sexo (M/F): ");
+        char sexoProf;
+        String sexoInput = scanner.nextLine();
+        while (!(sexoInput.equalsIgnoreCase("M") || sexoInput.equalsIgnoreCase("F"))) {
+            System.out.print("Sexo inválido. Digite M para Masculino ou F para Feminino: ");
+            sexoInput = scanner.nextLine();
+        }
+        sexoProf = sexoInput.toUpperCase().charAt(0);
+
+        // Data de nascimento do professor/instrutor
+        Date dtNascimento = null;
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        boolean dataValida = false;
+        while (!dataValida) {
+            try {
+                System.out.print("Data de nascimento (dd/MM/yyyy): ");
+                String dtNascimentoStr = scanner.nextLine();
+                dtNascimento = sdf.parse(dtNascimentoStr);
+                if (dtNascimento.after(Calendar.getInstance().getTime())) {
+                    System.out.println("Data de nascimento inválida! Informe uma data anterior à data atual.");
+                } else {
+                    dataValida = true;
+                }
+            } catch (ParseException e) {
+                System.out.println("Formato de data inválido! Use o formato dd/MM/yyyy.");
+            }
         }
 
         // Login do professor/instrutor
@@ -109,7 +190,8 @@ public class MenuAcademia {
         Date dataModificacao = Calendar.getInstance().getTime();
 
         // Criar o objeto Pessoa para representar o professor/instrutor
-        return new Pessoa(numProfessoresInstrutores, nome, 'M', null, login, senha, "Professor/Instrutor", dataCriacao,
+        return new Pessoa(numProfessoresInstrutores, nome, sexoProf, dtNascimento, login, senha, "Professor/Instrutor",
+                dataCriacao,
                 dataModificacao);
     }
 
@@ -157,7 +239,9 @@ public class MenuAcademia {
             System.out.println("5. Remover um aluno por ID");
             System.out.println("6. Criar Administrador");
             System.out.println("7. Criar Professor/Instrutor");
-            System.out.println("8. Sair");
+            System.out.println("8. Exibir Todos os Administradores");
+            System.out.println("9. Exibir Todos os Professores/Instrutores");
+            System.out.println("0. Sair");
             System.out.print("Escolha uma opção: ");
 
             int opcao = scanner.nextInt();
@@ -187,6 +271,12 @@ public class MenuAcademia {
 
                     break;
                 case 8:
+                    exibirTodosAdministradores();
+                    break;
+                case 9:
+                    exibirTodosProfessoresInstrutores();
+                    break;
+                case 0:
                     System.out.println("Deslogando...");
                     loggedOut = true;
                     break;
@@ -300,6 +390,29 @@ public class MenuAcademia {
             System.out.println("\n\nLista de Alunos:");
             for (int i = 0; i < numAlunos; i++) {
                 System.out.println("ID: " + alunos[i].getId() + ", Nome: " + alunos[i].getNome());
+            }
+        }
+    }
+
+    private static void exibirTodosAdministradores() {
+        if (numAdministradores == 0) {
+            System.out.println("\n\nNenhum administrador cadastrado ainda.");
+        } else {
+            System.out.println("\n\nLista de Administradores:");
+            for (int i = 0; i < numAdministradores; i++) {
+                System.out.println("ID: " + administradores[i].getId() + ", Nome: " + administradores[i].getNome());
+            }
+        }
+    }
+
+    private static void exibirTodosProfessoresInstrutores() {
+        if (numProfessoresInstrutores == 0) {
+            System.out.println("\n\nNenhum professor/instrutor cadastrado ainda.");
+        } else {
+            System.out.println("\n\nLista de Professores/Instrutores:");
+            for (int i = 0; i < numProfessoresInstrutores; i++) {
+                System.out.println(
+                        "ID: " + professoresInstrutores[i].getId() + ", Nome: " + professoresInstrutores[i].getNome());
             }
         }
     }
