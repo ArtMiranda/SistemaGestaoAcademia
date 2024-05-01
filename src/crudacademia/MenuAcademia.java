@@ -7,11 +7,11 @@ import java.util.Scanner;
 public class MenuAcademia {
     private static Scanner scanner = new Scanner(System.in);
     private static Academia academia = null;
-    private static Pessoa[] alunos = new Pessoa[100];
+    private static Pessoa[] alunos = new Pessoa[100]; // Array de alunos
     private static int numAlunos = 0;
-    private static Pessoa[] administradores = new Pessoa[10]; // Array para administradores
+    private static Pessoa[] administradores = new Pessoa[100]; // Array de adms
     private static int numAdministradores = 0;
-    private static Pessoa[] professoresInstrutores = new Pessoa[10]; // Array para professores/instrutores
+    private static Pessoa[] professoresInstrutores = new Pessoa[100]; // Array de profs
     private static int numProfessoresInstrutores = 0;
 
     public static void main(String[] args) {
@@ -240,7 +240,11 @@ public class MenuAcademia {
             System.out.println("6. Criar Administrador");
             System.out.println("7. Criar Professor/Instrutor");
             System.out.println("8. Exibir Todos os Administradores");
-            System.out.println("9. Exibir Todos os Professores/Instrutores");
+            System.out.println("9. Exibir Dados do Administrador por ID");
+            System.out.println("10. Remover um administrador por ID");
+            System.out.println("11. Exibir Todos os Professores/Instrutores");
+            System.out.println("12. Exibir Dados do Professor/Instrutor por ID");
+            System.out.println("13. Remover um professor/instrutor por ID");
             System.out.println("0. Sair");
             System.out.print("Escolha uma opção: ");
 
@@ -274,7 +278,16 @@ public class MenuAcademia {
                     exibirTodosAdministradores();
                     break;
                 case 9:
+                    exibirDadosAdministradorPorId();
+                    break;
+                case 10:
+                    removerAdministrador();
+                    break;
+                case 11:
                     exibirTodosProfessoresInstrutores();
+                    break;
+                case 12:
+                    exibirDadosProfessorPorId();
                     break;
                 case 0:
                     System.out.println("Deslogando...");
@@ -394,6 +407,44 @@ public class MenuAcademia {
         }
     }
 
+    private static void exibirDadosAdministradorPorId() {
+        System.out.print("\n\nInforme o ID do administrador: ");
+        int idBusca = scanner.nextInt();
+        scanner.nextLine(); // Limpar o buffer do teclado
+
+        boolean encontrado = false;
+        for (int i = 0; i < numAdministradores; i++) {
+            if (administradores[i].getId() == idBusca) {
+                System.out.println("Dados do Administrador:");
+                System.out.println(administradores[i].exibirDetalhes());
+                encontrado = true;
+                break;
+            }
+        }
+        if (!encontrado) {
+            System.out.println("\n\nAdministrador não encontrado.");
+        }
+    }
+
+    private static void exibirDadosProfessorPorId() {
+        System.out.print("\n\nInforme o ID do professor/instrutor: ");
+        int idBusca = scanner.nextInt();
+        scanner.nextLine(); // Limpar o buffer do teclado
+
+        boolean encontrado = false;
+        for (int i = 0; i < numProfessoresInstrutores; i++) {
+            if (professoresInstrutores[i].getId() == idBusca) {
+                System.out.println("Dados do Professor/Instrutor:");
+                System.out.println(professoresInstrutores[i].exibirDetalhes());
+                encontrado = true;
+                break;
+            }
+        }
+        if (!encontrado) {
+            System.out.println("\n\nProfessor/Instrutor não encontrado.");
+        }
+    }
+
     private static void exibirTodosAdministradores() {
         if (numAdministradores == 0) {
             System.out.println("\n\nNenhum administrador cadastrado ainda.");
@@ -461,4 +512,57 @@ public class MenuAcademia {
         scanner.nextLine(); // Limpar o buffer do teclado
         removerAlunoPorId(idAluno);
     }
+
+    private static void removerAdministradorPorId(int id) {
+        boolean encontrado = false;
+        for (int i = 0; i < numAdministradores; i++) {
+            if (administradores[i].getId() == id) {
+                for (int j = i; j < numAdministradores - 1; j++) {
+                    administradores[j] = administradores[j + 1];
+                }
+                administradores[numAdministradores - 1] = null;
+                numAdministradores--;
+                System.out.println("\n\nAdministrador removido com sucesso.");
+                encontrado = true;
+                break;
+            }
+        }
+        if (!encontrado) {
+            System.out.println("\n\nAdministrador com ID " + id + " não encontrado.");
+        }
+    }
+
+    private static void removerProfessorPorId(int id) {
+        boolean encontrado = false;
+        for (int i = 0; i < numProfessoresInstrutores; i++) {
+            if (professoresInstrutores[i].getId() == id) {
+                for (int j = i; j < numProfessoresInstrutores - 1; j++) {
+                    professoresInstrutores[j] = professoresInstrutores[j + 1];
+                }
+                professoresInstrutores[numProfessoresInstrutores - 1] = null;
+                numProfessoresInstrutores--;
+                System.out.println("\n\nProfessor/Instrutor removido com sucesso.");
+                encontrado = true;
+                break;
+            }
+        }
+        if (!encontrado) {
+            System.out.println("\n\nProfessor/Instrutor com ID " + id + " não encontrado.");
+        }
+    }
+
+    private static void removerAdministrador() {
+        System.out.print("\n\nInforme o ID do administrador que deseja remover: ");
+        int idAdmin = scanner.nextInt();
+        scanner.nextLine(); // Limpar o buffer do teclado
+        removerAdministradorPorId(idAdmin);
+    }
+
+    private static void removerProfessor() {
+        System.out.print("\n\nInforme o ID do professor/instrutor que deseja remover: ");
+        int idProf = scanner.nextInt();
+        scanner.nextLine(); // Limpar o buffer do teclado
+        removerProfessorPorId(idProf);
+    }
+
 }
