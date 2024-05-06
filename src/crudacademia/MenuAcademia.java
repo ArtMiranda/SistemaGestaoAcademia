@@ -233,62 +233,29 @@ public class MenuAcademia {
         while (!loggedOut) {
             System.out.println("\n\n----- Menu da Academia -----");
             System.out.println("1. Exibir Detalhes da Academia");
-            System.out.println("2. Criar Aluno");
-            System.out.println("3. Exibir Todos os Alunos");
-            System.out.println("4. Exibir Dados do Aluno por ID");
-            System.out.println("5. Remover um aluno por ID");
-            System.out.println("6. Criar Administrador");
-            System.out.println("7. Criar Professor/Instrutor");
-            System.out.println("8. Exibir Todos os Administradores");
-            System.out.println("9. Exibir Dados do Administrador por ID");
-            System.out.println("10. Remover um administrador por ID");
-            System.out.println("11. Exibir Todos os Professores/Instrutores");
-            System.out.println("12. Exibir Dados do Professor/Instrutor por ID");
-            System.out.println("13. Remover um professor/instrutor por ID");
+            System.out.println("2. CRUD Aluno");
+            System.out.println("3. CRUD Administrador");
+            System.out.println("4. CRUD Professor/Instrutor");
             System.out.println("0. Sair");
             System.out.print("Escolha uma opção: ");
 
             int opcao = scanner.nextInt();
-            scanner.nextLine(); // Limpar o buffer do teclado
+            scanner.nextLine();
 
             switch (opcao) {
                 case 1:
                     exibirDetalhesAcademia(academia);
                     break;
                 case 2:
-                    criarAluno();
+                    exibirMenuCRUDAluno();
                     break;
                 case 3:
-                    exibirTodosAlunos();
+                    exibirMenuCRUDAdministrador();
                     break;
                 case 4:
-                    exibirDadosAlunoPorId();
+                    exibirMenuCRUDProfessor();
                     break;
-                case 5:
-                    removerAluno();
-                    break;
-                case 6:
-                    criarContaProfessor();
-                    break;
-                case 7:
-                    criarContaAdministrador();
-
-                    break;
-                case 8:
-                    exibirTodosAdministradores();
-                    break;
-                case 9:
-                    exibirDadosAdministradorPorId();
-                    break;
-                case 10:
-                    removerAdministrador();
-                    break;
-                case 11:
-                    exibirTodosProfessoresInstrutores();
-                    break;
-                case 12:
-                    exibirDadosProfessorPorId();
-                    break;
+                // Restante das opções do menu...
                 case 0:
                     System.out.println("Deslogando...");
                     loggedOut = true;
@@ -296,6 +263,352 @@ public class MenuAcademia {
                 default:
                     System.out.println("Opção inválida! Tente novamente.");
             }
+        }
+    }
+
+    private static void atualizarProfessorInstrutor() {
+        System.out.print("\n\nInforme o ID do professor/instrutor que deseja atualizar: ");
+        int idProf = scanner.nextInt();
+        scanner.nextLine(); // Limpar o buffer do teclado
+
+        boolean encontrado = false;
+        for (int i = 0; i < numProfessoresInstrutores; i++) {
+            if (professoresInstrutores[i].getId() == idProf) {
+                System.out.println("Professor/Instrutor encontrado. Insira os novos dados:");
+
+                // Nome do professor/instrutor
+                System.out.print("Novo nome: ");
+                String novoNome = scanner.nextLine().trim();
+                while (novoNome.isEmpty()) {
+                    System.out.print("Nome não pode estar vazio. Informe novamente: ");
+                    novoNome = scanner.nextLine().trim();
+                }
+                professoresInstrutores[i].setNome(novoNome);
+
+                // Sexo do professor/instrutor
+                System.out.print("Novo sexo (M/F): ");
+                char novoSexo;
+                String novoSexoInput = scanner.nextLine();
+                while (!(novoSexoInput.equalsIgnoreCase("M") || novoSexoInput.equalsIgnoreCase("F"))) {
+                    System.out.print("Sexo inválido. Digite M para Masculino ou F para Feminino: ");
+                    novoSexoInput = scanner.nextLine();
+                }
+                novoSexo = novoSexoInput.toUpperCase().charAt(0);
+                professoresInstrutores[i].setSexo(novoSexo);
+
+                // Data de nascimento do professor/instrutor
+                Date novaDtNascimento = null;
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                boolean dataValida = false;
+                while (!dataValida) {
+                    try {
+                        System.out.print("Nova data de nascimento (dd/MM/yyyy): ");
+                        String novaDtNascimentoStr = scanner.nextLine();
+                        novaDtNascimento = sdf.parse(novaDtNascimentoStr);
+                        if (novaDtNascimento.after(Calendar.getInstance().getTime())) {
+                            System.out.println("Data de nascimento inválida! Informe uma data anterior à data atual.");
+                        } else {
+                            dataValida = true;
+                        }
+                    } catch (ParseException e) {
+                        System.out.println("Formato de data inválido! Use o formato dd/MM/yyyy.");
+                    }
+                }
+                professoresInstrutores[i].setNascimento(novaDtNascimento);
+
+                // Login do professor/instrutor
+                System.out.print("Novo login: ");
+                String novoLogin = scanner.nextLine().trim();
+                while (novoLogin.isEmpty()) {
+                    System.out.print("Login não pode estar vazio. Informe novamente: ");
+                    novoLogin = scanner.nextLine().trim();
+                }
+                professoresInstrutores[i].setLogin(novoLogin);
+
+                // Senha do professor/instrutor
+                System.out.print("Nova senha: ");
+                String novaSenha = scanner.nextLine().trim();
+                while (novaSenha.isEmpty()) {
+                    System.out.print("Senha não pode estar vazia. Informe novamente: ");
+                    novaSenha = scanner.nextLine().trim();
+                }
+                professoresInstrutores[i].setSenha(novaSenha);
+
+                // Data de modificação
+                professoresInstrutores[i].setDataModificacao(Calendar.getInstance().getTime());
+
+                System.out.println("Professor/Instrutor atualizado com sucesso!");
+                encontrado = true;
+                break;
+            }
+        }
+        if (!encontrado) {
+            System.out.println("\n\nProfessor/Instrutor com ID " + idProf + " não encontrado.");
+        }
+    }
+
+    private static void atualizarAdministrador() {
+        System.out.print("\n\nInforme o ID do administrador que deseja atualizar: ");
+        int idAdmin = scanner.nextInt();
+        scanner.nextLine(); // Limpar o buffer do teclado
+
+        boolean encontrado = false;
+        for (int i = 0; i < numAdministradores; i++) {
+            if (administradores[i].getId() == idAdmin) {
+                System.out.println("Administrador encontrado. Insira os novos dados:");
+
+                // Nome do administrador
+                System.out.print("Novo nome: ");
+                String novoNome = scanner.nextLine().trim();
+                while (novoNome.isEmpty()) {
+                    System.out.print("Nome não pode estar vazio. Informe novamente: ");
+                    novoNome = scanner.nextLine().trim();
+                }
+                administradores[i].setNome(novoNome);
+
+                // Sexo do administrador
+                System.out.print("Novo sexo (M/F): ");
+                char novoSexo;
+                String novoSexoInput = scanner.nextLine();
+                while (!(novoSexoInput.equalsIgnoreCase("M") || novoSexoInput.equalsIgnoreCase("F"))) {
+                    System.out.print("Sexo inválido. Digite M para Masculino ou F para Feminino: ");
+                    novoSexoInput = scanner.nextLine();
+                }
+                novoSexo = novoSexoInput.toUpperCase().charAt(0);
+                administradores[i].setSexo(novoSexo);
+
+                // Data de nascimento do administrador
+                Date novaDtNascimento = null;
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                boolean dataValida = false;
+                while (!dataValida) {
+                    try {
+                        System.out.print("Nova data de nascimento (dd/MM/yyyy): ");
+                        String novaDtNascimentoStr = scanner.nextLine();
+                        novaDtNascimento = sdf.parse(novaDtNascimentoStr);
+                        if (novaDtNascimento.after(Calendar.getInstance().getTime())) {
+                            System.out.println("Data de nascimento inválida! Informe uma data anterior à data atual.");
+                        } else {
+                            dataValida = true;
+                        }
+                    } catch (ParseException e) {
+                        System.out.println("Formato de data inválido! Use o formato dd/MM/yyyy.");
+                    }
+                }
+                administradores[i].setNascimento(novaDtNascimento);
+
+                // Login do administrador
+                System.out.print("Novo login: ");
+                String novoLogin = scanner.nextLine().trim();
+                while (novoLogin.isEmpty()) {
+                    System.out.print("Login não pode estar vazio. Informe novamente: ");
+                    novoLogin = scanner.nextLine().trim();
+                }
+                administradores[i].setLogin(novoLogin);
+
+                // Senha do administrador
+                System.out.print("Nova senha: ");
+                String novaSenha = scanner.nextLine().trim();
+                while (novaSenha.isEmpty()) {
+                    System.out.print("Senha não pode estar vazia. Informe novamente: ");
+                    novaSenha = scanner.nextLine().trim();
+                }
+                administradores[i].setSenha(novaSenha);
+
+                // Data de modificação
+                administradores[i].setDataModificacao(Calendar.getInstance().getTime());
+
+                System.out.println("Administrador atualizado com sucesso!");
+                encontrado = true;
+                break;
+            }
+        }
+        if (!encontrado) {
+            System.out.println("\n\nAdministrador com ID " + idAdmin + " não encontrado.");
+        }
+    }
+
+    private static void exibirMenuCRUDProfessor() {
+        boolean loggedOut = false;
+        while (!loggedOut) {
+            System.out.println("\n\n----- Menu do Professor/Instrutor -----");
+            System.out.println("1. Exibir Todos os Professor/Instrutor");
+            System.out.println("2. Exibir Dados do Professor/Instrutor por ID");
+            System.out.println("3. Atualizar Professor/Instrutor");
+            System.out.println("4. Remover Professor/Instrutor por ID");
+            System.out.println("0. Voltar ao Menu Principal");
+            System.out.print("Escolha uma opção: ");
+
+            int opcao = scanner.nextInt();
+            scanner.nextLine(); // Limpar o buffer do teclado
+
+            switch (opcao) {
+                case 1:
+                    exibirTodosProfessoresInstrutores();
+                    break;
+                case 2:
+                    exibirDadosProfessorPorId();
+                    break;
+                case 3:
+                    atualizarProfessorInstrutor();
+                    break;
+                case 4:
+                    removerProfessor();
+                    break;
+                case 0:
+                    System.out.println("Retornando ao Menu Principal...");
+                    loggedOut = true;
+                    break;
+                default:
+                    System.out.println("Opção inválida! Tente novamente.");
+            }
+        }
+    }
+
+    private static void exibirMenuCRUDAdministrador() {
+        boolean loggedOut = false;
+        while (!loggedOut) {
+            System.out.println("\n\n----- Menu do Administrador -----");
+            System.out.println("1. Exibir Todos os Administradores");
+            System.out.println("2. Exibir Dados do Administrador por ID");
+            System.out.println("3. Atualizar Administrador");
+            System.out.println("4. Remover Administrador por ID");
+            System.out.println("0. Voltar ao Menu Principal");
+            System.out.print("Escolha uma opção: ");
+
+            int opcao = scanner.nextInt();
+            scanner.nextLine(); // Limpar o buffer do teclado
+
+            switch (opcao) {
+                case 1:
+                    exibirTodosAdministradores();
+                    break;
+                case 2:
+                    exibirDadosAdministradorPorId();
+                    break;
+                case 3:
+                    atualizarAdministrador();
+                    break;
+                case 4:
+                    removerAdministrador();
+                    break;
+                case 0:
+                    System.out.println("Retornando ao Menu Principal...");
+                    loggedOut = true;
+                    break;
+                default:
+                    System.out.println("Opção inválida! Tente novamente.");
+            }
+        }
+    }
+
+    private static void exibirMenuCRUDAluno() {
+        boolean sair = false;
+        while (!sair) {
+            System.out.println("\n\n----- Menu CRUD Aluno -----");
+            System.out.println("1. Criar Aluno");
+            System.out.println("2. Exibir Todos os Alunos");
+            System.out.println("3. Exibir Dados do Aluno por ID");
+            System.out.println("4. Atualizar Aluno");
+            System.out.println("5. Remover Aluno por ID");
+            System.out.println("0. Voltar ao Menu Principal");
+            System.out.print("Escolha uma opção: ");
+
+            int opcao = scanner.nextInt();
+            scanner.nextLine(); // Limpar o buffer do teclado
+
+            switch (opcao) {
+                case 1:
+                    criarAluno();
+                    break;
+                case 2:
+                    exibirTodosAlunos();
+                    break;
+                case 3:
+                    exibirDadosAlunoPorId();
+                    break;
+                case 4:
+                    atualizarAluno();
+                    break;
+                case 5:
+                    removerAluno();
+                    break;
+                case 0:
+                    sair = true;
+                    break;
+                default:
+                    System.out.println("Opção inválida! Tente novamente.");
+            }
+        }
+    }
+
+    private static void atualizarAluno() {
+        System.out.print("\n\nInforme o ID do aluno que deseja atualizar: ");
+        int idAluno = scanner.nextInt();
+        scanner.nextLine(); // Limpar o buffer do teclado
+
+        boolean encontrado = false;
+        for (int i = 0; i < numAlunos; i++) {
+            if (alunos[i].getId() == idAluno) {
+                encontrado = true;
+                System.out.println("\nDados atuais do Aluno:");
+                System.out.println(alunos[i].exibirDetalhes());
+
+                System.out.println("\nInforme os novos dados do aluno:");
+
+                // Nome do aluno
+                System.out.print("Novo Nome: ");
+                String novoNome = scanner.nextLine().trim();
+                if (!novoNome.isEmpty()) {
+                    alunos[i].setNome(novoNome);
+                }
+
+                // Sexo do aluno
+                System.out.print("Novo Sexo (M/F): ");
+                String novoSexoInput = scanner.nextLine();
+                if (!novoSexoInput.isEmpty()
+                        && (novoSexoInput.equalsIgnoreCase("M") || novoSexoInput.equalsIgnoreCase("F"))) {
+                    alunos[i].setSexo(novoSexoInput.toUpperCase().charAt(0));
+                }
+
+                // Data de nascimento do aluno
+                System.out.print("Nova Data de Nascimento (dd/MM/yyyy): ");
+                String novaDataNascimentoStr = scanner.nextLine();
+                if (!novaDataNascimentoStr.isEmpty()) {
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                    try {
+                        Date novaDataNascimento = sdf.parse(novaDataNascimentoStr);
+                        alunos[i].setNascimento(novaDataNascimento);
+                    } catch (ParseException e) {
+                        System.out.println("Formato de data inválido! Os dados de data não foram atualizados.");
+                    }
+                }
+
+                // Login do aluno
+                System.out.print("Novo Login: ");
+                String novoLogin = scanner.nextLine().trim();
+                if (!novoLogin.isEmpty()) {
+                    alunos[i].setLogin(novoLogin);
+                }
+
+                // Senha do aluno
+                System.out.print("Nova Senha: ");
+                String novaSenha = scanner.nextLine().trim();
+                if (!novaSenha.isEmpty()) {
+                    alunos[i].setSenha(novaSenha);
+                }
+
+                // Data de modificação
+                alunos[i].setDataModificacao(Calendar.getInstance().getTime());
+
+                System.out.println("\nDados do Aluno atualizados com sucesso:");
+                System.out.println(alunos[i].exibirDetalhes());
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            System.out.println("\nAluno com ID " + idAluno + " não encontrado.");
         }
     }
 
