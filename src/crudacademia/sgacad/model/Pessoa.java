@@ -101,19 +101,22 @@ public class Pessoa {
     }
 
     public String exibirDetalhes() {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-
         String detalhes = "ID: " + id + "\n";
         detalhes += "Nome: " + nome + "\n";
         detalhes += "Sexo: " + sexo + "\n";
-        detalhes += "Data de Nascimento: " + sdf.format(nascimento) + "\n";
+        detalhes += "Data de Nascimento: " + formatarData(nascimento) + "\n";
         detalhes += "Login: " + login + "\n";
         detalhes += "Senha: " + senha + "\n";
         detalhes += "Tipo de Usuário: " + tipoUsuario + "\n";
-        detalhes += "Data de Criação: " + sdf.format(dataCriacao) + "\n";
-        detalhes += "Data de Modificação: " + sdf.format(dataModificacao) + "\n";
+        detalhes += "Data de Criação: " + formatarData(dataCriacao) + "\n";
+        detalhes += "Data de Modificação: " + formatarData(dataModificacao) + "\n";
 
         return detalhes;
+    }
+
+    private String formatarData(Date data) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        return sdf.format(data);
     }
 
 }

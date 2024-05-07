@@ -1,4 +1,5 @@
 package sgacad.model;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Academia {
@@ -31,8 +32,8 @@ public class Academia {
         String detalhes = "ID: " + id + "\n";
         detalhes += "Nome: " + nome + "\n";
         detalhes += "Endereço: " + endereco + "\n";
-        detalhes += "Data de Criação: " + dataCriacao + "\n";
-        detalhes += "Data de Modificação: " + dataModificacao + "\n";
+        detalhes += "Data de Criação: " + formatarData(dataCriacao) + "\n";
+        detalhes += "Data de Modificação: " + formatarData(dataModificacao) + "\n";
         if (numAlunosMatriculados > 0) {
             detalhes += "Alunos Matriculados:\n";
             for (int i = 0; i < numAlunosMatriculados; i++) {
@@ -42,6 +43,11 @@ public class Academia {
             detalhes += "Nenhum aluno matriculado.\n";
         }
         return detalhes;
+    }
+
+    private String formatarData(Date data) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        return sdf.format(data);
     }
 
     // Método para matricular um aluno

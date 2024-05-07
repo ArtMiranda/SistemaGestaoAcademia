@@ -45,12 +45,10 @@ public class MenuAcademia {
 
         // Definir a data de nascimento como a data atual
         Date dataAtual = Calendar.getInstance().getTime();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        String dataNascimentoPadrao = sdf.format(dataAtual);
 
+        AdministradorController administradorController = new AdministradorController();
         // Criar o objeto Pessoa para representar o administrador padrão
-        Pessoa administradorPadrao = new Pessoa(0, nomePadrao, sexoPadrao, dataAtual, loginPadrao, senhaPadrao,
-                "Administrador", dataAtual, dataAtual);
+        Pessoa administradorPadrao = administradorController.criarAdministrador(numAdministradores, nomePadrao, sexoPadrao, dataAtual, loginPadrao, senhaPadrao, "Administrador");
 
         // Adicionar o administrador padrão ao array de administradores
         administradores[numAdministradores++] = administradorPadrao;
@@ -125,13 +123,11 @@ public class MenuAcademia {
         }
 
         // Data de criação e modificação
-        Date dataCriacao = Calendar.getInstance().getTime();
-        Date dataModificacao = Calendar.getInstance().getTime();
-
-        // Criar o objeto Pessoa para representar o administrador
-        return new Pessoa(numAdministradores, nome, sexoAdmin, dtNascimento, login, senha, "Administrador", dataCriacao,
-                dataModificacao);
-    }
+        AdministradorController administradorController = new AdministradorController();
+        Pessoa admin = administradorController.criarAdministrador(numAdministradores, nome, sexoAdmin, dtNascimento, login, senha, "Administrador");
+        
+        return admin;
+     }
 
     private static Pessoa criarProfessorInstrutor() {
         System.out.println("Informe os dados para criar o Professor/Instrutor:");
@@ -189,14 +185,10 @@ public class MenuAcademia {
             senha = scanner.nextLine().trim();
         }
 
-        // Data de criação e modificação
-        Date dataCriacao = Calendar.getInstance().getTime();
-        Date dataModificacao = Calendar.getInstance().getTime();
-
-        // Criar o objeto Pessoa para representar o professor/instrutor
-        return new Pessoa(numProfessoresInstrutores, nome, sexoProf, dtNascimento, login, senha, "Professor/Instrutor",
-                dataCriacao,
-                dataModificacao);
+        ProfessorController professorController = new ProfessorController();
+        
+        Pessoa prof = professorController.criarProfessor(numProfessoresInstrutores, nome, sexoProf, dtNascimento, login, senha, "Professor/Instrutor");
+        return prof;
     }
 
     private static boolean efetuarLogin() {
@@ -636,7 +628,6 @@ public class MenuAcademia {
         academia = academiaController.criarAcademia(nomeAcademia, enderecoAcademia);
     
         System.out.println("Academia criada com sucesso!");
-        System.out.println(academia);
         
         return academia; 
     }
@@ -650,7 +641,7 @@ public class MenuAcademia {
         }
     }
 
-    private static void criarAluno() {
+    public static Pessoa criarAluno() {
         System.out.println("\n\n----- Criação da Conta de Aluno -----");
         System.out.println("\nInforme os detalhes do aluno:");
 
@@ -691,10 +682,6 @@ public class MenuAcademia {
             }
         }
 
-        // Data de criação e modificação
-        Date dataCriacao = Calendar.getInstance().getTime();
-        Date dataModificacao = Calendar.getInstance().getTime();
-
         // Tipo de usuário
         String tipoUsuario = "Aluno";
 
@@ -714,12 +701,14 @@ public class MenuAcademia {
             senhaAluno = scanner.nextLine().trim();
         }
 
-        // Criar o objeto Pessoa para representar o aluno
-        Pessoa aluno = new Pessoa(numAlunos, nomeAluno, sexoAluno, dtNascimento, loginAluno, senhaAluno, tipoUsuario,
-                dataCriacao, dataModificacao);
+        AlunoController alunoController = new AlunoController();
+        Pessoa aluno = alunoController.criarAluno(numAlunos, nomeAluno, sexoAluno, dtNascimento, loginAluno, senhaAluno, tipoUsuario);
+
         alunos[numAlunos] = aluno;
         System.out.println("Aluno criado com sucesso!");
         numAlunos++;
+
+        return aluno;
     }
 
     private static void exibirTodosAlunos() {
@@ -741,7 +730,7 @@ public class MenuAcademia {
         boolean encontrado = false;
         for (int i = 0; i < numAdministradores; i++) {
             if (administradores[i].getId() == idBusca) {
-                System.out.println("Dados do Administrador:");
+                System.out.println("\n\n----- Dados do Administrador -----\n\n");
                 System.out.println(administradores[i].exibirDetalhes());
                 encontrado = true;
                 break;
@@ -760,7 +749,7 @@ public class MenuAcademia {
         boolean encontrado = false;
         for (int i = 0; i < numProfessoresInstrutores; i++) {
             if (professoresInstrutores[i].getId() == idBusca) {
-                System.out.println("Dados do Professor/Instrutor:");
+                System.out.println("\n\n----- Dados do Professor/Instrutor -----\n\n");
                 System.out.println(professoresInstrutores[i].exibirDetalhes());
                 encontrado = true;
                 break;
@@ -802,7 +791,7 @@ public class MenuAcademia {
         boolean encontrado = false;
         for (int i = 0; i < numAlunos; i++) {
             if (alunos[i].getId() == idBusca) {
-                System.out.println("Dados do Aluno:");
+                System.out.println("\n\n----- Dados do Aluno -----\n\n");
                 System.out.println(alunos[i].exibirDetalhes());
                 encontrado = true;
                 break;

@@ -1,5 +1,4 @@
 package sgacad.controller;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -13,10 +12,5 @@ public class AcademiaController {
                 Academia academia = new Academia(1, nomeAcademia, enderecoAcademia, currentDate, currentDate);
                 return academia;
 
-    }
-
-    private String formatarData(Date data) {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        return sdf.format(data);
     }
 }
