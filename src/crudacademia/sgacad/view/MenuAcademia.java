@@ -46,9 +46,10 @@ public class MenuAcademia {
         // Definir a data de nascimento como a data atual
         Date dataAtual = Calendar.getInstance().getTime();
 
-        AdministradorController administradorController = new AdministradorController();
+        PessoaController administradorController = new PessoaController();
         // Criar o objeto Pessoa para representar o administrador padrão
-        Pessoa administradorPadrao = administradorController.criarAdministrador(numAdministradores, nomePadrao, sexoPadrao, dataAtual, loginPadrao, senhaPadrao, "Administrador");
+        Pessoa administradorPadrao = administradorController.criarPessoa(numAdministradores, nomePadrao, sexoPadrao,
+                dataAtual, loginPadrao, senhaPadrao, "Administrador");
 
         // Adicionar o administrador padrão ao array de administradores
         administradores[numAdministradores++] = administradorPadrao;
@@ -123,11 +124,12 @@ public class MenuAcademia {
         }
 
         // Data de criação e modificação
-        AdministradorController administradorController = new AdministradorController();
-        Pessoa admin = administradorController.criarAdministrador(numAdministradores, nome, sexoAdmin, dtNascimento, login, senha, "Administrador");
-        
+        PessoaController administradorController = new PessoaController();
+        Pessoa admin = administradorController.criarPessoa(numAdministradores, nome, sexoAdmin, dtNascimento, login,
+                senha, "Administrador");
+
         return admin;
-     }
+    }
 
     private static Pessoa criarProfessorInstrutor() {
         System.out.println("Informe os dados para criar o Professor/Instrutor:");
@@ -185,14 +187,15 @@ public class MenuAcademia {
             senha = scanner.nextLine().trim();
         }
 
-        ProfessorController professorController = new ProfessorController();
-        
-        Pessoa prof = professorController.criarProfessor(numProfessoresInstrutores, nome, sexoProf, dtNascimento, login, senha, "Professor/Instrutor");
+        PessoaController professorController = new PessoaController();
+
+        Pessoa prof = professorController.criarPessoa(numProfessoresInstrutores, nome, sexoProf, dtNascimento, login,
+                senha, "Professor/Instrutor");
         return prof;
     }
 
     private static boolean efetuarLogin() {
-        System.out.println("\n\n----- Login -----");
+        System.out.println("\n\n----- Faça login ou digite 'sair' para sair do programa -----");
         System.out.print("Login: ");
         String login = scanner.nextLine();
         if (login.equalsIgnoreCase("sair")) {
@@ -623,13 +626,13 @@ public class MenuAcademia {
         String nomeAcademia = scanner.nextLine();
         System.out.print("Endereço da Academia: ");
         String enderecoAcademia = scanner.nextLine();
-    
+
         AcademiaController academiaController = new AcademiaController();
         academia = academiaController.criarAcademia(nomeAcademia, enderecoAcademia);
-    
+
         System.out.println("Academia criada com sucesso!");
-        
-        return academia; 
+
+        return academia;
     }
 
     private static void exibirDetalhesAcademia(Academia academia) {
@@ -701,8 +704,10 @@ public class MenuAcademia {
             senhaAluno = scanner.nextLine().trim();
         }
 
-        AlunoController alunoController = new AlunoController();
-        Pessoa aluno = alunoController.criarAluno(numAlunos, nomeAluno, sexoAluno, dtNascimento, loginAluno, senhaAluno, tipoUsuario);
+        PessoaController alunoController = new PessoaController();
+        Pessoa aluno = alunoController.criarPessoa(numAlunos, nomeAluno, sexoAluno, dtNascimento, loginAluno,
+                senhaAluno,
+                tipoUsuario);
 
         alunos[numAlunos] = aluno;
         System.out.println("Aluno criado com sucesso!");
