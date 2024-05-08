@@ -7,10 +7,10 @@ import java.util.Date;
 import java.util.Scanner;
 import sgacad.model.*;
 import sgacad.controller.*;
+import sgacad.view.AcademiaView;
 
 public class MenuAcademia {
     private static Scanner scanner = new Scanner(System.in);
-    private static Academia academia = null;
     private static Pessoa[] alunos = new Pessoa[100]; // Array de alunos
     private static int numAlunos = 0;
     private static Pessoa[] administradores = new Pessoa[100]; // Array de adms
@@ -22,8 +22,8 @@ public class MenuAcademia {
         criarAdministradorPadrao();
 
         while (true) {
-            if (academia == null) {
-                criarAcademia();
+            if (AcademiaView.academia == null) {
+                AcademiaView.criarAcademia();
             } else {
                 if (efetuarLogin()) {
                     exibirMenu();
@@ -243,7 +243,7 @@ public class MenuAcademia {
 
             switch (opcao) {
                 case 1:
-                    exibirDetalhesAcademia(academia);
+                    AcademiaView.exibirDetalhesAcademia(AcademiaView.academia);
                     break;
                 case 2:
                     exibirMenuCRUDAluno();
@@ -616,31 +616,6 @@ public class MenuAcademia {
 
         if (!encontrado) {
             System.out.println("\nAluno com ID " + idAluno + " não encontrado.");
-        }
-    }
-
-    public static Academia criarAcademia() {
-        System.out.println("\n\n----- Criação da Academia -----");
-        System.out.println("Informe os detalhes da academia:");
-        System.out.print("Nome da Academia: ");
-        String nomeAcademia = scanner.nextLine();
-        System.out.print("Endereço da Academia: ");
-        String enderecoAcademia = scanner.nextLine();
-
-        AcademiaController academiaController = new AcademiaController();
-        academia = academiaController.criarAcademia(nomeAcademia, enderecoAcademia);
-
-        System.out.println("Academia criada com sucesso!");
-
-        return academia;
-    }
-
-    private static void exibirDetalhesAcademia(Academia academia) {
-        if (academia != null) {
-            System.out.println("\n\n----- Detalhes da Academia -----");
-            System.out.println(academia.exibirDetalhes());
-        } else {
-            System.out.println("Nenhuma academia criada ainda.");
         }
     }
 
