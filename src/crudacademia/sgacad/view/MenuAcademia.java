@@ -13,6 +13,7 @@ public class MenuAcademia {
     private static Pessoa[] alunos = new Pessoa[100]; // Array de alunos
     private static Pessoa[] administradores = new Pessoa[100]; // Array de adms
     private static Pessoa[] professoresInstrutores = new Pessoa[100]; // Array de profs
+    private static Exercicio[] exercicios = new Exercicio[100]; // Array de exercicios
 
     public static void main(String[] args) {
         criarAdministradorPadrao();
@@ -122,6 +123,7 @@ public class MenuAcademia {
             System.out.println("2. CRUD Aluno");
             System.out.println("3. CRUD Administrador");
             System.out.println("4. CRUD Professor/Instrutor");
+            System.out.println("5. CRUD Exercicios");
             System.out.println("0. Sair");
             System.out.print("Escolha uma opção: ");
 
@@ -141,7 +143,9 @@ public class MenuAcademia {
                 case 4:
                     exibirMenuCRUDProfessor();
                     break;
-                // Restante das opções do menu...
+                case 5:
+                    exibirMenuCRUDExercicios();
+                    break;
                 case 0:
                     System.out.println("Deslogando...");
                     loggedOut = true;
@@ -311,6 +315,151 @@ public class MenuAcademia {
         }
         if (!encontrado) {
             System.out.println("\n\nAdministrador com ID " + idAdmin + " não encontrado.");
+        }
+    }
+
+    private static void exibirMenuCRUDExercicios() {
+        boolean loggedOut = false;
+        while (!loggedOut) {
+            System.out.println("\n\n----- Menu de Exercícios -----");
+            System.out.println("1. Criar Exercício");
+            System.out.println("2. Exibir Todos os Exercícios");
+            System.out.println("3. Exibir Dados do Exercício por ID");
+            System.out.println("4. Atualizar Exercício");
+            System.out.println("5. Remover Exercício por ID");
+            System.out.println("0. Voltar ao Menu Principal");
+            System.out.print("Escolha uma opção: ");
+
+            int opcao = scanner.nextInt();
+            scanner.nextLine(); // Limpar o buffer do teclado
+
+            switch (opcao) {
+                case 1:
+                    criaExercicio();
+                    break;
+                case 2:
+                    exibirTodosExercicios();
+                    break;
+                case 3:
+                    exibirDadosExercicioPorId();
+                    break;
+                case 4:
+                    atualizarExercicio();
+                    break;
+                case 5:
+                    removerExercicio();
+                    break;
+                case 0:
+                    System.out.println("Retornando ao Menu Principal...");
+                    loggedOut = true;
+                    break;
+                default:
+                    System.out.println("Opção inválida! Tente novamente.");
+            }
+        }
+    }
+
+    private static Exercicio criaExercicio() {
+        System.out.println("Informe os dados para criar o Administrador:");
+
+        Exercicio exercicio = ExercicioView.criaExercicio();
+
+        exercicios[ExercicioView.numExercicios++] = exercicio;
+
+        return exercicio;
+    }
+
+    private static void exibirTodosExercicios() {
+        if (ExercicioView.numExercicios == 0) {
+            System.out.println("\n\nNenhum exercício cadastrado ainda.");
+        } else {
+            System.out.println("\n\nLista de Exercícios:");
+            for (int i = 0; i < ExercicioView.numExercicios; i++) {
+                System.out.println("ID: " + exercicios[i].getId() + ", Nome: " + exercicios[i].getNome());
+            }
+        }
+    }
+
+    private static void exibirDadosExercicioPorId() {
+        System.out.print("\n\nInforme o ID do exercício: ");
+        int idBusca = scanner.nextInt();
+        scanner.nextLine(); // Limpar o buffer do teclado
+
+        boolean encontrado = false;
+        for (int i = 0; i < ExercicioView.numExercicios; i++) {
+            if (exercicios[i].getId() == idBusca) {
+                System.out.println("\n\n----- Dados do Exercício -----\n\n");
+                System.out.println(exercicios[i].exibirDetalhes());
+                encontrado = true;
+                break;
+            }
+        }
+        if (!encontrado) {
+            System.out.println("\n\nExercício não encontrado.");
+        }
+    }
+
+    private static void atualizarExercicio() {
+        System.out.print("\n\nInforme o ID do exercício que deseja atualizar: ");
+        int idExercicio = scanner.nextInt();
+        scanner.nextLine(); // Limpar o buffer do teclado
+
+        boolean encontrado = false;
+        for (int i = 0; i < ExercicioView.numExercicios; i++) {
+            if (exercicios[i].getId() == idExercicio) {
+                System.out.println("\nDados atuais do Exercício:");
+                System.out.println(exercicios[i].exibirDetalhes());
+
+                System.out.println("\nInforme os novos dados do exercício:");
+
+                // Nome do exercício
+                System.out.print("Novo Nome: ");
+                String novoNome = scanner.nextLine().trim();
+                if (!novoNome.isEmpty()) {
+                    exercicios[i].setNome(novoNome);
+                }
+
+                // Descrição/Foto do exercício
+                System.out.print("Nova Descrição/Foto: ");
+                String novaDescricaoFoto = scanner.nextLine().trim();
+                if (!novaDescricaoFoto.isEmpty()) {
+                    exercicios[i].setDescricaoFoto(novaDescricaoFoto);
+                }
+
+                // Data de modificação
+                exercicios[i].setDataModificacao(Calendar.getInstance().getTime());
+
+                System.out.println("\nDados do Exercício atualizados com sucesso:");
+                System.out.println(exercicios[i].exibirDetalhes());
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            System.out.println("\nExercício com ID " + idExercicio + " não encontrado.");
+        }
+    }
+
+    private static void removerExercicio() {
+        System.out.print("\n\nInforme o ID do exercício que deseja remover: ");
+        int idExercicio = scanner.nextInt();
+        scanner.nextLine(); // Limpar o buffer do teclado
+
+        boolean encontrado = false;
+        for (int i = 0; i < ExercicioView.numExercicios; i++) {
+            if (exercicios[i].getId() == idExercicio) {
+                for (int j = i; j < ExercicioView.numExercicios - 1; j++) {
+                    exercicios[j] = exercicios[j + 1];
+                }
+                exercicios[ExercicioView.numExercicios - 1] = null;
+                ExercicioView.numExercicios--;
+                System.out.println("\n\nExercício removido com sucesso.");
+                encontrado = true;
+                break;
+            }
+        }
+        if (!encontrado) {
+            System.out.println("\n\nExercício com ID " + idExercicio + " não encontrado.");
         }
     }
 
