@@ -7,16 +7,12 @@ import java.util.Date;
 import java.util.Scanner;
 import sgacad.model.*;
 import sgacad.controller.*;
-import sgacad.view.AcademiaView;
 
 public class MenuAcademia {
     private static Scanner scanner = new Scanner(System.in);
     private static Pessoa[] alunos = new Pessoa[100]; // Array de alunos
-    private static int numAlunos = 0;
     private static Pessoa[] administradores = new Pessoa[100]; // Array de adms
-    private static int numAdministradores = 0;
     private static Pessoa[] professoresInstrutores = new Pessoa[100]; // Array de profs
-    private static int numProfessoresInstrutores = 0;
 
     public static void main(String[] args) {
         criarAdministradorPadrao();
@@ -48,85 +44,31 @@ public class MenuAcademia {
 
         PessoaController administradorController = new PessoaController();
         // Criar o objeto Pessoa para representar o administrador padrão
-        Pessoa administradorPadrao = administradorController.criarPessoa(numAdministradores, nomePadrao, sexoPadrao,
+        Pessoa administradorPadrao = administradorController.criarPessoa(PessoaView.numAdministradores,
+                nomePadrao,
+                sexoPadrao,
                 dataAtual, loginPadrao, senhaPadrao, "Administrador");
 
         // Adicionar o administrador padrão ao array de administradores
-        administradores[numAdministradores++] = administradorPadrao;
+        administradores[PessoaView.numAdministradores++] = administradorPadrao;
 
         System.out.println("Administrador padrão criado com sucesso!");
     }
 
     private static void criarContaAdministrador() {
         System.out.println("\n\n----- Criação da Conta do Administrador -----");
-        administradores[numAdministradores++] = criarAdministrador();
+        administradores[PessoaView.numAdministradores++] = criarAdministrador();
     }
 
     private static void criarContaProfessor() {
         System.out.println("\n\n----- Criação da Conta do Professor/Instrutor -----");
-        professoresInstrutores[numProfessoresInstrutores++] = criarProfessorInstrutor();
+        professoresInstrutores[PessoaView.numProfessoresInstrutores++] = criarProfessorInstrutor();
     }
 
     private static Pessoa criarAdministrador() {
         System.out.println("Informe os dados para criar o Administrador:");
 
-        // Nome do administrador
-        System.out.print("Nome: ");
-        String nome = scanner.nextLine().trim();
-        while (nome.isEmpty()) {
-            System.out.print("Nome não pode estar vazio. Informe novamente: ");
-            nome = scanner.nextLine().trim();
-        }
-
-        // Sexo do administrador
-        System.out.print("Sexo (M/F): ");
-        char sexoAdmin;
-        String sexoInput = scanner.nextLine();
-        while (!(sexoInput.equalsIgnoreCase("M") || sexoInput.equalsIgnoreCase("F"))) {
-            System.out.print("Sexo inválido. Digite M para Masculino ou F para Feminino: ");
-            sexoInput = scanner.nextLine();
-        }
-        sexoAdmin = sexoInput.toUpperCase().charAt(0);
-
-        // Data de nascimento do administrador
-        Date dtNascimento = null;
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        boolean dataValida = false;
-        while (!dataValida) {
-            try {
-                System.out.print("Data de nascimento (dd/MM/yyyy): ");
-                String dtNascimentoStr = scanner.nextLine();
-                dtNascimento = sdf.parse(dtNascimentoStr);
-                if (dtNascimento.after(Calendar.getInstance().getTime())) {
-                    System.out.println("Data de nascimento inválida! Informe uma data anterior à data atual.");
-                } else {
-                    dataValida = true;
-                }
-            } catch (ParseException e) {
-                System.out.println("Formato de data inválido! Use o formato dd/MM/yyyy.");
-            }
-        }
-
-        // Login do administrador
-        System.out.print("Login: ");
-        String login = scanner.nextLine().trim();
-        while (login.isEmpty()) {
-            System.out.print("Login não pode estar vazio. Informe novamente: ");
-            login = scanner.nextLine().trim();
-        }
-
-        // Senha do administrador
-        System.out.print("Senha: ");
-        String senha = scanner.nextLine().trim();
-        while (senha.isEmpty()) {
-            System.out.print("Senha não pode estar vazia. Informe novamente: ");
-            senha = scanner.nextLine().trim();
-        }
-
-        // Data de criação e modificação
-        PessoaController administradorController = new PessoaController();
-        Pessoa admin = administradorController.criarPessoa(numAdministradores, nome, sexoAdmin, dtNascimento, login,
-                senha, "Administrador");
+        Pessoa admin = PessoaView.criarPessoa("Administrador");
 
         return admin;
     }
@@ -134,63 +76,8 @@ public class MenuAcademia {
     private static Pessoa criarProfessorInstrutor() {
         System.out.println("Informe os dados para criar o Professor/Instrutor:");
 
-        // Nome do professor/instrutor
-        System.out.print("Nome: ");
-        String nome = scanner.nextLine().trim();
-        while (nome.isEmpty()) {
-            System.out.print("Nome não pode estar vazio. Informe novamente: ");
-            nome = scanner.nextLine().trim();
-        }
+        Pessoa prof = PessoaView.criarPessoa("Administrador");
 
-        // Sexo do professor/instrutor
-        System.out.print("Sexo (M/F): ");
-        char sexoProf;
-        String sexoInput = scanner.nextLine();
-        while (!(sexoInput.equalsIgnoreCase("M") || sexoInput.equalsIgnoreCase("F"))) {
-            System.out.print("Sexo inválido. Digite M para Masculino ou F para Feminino: ");
-            sexoInput = scanner.nextLine();
-        }
-        sexoProf = sexoInput.toUpperCase().charAt(0);
-
-        // Data de nascimento do professor/instrutor
-        Date dtNascimento = null;
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        boolean dataValida = false;
-        while (!dataValida) {
-            try {
-                System.out.print("Data de nascimento (dd/MM/yyyy): ");
-                String dtNascimentoStr = scanner.nextLine();
-                dtNascimento = sdf.parse(dtNascimentoStr);
-                if (dtNascimento.after(Calendar.getInstance().getTime())) {
-                    System.out.println("Data de nascimento inválida! Informe uma data anterior à data atual.");
-                } else {
-                    dataValida = true;
-                }
-            } catch (ParseException e) {
-                System.out.println("Formato de data inválido! Use o formato dd/MM/yyyy.");
-            }
-        }
-
-        // Login do professor/instrutor
-        System.out.print("Login: ");
-        String login = scanner.nextLine().trim();
-        while (login.isEmpty()) {
-            System.out.print("Login não pode estar vazio. Informe novamente: ");
-            login = scanner.nextLine().trim();
-        }
-
-        // Senha do professor/instrutorf
-        System.out.print("Senha: ");
-        String senha = scanner.nextLine().trim();
-        while (senha.isEmpty()) {
-            System.out.print("Senha não pode estar vazia. Informe novamente: ");
-            senha = scanner.nextLine().trim();
-        }
-
-        PessoaController professorController = new PessoaController();
-
-        Pessoa prof = professorController.criarPessoa(numProfessoresInstrutores, nome, sexoProf, dtNascimento, login,
-                senha, "Professor/Instrutor");
         return prof;
     }
 
@@ -205,20 +92,20 @@ public class MenuAcademia {
         System.out.print("Senha: ");
         String senha = scanner.nextLine();
 
-        for (int i = 0; i < numAdministradores; i++) {
+        for (int i = 0; i < PessoaView.numAdministradores; i++) {
             if (login.equals(administradores[i].getLogin()) && senha.equals(administradores[i].getSenha())) {
                 System.out.println("Login de Administrador bem-sucedido!");
                 return true;
             }
         }
-        for (int i = 0; i < numProfessoresInstrutores; i++) {
+        for (int i = 0; i < PessoaView.numProfessoresInstrutores; i++) {
             if (login.equals(professoresInstrutores[i].getLogin())
                     && senha.equals(professoresInstrutores[i].getSenha())) {
                 System.out.println("Login de Professor/Instrutor bem-sucedido!");
                 return true;
             }
         }
-        for (int i = 0; i < numAlunos; i++) {
+        for (int i = 0; i < PessoaView.numAlunos; i++) {
             if (login.equals(alunos[i].getLogin()) && senha.equals(alunos[i].getSenha())) {
                 System.out.println("Login de Aluno bem-sucedido!");
                 return true;
@@ -271,7 +158,7 @@ public class MenuAcademia {
         scanner.nextLine(); // Limpar o buffer do teclado
 
         boolean encontrado = false;
-        for (int i = 0; i < numProfessoresInstrutores; i++) {
+        for (int i = 0; i < PessoaView.numProfessoresInstrutores; i++) {
             if (professoresInstrutores[i].getId() == idProf) {
                 System.out.println("Professor/Instrutor encontrado. Insira os novos dados:");
 
@@ -352,7 +239,7 @@ public class MenuAcademia {
         scanner.nextLine(); // Limpar o buffer do teclado
 
         boolean encontrado = false;
-        for (int i = 0; i < numAdministradores; i++) {
+        for (int i = 0; i < PessoaView.numAdministradores; i++) {
             if (administradores[i].getId() == idAdmin) {
                 System.out.println("Administrador encontrado. Insira os novos dados:");
 
@@ -555,7 +442,7 @@ public class MenuAcademia {
         scanner.nextLine(); // Limpar o buffer do teclado
 
         boolean encontrado = false;
-        for (int i = 0; i < numAlunos; i++) {
+        for (int i = 0; i < PessoaView.numAlunos; i++) {
             if (alunos[i].getId() == idAluno) {
                 encontrado = true;
                 System.out.println("\nDados atuais do Aluno:");
@@ -680,23 +567,23 @@ public class MenuAcademia {
         }
 
         PessoaController alunoController = new PessoaController();
-        Pessoa aluno = alunoController.criarPessoa(numAlunos, nomeAluno, sexoAluno, dtNascimento, loginAluno,
+        Pessoa aluno = alunoController.criarPessoa(PessoaView.numAlunos, nomeAluno, sexoAluno, dtNascimento, loginAluno,
                 senhaAluno,
                 tipoUsuario);
 
-        alunos[numAlunos] = aluno;
+        alunos[PessoaView.numAlunos] = aluno;
         System.out.println("Aluno criado com sucesso!");
-        numAlunos++;
+        PessoaView.numAlunos++;
 
         return aluno;
     }
 
     private static void exibirTodosAlunos() {
-        if (numAlunos == 0) {
+        if (PessoaView.numAlunos == 0) {
             System.out.println("\n\nNenhum aluno cadastrado ainda.");
         } else {
             System.out.println("\n\nLista de Alunos:");
-            for (int i = 0; i < numAlunos; i++) {
+            for (int i = 0; i < PessoaView.numAlunos; i++) {
                 System.out.println("ID: " + alunos[i].getId() + ", Nome: " + alunos[i].getNome());
             }
         }
@@ -708,7 +595,7 @@ public class MenuAcademia {
         scanner.nextLine(); // Limpar o buffer do teclado
 
         boolean encontrado = false;
-        for (int i = 0; i < numAdministradores; i++) {
+        for (int i = 0; i < PessoaView.numAdministradores; i++) {
             if (administradores[i].getId() == idBusca) {
                 System.out.println("\n\n----- Dados do Administrador -----\n\n");
                 System.out.println(administradores[i].exibirDetalhes());
@@ -727,7 +614,7 @@ public class MenuAcademia {
         scanner.nextLine(); // Limpar o buffer do teclado
 
         boolean encontrado = false;
-        for (int i = 0; i < numProfessoresInstrutores; i++) {
+        for (int i = 0; i < PessoaView.numProfessoresInstrutores; i++) {
             if (professoresInstrutores[i].getId() == idBusca) {
                 System.out.println("\n\n----- Dados do Professor/Instrutor -----\n\n");
                 System.out.println(professoresInstrutores[i].exibirDetalhes());
@@ -741,22 +628,22 @@ public class MenuAcademia {
     }
 
     private static void exibirTodosAdministradores() {
-        if (numAdministradores == 0) {
+        if (PessoaView.numAdministradores == 0) {
             System.out.println("\n\nNenhum administrador cadastrado ainda.");
         } else {
             System.out.println("\n\nLista de Administradores:");
-            for (int i = 0; i < numAdministradores; i++) {
+            for (int i = 0; i < PessoaView.numAdministradores; i++) {
                 System.out.println("ID: " + administradores[i].getId() + ", Nome: " + administradores[i].getNome());
             }
         }
     }
 
     private static void exibirTodosProfessoresInstrutores() {
-        if (numProfessoresInstrutores == 0) {
+        if (PessoaView.numProfessoresInstrutores == 0) {
             System.out.println("\n\nNenhum professor/instrutor cadastrado ainda.");
         } else {
             System.out.println("\n\nLista de Professores/Instrutores:");
-            for (int i = 0; i < numProfessoresInstrutores; i++) {
+            for (int i = 0; i < PessoaView.numProfessoresInstrutores; i++) {
                 System.out.println(
                         "ID: " + professoresInstrutores[i].getId() + ", Nome: " + professoresInstrutores[i].getNome());
             }
@@ -769,7 +656,7 @@ public class MenuAcademia {
         scanner.nextLine(); // Limpar o buffer do teclado
 
         boolean encontrado = false;
-        for (int i = 0; i < numAlunos; i++) {
+        for (int i = 0; i < PessoaView.numAlunos; i++) {
             if (alunos[i].getId() == idBusca) {
                 System.out.println("\n\n----- Dados do Aluno -----\n\n");
                 System.out.println(alunos[i].exibirDetalhes());
@@ -784,13 +671,13 @@ public class MenuAcademia {
 
     private static void removerAlunoPorId(int id) {
         boolean encontrado = false;
-        for (int i = 0; i < numAlunos; i++) {
+        for (int i = 0; i < PessoaView.numAlunos; i++) {
             if (alunos[i].getId() == id) {
-                for (int j = i; j < numAlunos - 1; j++) {
+                for (int j = i; j < PessoaView.numAlunos - 1; j++) {
                     alunos[j] = alunos[j + 1];
                 }
-                alunos[numAlunos - 1] = null;
-                numAlunos--;
+                alunos[PessoaView.numAlunos - 1] = null;
+                PessoaView.numAlunos--;
                 System.out.println("\n\nAluno removido com sucesso.");
                 encontrado = true;
                 break;
@@ -810,13 +697,13 @@ public class MenuAcademia {
 
     private static void removerAdministradorPorId(int id) {
         boolean encontrado = false;
-        for (int i = 0; i < numAdministradores; i++) {
+        for (int i = 0; i < PessoaView.numAdministradores; i++) {
             if (administradores[i].getId() == id) {
-                for (int j = i; j < numAdministradores - 1; j++) {
+                for (int j = i; j < PessoaView.numAdministradores - 1; j++) {
                     administradores[j] = administradores[j + 1];
                 }
-                administradores[numAdministradores - 1] = null;
-                numAdministradores--;
+                administradores[PessoaView.numAdministradores - 1] = null;
+                PessoaView.numAdministradores--;
                 System.out.println("\n\nAdministrador removido com sucesso.");
                 encontrado = true;
                 break;
@@ -829,13 +716,13 @@ public class MenuAcademia {
 
     private static void removerProfessorPorId(int id) {
         boolean encontrado = false;
-        for (int i = 0; i < numProfessoresInstrutores; i++) {
+        for (int i = 0; i < PessoaView.numProfessoresInstrutores; i++) {
             if (professoresInstrutores[i].getId() == id) {
-                for (int j = i; j < numProfessoresInstrutores - 1; j++) {
+                for (int j = i; j < PessoaView.numProfessoresInstrutores - 1; j++) {
                     professoresInstrutores[j] = professoresInstrutores[j + 1];
                 }
-                professoresInstrutores[numProfessoresInstrutores - 1] = null;
-                numProfessoresInstrutores--;
+                professoresInstrutores[PessoaView.numProfessoresInstrutores - 1] = null;
+                PessoaView.numProfessoresInstrutores--;
                 System.out.println("\n\nProfessor/Instrutor removido com sucesso.");
                 encontrado = true;
                 break;

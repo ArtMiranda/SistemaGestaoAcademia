@@ -12,6 +12,5 @@ public class PessoaController {
         Date currentDate = Calendar.getInstance().getTime();
         Pessoa pessoa = new Pessoa(id, nome, sexo, nascimento, login, senha, tipoUsuario, currentDate, currentDate);
         return pessoa;
-
     }
 }
