@@ -1,4 +1,6 @@
 package sgacad.model;
+
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ExercicioAplicacao {
@@ -57,4 +59,20 @@ public class ExercicioAplicacao {
     public void setDataModificacao(Date dataModificacao) {
         this.dataModificacao = dataModificacao;
     }
+
+    public String exibirDetalhes() {
+        String detalhes = "ID: " + id + "\n";
+        detalhes += "Nome: " + nome + "\n";
+        detalhes += "Descrição detalhada: " + nomeDetalhado + "\n";
+        detalhes += "Data de Criação: " + formatarData(dataCriacao) + "\n";
+        detalhes += "Data de Modificação: " + formatarData(dataModificacao) + "\n";
+
+        return detalhes;
+    }
+
+    private String formatarData(Date data) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        return sdf.format(data);
+    }
+
 }

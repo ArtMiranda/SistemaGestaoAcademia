@@ -10,10 +10,12 @@ import sgacad.controller.*;
 
 public class MenuAcademia {
     private static Scanner scanner = new Scanner(System.in);
-    private static Pessoa[] alunos = new Pessoa[100]; // Array de alunos
-    private static Pessoa[] administradores = new Pessoa[100]; // Array de adms
-    private static Pessoa[] professoresInstrutores = new Pessoa[100]; // Array de profs
-    private static Exercicio[] exercicios = new Exercicio[100]; // Array de exercicios
+    public static Pessoa[] alunos = new Pessoa[100]; // Array de alunos
+    public static Pessoa[] administradores = new Pessoa[100]; // Array de adms
+    public static Pessoa[] professoresInstrutores = new Pessoa[100]; // Array de profs
+    public static Exercicio[] exercicios = new Exercicio[100]; // Array de exercicios
+    public static ExercicioAplicacao[] exerciciosAplicacao = new ExercicioAplicacao[100]; // Array de exercicios
+                                                                                          // aplicacao
 
     public static void main(String[] args) {
         criarAdministradorPadrao();
@@ -124,6 +126,7 @@ public class MenuAcademia {
             System.out.println("3. CRUD Administrador");
             System.out.println("4. CRUD Professor/Instrutor");
             System.out.println("5. CRUD Exercicios");
+            System.out.println("6. CRUD Exercicios Aplicacao");
             System.out.println("0. Sair");
             System.out.print("Escolha uma opção: ");
 
@@ -145,6 +148,9 @@ public class MenuAcademia {
                     break;
                 case 5:
                     exibirMenuCRUDExercicios();
+                    break;
+                case 6:
+                    exibirMenuCRUDExerciciosAplicacao();
                     break;
                 case 0:
                     System.out.println("Deslogando...");
@@ -356,6 +362,141 @@ public class MenuAcademia {
                 default:
                     System.out.println("Opção inválida! Tente novamente.");
             }
+        }
+    }
+
+    private static void exibirMenuCRUDExerciciosAplicacao() {
+        boolean loggedOut = false;
+        while (!loggedOut) {
+            System.out.println("\n\n----- Menu de Exercícios Aplicação -----");
+            System.out.println("1. Definir Aplicação do Exercicio");
+            System.out.println("2. Exibir todas as Aplicações de Exercícios");
+            System.out.println("3. Exibir Dados das Aplicações de Exercício por ID");
+            System.out.println("4. Atualizar Aplicação de Exercício");
+            System.out.println("5. Remover Aplicação de Exercício por ID");
+            System.out.println("0. Voltar ao Menu Principal");
+            System.out.print("Escolha uma opção: ");
+
+            int opcao = scanner.nextInt();
+            scanner.nextLine(); // Limpar o buffer do teclado
+
+            switch (opcao) {
+                case 1:
+                    criaExercicioAplicacao();
+                    break;
+                case 2:
+                    exibirTodosExerciciosAplicacao();
+                    break;
+                case 3:
+                    exibirDadosExercicioAplicacaoPorId();
+                    break;
+                case 4:
+                    atualizarExercicioAplicacao();
+                    break;
+                case 5:
+                    removerExercicioAplicacao();
+                    break;
+                case 0:
+                    System.out.println("Retornando ao Menu Principal...");
+                    loggedOut = true;
+                    break;
+                default:
+                    System.out.println("Opção inválida! Tente novamente.");
+            }
+        }
+    }
+
+    private static void criaExercicioAplicacao() {
+        System.out.println("\n\n----- Criação da Aplicação de Exercício -----");
+        ExercicioAplicacao exercicioAplicacao = ExercicioAplicacaoView.criarExercicioAplicacao();
+
+        exerciciosAplicacao[ExercicioAplicacaoView.numExerciciosAplicacao++] = exercicioAplicacao;
+    }
+
+    private static void exibirTodosExerciciosAplicacao() {
+        if (ExercicioAplicacaoView.numExerciciosAplicacao == 0) {
+            System.out.println("\n\nNenhuma aplicação de exercício cadastrada ainda.");
+        } else {
+            System.out.println("\n\nLista de Aplicações de Exercícios:");
+            for (int i = 0; i < ExercicioAplicacaoView.numExerciciosAplicacao; i++) {
+                System.out.println(
+                        "ID: " + exerciciosAplicacao[i].getId() + ", Nome: " + exerciciosAplicacao[i].getNome()
+                                + ", Descricao detalhada: " + exerciciosAplicacao[i].getNomeDetalhado());
+            }
+        }
+    }
+
+    private static void atualizarExercicioAplicacao() {
+        System.out.print("\n\nInforme o ID da aplicação de exercício que deseja atualizar: ");
+        int idExercicioAplicacao = scanner.nextInt();
+        scanner.nextLine(); // Limpar o buffer do teclado
+
+        boolean encontrado = false;
+        for (int i = 0; i < ExercicioAplicacaoView.numExerciciosAplicacao; i++) {
+            if (exerciciosAplicacao[i].getId() == idExercicioAplicacao) {
+                System.out.println("Aplicação de Exercício encontrada. Insira os novos dados:");
+
+                // Descrição detalhada da aplicação de exercício
+                System.out.print("Nova descrição detalhada: ");
+                String novaDescricaoDetalhada = scanner.nextLine().trim();
+                while (novaDescricaoDetalhada.isEmpty()) {
+                    System.out.print("Descrição detalhada não pode estar vazia. Informe novamente: ");
+                    novaDescricaoDetalhada = scanner.nextLine().trim();
+                }
+                exerciciosAplicacao[i].setNomeDetalhado(novaDescricaoDetalhada);
+
+                // Data de modificação
+                exerciciosAplicacao[i].setDataModificacao(Calendar.getInstance().getTime());
+
+                System.out.println("Aplicação de Exercício atualizada com sucesso!");
+                encontrado = true;
+                break;
+            }
+        }
+        if (!encontrado) {
+            System.out.println("\n\nAplicação de Exercício com ID " + idExercicioAplicacao + " não encontrada.");
+        }
+    }
+
+    private static void exibirDadosExercicioAplicacaoPorId() {
+        System.out.print("\n\nInforme o ID da aplicação de exercício: ");
+        int idBusca = scanner.nextInt();
+        scanner.nextLine(); // Limpar o buffer do teclado
+
+        boolean encontrado = false;
+        for (int i = 0; i < ExercicioAplicacaoView.numExerciciosAplicacao; i++) {
+            if (exerciciosAplicacao[i].getId() == idBusca) {
+                System.out.println("\n\n----- Dados da Aplicação de Exercício -----\n\n");
+                System.out.println(exerciciosAplicacao[i].exibirDetalhes());
+                encontrado = true;
+                break;
+            }
+        }
+        if (!encontrado) {
+            System.out.println("\n\nAplicação de Exercício não encontrada.");
+        }
+    }
+
+    private static void removerExercicioAplicacao() {
+        System.out.print("\n\nInforme o ID da aplicação de exercício que deseja remover: ");
+        int idExercicioAplicacao = scanner.nextInt();
+        scanner.nextLine(); // Limpar o buffer do teclado
+
+        boolean encontrado = false;
+        for (int i = 0; i < ExercicioAplicacaoView.numExerciciosAplicacao; i++) {
+            if (exerciciosAplicacao[i].getId() == idExercicioAplicacao) {
+                for (int j = i; j < ExercicioAplicacaoView.numExerciciosAplicacao - 1; j++) {
+                    exerciciosAplicacao[j] = exerciciosAplicacao[j + 1];
+                }
+                exerciciosAplicacao[ExercicioAplicacaoView.numExerciciosAplicacao - 1] = null;
+                ExercicioAplicacaoView.numExerciciosAplicacao--;
+                System.out.println("\n\nAplicação de Exercício removida com sucesso.");
+                encontrado = true;
+                break;
+            }
+        }
+        if (!encontrado) {
+            System.out.println("\n\nAplicação de Exercício com ID " + idExercicioAplicacao + " não encontrado.");
         }
     }
 
