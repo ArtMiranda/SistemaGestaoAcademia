@@ -1,28 +1,43 @@
 package sgacad.view;
 
+import java.util.Calendar;
 import java.util.Scanner;
 
 import sgacad.controller.ExercicioAplicacaoController;
 import sgacad.model.ExercicioAplicacao;
 
 public class ExercicioAplicacaoView {
-    public static int numExerciciosAplicacao = 0;
+    public static ExercicioAplicacao[] exerciciosAplicacao = new ExercicioAplicacao[100]; // Array de exercicios aplicaco
+    public static int numExerciciosAplicacao = 0; // Contador de exercicios aplicacao
     private static Scanner scanner = new Scanner(System.in);
 
     public static ExercicioAplicacao criarExercicioAplicacao() {
 
-        System.out.print("\n\nInforme o ID do exercício que deseja detalhar: ");
-        int idExercicio = scanner.nextInt();
-        scanner.nextLine(); // Limpar o buffer do teclado
+        
+        int idExercicio = 0;
+
+        // Loop de validação
+        boolean inputValido = false;
+        while (!inputValido) {
+            System.out.print("\n\nInforme o ID do exercício que deseja detalhar: ");
+            if (scanner.hasNextInt()) {
+                idExercicio = scanner.nextInt();
+                scanner.nextLine(); // Limpar o buffer do teclado
+                inputValido = true;
+            } else {
+                System.out.println("Por favor, insira apenas números inteiros.");
+                scanner.nextLine(); // Limpar o buffer do teclado
+            }
+        }
 
         boolean encontrado = false;
         for (int i = 0; i < ExercicioView.numExercicios; i++) {
-            if (MenuAcademia.exercicios[i].getId() == idExercicio) {
+            if (ExercicioView.exercicios[i].getId() == idExercicio) {
                 for (int j = i; j < ExercicioView.numExercicios - 1; j++) {
-                    MenuAcademia.exercicios[j] = MenuAcademia.exercicios[j + 1];
+                    ExercicioView.exercicios[j] = ExercicioView.exercicios[j + 1];
                 }
-                int exercicioID = MenuAcademia.exercicios[ExercicioView.numExercicios - 1].getId();
-                String exercicioNome = MenuAcademia.exercicios[ExercicioView.numExercicios - 1].getNome();
+                int exercicioID = ExercicioView.exercicios[ExercicioView.numExercicios - 1].getId();
+                String exercicioNome = ExercicioView.exercicios[ExercicioView.numExercicios - 1].getNome();
 
                 // Descricao do exercicio
                 System.out.print("Descricao detalhada do exercício: ");
@@ -46,4 +61,133 @@ public class ExercicioAplicacaoView {
 
         return null;
     }
+
+    public static void exibirTodosExerciciosAplicacao() {
+        if (ExercicioAplicacaoView.numExerciciosAplicacao == 0) {
+            System.out.println("\n\nNenhuma aplicação de exercício cadastrada ainda.");
+        } else {
+            System.out.println("\n\nLista de Aplicações de Exercícios:");
+            for (int i = 0; i < ExercicioAplicacaoView.numExerciciosAplicacao; i++) {
+                System.out.println(
+                        "ID: " + exerciciosAplicacao[i].getId() + ", Nome: " + exerciciosAplicacao[i].getNome()
+                                + ", Descricao detalhada: " + exerciciosAplicacao[i].getNomeDetalhado());
+            }
+        }
+    }
+
+    public static void exibirDadosExercicioAplicacaoPorId() {
+        
+        int idBusca = 0;
+
+        // Loop de validação
+        boolean inputValido = false;
+        while (!inputValido) {
+            System.out.print("\n\nInforme o ID da aplicação de exercício: ");
+            if (scanner.hasNextInt()) {
+                idBusca = scanner.nextInt();
+                scanner.nextLine(); // Limpar o buffer do teclado
+                inputValido = true;
+            } else {
+                System.out.println("Por favor, insira apenas números inteiros.");
+                scanner.nextLine(); // Limpar o buffer do teclado
+            }
+        }
+
+        boolean encontrado = false;
+        for (int i = 0; i < ExercicioAplicacaoView.numExerciciosAplicacao; i++) {
+            if (exerciciosAplicacao[i].getId() == idBusca) {
+                System.out.println("\n\n----- Dados da Aplicação de Exercício -----\n\n");
+                System.out.println(exerciciosAplicacao[i].exibirDetalhes());
+                encontrado = true;
+                break;
+            }
+        }
+        if (!encontrado) {
+            System.out.println("\n\nAplicação de Exercício não encontrada.");
+        }
+    }
+
+    public static void atualizarExercicioAplicacao() {
+        
+        int idExercicioAplicacao = 0;
+
+        // Loop de validação
+        boolean inputValido = false;
+        while (!inputValido) {
+            System.out.print("\n\nInforme o ID da aplicação de exercício que deseja atualizar: ");
+            if (scanner.hasNextInt()) {
+                idExercicioAplicacao = scanner.nextInt();
+                scanner.nextLine(); // Limpar o buffer do teclado
+                inputValido = true;
+            } else {
+                System.out.println("Por favor, insira apenas números inteiros.");
+                scanner.nextLine(); // Limpar o buffer do teclado
+            }
+        }
+
+        boolean encontrado = false;
+        for (int i = 0; i < ExercicioAplicacaoView.numExerciciosAplicacao; i++) {
+            if (exerciciosAplicacao[i].getId() == idExercicioAplicacao) {
+                System.out.println("Aplicação de Exercício encontrada. Insira os novos dados:");
+
+                // Descrição detalhada da aplicação de exercício
+                System.out.print("Nova descrição detalhada: ");
+                String novaDescricaoDetalhada = scanner.nextLine().trim();
+                while (novaDescricaoDetalhada.isEmpty()) {
+                    System.out.print("Descrição detalhada não pode estar vazia. Informe novamente: ");
+                    novaDescricaoDetalhada = scanner.nextLine().trim();
+                }
+                exerciciosAplicacao[i].setNomeDetalhado(novaDescricaoDetalhada);
+
+                // Data de modificação
+                exerciciosAplicacao[i].setDataModificacao(Calendar.getInstance().getTime());
+
+                System.out.println("Aplicação de Exercício atualizada com sucesso!");
+                encontrado = true;
+                break;
+            }
+        }
+        if (!encontrado) {
+            System.out.println("\n\nAplicação de Exercício com ID " + idExercicioAplicacao + " não encontrada.");
+        }
+        
+    }
+
+    public static void removerExercicioAplicacao() {
+        
+        int idExercicioAplicacao = 0;
+
+        // Loop de validação
+        boolean inputValido = false;
+        while (!inputValido) {
+            System.out.print("\n\nInforme o ID da aplicação de exercício que deseja remover: ");
+            if (scanner.hasNextInt()) {
+                idExercicioAplicacao = scanner.nextInt();
+                scanner.nextLine(); // Limpar o buffer do teclado
+                inputValido = true;
+            } else {
+                System.out.println("Por favor, insira apenas números inteiros.");
+                scanner.nextLine(); // Limpar o buffer do teclado
+            }
+        }
+
+        boolean encontrado = false;
+        for (int i = 0; i < ExercicioAplicacaoView.numExerciciosAplicacao; i++) {
+            if (exerciciosAplicacao[i].getId() == idExercicioAplicacao) {
+                for (int j = i; j < ExercicioAplicacaoView.numExerciciosAplicacao - 1; j++) {
+                    exerciciosAplicacao[j] = exerciciosAplicacao[j + 1];
+                }
+                exerciciosAplicacao[ExercicioAplicacaoView.numExerciciosAplicacao - 1] = null;
+                ExercicioAplicacaoView.numExerciciosAplicacao--;
+                System.out.println("\n\nAplicação de Exercício removida com sucesso.");
+                encontrado = true;
+                break;
+            }
+        }
+        if (!encontrado) {
+            System.out.println("\n\nAplicação de Exercício com ID " + idExercicioAplicacao + " não encontrado.");
+        }
+    }
+
+
 }
