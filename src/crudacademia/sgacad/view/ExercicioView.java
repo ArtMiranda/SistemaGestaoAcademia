@@ -49,7 +49,7 @@ public class ExercicioView {
         
         int idBusca = 0;
 
-        // Loop de validação
+        // Loop de validacão
         boolean inputValido = false;
         while (!inputValido) {
             System.out.print("\n\nInforme o ID do exercício: ");
@@ -82,7 +82,7 @@ public class ExercicioView {
 
         int idExercicio = 0;
 
-        // Loop de validação
+        // Loop de validacão
         boolean inputValido = false;
         while (!inputValido) {
             System.out.print("\n\nInforme o ID do exercício que deseja atualizar: ");
@@ -111,14 +111,14 @@ public class ExercicioView {
                     exercicios[i].setNome(novoNome);
                 }
 
-                // Descrição/Foto do exercício
-                System.out.print("Nova Descrição/Foto: ");
+                // Descricão/Foto do exercício
+                System.out.print("Nova Descricão/Foto: ");
                 String novaDescricaoFoto = scanner.nextLine().trim();
                 if (!novaDescricaoFoto.isEmpty()) {
                     exercicios[i].setDescricaoFoto(novaDescricaoFoto);
                 }
 
-                // Data de modificação
+                // Data de modificacão
                 exercicios[i].setDataModificacao(Calendar.getInstance().getTime());
 
                 System.out.println("\nDados do Exercício atualizados com sucesso:");
@@ -136,7 +136,7 @@ public class ExercicioView {
         
         int idExercicio = 0;
 
-        // Loop de validação
+        // Loop de validacão
         boolean inputValido = false;
         while (!inputValido) {
             System.out.print("\n\nInforme o ID do exercício que deseja remover: ");

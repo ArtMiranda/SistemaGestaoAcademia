@@ -32,7 +32,7 @@ public class PessoaView {
         char sexoAdmin;
         String sexoInput = scanner.nextLine();
         while (!(sexoInput.equalsIgnoreCase("M") || sexoInput.equalsIgnoreCase("F"))) {
-            System.out.print("Sexo inválido. Digite M para Masculino ou F para Feminino: ");
+            System.out.print("Sexo invalido. Digite M para Masculino ou F para Feminino: ");
             sexoInput = scanner.nextLine();
         }
         sexoAdmin = sexoInput.toUpperCase().charAt(0);
@@ -46,12 +46,12 @@ public class PessoaView {
                 String dtNascimentoStr = scanner.nextLine();
                 dtNascimento = sdf.parse(dtNascimentoStr);
                 if (dtNascimento.after(Calendar.getInstance().getTime())) {
-                    System.out.println("Data de nascimento inválida! Informe uma data anterior à data atual.");
+                    System.out.println("Data de nascimento invalida! Informe uma data anterior à data atual.");
                 } else {
                     dataValida = true;
                 }
             } catch (ParseException e) {
-                System.out.println("Formato de data inválido! Use o formato dd/MM/yyyy.");
+                System.out.println("Formato de data invalido! Use o formato dd/MM/yyyy.");
             }
         }
 
@@ -68,7 +68,7 @@ public class PessoaView {
             senha = scanner.nextLine().trim();
         }
 
-        // Data de criação e modificação
+        // Data de criacão e modificacão
         PessoaController pessoaController = new PessoaController();
 
         if (tipousuario.equals("Administrador")) {
@@ -92,7 +92,7 @@ public class PessoaView {
     public static void atualizarProfessorInstrutor(){
         int idProf = 0;
 
-        // Loop de validação
+        // Loop de validacão
         boolean inputValido = false;
         while (!inputValido) {
             System.out.print("\n\nInforme o ID do professor/instrutor que deseja atualizar: ");
@@ -127,7 +127,7 @@ public class PessoaView {
                 char novoSexo;
                 String novoSexoInput = scanner.nextLine();
                 while (!(novoSexoInput.equalsIgnoreCase("M") || novoSexoInput.equalsIgnoreCase("F"))) {
-                    System.out.print("Sexo inválido. Digite M para Masculino ou F para Feminino: ");
+                    System.out.print("Sexo invalido. Digite M para Masculino ou F para Feminino: ");
                     novoSexoInput = scanner.nextLine();
                 }
                 novoSexo = novoSexoInput.toUpperCase().charAt(0);
@@ -143,12 +143,12 @@ public class PessoaView {
                         String novaDtNascimentoStr = scanner.nextLine();
                         novaDtNascimento = sdf.parse(novaDtNascimentoStr);
                         if (novaDtNascimento.after(Calendar.getInstance().getTime())) {
-                            System.out.println("Data de nascimento inválida! Informe uma data anterior à data atual.");
+                            System.out.println("Data de nascimento invalida! Informe uma data anterior à data atual.");
                         } else {
                             dataValida = true;
                         }
                     } catch (ParseException e) {
-                        System.out.println("Formato de data inválido! Use o formato dd/MM/yyyy.");
+                        System.out.println("Formato de data invalido! Use o formato dd/MM/yyyy.");
                     }
                 }
                 PessoaView.professoresInstrutores[i].setNascimento(novaDtNascimento);
@@ -171,7 +171,7 @@ public class PessoaView {
                 }
                 PessoaView.professoresInstrutores[i].setSenha(novaSenha);
 
-                // Data de modificação
+                // Data de modificacão
                 PessoaView.professoresInstrutores[i].setDataModificacao(Calendar.getInstance().getTime());
 
                 System.out.println("Professor/Instrutor atualizado com sucesso!");
@@ -187,7 +187,7 @@ public class PessoaView {
     public static void atualizarAdministrador() {
         int idAdmin = 0;
     
-        // Loop de validação
+        // Loop de validacão
         boolean inputValido = false;
         while (!inputValido) {
             System.out.print("\n\nInforme o ID do administrador que deseja atualizar: ");
@@ -220,7 +220,7 @@ public class PessoaView {
                 char novoSexo;
                 String novoSexoInput = scanner.nextLine();
                 while (!(novoSexoInput.equalsIgnoreCase("M") || novoSexoInput.equalsIgnoreCase("F"))) {
-                    System.out.print("Sexo inválido. Digite M para Masculino ou F para Feminino: ");
+                    System.out.print("Sexo invalido. Digite M para Masculino ou F para Feminino: ");
                     novoSexoInput = scanner.nextLine();
                 }
                 novoSexo = novoSexoInput.toUpperCase().charAt(0);
@@ -236,12 +236,12 @@ public class PessoaView {
                         String novaDtNascimentoStr = scanner.nextLine();
                         novaDtNascimento = sdf.parse(novaDtNascimentoStr);
                         if (novaDtNascimento.after(Calendar.getInstance().getTime())) {
-                            System.out.println("Data de nascimento inválida! Informe uma data anterior à data atual.");
+                            System.out.println("Data de nascimento invalida! Informe uma data anterior à data atual.");
                         } else {
                             dataValida = true;
                         }
                     } catch (ParseException e) {
-                        System.out.println("Formato de data inválido! Use o formato dd/MM/yyyy.");
+                        System.out.println("Formato de data invalido! Use o formato dd/MM/yyyy.");
                     }
                 }
                 PessoaView.administradores[i].setNascimento(novaDtNascimento);
@@ -264,7 +264,7 @@ public class PessoaView {
                 }
                 PessoaView.administradores[i].setSenha(novaSenha);
     
-                // Data de modificação
+                // Data de modificacão
                 PessoaView.administradores[i].setDataModificacao(Calendar.getInstance().getTime());
     
                 System.out.println("Administrador atualizado com sucesso!");
@@ -281,7 +281,7 @@ public class PessoaView {
     public static void atualizarAluno(){
         int idAluno = 0;
 
-        // Loop de validação
+        // Loop de validacão
         boolean inputValido = false;
         while (!inputValido) {
             System.out.print("\n\nInforme o ID do aluno que deseja atualizar: ");
@@ -328,7 +328,7 @@ public class PessoaView {
                         Date novaDataNascimento = sdf.parse(novaDataNascimentoStr);
                         PessoaView.alunos[i].setNascimento(novaDataNascimento);
                     } catch (ParseException e) {
-                        System.out.println("Formato de data inválido! Os dados de data não foram atualizados.");
+                        System.out.println("Formato de data invalido! Os dados de data não foram atualizados.");
                     }
                 }
 
@@ -346,7 +346,7 @@ public class PessoaView {
                     PessoaView.alunos[i].setSenha(novaSenha);
                 }
 
-                // Data de modificação
+                // Data de modificacão
                 PessoaView.alunos[i].setDataModificacao(Calendar.getInstance().getTime());
 
                 System.out.println("\nDados do Aluno atualizados com sucesso:");
@@ -366,7 +366,7 @@ public class PessoaView {
     public static void exibirDadosAdministradorPorId() {
         int idBusca = 0;
 
-        // Loop de validação
+        // Loop de validacão
         boolean inputValido = false;
         while (!inputValido) {
             System.out.print("\n\nInforme o ID do administrador: ");
@@ -399,7 +399,7 @@ public class PessoaView {
     public static void exibirDadosProfessorPorId() {
         int idBusca = 0;
 
-        // Loop de validação
+        // Loop de validacão
         boolean inputValido = false;
         while (!inputValido) {
             System.out.print("\n\nInforme o ID do professor/instrutor: ");
@@ -431,7 +431,7 @@ public class PessoaView {
     public static void exibirDadosAlunoPorId() {
         int idBusca = 0;
 
-        // Loop de validação
+        // Loop de validacão
         boolean inputValido = false;
         while (!inputValido) {
             System.out.print("\n\nInforme o ID do aluno: ");
@@ -497,7 +497,7 @@ public class PessoaView {
     public static void removerAlunoPorId() {
         int idAluno = 0;
 
-        // Loop de validação
+        // Loop de validacão
         boolean inputValido = false;
         while (!inputValido) {
             System.out.print("\n\nInforme o ID do administrador que deseja remover: ");
@@ -533,7 +533,7 @@ public class PessoaView {
     public static void removerAdministradorPorId() {
         int idAdmin = 0;
 
-        // Loop de validação
+        // Loop de validacão
         boolean inputValido = false;
         while (!inputValido) {
             System.out.print("\n\nInforme o ID do administrador que deseja remover: ");
@@ -569,7 +569,7 @@ public class PessoaView {
     public static void removerProfessorPorId() {
         int idProf = 0;
 
-        // Loop de validação
+        // Loop de validacão
         boolean inputValido = false;
         while (!inputValido) {
             System.out.print("\n\nInforme o ID do professor/instrutor que deseja remover: ");

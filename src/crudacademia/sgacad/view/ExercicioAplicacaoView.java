@@ -16,7 +16,7 @@ public class ExercicioAplicacaoView {
         
         int idExercicio = 0;
 
-        // Loop de validação
+        // Loop de validacão
         boolean inputValido = false;
         while (!inputValido) {
             System.out.print("\n\nInforme o ID do exercício que deseja detalhar: ");
@@ -64,9 +64,9 @@ public class ExercicioAplicacaoView {
 
     public static void exibirTodosExerciciosAplicacao() {
         if (ExercicioAplicacaoView.numExerciciosAplicacao == 0) {
-            System.out.println("\n\nNenhuma aplicação de exercício cadastrada ainda.");
+            System.out.println("\n\nNenhuma aplicacão de exercício cadastrada ainda.");
         } else {
-            System.out.println("\n\nLista de Aplicações de Exercícios:");
+            System.out.println("\n\nLista de Aplicacoes de Exercícios:");
             for (int i = 0; i < ExercicioAplicacaoView.numExerciciosAplicacao; i++) {
                 System.out.println(
                         "ID: " + exerciciosAplicacao[i].getId() + ", Nome: " + exerciciosAplicacao[i].getNome()
@@ -79,10 +79,10 @@ public class ExercicioAplicacaoView {
         
         int idBusca = 0;
 
-        // Loop de validação
+        // Loop de validacão
         boolean inputValido = false;
         while (!inputValido) {
-            System.out.print("\n\nInforme o ID da aplicação de exercício: ");
+            System.out.print("\n\nInforme o ID da aplicacão de exercício: ");
             if (scanner.hasNextInt()) {
                 idBusca = scanner.nextInt();
                 scanner.nextLine(); // Limpar o buffer do teclado
@@ -96,14 +96,14 @@ public class ExercicioAplicacaoView {
         boolean encontrado = false;
         for (int i = 0; i < ExercicioAplicacaoView.numExerciciosAplicacao; i++) {
             if (exerciciosAplicacao[i].getId() == idBusca) {
-                System.out.println("\n\n----- Dados da Aplicação de Exercício -----\n\n");
+                System.out.println("\n\n----- Dados da Aplicacão de Exercício -----\n\n");
                 System.out.println(exerciciosAplicacao[i].exibirDetalhes());
                 encontrado = true;
                 break;
             }
         }
         if (!encontrado) {
-            System.out.println("\n\nAplicação de Exercício não encontrada.");
+            System.out.println("\n\nAplicacão de Exercício não encontrada.");
         }
     }
 
@@ -111,10 +111,10 @@ public class ExercicioAplicacaoView {
         
         int idExercicioAplicacao = 0;
 
-        // Loop de validação
+        // Loop de validacão
         boolean inputValido = false;
         while (!inputValido) {
-            System.out.print("\n\nInforme o ID da aplicação de exercício que deseja atualizar: ");
+            System.out.print("\n\nInforme o ID da aplicacão de exercício que deseja atualizar: ");
             if (scanner.hasNextInt()) {
                 idExercicioAplicacao = scanner.nextInt();
                 scanner.nextLine(); // Limpar o buffer do teclado
@@ -128,27 +128,27 @@ public class ExercicioAplicacaoView {
         boolean encontrado = false;
         for (int i = 0; i < ExercicioAplicacaoView.numExerciciosAplicacao; i++) {
             if (exerciciosAplicacao[i].getId() == idExercicioAplicacao) {
-                System.out.println("Aplicação de Exercício encontrada. Insira os novos dados:");
+                System.out.println("Aplicacão de Exercício encontrada. Insira os novos dados:");
 
-                // Descrição detalhada da aplicação de exercício
-                System.out.print("Nova descrição detalhada: ");
+                // Descricão detalhada da aplicacão de exercício
+                System.out.print("Nova descricão detalhada: ");
                 String novaDescricaoDetalhada = scanner.nextLine().trim();
                 while (novaDescricaoDetalhada.isEmpty()) {
-                    System.out.print("Descrição detalhada não pode estar vazia. Informe novamente: ");
+                    System.out.print("Descricão detalhada não pode estar vazia. Informe novamente: ");
                     novaDescricaoDetalhada = scanner.nextLine().trim();
                 }
                 exerciciosAplicacao[i].setNomeDetalhado(novaDescricaoDetalhada);
 
-                // Data de modificação
+                // Data de modificacão
                 exerciciosAplicacao[i].setDataModificacao(Calendar.getInstance().getTime());
 
-                System.out.println("Aplicação de Exercício atualizada com sucesso!");
+                System.out.println("Aplicacão de Exercício atualizada com sucesso!");
                 encontrado = true;
                 break;
             }
         }
         if (!encontrado) {
-            System.out.println("\n\nAplicação de Exercício com ID " + idExercicioAplicacao + " não encontrada.");
+            System.out.println("\n\nAplicacão de Exercício com ID " + idExercicioAplicacao + " não encontrada.");
         }
         
     }
@@ -157,10 +157,10 @@ public class ExercicioAplicacaoView {
         
         int idExercicioAplicacao = 0;
 
-        // Loop de validação
+        // Loop de validacão
         boolean inputValido = false;
         while (!inputValido) {
-            System.out.print("\n\nInforme o ID da aplicação de exercício que deseja remover: ");
+            System.out.print("\n\nInforme o ID da aplicacão de exercício que deseja remover: ");
             if (scanner.hasNextInt()) {
                 idExercicioAplicacao = scanner.nextInt();
                 scanner.nextLine(); // Limpar o buffer do teclado
@@ -179,13 +179,13 @@ public class ExercicioAplicacaoView {
                 }
                 exerciciosAplicacao[ExercicioAplicacaoView.numExerciciosAplicacao - 1] = null;
                 ExercicioAplicacaoView.numExerciciosAplicacao--;
-                System.out.println("\n\nAplicação de Exercício removida com sucesso.");
+                System.out.println("\n\nAplicacão de Exercício removida com sucesso.");
                 encontrado = true;
                 break;
             }
         }
         if (!encontrado) {
-            System.out.println("\n\nAplicação de Exercício com ID " + idExercicioAplicacao + " não encontrado.");
+            System.out.println("\n\nAplicacão de Exercício com ID " + idExercicioAplicacao + " não encontrado.");
         }
     }
 

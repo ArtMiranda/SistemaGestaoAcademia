@@ -31,9 +31,9 @@ public class Academia {
     public String exibirDetalhes() {
         String detalhes = "ID: " + id + "\n";
         detalhes += "Nome: " + nome + "\n";
-        detalhes += "Endereço: " + endereco + "\n";
-        detalhes += "Data de Criação: " + formatarData(dataCriacao) + "\n";
-        detalhes += "Data de Modificação: " + formatarData(dataModificacao) + "\n";
+        detalhes += "Endereco: " + endereco + "\n";
+        detalhes += "Data de Criacão: " + formatarData(dataCriacao) + "\n";
+        detalhes += "Data de Modificacão: " + formatarData(dataModificacao) + "\n";
         if (numAlunosMatriculados > 0) {
             detalhes += "Alunos Matriculados:\n";
             for (int i = 0; i < numAlunosMatriculados; i++) {
@@ -50,7 +50,7 @@ public class Academia {
         return sdf.format(data);
     }
 
-    // Método para matricular um aluno
+    // Metodo para matricular um aluno
     public int matricularAluno(Pessoa aluno) {
         alunosMatriculados[numAlunosMatriculados] = aluno;
         numAlunosMatriculados++;

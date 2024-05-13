@@ -107,9 +107,9 @@ public class Pessoa {
         detalhes += "Data de Nascimento: " + formatarData(nascimento) + "\n";
         detalhes += "Login: " + login + "\n";
         detalhes += "Senha: " + senha + "\n";
-        detalhes += "Tipo de Usuário: " + tipoUsuario + "\n";
-        detalhes += "Data de Criação: " + formatarData(dataCriacao) + "\n";
-        detalhes += "Data de Modificação: " + formatarData(dataModificacao) + "\n";
+        detalhes += "Tipo de Usuario: " + tipoUsuario + "\n";
+        detalhes += "Data de Criacão: " + formatarData(dataCriacao) + "\n";
+        detalhes += "Data de Modificacão: " + formatarData(dataModificacao) + "\n";
 
         return detalhes;
     }

@@ -11,7 +11,7 @@ public class PessoaDAO {
         tamanho = 0;
     }
 
-    // Método para adicionar uma pessoa
+    // Metodo para adicionar uma pessoa
     public void adicionarPessoa(Pessoa pessoa) {
         // Cria um novo array com tamanho aumentado para acomodar a nova pessoa
         Pessoa[] novoArray = new Pessoa[tamanho + 1];
@@ -25,7 +25,7 @@ public class PessoaDAO {
         tamanho++;
     }
 
-    // Método para buscar uma pessoa pelo ID
+    // Metodo para buscar uma pessoa pelo ID
     public Pessoa buscarPessoaPorId(int id) {
         for (Pessoa pessoa : pessoas) {
             if (pessoa.getId() == id) {
@@ -35,7 +35,7 @@ public class PessoaDAO {
         return null; // Se não encontrar a pessoa com o ID especificado
     }
 
-    // Método para atualizar os detalhes de uma pessoa
+    // Metodo para atualizar os detalhes de uma pessoa
     public void atualizarPessoa(Pessoa pessoa) {
         for (int i = 0; i < tamanho; i++) {
             if (pessoas[i].getId() == pessoa.getId()) {
@@ -45,7 +45,7 @@ public class PessoaDAO {
         }
     }
 
-    // Método para excluir uma pessoa
+    // Metodo para excluir uma pessoa
     public void excluirPessoa(int id) {
         // Cria um novo array com tamanho reduzido para armazenar as pessoas sem a pessoa a ser excluída
         Pessoa[] novoArray = new Pessoa[tamanho - 1];
@@ -61,7 +61,7 @@ public class PessoaDAO {
         tamanho--;
     }
 
-    // Método para listar todas as pessoas
+    // Metodo para listar todas as pessoas
     public Pessoa[] listarPessoas() {
         return pessoas;
     }

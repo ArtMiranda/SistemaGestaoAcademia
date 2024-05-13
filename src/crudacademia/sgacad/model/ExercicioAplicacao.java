@@ -63,9 +63,9 @@ public class ExercicioAplicacao {
     public String exibirDetalhes() {
         String detalhes = "ID: " + id + "\n";
         detalhes += "Nome: " + nome + "\n";
-        detalhes += "Descrição detalhada: " + nomeDetalhado + "\n";
-        detalhes += "Data de Criação: " + formatarData(dataCriacao) + "\n";
-        detalhes += "Data de Modificação: " + formatarData(dataModificacao) + "\n";
+        detalhes += "Descricão detalhada: " + nomeDetalhado + "\n";
+        detalhes += "Data de Criacão: " + formatarData(dataCriacao) + "\n";
+        detalhes += "Data de Modificacão: " + formatarData(dataModificacao) + "\n";
 
         return detalhes;
     }

@@ -26,7 +26,7 @@ public class AvaliacaoFisica {
         this.dataModificacao = dataModificacao;
     }
 
-    // Método para calcular o Índice de Massa Corporal (IMC)
+    // Metodo para calcular o Índice de Massa Corporal (IMC)
     private double calcularIMC(double peso, double altura) {
         return peso / (altura * altura);
     }

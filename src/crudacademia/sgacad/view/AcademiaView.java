@@ -9,11 +9,11 @@ public class AcademiaView {
     public static Academia academia = null;
 
     public static Academia criarAcademia() {
-        System.out.println("\n\n----- Criação da Academia -----");
+        System.out.println("\n\n----- Criacão da Academia -----");
         System.out.println("Informe os detalhes da academia:");
         System.out.print("Nome da Academia: ");
         String nomeAcademia = scanner.nextLine();
-        System.out.print("Endereço da Academia: ");
+        System.out.print("Endereco da Academia: ");
         String enderecoAcademia = scanner.nextLine();
 
         AcademiaController academiaController = new AcademiaController();
