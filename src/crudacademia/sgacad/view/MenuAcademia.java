@@ -1,4 +1,5 @@
 package sgacad.view;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
@@ -91,6 +92,8 @@ public class MenuAcademia {
             System.out.println("4. CRUD Professor/Instrutor");
             System.out.println("5. CRUD Exercicios");
             System.out.println("6. CRUD Exercicios Aplicacao");
+            System.out.println("7. CRUD Treino");
+            System.out.println("8. CRUD Divisao de Treino");
             System.out.println("0. Sair");
             System.out.print("Escolha uma opcão: ");
 
@@ -115,6 +118,12 @@ public class MenuAcademia {
                     break;
                 case 6:
                     exibirMenuCRUDExerciciosAplicacao();
+                    break;
+                case 7:
+                    exibirMenuCRUDTreino();
+                    break;
+                case 8:
+                    exibirMenuCRUDDivisaoTreino();
                     break;
                 case 0:
                     System.out.println("Deslogando...");
@@ -401,6 +410,94 @@ public class MenuAcademia {
         ExercicioAplicacao exercicioAplicacao = ExercicioAplicacaoView.criarExercicioAplicacao();
 
         ExercicioAplicacaoView.exerciciosAplicacao[ExercicioAplicacaoView.numExerciciosAplicacao++] = exercicioAplicacao;
+    }
+
+    private static void exibirMenuCRUDTreino() {
+        boolean loggedOut = false;
+        while (!loggedOut) {
+            System.out.println("\n\n----- Menu de Treino -----");
+            System.out.println("1. Criar Treino");
+            System.out.println("2. Exibir todos os Treinos");
+            System.out.println("3. Exibir Dados do Treino por ID");
+            System.out.println("4. Atualizar Treino");
+            System.out.println("5. Remover Treino por ID");
+            System.out.println("0. Voltar ao Menu Principal");
+            System.out.print("Escolha uma opcão: ");
+
+            int opcao = scanner.nextInt();
+            scanner.nextLine(); // Limpar o buffer do teclado
+
+            switch (opcao) {
+                case 1:
+                    TreinoView.criaTreino();
+                    break;
+                case 2:
+                    TreinoView.exibirTodosTreinos();
+                    break;
+                case 3:
+                    TreinoView.exibirTodosTreinos();
+                    TreinoView.exibirDadosTreinoPorId();
+                    break;
+                case 4:
+                    TreinoView.exibirTodosTreinos();
+                    TreinoView.atualizarTreino();
+                    break;
+                case 5:
+                    TreinoView.exibirTodosTreinos();
+                    TreinoView.removerTreino();
+                    break;
+                case 0:
+                    System.out.println("Retornando ao Menu Principal...");
+                    loggedOut = true;
+                    break;
+                default:
+                    System.out.println("Opcão invalida! Tente novamente.");
+            }
+        }
+    }
+
+    private static void exibirMenuCRUDDivisaoTreino() {
+        boolean loggedOut = false;
+        while (!loggedOut) {
+            System.out.println("\n\n----- Menu de Divisão de Treino -----");
+            System.out.println("1. Criar Divisão de Treino");
+            System.out.println("2. Exibir todas as Divisões de Treino");
+            System.out.println("3. Exibir Dados da Divisão de Treino por ID");
+            System.out.println("4. Atualizar Divisão de Treino");
+            System.out.println("5. Remover Divisão de Treino por ID");
+            System.out.println("0. Voltar ao Menu Principal");
+            System.out.print("Escolha uma opcão: ");
+
+            int opcao = scanner.nextInt();
+            scanner.nextLine(); // Limpar o buffer do teclado
+
+            switch (opcao) {
+                case 1:
+                    DivisaoTreinoView.criaDivisaoTreino();
+                    break;
+                case 2:
+                    DivisaoTreinoView.exibirTodasDivisoesTreino();
+                    break;
+                case 3:
+                    DivisaoTreinoView.exibirTodasDivisoesTreino();
+                    DivisaoTreinoView.exibirDadosDivisaoTreinoPorId();
+                    break;
+                case 4:
+                    DivisaoTreinoView.exibirTodasDivisoesTreino();
+                    DivisaoTreinoView.atualizarDivisaoTreino();
+                    break;
+                case 5:
+                    DivisaoTreinoView.exibirTodasDivisoesTreino();
+                    DivisaoTreinoView.removerDivisaoTreino();
+                    break;
+                case 0:
+                    System.out.println("Retornando ao Menu Principal...");
+                    loggedOut = true;
+                    break;
+                default:
+                    System.out.println("Opcão invalida! Tente novamente.");
+            }
+        }
     }
 
 }
