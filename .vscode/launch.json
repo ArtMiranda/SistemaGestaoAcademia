@@ -1,0 +1,38 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "MenuAcademia",
+      "request": "launch",
+      "mainClass": "sgacad.view.MenuAcademia",
+      "projectName": "SistemaGestaoAcademia_49efa656"
+    },
+    {
+      "type": "java",
+      "name": "CrudAcademia",
+      "request": "launch",
+      "mainClass": "sgacad.view.CrudAcademia",
+      "projectName": "SistemaGestaoAcademia_49efa656"
+    },
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "cppdbg",
+      "request": "launch",
+      "args": [],
+      "stopAtEntry": false,
+      "externalConsole": false,
+      "cwd": ".",
+      "program": "build/Debug/outDebug",
+      "MIMode": "gdb",
+      "miDebuggerPath": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ]
+    }
+  ]
+}

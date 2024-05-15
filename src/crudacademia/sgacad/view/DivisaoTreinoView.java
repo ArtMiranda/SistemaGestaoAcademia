@@ -6,6 +6,7 @@ import java.util.Scanner;
 import sgacad.controller.TreinoController;
 import sgacad.controller.DivisaoTreinoController;
 import sgacad.model.DivisaoTreino;
+import sgacad.model.Treino;
 
 public class DivisaoTreinoView {
     public static DivisaoTreino[] divisoesTreinos = new DivisaoTreino[100]; // Array de exercicios
@@ -13,14 +14,17 @@ public class DivisaoTreinoView {
     private static Scanner scanner = new Scanner(System.in);
 
     public static DivisaoTreino criaDivisaoTreino() {
-        System.out.print("Informe o Treino: ");
+        TreinoView.exibirTodosTreinos();
+        System.out.print("\n\nInforme o Treino: ");
         int treino = scanner.nextInt();
         scanner.nextLine(); // Consumir a linha nova após o próximo int
 
-        while (treino <= 0 || TreinoController.getTreinoById(treino) == null) {
+        Treino treinoSelecionado = TreinoController.getTreinoById(treino);
+        while (treinoSelecionado == null) {
             System.out.print("Treino inválido. Informe novamente: ");
             treino = scanner.nextInt();
             scanner.nextLine(); // Consumir a linha nova após o próximo int
+            treinoSelecionado = TreinoController.getTreinoById(treino);
         }
 
         // Descricao do exercicio
@@ -31,7 +35,7 @@ public class DivisaoTreinoView {
             descricao = scanner.nextLine().trim();
         }
 
-        String nome = TreinoController.getTreinoById(treino).getObjetivo();
+        String nome = treinoSelecionado.getObjetivo();
 
         DivisaoTreinoController divisaoTreinoController = new DivisaoTreinoController();
 
@@ -47,7 +51,9 @@ public class DivisaoTreinoView {
         } else {
             System.out.println("\n\nLista de Divisões de Treino:");
             for (int i = 0; i < DivisaoTreinoView.numDivisoesTreino; i++) {
-                System.out.println("ID: " + divisoesTreinos[i].getId() + ", Nome: " + divisoesTreinos[i].getNome());
+                System.out.println(
+                        "ID: " + divisoesTreinos[i].getId() + ", Nome do Treino: " + divisoesTreinos[i].getNome()
+                                + ", Descrição: " + divisoesTreinos[i].getDescricao());
             }
         }
     }

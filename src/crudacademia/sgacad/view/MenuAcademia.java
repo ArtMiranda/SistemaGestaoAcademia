@@ -94,6 +94,7 @@ public class MenuAcademia {
             System.out.println("6. CRUD Exercicios Aplicacao");
             System.out.println("7. CRUD Treino");
             System.out.println("8. CRUD Divisao de Treino");
+            System.out.println("9. CRUD Divisao de Treino Musculo");
             System.out.println("0. Sair");
             System.out.print("Escolha uma opcão: ");
 
@@ -124,6 +125,9 @@ public class MenuAcademia {
                     break;
                 case 8:
                     exibirMenuCRUDDivisaoTreino();
+                    break;
+                case 9:
+                    exibirMenuCRUDDivisaoTreinoMusculo();
                     break;
                 case 0:
                     System.out.println("Deslogando...");
@@ -489,6 +493,50 @@ public class MenuAcademia {
                 case 5:
                     DivisaoTreinoView.exibirTodasDivisoesTreino();
                     DivisaoTreinoView.removerDivisaoTreino();
+                    break;
+                case 0:
+                    System.out.println("Retornando ao Menu Principal...");
+                    loggedOut = true;
+                    break;
+                default:
+                    System.out.println("Opcão invalida! Tente novamente.");
+            }
+        }
+    }
+
+    private static void exibirMenuCRUDDivisaoTreinoMusculo() {
+        boolean loggedOut = false;
+        while (!loggedOut) {
+            System.out.println("\n\n----- Menu de Divisão de Treino Musculo -----");
+            System.out.println("1. Criar Divisão de Treino Musculo");
+            System.out.println("2. Exibir todas as Divisões de Treino Musculo");
+            System.out.println("3. Exibir Dados da Divisão de Treino Musculo por ID");
+            System.out.println("4. Atualizar Divisão de Treino Musculo");
+            System.out.println("5. Remover Divisão de Treino Musculo por ID");
+            System.out.println("0. Voltar ao Menu Principal");
+            System.out.print("Escolha uma opcão: ");
+
+            int opcao = scanner.nextInt();
+            scanner.nextLine(); // Limpar o buffer do teclado
+
+            switch (opcao) {
+                case 1:
+                    DivisaoTreinoMusculoView.criaDivisaoTreinoMusculo();
+                    break;
+                case 2:
+                    DivisaoTreinoMusculoView.exibirTodasDivisoesTreinoMusculo();
+                    break;
+                case 3:
+                    DivisaoTreinoMusculoView.exibirTodasDivisoesTreinoMusculo();
+                    DivisaoTreinoMusculoView.exibirDadosDivisaoTreinoMusculoPorId();
+                    break;
+                case 4:
+                    DivisaoTreinoMusculoView.exibirTodasDivisoesTreinoMusculo();
+                    DivisaoTreinoMusculoView.atualizarDivisaoTreinoMusculo();
+                    break;
+                case 5:
+                    DivisaoTreinoMusculoView.exibirTodasDivisoesTreinoMusculo();
+                    DivisaoTreinoMusculoView.removerDivisaoTreinoMusculo();
                     break;
                 case 0:
                     System.out.println("Retornando ao Menu Principal...");

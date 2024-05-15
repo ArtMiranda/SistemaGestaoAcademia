@@ -83,7 +83,7 @@ public class Treino {
         return detalhes;
     }
 
-    private String formatarData(Date data) {
+    public String formatarData(Date data) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         return sdf.format(data);
     }

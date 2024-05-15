@@ -1,19 +1,24 @@
 package sgacad.model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DivisaoTreinoMusculo {
     private int id;
+    private String nomeTreino;
     private String descricao;
-    private String divisaoTreino;
+    private String divisaoTreinoMusculo;
     private Date dataCriacao;
     private Date dataModificacao;
 
     // Construtor
-    public DivisaoTreinoMusculo(int id, String descricao, String divisaoTreino, Date dataCriacao, Date dataModificacao) {
+    public DivisaoTreinoMusculo(int id, String nomeTreino, String descricao, String divisaoTreinoMusculo,
+            Date dataCriacao,
+            Date dataModificacao) {
         this.id = id;
+        this.nomeTreino = nomeTreino;
         this.descricao = descricao;
-        this.divisaoTreino = divisaoTreino;
+        this.divisaoTreinoMusculo = divisaoTreinoMusculo;
         this.dataCriacao = dataCriacao;
         this.dataModificacao = dataModificacao;
     }
@@ -27,6 +32,14 @@ public class DivisaoTreinoMusculo {
         this.id = id;
     }
 
+    public String getNomeTreino() {
+        return nomeTreino;
+    }
+
+    public void setNomeTreino(String nomeTreino) {
+        this.nomeTreino = nomeTreino;
+    }
+
     public String getDescricao() {
         return descricao;
     }
@@ -36,11 +49,11 @@ public class DivisaoTreinoMusculo {
     }
 
     public String getDivisaoTreino() {
-        return divisaoTreino;
+        return divisaoTreinoMusculo;
     }
 
-    public void setDivisaoTreino(String divisaoTreino) {
-        this.divisaoTreino = divisaoTreino;
+    public void setDivisaoTreino(String divisaoTreinoMusculo) {
+        this.divisaoTreinoMusculo = divisaoTreinoMusculo;
     }
 
     public Date getDataCriacao() {
@@ -57,5 +70,20 @@ public class DivisaoTreinoMusculo {
 
     public void setDataModificacao(Date dataModificacao) {
         this.dataModificacao = dataModificacao;
+    }
+
+    public String exibirDetalhes() {
+        String detalhes = "ID: " + id + "\n";
+        detalhes += "Descricao: " + descricao + "\n";
+        detalhes += "Divisao de Treino: " + divisaoTreinoMusculo + "\n";
+        detalhes += "Data de Criacao: " + formatarData(dataCriacao) + "\n";
+        detalhes += "Data de Modificacao: " + formatarData(dataModificacao) + "\n";
+        return detalhes;
+    }
+
+    // Método para formatar datas
+    public String formatarData(Date data) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        return sdf.format(data);
     }
 }
