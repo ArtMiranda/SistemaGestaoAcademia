@@ -24,7 +24,7 @@ public class PessoaView {
         System.out.print("Nome: ");
         String nome = scanner.nextLine().trim();
         while (nome.isEmpty()) {
-            System.out.print("Nome não pode estar vazio. Informe novamente: ");
+            System.out.print("Nome nao pode estar vazio. Informe novamente: ");
             nome = scanner.nextLine().trim();
         }
 
@@ -58,17 +58,17 @@ public class PessoaView {
         System.out.print("Login: ");
         String login = scanner.nextLine().trim();
         while (login.isEmpty()) {
-            System.out.print("Login não pode estar vazio. Informe novamente: ");
+            System.out.print("Login nao pode estar vazio. Informe novamente: ");
             login = scanner.nextLine().trim();
         }
         System.out.print("Senha: ");
         String senha = scanner.nextLine().trim();
         while (senha.isEmpty()) {
-            System.out.print("Senha não pode estar vazia. Informe novamente: ");
+            System.out.print("Senha nao pode estar vazia. Informe novamente: ");
             senha = scanner.nextLine().trim();
         }
 
-        // Data de criacão e modificacão
+        // Data de criacao e modificacao
         PessoaController pessoaController = new PessoaController();
 
         if (tipousuario.equals("Administrador")) {
@@ -92,7 +92,7 @@ public class PessoaView {
     public static void atualizarProfessorInstrutor(){
         int idProf = 0;
 
-        // Loop de validacão
+        // Loop de validacao
         boolean inputValido = false;
         while (!inputValido) {
             System.out.print("\n\nInforme o ID do professor/instrutor que deseja atualizar: ");
@@ -101,7 +101,7 @@ public class PessoaView {
                 scanner.nextLine(); // Limpar o buffer do teclado
                 inputValido = true;
             } else {
-                System.out.println("Por favor, insira apenas números inteiros.");
+                System.out.println("Por favor, insira apenas numeros inteiros.");
                 scanner.nextLine(); // Limpar o buffer do teclado
             }
         }
@@ -117,7 +117,7 @@ public class PessoaView {
                 System.out.print("Novo nome: ");
                 String novoNome = scanner.nextLine().trim();
                 while (novoNome.isEmpty()) {
-                    System.out.print("Nome não pode estar vazio. Informe novamente: ");
+                    System.out.print("Nome nao pode estar vazio. Informe novamente: ");
                     novoNome = scanner.nextLine().trim();
                 }
                 PessoaView.professoresInstrutores[i].setNome(novoNome);
@@ -157,7 +157,7 @@ public class PessoaView {
                 System.out.print("Novo login: ");
                 String novoLogin = scanner.nextLine().trim();
                 while (novoLogin.isEmpty()) {
-                    System.out.print("Login não pode estar vazio. Informe novamente: ");
+                    System.out.print("Login nao pode estar vazio. Informe novamente: ");
                     novoLogin = scanner.nextLine().trim();
                 }
                 PessoaView.professoresInstrutores[i].setLogin(novoLogin);
@@ -166,12 +166,12 @@ public class PessoaView {
                 System.out.print("Nova senha: ");
                 String novaSenha = scanner.nextLine().trim();
                 while (novaSenha.isEmpty()) {
-                    System.out.print("Senha não pode estar vazia. Informe novamente: ");
+                    System.out.print("Senha nao pode estar vazia. Informe novamente: ");
                     novaSenha = scanner.nextLine().trim();
                 }
                 PessoaView.professoresInstrutores[i].setSenha(novaSenha);
 
-                // Data de modificacão
+                // Data de modificacao
                 PessoaView.professoresInstrutores[i].setDataModificacao(Calendar.getInstance().getTime());
 
                 System.out.println("Professor/Instrutor atualizado com sucesso!");
@@ -180,14 +180,14 @@ public class PessoaView {
             }
         }
         if (!encontrado) {
-            System.out.println("\n\nProfessor/Instrutor com ID " + idProf + " não encontrado.");
+            System.out.println("\n\nProfessor/Instrutor com ID " + idProf + " nao encontrado.");
         }
     }
 
     public static void atualizarAdministrador() {
         int idAdmin = 0;
     
-        // Loop de validacão
+        // Loop de validacao
         boolean inputValido = false;
         while (!inputValido) {
             System.out.print("\n\nInforme o ID do administrador que deseja atualizar: ");
@@ -196,7 +196,7 @@ public class PessoaView {
                 scanner.nextLine(); // Limpar o buffer do teclado
                 inputValido = true;
             } else {
-                System.out.println("Por favor, insira apenas números inteiros.");
+                System.out.println("Por favor, insira apenas numeros inteiros.");
                 scanner.nextLine(); // Limpar o buffer do teclado
             }
         }
@@ -210,7 +210,7 @@ public class PessoaView {
                 System.out.print("Novo nome: ");
                 String novoNome = scanner.nextLine().trim();
                 while (novoNome.isEmpty()) {
-                    System.out.print("Nome não pode estar vazio. Informe novamente: ");
+                    System.out.print("Nome nao pode estar vazio. Informe novamente: ");
                     novoNome = scanner.nextLine().trim();
                 }
                 PessoaView.administradores[i].setNome(novoNome);
@@ -250,7 +250,7 @@ public class PessoaView {
                 System.out.print("Novo login: ");
                 String novoLogin = scanner.nextLine().trim();
                 while (novoLogin.isEmpty()) {
-                    System.out.print("Login não pode estar vazio. Informe novamente: ");
+                    System.out.print("Login nao pode estar vazio. Informe novamente: ");
                     novoLogin = scanner.nextLine().trim();
                 }
                 PessoaView.administradores[i].setLogin(novoLogin);
@@ -259,12 +259,12 @@ public class PessoaView {
                 System.out.print("Nova senha: ");
                 String novaSenha = scanner.nextLine().trim();
                 while (novaSenha.isEmpty()) {
-                    System.out.print("Senha não pode estar vazia. Informe novamente: ");
+                    System.out.print("Senha nao pode estar vazia. Informe novamente: ");
                     novaSenha = scanner.nextLine().trim();
                 }
                 PessoaView.administradores[i].setSenha(novaSenha);
     
-                // Data de modificacão
+                // Data de modificacao
                 PessoaView.administradores[i].setDataModificacao(Calendar.getInstance().getTime());
     
                 System.out.println("Administrador atualizado com sucesso!");
@@ -273,7 +273,7 @@ public class PessoaView {
             }
         }
         if (!encontrado) {
-            System.out.println("\n\nAdministrador com ID " + idAdmin + " não encontrado.");
+            System.out.println("\n\nAdministrador com ID " + idAdmin + " nao encontrado.");
         }
     }
     
@@ -281,7 +281,7 @@ public class PessoaView {
     public static void atualizarAluno(){
         int idAluno = 0;
 
-        // Loop de validacão
+        // Loop de validacao
         boolean inputValido = false;
         while (!inputValido) {
             System.out.print("\n\nInforme o ID do aluno que deseja atualizar: ");
@@ -290,7 +290,7 @@ public class PessoaView {
                 scanner.nextLine(); // Limpar o buffer do teclado
                 inputValido = true;
             } else {
-                System.out.println("Por favor, insira apenas números inteiros.");
+                System.out.println("Por favor, insira apenas numeros inteiros.");
                 scanner.nextLine(); // Limpar o buffer do teclado
             }
         }
@@ -328,7 +328,7 @@ public class PessoaView {
                         Date novaDataNascimento = sdf.parse(novaDataNascimentoStr);
                         PessoaView.alunos[i].setNascimento(novaDataNascimento);
                     } catch (ParseException e) {
-                        System.out.println("Formato de data invalido! Os dados de data não foram atualizados.");
+                        System.out.println("Formato de data invalido! Os dados de data nao foram atualizados.");
                     }
                 }
 
@@ -346,7 +346,7 @@ public class PessoaView {
                     PessoaView.alunos[i].setSenha(novaSenha);
                 }
 
-                // Data de modificacão
+                // Data de modificacao
                 PessoaView.alunos[i].setDataModificacao(Calendar.getInstance().getTime());
 
                 System.out.println("\nDados do Aluno atualizados com sucesso:");
@@ -356,7 +356,7 @@ public class PessoaView {
         }
 
         if (!encontrado) {
-            System.out.println("\nAluno com ID " + idAluno + " não encontrado.");
+            System.out.println("\nAluno com ID " + idAluno + " nao encontrado.");
         }
          
     }
@@ -366,7 +366,7 @@ public class PessoaView {
     public static void exibirDadosAdministradorPorId() {
         int idBusca = 0;
 
-        // Loop de validacão
+        // Loop de validacao
         boolean inputValido = false;
         while (!inputValido) {
             System.out.print("\n\nInforme o ID do administrador: ");
@@ -375,7 +375,7 @@ public class PessoaView {
                 scanner.nextLine(); // Limpar o buffer do teclado
                 inputValido = true;
             } else {
-                System.out.println("Por favor, insira apenas números inteiros.");
+                System.out.println("Por favor, insira apenas numeros inteiros.");
                 scanner.nextLine(); // Limpar o buffer do teclado
             }
         }
@@ -390,7 +390,7 @@ public class PessoaView {
             }
         }
         if (!encontrado) {
-            System.out.println("\n\nAdministrador não encontrado.");
+            System.out.println("\n\nAdministrador nao encontrado.");
         }
          
     }
@@ -399,7 +399,7 @@ public class PessoaView {
     public static void exibirDadosProfessorPorId() {
         int idBusca = 0;
 
-        // Loop de validacão
+        // Loop de validacao
         boolean inputValido = false;
         while (!inputValido) {
             System.out.print("\n\nInforme o ID do professor/instrutor: ");
@@ -408,7 +408,7 @@ public class PessoaView {
                 scanner.nextLine(); // Limpar o buffer do teclado
                 inputValido = true;
             } else {
-                System.out.println("Por favor, insira apenas números inteiros.");
+                System.out.println("Por favor, insira apenas numeros inteiros.");
                 scanner.nextLine(); // Limpar o buffer do teclado
             }
         }
@@ -423,7 +423,7 @@ public class PessoaView {
             }
         }
         if (!encontrado) {
-            System.out.println("\n\nProfessor/Instrutor não encontrado.");
+            System.out.println("\n\nProfessor/Instrutor nao encontrado.");
         }
          
     }
@@ -431,7 +431,7 @@ public class PessoaView {
     public static void exibirDadosAlunoPorId() {
         int idBusca = 0;
 
-        // Loop de validacão
+        // Loop de validacao
         boolean inputValido = false;
         while (!inputValido) {
             System.out.print("\n\nInforme o ID do aluno: ");
@@ -440,7 +440,7 @@ public class PessoaView {
                 scanner.nextLine(); // Limpar o buffer do teclado
                 inputValido = true;
             } else {
-                System.out.println("Por favor, insira apenas números inteiros.");
+                System.out.println("Por favor, insira apenas numeros inteiros.");
                 scanner.nextLine(); // Limpar o buffer do teclado
             }
         }
@@ -455,7 +455,7 @@ public class PessoaView {
             }
         }
         if (!encontrado) {
-            System.out.println("\n\nAluno não encontrado.");
+            System.out.println("\n\nAluno nao encontrado.");
         }
          
     }
@@ -497,7 +497,7 @@ public class PessoaView {
     public static void removerAlunoPorId() {
         int idAluno = 0;
 
-        // Loop de validacão
+        // Loop de validacao
         boolean inputValido = false;
         while (!inputValido) {
             System.out.print("\n\nInforme o ID do administrador que deseja remover: ");
@@ -506,7 +506,7 @@ public class PessoaView {
                 scanner.nextLine(); // Limpar o buffer do teclado
                 inputValido = true;
             } else {
-                System.out.println("Por favor, insira apenas números inteiros.");
+                System.out.println("Por favor, insira apenas numeros inteiros.");
                 scanner.nextLine(); // Limpar o buffer do teclado
             }
         }
@@ -525,7 +525,7 @@ public class PessoaView {
             }
         }
         if (!encontrado) {
-            System.out.println("\n\nAluno com ID " + idAluno + " não encontrado.");
+            System.out.println("\n\nAluno com ID " + idAluno + " nao encontrado.");
         }
         
     }
@@ -533,7 +533,7 @@ public class PessoaView {
     public static void removerAdministradorPorId() {
         int idAdmin = 0;
 
-        // Loop de validacão
+        // Loop de validacao
         boolean inputValido = false;
         while (!inputValido) {
             System.out.print("\n\nInforme o ID do administrador que deseja remover: ");
@@ -542,7 +542,7 @@ public class PessoaView {
                 scanner.nextLine(); // Limpar o buffer do teclado
                 inputValido = true;
             } else {
-                System.out.println("Por favor, insira apenas números inteiros.");
+                System.out.println("Por favor, insira apenas numeros inteiros.");
                 scanner.nextLine(); // Limpar o buffer do teclado
             }
         }
@@ -561,7 +561,7 @@ public class PessoaView {
             }
         }
         if (!encontrado) {
-            System.out.println("\n\nAdministrador com ID " + idAdmin + " não encontrado.");
+            System.out.println("\n\nAdministrador com ID " + idAdmin + " nao encontrado.");
         }
         
     }
@@ -569,7 +569,7 @@ public class PessoaView {
     public static void removerProfessorPorId() {
         int idProf = 0;
 
-        // Loop de validacão
+        // Loop de validacao
         boolean inputValido = false;
         while (!inputValido) {
             System.out.print("\n\nInforme o ID do professor/instrutor que deseja remover: ");
@@ -578,7 +578,7 @@ public class PessoaView {
                 scanner.nextLine(); // Limpar o buffer do teclado
                 inputValido = true;
             } else {
-                System.out.println("Por favor, insira apenas números inteiros.");
+                System.out.println("Por favor, insira apenas numeros inteiros.");
                 scanner.nextLine(); // Limpar o buffer do teclado
             }
         }
@@ -597,7 +597,7 @@ public class PessoaView {
             }
         }
         if (!encontrado) {
-            System.out.println("\n\nProfessor/Instrutor com ID " + idProf + " não encontrado.");
+            System.out.println("\n\nProfessor/Instrutor com ID " + idProf + " nao encontrado.");
         }
         
     }

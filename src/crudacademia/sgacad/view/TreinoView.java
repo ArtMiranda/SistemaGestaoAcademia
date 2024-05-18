@@ -19,11 +19,11 @@ public class TreinoView {
         System.out.print("\nInforme o objetivo: ");
         String objetivo = scanner.nextLine().trim();
         while (objetivo.isEmpty()) {
-            System.out.print("\nObjetivo não pode estar vazio. Informe novamente: ");
+            System.out.print("\nObjetivo nao pode estar vazio. Informe novamente: ");
             objetivo = scanner.nextLine().trim();
         }
 
-        // Data de Início
+        // Data de Inicio
         Date dataInicio = null;
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         boolean dataValida = false;
@@ -33,16 +33,16 @@ public class TreinoView {
                 String dataInicioStr = scanner.nextLine().trim();
                 dataInicio = sdf.parse(dataInicioStr);
                 if (dataInicio.before(Calendar.getInstance().getTime())) {
-                    System.out.print("\nData de inicio não pode ser no passado. Informe novamente.");
+                    System.out.print("\nData de inicio nao pode ser no passado. Informe novamente.");
                 } else {
                     dataValida = true;
                 }
             } catch (ParseException e) {
-                System.out.print("\nFormato de data inválido. Use o formato dd/MM/yyyy.");
+                System.out.print("\nFormato de data invalido. Use o formato dd/MM/yyyy.");
             }
         }
 
-        // Data de Término
+        // Data de Termino
         Date dataTermino = null;
         dataValida = false;
         while (!dataValida) {
@@ -51,12 +51,12 @@ public class TreinoView {
                 String dataTerminoStr = scanner.nextLine().trim();
                 dataTermino = sdf.parse(dataTerminoStr);
                 if (dataTermino.before(dataInicio)) {
-                    System.out.print("\nData de término deve ser posterior à data de início. Informe novamente.");
+                    System.out.print("\nData de termino deve ser posterior à data de inicio. Informe novamente.");
                 } else {
                     dataValida = true;
                 }
             } catch (ParseException e) {
-                System.out.print("\nFormato de data inválido. Use o formato dd/MM/yyyy.");
+                System.out.print("\nFormato de data invalido. Use o formato dd/MM/yyyy.");
             }
         }
 
@@ -81,7 +81,7 @@ public class TreinoView {
     public static void exibirDadosTreinoPorId() {
         int idBusca = 0;
 
-        // Loop de validacão
+        // Loop de validacao
         boolean inputValido = false;
         while (!inputValido) {
             System.out.print("\n\nInforme o ID do treino: ");
@@ -90,7 +90,7 @@ public class TreinoView {
                 scanner.nextLine(); // Limpar o buffer do teclado
                 inputValido = true;
             } else {
-                System.out.print("\nPor favor, insira apenas números inteiros.");
+                System.out.print("\nPor favor, insira apenas numeros inteiros.");
                 scanner.nextLine(); // Limpar o buffer do teclado
             }
         }
@@ -105,14 +105,14 @@ public class TreinoView {
             }
         }
         if (!encontrado) {
-            System.out.print("\n\nTreino não encontrado.");
+            System.out.print("\n\nTreino nao encontrado.");
         }
     }
 
     public static void atualizarTreino() {
         int idTreino = 0;
 
-        // Loop de validacão
+        // Loop de validacao
         boolean inputValido = false;
         while (!inputValido) {
             System.out.print("\n\nInforme o ID do treino que deseja atualizar: ");
@@ -121,7 +121,7 @@ public class TreinoView {
                 scanner.nextLine(); // Limpar o buffer do teclado
                 inputValido = true;
             } else {
-                System.out.print("Por favor, insira apenas números inteiros.");
+                System.out.print("Por favor, insira apenas numeros inteiros.");
                 scanner.nextLine(); // Limpar o buffer do teclado
             }
         }
@@ -140,7 +140,7 @@ public class TreinoView {
                 treino.setObjetivo(novoObjetivo);
             }
 
-            // Data de Início
+            // Data de Inicio
             Date novaDataInicio = null;
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             boolean dataValida = false;
@@ -153,19 +153,19 @@ public class TreinoView {
                     }
                     novaDataInicio = sdf.parse(dataInicioStr);
                     if (novaDataInicio.before(Calendar.getInstance().getTime())) {
-                        System.out.print("\nData de inicio não pode ser no passado. Informe novamente.");
+                        System.out.print("\nData de inicio nao pode ser no passado. Informe novamente.");
                     } else {
                         dataValida = true;
                     }
                 } catch (ParseException e) {
-                    System.out.print("\nFormato de data inválido. Use o formato dd/MM/yyyy.");
+                    System.out.print("\nFormato de data invalido. Use o formato dd/MM/yyyy.");
                 }
             }
             if (novaDataInicio != null) {
                 treino.setDataInicio(novaDataInicio);
             }
 
-            // Data de Término
+            // Data de Termino
             Date novaDataTermino = null;
             dataValida = false;
             while (!dataValida) {
@@ -177,32 +177,32 @@ public class TreinoView {
                     }
                     novaDataTermino = sdf.parse(dataTerminoStr);
                     if (novaDataTermino.before(novaDataInicio != null ? novaDataInicio : treino.getDataInicio())) {
-                        System.out.print("\nData de término deve ser posterior à data de início. Informe novamente.");
+                        System.out.print("\nData de termino deve ser posterior à data de inicio. Informe novamente.");
                     } else {
                         dataValida = true;
                     }
                 } catch (ParseException e) {
-                    System.out.print("\nFormato de data inválido. Use o formato dd/MM/yyyy.");
+                    System.out.print("\nFormato de data invalido. Use o formato dd/MM/yyyy.");
                 }
             }
             if (novaDataTermino != null) {
                 treino.setDataTermino(novaDataTermino);
             }
 
-            // Data de modificação
+            // Data de modificaçao
             treino.setDataModificacao(Calendar.getInstance().getTime());
 
             System.out.print("\nDados do Treino atualizados com sucesso:");
             System.out.print("\n" + treino.exibirDetalhes());
         } else {
-            System.out.print("\nTreino com ID " + idTreino + " não encontrado.");
+            System.out.print("\nTreino com ID " + idTreino + " nao encontrado.");
         }
     }
 
     public static void removerTreino() {
         int idTreino = 0;
 
-        // Loop de validacão
+        // Loop de validacao
         boolean inputValido = false;
         while (!inputValido) {
             System.out.print("\n\nInforme o ID do treino que deseja remover: ");
@@ -211,7 +211,7 @@ public class TreinoView {
                 scanner.nextLine(); // Limpar o buffer do teclado
                 inputValido = true;
             } else {
-                System.out.print("\nPor favor, insira apenas números inteiros.");
+                System.out.print("\nPor favor, insira apenas numeros inteiros.");
                 scanner.nextLine(); // Limpar o buffer do teclado
             }
         }
@@ -230,7 +230,7 @@ public class TreinoView {
             }
         }
         if (!encontrado) {
-            System.out.print("\n\nTreino com ID " + idTreino + " não encontrado.");
+            System.out.print("\n\nTreino com ID " + idTreino + " nao encontrado.");
         }
     }
 }

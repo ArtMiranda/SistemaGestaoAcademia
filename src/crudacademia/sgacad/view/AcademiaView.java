@@ -9,7 +9,7 @@ public class AcademiaView {
     public static Academia academia = null;
 
     public static Academia criarAcademia() {
-        System.out.println("\n\n----- Criacão da Academia -----");
+        System.out.println("\n\n----- Criacao da Academia -----");
         System.out.println("Informe os detalhes da academia:");
         System.out.print("Nome da Academia: ");
         String nomeAcademia = scanner.nextLine();

@@ -1,9 +1,6 @@
 package sgacad.controller;
 
 import java.util.Calendar;
-import java.util.Date;
-
-import sgacad.model.DivisaoTreino;
 import sgacad.model.DivisaoTreinoMusculo;
 import sgacad.view.DivisaoTreinoMusculoView;
 

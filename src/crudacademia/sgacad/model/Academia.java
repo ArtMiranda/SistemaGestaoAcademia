@@ -32,8 +32,8 @@ public class Academia {
         String detalhes = "ID: " + id + "\n";
         detalhes += "Nome: " + nome + "\n";
         detalhes += "Endereco: " + endereco + "\n";
-        detalhes += "Data de Criacão: " + formatarData(dataCriacao) + "\n";
-        detalhes += "Data de Modificacão: " + formatarData(dataModificacao) + "\n";
+        detalhes += "Data de Criacao: " + formatarData(dataCriacao) + "\n";
+        detalhes += "Data de Modificacao: " + formatarData(dataModificacao) + "\n";
         if (numAlunosMatriculados > 0) {
             detalhes += "Alunos Matriculados:\n";
             for (int i = 0; i < numAlunosMatriculados; i++) {

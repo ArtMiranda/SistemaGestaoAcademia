@@ -64,8 +64,8 @@ public class Exercicio {
         String detalhes = "ID: " + id + "\n";
         detalhes += "Nome: " + nome + "\n";
         detalhes += "Descricao/Foto: " + descricaoFoto + "\n";
-        detalhes += "Data de Criacão: " + formatarData(dataCriacao) + "\n";
-        detalhes += "Data de Modificacão: " + formatarData(dataModificacao) + "\n";
+        detalhes += "Data de Criacao: " + formatarData(dataCriacao) + "\n";
+        detalhes += "Data de Modificacao: " + formatarData(dataModificacao) + "\n";
 
         return detalhes;
     }

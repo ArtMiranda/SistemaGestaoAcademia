@@ -15,22 +15,22 @@ public class DivisaoTreinoMusculoView {
 
     public static DivisaoTreinoMusculo criaDivisaoTreinoMusculo() {
         DivisaoTreinoView.exibirTodasDivisoesTreino();
-        System.out.print("\n\nInforme o ID da Divisão de Treino: ");
+        System.out.print("\n\nInforme o ID da Divisao de Treino: ");
         int divisaoTreinoId = scanner.nextInt();
-        scanner.nextLine(); // Consumir a linha nova após o próximo int
+        scanner.nextLine(); // Consumir a linha nova apos o proximo int
 
         DivisaoTreino divisaoTreinoSelecionada = DivisaoTreinoController.getDivisaoTreinoById(divisaoTreinoId);
         while (divisaoTreinoSelecionada == null) {
-            System.out.print("Divisão de Treino inválida. Informe novamente: ");
+            System.out.print("Divisao de Treino invalida. Informe novamente: ");
             divisaoTreinoId = scanner.nextInt();
-            scanner.nextLine(); // Consumir a linha nova após o próximo int
+            scanner.nextLine(); // Consumir a linha nova apos o proximo int
             divisaoTreinoSelecionada = DivisaoTreinoController.getDivisaoTreinoById(divisaoTreinoId);
         }
 
-        System.out.print("Descricao da Divisão de Treino-musculo: ");
+        System.out.print("Descricao da Divisao de Treino-musculo: ");
         String descricao = scanner.nextLine().trim();
         while (descricao.isEmpty()) {
-            System.out.print("Descricao não pode estar vazio. Informe novamente: ");
+            System.out.print("Descricao nao pode estar vazio. Informe novamente: ");
             descricao = scanner.nextLine().trim();
         }
 
@@ -47,20 +47,20 @@ public class DivisaoTreinoMusculoView {
 
     public static void exibirTodasDivisoesTreinoMusculo() {
         if (numDivisoesTreinoMusculo == 0) {
-            System.out.println("\n\nNenhuma divisão de treino-musculo cadastrada ainda.");
+            System.out.println("\n\nNenhuma divisao de treino-musculo cadastrada ainda.");
         } else {
-            System.out.println("\n\nLista de Divisões de Treino-musculo:");
+            System.out.println("\n\nLista de Divisoes de Treino-musculo:");
             for (int i = 0; i < numDivisoesTreinoMusculo; i++) {
                 System.out.println(
                         "ID: " + divisoesTreinoMusculo[i].getId() +
-                                ", Descrição: " + divisoesTreinoMusculo[i].getDescricao() +
+                                ", Descriçao: " + divisoesTreinoMusculo[i].getDescricao() +
                                 ", Nome do Treino: " + divisoesTreinoMusculo[i].getNomeTreino());
             }
         }
     }
 
     public static void exibirDadosDivisaoTreinoMusculoPorId() {
-        System.out.print("\n\nInforme o ID da divisão de treino-musculo: ");
+        System.out.print("\n\nInforme o ID da divisao de treino-musculo: ");
         int idBusca = scanner.nextInt();
         scanner.nextLine(); // Limpar o buffer do teclado
 
@@ -68,22 +68,22 @@ public class DivisaoTreinoMusculoView {
         if (divisaoTreinoMusculo != null) {
             System.out.println(divisaoTreinoMusculo.exibirDetalhes());
         } else {
-            System.out.println("Divisão de treino-musculo não encontrada.");
+            System.out.println("Divisao de treino-musculo nao encontrada.");
         }
     }
 
     public static DivisaoTreinoMusculo atualizarDivisaoTreinoMusculo() {
-        System.out.print("\n\nInforme o ID da divisão de treino-musculo que deseja atualizar: ");
+        System.out.print("\n\nInforme o ID da divisao de treino-musculo que deseja atualizar: ");
         int idDivisaoTreinoMusculo = scanner.nextInt();
         scanner.nextLine(); // Limpar o buffer do teclado
 
         DivisaoTreinoMusculo divisaoTreinoMusculo = DivisaoTreinoMusculoController
                 .getDivisaoTreinoMusculoById(idDivisaoTreinoMusculo);
         if (divisaoTreinoMusculo != null) {
-            System.out.println("\nDados atuais da Divisão de Treino-musculo:");
+            System.out.println("\nDados atuais da Divisao de Treino-musculo:");
             System.out.println(divisaoTreinoMusculo.exibirDetalhes());
 
-            System.out.print("Nova Descrição: ");
+            System.out.print("Nova Descriçao: ");
             String novaDescricao = scanner.nextLine().trim();
             if (!novaDescricao.isEmpty()) {
                 divisaoTreinoMusculo.setDescricao(novaDescricao);
@@ -91,17 +91,17 @@ public class DivisaoTreinoMusculoView {
 
             divisaoTreinoMusculo.setDataModificacao(Calendar.getInstance().getTime());
 
-            System.out.println("\nDados da Divisão de Treino-musculo atualizados com sucesso:");
+            System.out.println("\nDados da Divisao de Treino-musculo atualizados com sucesso:");
             System.out.println(divisaoTreinoMusculo.exibirDetalhes());
         } else {
-            System.out.println("\nDivisão de Treino-musculo com ID " + idDivisaoTreinoMusculo + " não encontrada.");
+            System.out.println("\nDivisao de Treino-musculo com ID " + idDivisaoTreinoMusculo + " nao encontrada.");
         }
 
         return divisaoTreinoMusculo;
     }
 
     public static void removerDivisaoTreinoMusculo() {
-        System.out.print("\n\nInforme o ID da divisão de treino-musculo que deseja remover: ");
+        System.out.print("\n\nInforme o ID da divisao de treino-musculo que deseja remover: ");
         int idDivisaoTreinoMusculo = scanner.nextInt();
         scanner.nextLine(); // Limpar o buffer do teclado
 
@@ -113,13 +113,13 @@ public class DivisaoTreinoMusculoView {
                 }
                 divisoesTreinoMusculo[numDivisoesTreinoMusculo - 1] = null;
                 numDivisoesTreinoMusculo--;
-                System.out.println("\n\nDivisão de treino-musculo removida com sucesso.");
+                System.out.println("\n\nDivisao de treino-musculo removida com sucesso.");
                 encontrado = true;
                 break;
             }
         }
         if (!encontrado) {
-            System.out.println("\n\nDivisão de treino-musculo com ID " + idDivisaoTreinoMusculo + " não encontrada.");
+            System.out.println("\n\nDivisao de treino-musculo com ID " + idDivisaoTreinoMusculo + " nao encontrada.");
         }
     }
 }

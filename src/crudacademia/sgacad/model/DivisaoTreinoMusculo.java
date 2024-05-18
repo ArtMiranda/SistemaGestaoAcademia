@@ -81,7 +81,7 @@ public class DivisaoTreinoMusculo {
         return detalhes;
     }
 
-    // Método para formatar datas
+    // Metodo para formatar datas
     public String formatarData(Date data) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         return sdf.format(data);

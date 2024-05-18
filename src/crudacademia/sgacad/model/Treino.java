@@ -77,8 +77,8 @@ public class Treino {
         detalhes += "Objetivo: " + objetivo + "\n";
         detalhes += "Data de Inicio: " + formatarData(dataInicio) + "\n";
         detalhes += "Data de Termino: " + formatarData(dataTermino) + "\n";
-        detalhes += "Data de Criacão: " + formatarData(dataCriacao) + "\n";
-        detalhes += "Data de Modificacão: " + formatarData(dataModificacao) + "\n";
+        detalhes += "Data de Criacao: " + formatarData(dataCriacao) + "\n";
+        detalhes += "Data de Modificacao: " + formatarData(dataModificacao) + "\n";
 
         return detalhes;
     }

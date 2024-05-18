@@ -6,7 +6,7 @@ public class PagamentoRecorrenteDAO {
     private PagamentoRecorrente[] pagamentosRecorrentes;
     private int tamanho;
 
-    // Construtor padrão
+    // Construtor padrao
     public PagamentoRecorrenteDAO() {
         this.pagamentosRecorrentes = new PagamentoRecorrente[10]; // Inicializa com capacidade inicial de 10 elementos
         this.tamanho = 0;
@@ -28,7 +28,7 @@ public class PagamentoRecorrenteDAO {
                 return pagamentosRecorrentes[i];
             }
         }
-        return null; // Se não encontrar o pagamento recorrente com o ID especificado
+        return null; // Se nao encontrar o pagamento recorrente com o ID especificado
     }
 
     // Metodo para atualizar os detalhes de um pagamento recorrente
@@ -48,7 +48,7 @@ public class PagamentoRecorrenteDAO {
                 for (int j = i; j < tamanho - 1; j++) {
                     pagamentosRecorrentes[j] = pagamentosRecorrentes[j + 1];
                 }
-                pagamentosRecorrentes[tamanho - 1] = null; // Remove a referência ao último elemento
+                pagamentosRecorrentes[tamanho - 1] = null; // Remove a referência ao ultimo elemento
                 tamanho--;
                 return;
             }

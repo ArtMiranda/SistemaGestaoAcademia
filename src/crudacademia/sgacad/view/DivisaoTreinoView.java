@@ -17,21 +17,21 @@ public class DivisaoTreinoView {
         TreinoView.exibirTodosTreinos();
         System.out.print("\n\nInforme o Treino: ");
         int treino = scanner.nextInt();
-        scanner.nextLine(); // Consumir a linha nova após o próximo int
+        scanner.nextLine(); // Consumir a linha nova apos o proximo int
 
         Treino treinoSelecionado = TreinoController.getTreinoById(treino);
         while (treinoSelecionado == null) {
-            System.out.print("Treino inválido. Informe novamente: ");
+            System.out.print("Treino invalido. Informe novamente: ");
             treino = scanner.nextInt();
-            scanner.nextLine(); // Consumir a linha nova após o próximo int
+            scanner.nextLine(); // Consumir a linha nova apos o proximo int
             treinoSelecionado = TreinoController.getTreinoById(treino);
         }
 
         // Descricao do exercicio
-        System.out.print("Descricao da Divisão de Treino: ");
+        System.out.print("Descricao da Divisao de Treino: ");
         String descricao = scanner.nextLine().trim();
         while (descricao.isEmpty()) {
-            System.out.print("Descricao não pode estar vazio. Informe novamente: ");
+            System.out.print("Descricao nao pode estar vazio. Informe novamente: ");
             descricao = scanner.nextLine().trim();
         }
 
@@ -47,13 +47,13 @@ public class DivisaoTreinoView {
 
     public static void exibirTodasDivisoesTreino() {
         if (DivisaoTreinoView.numDivisoesTreino == 0) {
-            System.out.println("\n\nNenhuma divisão de treino cadastrada ainda.");
+            System.out.println("\n\nNenhuma divisao de treino cadastrada ainda.");
         } else {
-            System.out.println("\n\nLista de Divisões de Treino:");
+            System.out.println("\n\nLista de Divisoes de Treino:");
             for (int i = 0; i < DivisaoTreinoView.numDivisoesTreino; i++) {
                 System.out.println(
                         "ID: " + divisoesTreinos[i].getId() + ", Nome do Treino: " + divisoesTreinos[i].getNome()
-                                + ", Descrição: " + divisoesTreinos[i].getDescricao());
+                                + ", Descriçao: " + divisoesTreinos[i].getDescricao());
             }
         }
     }
@@ -61,16 +61,16 @@ public class DivisaoTreinoView {
     public static void exibirDadosDivisaoTreinoPorId() {
         int idBusca = 0;
 
-        // Loop de validacão
+        // Loop de validacao
         boolean inputValido = false;
         while (!inputValido) {
-            System.out.print("\n\nInforme o ID da divisão de treino: ");
+            System.out.print("\n\nInforme o ID da divisao de treino: ");
             if (scanner.hasNextInt()) {
                 idBusca = scanner.nextInt();
                 scanner.nextLine(); // Limpar o buffer do teclado
                 inputValido = true;
             } else {
-                System.out.println("ID inválido. Informe novamente.");
+                System.out.println("ID invalido. Informe novamente.");
                 scanner.nextLine(); // Limpar o buffer do teclado
             }
         }
@@ -79,48 +79,48 @@ public class DivisaoTreinoView {
         if (divisaoTreino != null) {
             System.out.println(divisaoTreino.exibirDetalhes());
         } else {
-            System.out.println("Divisão de treino não encontrada.");
+            System.out.println("Divisao de treino nao encontrada.");
         }
     }
 
     public static DivisaoTreino atualizarDivisaoTreino() {
         int idDivisaoTreino = 0;
 
-        // Loop de validação
+        // Loop de validaçao
         boolean inputValido = false;
         while (!inputValido) {
-            System.out.print("\n\nInforme o ID da divisão de treino que deseja atualizar: ");
+            System.out.print("\n\nInforme o ID da divisao de treino que deseja atualizar: ");
             if (scanner.hasNextInt()) {
                 idDivisaoTreino = scanner.nextInt();
                 scanner.nextLine(); // Limpar o buffer do teclado
                 inputValido = true;
             } else {
-                System.out.println("Por favor, insira apenas números inteiros.");
+                System.out.println("Por favor, insira apenas numeros inteiros.");
                 scanner.nextLine(); // Limpar o buffer do teclado
             }
         }
 
         DivisaoTreino divisaoTreino = DivisaoTreinoController.getDivisaoTreinoById(idDivisaoTreino);
         if (divisaoTreino != null) {
-            System.out.println("\nDados atuais da Divisão de Treino:");
+            System.out.println("\nDados atuais da Divisao de Treino:");
             System.out.println(divisaoTreino.exibirDetalhes());
 
-            System.out.println("\nInforme os novos dados da divisão de treino:");
+            System.out.println("\nInforme os novos dados da divisao de treino:");
 
-            // Descrição da divisão de treino
-            System.out.print("Nova Descrição: ");
+            // Descriçao da divisao de treino
+            System.out.print("Nova Descriçao: ");
             String novaDescricao = scanner.nextLine().trim();
             if (!novaDescricao.isEmpty()) {
                 divisaoTreino.setDescricao(novaDescricao);
             }
 
-            // Data de modificação
+            // Data de modificaçao
             divisaoTreino.setDataModificacao(Calendar.getInstance().getTime());
 
-            System.out.println("\nDados da Divisão de Treino atualizados com sucesso:");
+            System.out.println("\nDados da Divisao de Treino atualizados com sucesso:");
             System.out.println(divisaoTreino.exibirDetalhes());
         } else {
-            System.out.println("\nDivisão de Treino com ID " + idDivisaoTreino + " não encontrada.");
+            System.out.println("\nDivisao de Treino com ID " + idDivisaoTreino + " nao encontrada.");
         }
 
         return divisaoTreino;
@@ -129,16 +129,16 @@ public class DivisaoTreinoView {
     public static void removerDivisaoTreino() {
         int idDivisaoTreino = 0;
 
-        // Loop de validação
+        // Loop de validaçao
         boolean inputValido = false;
         while (!inputValido) {
-            System.out.print("\n\nInforme o ID da divisão de treino que deseja remover: ");
+            System.out.print("\n\nInforme o ID da divisao de treino que deseja remover: ");
             if (scanner.hasNextInt()) {
                 idDivisaoTreino = scanner.nextInt();
                 scanner.nextLine(); // Limpar o buffer do teclado
                 inputValido = true;
             } else {
-                System.out.println("Por favor, insira apenas números inteiros.");
+                System.out.println("Por favor, insira apenas numeros inteiros.");
                 scanner.nextLine(); // Limpar o buffer do teclado
             }
         }
@@ -151,13 +151,13 @@ public class DivisaoTreinoView {
                 }
                 divisoesTreinos[DivisaoTreinoView.numDivisoesTreino - 1] = null;
                 DivisaoTreinoView.numDivisoesTreino--;
-                System.out.println("\n\nDivisão de treino removida com sucesso.");
+                System.out.println("\n\nDivisao de treino removida com sucesso.");
                 encontrado = true;
                 break;
             }
         }
         if (!encontrado) {
-            System.out.println("\n\nDivisão de treino com ID " + idDivisaoTreino + " não encontrada.");
+            System.out.println("\n\nDivisao de treino com ID " + idDivisaoTreino + " nao encontrada.");
         }
     }
 }

@@ -6,6 +6,20 @@
       "name": "MenuAcademia",
       "request": "launch",
       "mainClass": "sgacad.view.MenuAcademia",
+      "projectName": "SistemaGestaoAcademia_4aff2d11"
+    },
+    {
+      "type": "java",
+      "name": "CrudAcademia",
+      "request": "launch",
+      "mainClass": "sgacad.view.CrudAcademia",
+      "projectName": "SistemaGestaoAcademia_4aff2d11"
+    },
+    {
+      "type": "java",
+      "name": "MenuAcademia",
+      "request": "launch",
+      "mainClass": "sgacad.view.MenuAcademia",
       "projectName": "SistemaGestaoAcademia_49efa656"
     },
     {

@@ -15,6 +15,7 @@ public class MenuAcademia {
         while (true) {
             if (AcademiaView.academia == null) {
                 AcademiaView.criarAcademia();
+                PopularTabelasController.main(args);
             } else {
                 if (efetuarLogin()) {
                     exibirMenu();
@@ -26,8 +27,8 @@ public class MenuAcademia {
     }
 
     private static void criarAdministradorPadrao() {
-        // Definir os dados do administrador padrão
-        String nomePadrao = "Administrador Padrão";
+        // Definir os dados do administrador padrao
+        String nomePadrao = "Administrador Padrao";
         char sexoPadrao = 'F';
         String loginPadrao = "adm";
         String senhaPadrao = "adm";
@@ -36,16 +37,16 @@ public class MenuAcademia {
         Date dataAtual = Calendar.getInstance().getTime();
 
         PessoaController administradorController = new PessoaController();
-        // Criar o objeto Pessoa para representar o administrador padrão
+        // Criar o objeto Pessoa para representar o administrador padrao
         Pessoa administradorPadrao = administradorController.criarPessoa(PessoaView.numAdministradores,
                 nomePadrao,
                 sexoPadrao,
                 dataAtual, loginPadrao, senhaPadrao, "Administrador");
 
-        // Adicionar o administrador padrão ao array de administradores
+        // Adicionar o administrador padrao ao array de administradores
         PessoaView.administradores[PessoaView.numAdministradores] = administradorPadrao;
         PessoaView.numAdministradores++;
-        System.out.println("Administrador padrão criado com sucesso!");
+        System.out.println("Administrador padrao criado com sucesso!");
     }
 
     private static boolean efetuarLogin() {
@@ -95,8 +96,10 @@ public class MenuAcademia {
             System.out.println("7. CRUD Treino");
             System.out.println("8. CRUD Divisao de Treino");
             System.out.println("9. CRUD Divisao de Treino Musculo");
+            System.out.println("10. CRUD Treino Aplicacao");
+            System.out.println("11. CRUD Avaliacao Fisica");
             System.out.println("0. Sair");
-            System.out.print("Escolha uma opcão: ");
+            System.out.print("Escolha uma opcao: ");
 
             int opcao = scanner.nextInt();
             scanner.nextLine();
@@ -129,12 +132,18 @@ public class MenuAcademia {
                 case 9:
                     exibirMenuCRUDDivisaoTreinoMusculo();
                     break;
+                case 10:
+                    exibirMenuCRUDTreinoAplicacao();
+                    break;
+                case 11:
+                    exibirMenuCRUDAvaliacaoFisica();
+                    break;
                 case 0:
                     System.out.println("Deslogando...");
                     loggedOut = true;
                     break;
                 default:
-                    System.out.println("Opcão invalida! Tente novamente.");
+                    System.out.println("Opcao invalida! Tente novamente.");
             }
         }
     }
@@ -149,7 +158,7 @@ public class MenuAcademia {
             System.out.println("4. Atualizar Aluno");
             System.out.println("5. Remover Aluno por ID");
             System.out.println("0. Voltar ao Menu Principal");
-            System.out.print("Escolha uma opcão: ");
+            System.out.print("Escolha uma opcao: ");
 
             int opcao = scanner.nextInt();
             scanner.nextLine(); // Limpar o buffer do teclado
@@ -178,13 +187,13 @@ public class MenuAcademia {
                     sair = true;
                     break;
                 default:
-                    System.out.println("Opcão invalida! Tente novamente.");
+                    System.out.println("Opcao invalida! Tente novamente.");
             }
         }
     }
 
     public static Pessoa criarAluno() {
-        System.out.println("\n\n----- Criacão da Conta de Aluno -----");
+        System.out.println("\n\n----- Criacao da Conta de Aluno -----");
         Pessoa aluno = PessoaView.criarPessoa("Aluno");
 
         PessoaView.alunos[PessoaView.numAlunos] = aluno;
@@ -202,7 +211,7 @@ public class MenuAcademia {
             System.out.println("4. Atualizar Administrador");
             System.out.println("5. Remover Administrador por ID");
             System.out.println("0. Voltar ao Menu Principal");
-            System.out.print("Escolha uma opcão: ");
+            System.out.print("Escolha uma opcao: ");
 
             int opcao = scanner.nextInt();
             scanner.nextLine(); // Limpar o buffer do teclado
@@ -231,13 +240,13 @@ public class MenuAcademia {
                     loggedOut = true;
                     break;
                 default:
-                    System.out.println("Opcão invalida! Tente novamente.");
+                    System.out.println("Opcao invalida! Tente novamente.");
             }
         }
     }
 
     private static void criarContaAdministrador() {
-        System.out.println("\n\n----- Criacão da Conta do Administrador -----");
+        System.out.println("\n\n----- Criacao da Conta do Administrador -----");
         PessoaView.administradores[PessoaView.numAdministradores] = criarAdministrador();
         PessoaView.numAdministradores++;
     }
@@ -260,7 +269,7 @@ public class MenuAcademia {
             System.out.println("4. Atualizar Professor/Instrutor");
             System.out.println("5. Remover Professor/Instrutor por ID");
             System.out.println("0. Voltar ao Menu Principal");
-            System.out.print("Escolha uma opcão: ");
+            System.out.print("Escolha uma opcao: ");
 
             int opcao = scanner.nextInt();
             scanner.nextLine(); // Limpar o buffer do teclado
@@ -290,13 +299,13 @@ public class MenuAcademia {
                     loggedOut = true;
                     break;
                 default:
-                    System.out.println("Opcão invalida! Tente novamente.");
+                    System.out.println("Opcao invalida! Tente novamente.");
             }
         }
     }
 
     private static void criarContaProfessor() {
-        System.out.println("\n\n----- Criacão da Conta do Professor/Instrutor -----");
+        System.out.println("\n\n----- Criacao da Conta do Professor/Instrutor -----");
         PessoaView.professoresInstrutores[PessoaView.numProfessoresInstrutores] = criarProfessorInstrutor();
         PessoaView.numProfessoresInstrutores++;
     }
@@ -312,14 +321,14 @@ public class MenuAcademia {
     private static void exibirMenuCRUDExercicios() {
         boolean loggedOut = false;
         while (!loggedOut) {
-            System.out.println("\n\n----- Menu de Exercícios -----");
-            System.out.println("1. Criar Exercício");
-            System.out.println("2. Exibir Todos os Exercícios");
-            System.out.println("3. Exibir Dados do Exercício por ID");
-            System.out.println("4. Atualizar Exercício");
-            System.out.println("5. Remover Exercício por ID");
+            System.out.println("\n\n----- Menu de Exercicios -----");
+            System.out.println("1. Criar Exercicio");
+            System.out.println("2. Exibir Todos os Exercicios");
+            System.out.println("3. Exibir Dados do Exercicio por ID");
+            System.out.println("4. Atualizar Exercicio");
+            System.out.println("5. Remover Exercicio por ID");
             System.out.println("0. Voltar ao Menu Principal");
-            System.out.print("Escolha uma opcão: ");
+            System.out.print("Escolha uma opcao: ");
 
             int opcao = scanner.nextInt();
             scanner.nextLine(); // Limpar o buffer do teclado
@@ -348,7 +357,7 @@ public class MenuAcademia {
                     loggedOut = true;
                     break;
                 default:
-                    System.out.println("Opcão invalida! Tente novamente.");
+                    System.out.println("Opcao invalida! Tente novamente.");
             }
         }
     }
@@ -366,14 +375,14 @@ public class MenuAcademia {
     private static void exibirMenuCRUDExerciciosAplicacao() {
         boolean loggedOut = false;
         while (!loggedOut) {
-            System.out.println("\n\n----- Menu de Exercícios Aplicacão -----");
-            System.out.println("1. Definir Aplicacão do Exercicio");
-            System.out.println("2. Exibir todas as Aplicacoes de Exercícios");
-            System.out.println("3. Exibir Dados das Aplicacoes de Exercício por ID");
-            System.out.println("4. Atualizar Aplicacão de Exercício");
-            System.out.println("5. Remover Aplicacão de Exercício por ID");
+            System.out.println("\n\n----- Menu de Exercicios Aplicacao -----");
+            System.out.println("1. Definir Aplicacao do Exercicio");
+            System.out.println("2. Exibir todas as Aplicacoes de Exercicios");
+            System.out.println("3. Exibir Dados das Aplicacoes de Exercicio por ID");
+            System.out.println("4. Atualizar Aplicacao de Exercicio");
+            System.out.println("5. Remover Aplicacao de Exercicio por ID");
             System.out.println("0. Voltar ao Menu Principal");
-            System.out.print("Escolha uma opcão: ");
+            System.out.print("Escolha uma opcao: ");
 
             int opcao = scanner.nextInt();
             scanner.nextLine(); // Limpar o buffer do teclado
@@ -404,13 +413,13 @@ public class MenuAcademia {
                     loggedOut = true;
                     break;
                 default:
-                    System.out.println("Opcão invalida! Tente novamente.");
+                    System.out.println("Opcao invalida! Tente novamente.");
             }
         }
     }
 
     private static void criaExercicioAplicacao() {
-        System.out.println("\n\n----- Criacão da Aplicacão de Exercício -----");
+        System.out.println("\n\n----- Criacao da Aplicacao de Exercicio -----");
         ExercicioAplicacao exercicioAplicacao = ExercicioAplicacaoView.criarExercicioAplicacao();
 
         ExercicioAplicacaoView.exerciciosAplicacao[ExercicioAplicacaoView.numExerciciosAplicacao++] = exercicioAplicacao;
@@ -426,7 +435,7 @@ public class MenuAcademia {
             System.out.println("4. Atualizar Treino");
             System.out.println("5. Remover Treino por ID");
             System.out.println("0. Voltar ao Menu Principal");
-            System.out.print("Escolha uma opcão: ");
+            System.out.print("Escolha uma opcao: ");
 
             int opcao = scanner.nextInt();
             scanner.nextLine(); // Limpar o buffer do teclado
@@ -455,7 +464,7 @@ public class MenuAcademia {
                     loggedOut = true;
                     break;
                 default:
-                    System.out.println("Opcão invalida! Tente novamente.");
+                    System.out.println("Opcao invalida! Tente novamente.");
             }
         }
     }
@@ -463,14 +472,14 @@ public class MenuAcademia {
     private static void exibirMenuCRUDDivisaoTreino() {
         boolean loggedOut = false;
         while (!loggedOut) {
-            System.out.println("\n\n----- Menu de Divisão de Treino -----");
-            System.out.println("1. Criar Divisão de Treino");
-            System.out.println("2. Exibir todas as Divisões de Treino");
-            System.out.println("3. Exibir Dados da Divisão de Treino por ID");
-            System.out.println("4. Atualizar Divisão de Treino");
-            System.out.println("5. Remover Divisão de Treino por ID");
+            System.out.println("\n\n----- Menu de Divisao de Treino -----");
+            System.out.println("1. Criar Divisao de Treino");
+            System.out.println("2. Exibir todas as Divisoes de Treino");
+            System.out.println("3. Exibir Dados da Divisao de Treino por ID");
+            System.out.println("4. Atualizar Divisao de Treino");
+            System.out.println("5. Remover Divisao de Treino por ID");
             System.out.println("0. Voltar ao Menu Principal");
-            System.out.print("Escolha uma opcão: ");
+            System.out.print("Escolha uma opcao: ");
 
             int opcao = scanner.nextInt();
             scanner.nextLine(); // Limpar o buffer do teclado
@@ -499,7 +508,7 @@ public class MenuAcademia {
                     loggedOut = true;
                     break;
                 default:
-                    System.out.println("Opcão invalida! Tente novamente.");
+                    System.out.println("Opcao invalida! Tente novamente.");
             }
         }
     }
@@ -507,14 +516,14 @@ public class MenuAcademia {
     private static void exibirMenuCRUDDivisaoTreinoMusculo() {
         boolean loggedOut = false;
         while (!loggedOut) {
-            System.out.println("\n\n----- Menu de Divisão de Treino Musculo -----");
-            System.out.println("1. Criar Divisão de Treino Musculo");
-            System.out.println("2. Exibir todas as Divisões de Treino Musculo");
-            System.out.println("3. Exibir Dados da Divisão de Treino Musculo por ID");
-            System.out.println("4. Atualizar Divisão de Treino Musculo");
-            System.out.println("5. Remover Divisão de Treino Musculo por ID");
+            System.out.println("\n\n----- Menu de Divisao de Treino Musculo -----");
+            System.out.println("1. Criar Divisao de Treino Musculo");
+            System.out.println("2. Exibir todas as Divisoes de Treino Musculo");
+            System.out.println("3. Exibir Dados da Divisao de Treino Musculo por ID");
+            System.out.println("4. Atualizar Divisao de Treino Musculo");
+            System.out.println("5. Remover Divisao de Treino Musculo por ID");
             System.out.println("0. Voltar ao Menu Principal");
-            System.out.print("Escolha uma opcão: ");
+            System.out.print("Escolha uma opcao: ");
 
             int opcao = scanner.nextInt();
             scanner.nextLine(); // Limpar o buffer do teclado
@@ -543,9 +552,100 @@ public class MenuAcademia {
                     loggedOut = true;
                     break;
                 default:
-                    System.out.println("Opcão invalida! Tente novamente.");
+                    System.out.println("Opcao invalida! Tente novamente.");
             }
         }
     }
+
+    private static void exibirMenuCRUDTreinoAplicacao() {
+        boolean loggedOut = false;
+        while (!loggedOut) {
+            System.out.println("\n\n----- Menu de Treino Aplicaçao -----");
+            System.out.println("1. Criar Treino Aplicaçao");
+            System.out.println("2. Exibir todos os Treinos Aplicaçao");
+            System.out.println("3. Atualizar Treino Aplicaçao");
+            System.out.println("4. Remover Treino Aplicaçao por ID");
+            System.out.println("0. Voltar ao Menu Principal");
+            System.out.print("Escolha uma opcao: ");
+
+            int opcao = scanner.nextInt();
+            scanner.nextLine(); // Limpar o buffer do teclado
+
+            switch (opcao) {
+                case 1:
+                    TreinoAplicacaoView.criaTreinoAplicacao();
+                    break;
+                case 2:
+                    TreinoAplicacaoView.exibirTodosTreinosAplicacao();
+                    break;
+                case 3:
+                    TreinoAplicacaoView.exibirTodosTreinosAplicacao();
+                    TreinoAplicacaoView.atualizarTreinoAplicacao();
+                    break;
+                case 4:
+                    TreinoAplicacaoView.exibirTodosTreinosAplicacao();
+                    TreinoAplicacaoView.removerTreinoAplicacao();
+                    break;
+                case 0:
+                    System.out.println("Retornando ao Menu Principal...");
+                    loggedOut = true;
+                    break;
+                default:
+                    System.out.println("Opcao invalida! Tente novamente.");
+            }
+        }
+    }
+
+    private static void exibirMenuCRUDAvaliacaoFisica() {
+        boolean loggedOut = false;
+        while (!loggedOut) {
+            System.out.println("\n\n----- Menu de Avaliaçao Fisica -----");
+            System.out.println("1. Criar Avaliaçao Fisica");
+            System.out.println("2. Exibir todas as Avaliaçoes Fisicas");
+            System.out.println("3. Exibir Dados da Avaliaçao Fisica por ID");
+            System.out.println("4. Atualizar Avaliaçao Fisica");
+            System.out.println("5. Remover Avaliaçao Fisica por ID");
+            System.out.println("0. Voltar ao Menu Principal");
+            System.out.print("Escolha uma opçao: ");
+
+            int opcao = scanner.nextInt();
+            scanner.nextLine(); // Limpar o buffer do teclado
+
+            switch (opcao) {
+                case 1:
+                    calcularIMC();
+                    break;
+                case 0:
+                    loggedOut = true;
+                    break;
+                default:
+                    System.out.println("Opçao invalida. Tente novamente.");
+                    break;
+            }
+        }
+    }
+
+    private static void calcularIMC() {
+        System.out.println("\n\n----- Calculo do indice de Massa Corporal (IMC) -----");
+        System.out.print("Informe o ID do aluno: ");
+        int id = scanner.nextInt();
+        scanner.nextLine(); // Limpar o buffer do teclado
+
+        System.out.print("Informe o ID do ultimo treino: ");
+        int ultimoTreino = scanner.nextInt();
+        scanner.nextLine(); // Limpar o buffer do teclado
+
+        System.out.print("Informe o peso (kg): ");
+        double peso = scanner.nextDouble();
+        scanner.nextLine(); // Limpar o buffer do teclado
+
+        System.out.print("Informe a altura (m): ");
+        double altura = scanner.nextDouble();
+        scanner.nextLine(); // Limpar o buffer do teclado
+
+        AvaliacaoFisicaView.calcularIMC(id, ultimoTreino, peso, altura);
+    }
+
+    
 
 }

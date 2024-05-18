@@ -4,8 +4,6 @@ import java.util.Calendar;
 import java.util.Date;
 
 import sgacad.model.DivisaoTreino;
-import sgacad.model.Exercicio;
-import sgacad.model.Treino;
 import sgacad.view.DivisaoTreinoView;
 
 public class DivisaoTreinoController {

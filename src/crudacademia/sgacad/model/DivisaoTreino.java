@@ -64,8 +64,8 @@ public class DivisaoTreino {
         String detalhes = "ID: " + id + "\n";
         detalhes += "Nome do Treino: " + nome + "\n";
         detalhes += "Descricao: " + descricao + "\n";
-        detalhes += "Data de Criacão: " + formatarData(dataCriacao) + "\n";
-        detalhes += "Data de Modificacão: " + formatarData(dataModificacao) + "\n";
+        detalhes += "Data de Criacao: " + formatarData(dataCriacao) + "\n";
+        detalhes += "Data de Modificacao: " + formatarData(dataModificacao) + "\n";
         return detalhes;
     }
 

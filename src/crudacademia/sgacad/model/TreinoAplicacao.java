@@ -1,22 +1,29 @@
 package sgacad.model;
+
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class TreinoAplicacao {
     private int id;
-    private Treino treino;
-    private Exercicio exercicio;
-    private ExercicioAplicacao exercicioAplicacao;
-    private DivisaoTreino divisaoTreino;
+    private String treino;
+    private String exercicio;
+    private String exercicioAplicacao;
+    private String divisaoTreino;
+    private String divisaoTreinoMusculo;
+    private Date dataInicio;
+    private Date dataTermino;
     private Date dataCriacao;
     private Date dataModificacao;
 
-    // Construtor
-    public TreinoAplicacao(int id, Treino treino, Exercicio exercicio, ExercicioAplicacao exercicioAplicacao, DivisaoTreino divisaoTreino, Date dataCriacao, Date dataModificacao) {
+    public TreinoAplicacao(int id, String treino, String exercicio, String exercicioAplicacao, String divisaoTreino, String divisaoTreinoMusculo, Date dataInicio, Date dataTermino, Date dataCriacao, Date dataModificacao) {
         this.id = id;
         this.treino = treino;
         this.exercicio = exercicio;
         this.exercicioAplicacao = exercicioAplicacao;
         this.divisaoTreino = divisaoTreino;
+        this.divisaoTreinoMusculo = divisaoTreinoMusculo;
+        this.dataInicio = dataInicio;
+        this.dataTermino = dataTermino;
         this.dataCriacao = dataCriacao;
         this.dataModificacao = dataModificacao;
     }
@@ -26,48 +33,56 @@ public class TreinoAplicacao {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Treino getTreino() {
+    public String getTreino() {
         return treino;
     }
 
-    public void setTreino(Treino treino) {
+    public void setTreino(String treino) {
         this.treino = treino;
     }
 
-    public Exercicio getExercicio() {
+    public String getNomeExercicio() {
         return exercicio;
     }
 
-    public void setExercicio(Exercicio exercicio) {
+    public void setExercicio(String exercicio) {
         this.exercicio = exercicio;
     }
 
-    public ExercicioAplicacao getExercicioAplicacao() {
+    public String getExercicioAplicacao() {
         return exercicioAplicacao;
     }
 
-    public void setExercicioAplicacao(ExercicioAplicacao exercicioAplicacao) {
+    public void setExercicioAplicacao(String exercicioAplicacao) {
         this.exercicioAplicacao = exercicioAplicacao;
     }
 
-    public DivisaoTreino getDivisaoTreino() {
+    public String getDivisaoTreino() {
         return divisaoTreino;
     }
 
-    public void setDivisaoTreino(DivisaoTreino divisaoTreino) {
+    public void setDivisaoTreino(String divisaoTreino) {
         this.divisaoTreino = divisaoTreino;
+    }
+
+    public String getDivisaoTreinoAplicacao() {
+        return divisaoTreinoMusculo;
+    }
+
+    public void setDivisaoTreinoMusculo(String divisaoTreinoMusculo) {
+        this.divisaoTreinoMusculo = divisaoTreinoMusculo;
+    }
+
+    public Date getDataInicio() {
+        return dataInicio;
+    }
+
+    public Date getDataTermino() {
+        return dataTermino;
     }
 
     public Date getDataCriacao() {
         return dataCriacao;
-    }
-
-    public void setDataCriacao(Date dataCriacao) {
-        this.dataCriacao = dataCriacao;
     }
 
     public Date getDataModificacao() {
@@ -76,5 +91,19 @@ public class TreinoAplicacao {
 
     public void setDataModificacao(Date dataModificacao) {
         this.dataModificacao = dataModificacao;
+    }
+
+    public String exibirDetalhes() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        return "ID: " + id +
+                "\nTreino: " + treino +
+                "\nExerc: " + exercicio +
+                "\nExercicio Aplicacao: " + exercicioAplicacao +
+                "\nDivisao Treino: " + divisaoTreino +
+                "\nDivisao Treino Musculo: " + divisaoTreinoMusculo +
+                "\nData de Inicio: " + sdf.format(dataInicio) +
+                "\nData de Termino: " + sdf.format(dataTermino) +
+                "\nData de Criaçao: " + sdf.format(dataCriacao) +
+                "\nData de Modificaçao: " + sdf.format(dataModificacao);
     }
 }

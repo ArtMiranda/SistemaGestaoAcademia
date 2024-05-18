@@ -5,7 +5,7 @@ public class PessoaDAO {
     private Pessoa[] pessoas;
     private int tamanho;
 
-    // Construtor padrão
+    // Construtor padrao
     public PessoaDAO() {
         pessoas = new Pessoa[0]; // Inicializa o array com tamanho zero
         tamanho = 0;
@@ -32,7 +32,7 @@ public class PessoaDAO {
                 return pessoa;
             }
         }
-        return null; // Se não encontrar a pessoa com o ID especificado
+        return null; // Se nao encontrar a pessoa com o ID especificado
     }
 
     // Metodo para atualizar os detalhes de uma pessoa
@@ -47,7 +47,7 @@ public class PessoaDAO {
 
     // Metodo para excluir uma pessoa
     public void excluirPessoa(int id) {
-        // Cria um novo array com tamanho reduzido para armazenar as pessoas sem a pessoa a ser excluída
+        // Cria um novo array com tamanho reduzido para armazenar as pessoas sem a pessoa a ser excluida
         Pessoa[] novoArray = new Pessoa[tamanho - 1];
         int indiceNovoArray = 0;
         for (Pessoa pessoa : pessoas) {

@@ -4,8 +4,8 @@ import java.util.Date;
 
 public class AvaliacaoFisica {
     private int id;
-    private Pessoa pessoa;
-    private Treino ultimoTreino;
+    private String nomePessoa;
+    private String ultimoTreino;
     private double peso;
     private double altura;
     private double imc;
@@ -14,9 +14,9 @@ public class AvaliacaoFisica {
     private Date dataModificacao;
 
     // Construtor
-    public AvaliacaoFisica(int id, Pessoa pessoa, Treino ultimoTreino, double peso, double altura, int indiceSatisfacaoResultado, Date dataCriacao, Date dataModificacao) {
+    public AvaliacaoFisica(int id, String nomePessoa, String ultimoTreino, double peso, double altura, int indiceSatisfacaoResultado, Date dataCriacao, Date dataModificacao) {
         this.id = id;
-        this.pessoa = pessoa;
+        this.nomePessoa = nomePessoa;
         this.ultimoTreino = ultimoTreino;
         this.peso = peso;
         this.altura = altura;
@@ -26,7 +26,7 @@ public class AvaliacaoFisica {
         this.dataModificacao = dataModificacao;
     }
 
-    // Metodo para calcular o Índice de Massa Corporal (IMC)
+    // Metodo para calcular o indice de Massa Corporal (IMC)
     private double calcularIMC(double peso, double altura) {
         return peso / (altura * altura);
     }
@@ -40,19 +40,19 @@ public class AvaliacaoFisica {
         this.id = id;
     }
 
-    public Pessoa getPessoa() {
-        return pessoa;
+    public String getPessoa() {
+        return nomePessoa;
     }
 
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
+    public void setPessoa(String nomePessoa) {
+        this.nomePessoa = nomePessoa;
     }
 
-    public Treino getUltimoTreino() {
+    public String getUltimoTreino() {
         return ultimoTreino;
     }
 
-    public void setUltimoTreino(Treino ultimoTreino) {
+    public void setUltimoTreino(String ultimoTreino) {
         this.ultimoTreino = ultimoTreino;
     }
 

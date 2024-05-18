@@ -5,7 +5,7 @@ public class MensalidadeAlunoVigenteDAO {
     private MensalidadeAlunoVigente[] mensalidadesAlunoVigentes;
     private int tamanho;
 
-    // Construtor padrão
+    // Construtor padrao
     public MensalidadeAlunoVigenteDAO() {
         this.mensalidadesAlunoVigentes = new MensalidadeAlunoVigente[10]; // Inicializa com capacidade inicial de 10 elementos
         this.tamanho = 0;
@@ -27,7 +27,7 @@ public class MensalidadeAlunoVigenteDAO {
                 return mensalidadesAlunoVigentes[i];
             }
         }
-        return null; // Se não encontrar a mensalidade de aluno vigente com o ID especificado
+        return null; // Se nao encontrar a mensalidade de aluno vigente com o ID especificado
     }
 
     // Metodo para atualizar os detalhes de uma mensalidade de aluno vigente
@@ -47,7 +47,7 @@ public class MensalidadeAlunoVigenteDAO {
                 for (int j = i; j < tamanho - 1; j++) {
                     mensalidadesAlunoVigentes[j] = mensalidadesAlunoVigentes[j + 1];
                 }
-                mensalidadesAlunoVigentes[tamanho - 1] = null; // Remove a referência ao último elemento
+                mensalidadesAlunoVigentes[tamanho - 1] = null; // Remove a referência ao ultimo elemento
                 tamanho--;
                 return;
             }
