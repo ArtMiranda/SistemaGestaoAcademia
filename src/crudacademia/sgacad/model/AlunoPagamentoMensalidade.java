@@ -3,23 +3,27 @@ import java.util.Date;
 
 public class AlunoPagamentoMensalidade {
     private int id;
-    private MensalidadeAlunoVigente mensalidade;
-    private Date data;
-    private Pessoa modalidade;
+    private double mensalidadeVigente;
+    private Date dataVencimento;
+    private Date dataPagamento;
+    private double valorPago;
+    private int idAluno;
+    private String modalidade;
     private Date dataCriacao;
     private Date dataModificacao;
 
-    // Construtor
-    public AlunoPagamentoMensalidade(int id, MensalidadeAlunoVigente mensalidade, Date data, Pessoa modalidade, Date dataCriacao, Date dataModificacao) {
+    public AlunoPagamentoMensalidade(int id, double mensalidadeVigente, Date dataVencimento, Date dataPagamento, double valorPago, int idAluno, String modalidade, Date dataCriacao, Date dataModificacao) {
         this.id = id;
-        this.mensalidade = mensalidade;
-        this.data = data;
+        this.mensalidadeVigente = mensalidadeVigente;
+        this.dataVencimento = dataVencimento;
+        this.dataPagamento = dataPagamento;
+        this.valorPago = valorPago;
+        this.idAluno = idAluno;
         this.modalidade = modalidade;
         this.dataCriacao = dataCriacao;
         this.dataModificacao = dataModificacao;
     }
 
-    // Getters e Setters
     public int getId() {
         return id;
     }
@@ -28,27 +32,51 @@ public class AlunoPagamentoMensalidade {
         this.id = id;
     }
 
-    public MensalidadeAlunoVigente getMensalidade() {
-        return mensalidade;
+    public double getMensalidadeVigente() {
+        return mensalidadeVigente;
     }
 
-    public void setMensalidade(MensalidadeAlunoVigente mensalidade) {
-        this.mensalidade = mensalidade;
+    public void setMensalidadeVigente(double mensalidadeVigente) {
+        this.mensalidadeVigente = mensalidadeVigente;
     }
 
-    public Date getData() {
-        return data;
+    public Date getDataVencimento() {
+        return dataVencimento;
     }
 
-    public void setData(Date data) {
-        this.data = data;
+    public void setDataVencimento(Date dataVencimento) {
+        this.dataVencimento = dataVencimento;
     }
 
-    public Pessoa getModalidade() {
+    public Date getDataPagamento() {
+        return dataPagamento;
+    }
+
+    public void setDataPagamento(Date dataPagamento) {
+        this.dataPagamento = dataPagamento;
+    }
+
+    public double getValorPago() {
+        return valorPago;
+    }
+
+    public void setValorPago(double valorPago) {
+        this.valorPago = valorPago;
+    }
+
+    public int getIdAluno() {
+        return idAluno;
+    }
+
+    public void setIdAluno(int idAluno) {
+        this.idAluno = idAluno;
+    }
+
+    public String getModalidade() {
         return modalidade;
     }
 
-    public void setModalidade(Pessoa modalidade) {
+    public void setModalidade(String modalidade) {
         this.modalidade = modalidade;
     }
 
@@ -67,4 +95,6 @@ public class AlunoPagamentoMensalidade {
     public void setDataModificacao(Date dataModificacao) {
         this.dataModificacao = dataModificacao;
     }
+
+
 }

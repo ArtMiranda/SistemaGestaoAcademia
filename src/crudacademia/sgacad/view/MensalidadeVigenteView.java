@@ -16,6 +16,7 @@ public class MensalidadeVigenteView {
 
 
     public static void criaMensalidadeVigente(){
+
         System.out.print("\nDigite o valor da mensalidade: ");
         double valor = scanner.nextDouble();
         scanner.nextLine();
@@ -28,9 +29,15 @@ public class MensalidadeVigenteView {
                 System.out.print("\nInforme a data de Inicio (dd/MM/yyyy): ");
                 String dataInicioStr = scanner.nextLine().trim();
                 dataInicio = sdf.parse(dataInicioStr);
-                if (dataInicio.before(Calendar.getInstance().getTime())) {
+                Calendar calendar = Calendar.getInstance();
+                calendar.add(Calendar.DAY_OF_MONTH, -1);
+                if (dataInicio.before(calendar.getTime())) {
                     System.out.print("\nData de inicio nao pode ser no passado. Informe novamente.");
                 } else {
+                    if(dataInicio.before(Calendar.getInstance().getTime()) || dataInicio.before(MensalidadeVigenteController.getMensalidadeVigente().getTermino())){
+                        System.out.println("\nRemova a data de inicio da mensalidade vigente antes de cadastrar uma nova.");
+                        return;
+                    }
                     dataValida = true;
                 }
             } catch (ParseException e) {
@@ -49,6 +56,10 @@ public class MensalidadeVigenteView {
                 if (dataTermino.before(dataInicio)) {
                     System.out.print("\nData de termino deve ser posterior à data de inicio. Informe novamente.");
                 } else {
+                    if(dataTermino.before(MensalidadeVigenteController.getMensalidadeVigente().getTermino())){
+                    System.out.println("\nRemova a mensalidade vigente antes de cadastrar uma nova.");
+                    return;
+                    }
                     dataValida = true;
                 }
             } catch (ParseException e) {
@@ -67,7 +78,7 @@ public class MensalidadeVigenteView {
             for (int i = 0; i < numMensalidades; i++) {
                 System.out.println(
                         "ID: " + mensalidades[i].getId() + ", Valor: " + mensalidades[i].getValor()
-                                + ", Inicio: " + mensalidades[i].getInicio() + ", Termino: " + mensalidades[i].getTermino());
+                                + ", Inicio: " + formatarData(mensalidades[i].getInicio()) + ", Termino: " + formatarData(mensalidades[i].getTermino()));
             }
         }
     }
@@ -78,10 +89,10 @@ public class MensalidadeVigenteView {
         } else {
             System.out.println("\n\nMensalidade Vigente:");
             for (int i = 0; i < numMensalidades; i++) {
-                if (mensalidades[i].getTermino().after(Calendar.getInstance().getTime())) {
+                if (mensalidades[i].getTermino().after(Calendar.getInstance().getTime()) && mensalidades[i].getInicio().before(Calendar.getInstance().getTime())) {
                     System.out.println(
                             "ID: " + mensalidades[i].getId() + ", Valor: " + mensalidades[i].getValor()
-                                    + ", Inicio: " + mensalidades[i].getInicio() + ", Termino: " + mensalidades[i].getTermino());
+                                    + ", Inicio: " + formatarData(mensalidades[i].getInicio()) + ", Termino: " + formatarData(mensalidades[i].getTermino()));
                 }
             }
         }
@@ -109,8 +120,13 @@ public class MensalidadeVigenteView {
             }
 
             if (!encontrada) {
-                System.out.println("\nMensalidade não encontrada.");
+                System.out.println("\nMensalidade nao encontrada.");
             }
         }
+    }
+
+    private static String formatarData(Date data) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        return sdf.format(data);
     }
 }

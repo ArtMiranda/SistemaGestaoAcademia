@@ -38,7 +38,7 @@ public class AvaliacaoFisicaView {
     }
 
     public static AvaliacaoFisica criaAvaliacaoFisica(int id, int ultimoTreino, double peso, double altura, double imc) {
-        System.out.print("\n\nInforme o indice de Satisfacão com o resultado: ");
+        System.out.print("\n\nInforme o indice de Satisfacao com o resultado: ");
         int indiceSatisfacao = scanner.nextInt();
         scanner.nextLine(); 
 

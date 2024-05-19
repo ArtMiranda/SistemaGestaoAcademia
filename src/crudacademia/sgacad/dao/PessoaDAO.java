@@ -19,7 +19,7 @@ public class PessoaDAO {
         System.arraycopy(pessoas, 0, novoArray, 0, tamanho);
         // Adiciona a nova pessoa ao final do novo array
         novoArray[tamanho] = pessoa;
-        // Atualiza a referência para o novo array
+        // Atualiza a referencia para o novo array
         pessoas = novoArray;
         // Incrementa o tamanho
         tamanho++;
@@ -55,7 +55,7 @@ public class PessoaDAO {
                 novoArray[indiceNovoArray++] = pessoa;
             }
         }
-        // Atualiza a referência para o novo array
+        // Atualiza a referencia para o novo array
         pessoas = novoArray;
         // Atualiza o tamanho
         tamanho--;

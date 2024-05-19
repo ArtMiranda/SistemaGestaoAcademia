@@ -48,7 +48,7 @@ public class PagamentoRecorrenteDAO {
                 for (int j = i; j < tamanho - 1; j++) {
                     pagamentosRecorrentes[j] = pagamentosRecorrentes[j + 1];
                 }
-                pagamentosRecorrentes[tamanho - 1] = null; // Remove a referência ao ultimo elemento
+                pagamentosRecorrentes[tamanho - 1] = null; // Remove a referencia ao ultimo elemento
                 tamanho--;
                 return;
             }

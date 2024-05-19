@@ -47,7 +47,7 @@ public class MensalidadeAlunoVigenteDAO {
                 for (int j = i; j < tamanho - 1; j++) {
                     mensalidadesAlunoVigentes[j] = mensalidadesAlunoVigentes[j + 1];
                 }
-                mensalidadesAlunoVigentes[tamanho - 1] = null; // Remove a referência ao ultimo elemento
+                mensalidadesAlunoVigentes[tamanho - 1] = null; // Remove a referencia ao ultimo elemento
                 tamanho--;
                 return;
             }

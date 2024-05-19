@@ -3,7 +3,7 @@ import java.util.Date;
 
 public class PagamentoRecorrente {
     private int id;
-    private Pessoa pessoa;
+    private int idPessoa;
     private Date data;
     private String cartaoCredito;
     private double valor;
@@ -12,10 +12,9 @@ public class PagamentoRecorrente {
     private Date dataCriacao;
     private Date dataModificacao;
 
-    // Construtor
-    public PagamentoRecorrente(int id, Pessoa pessoa, Date data, String cartaoCredito, double valor, Date dataInicio, int numeroMesesAutorizados, Date dataCriacao, Date dataModificacao) {
+    public PagamentoRecorrente(int id, int idPessoa, Date data, String cartaoCredito, double valor, Date dataInicio, int numeroMesesAutorizados, Date dataCriacao, Date dataModificacao) {
         this.id = id;
-        this.pessoa = pessoa;
+        this.idPessoa = idPessoa;
         this.data = data;
         this.cartaoCredito = cartaoCredito;
         this.valor = valor;
@@ -25,74 +24,72 @@ public class PagamentoRecorrente {
         this.dataModificacao = dataModificacao;
     }
 
-    // Getters
     public int getId() {
         return id;
     }
 
-    public Pessoa getPessoa() {
-        return pessoa;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getIdPessoa() {
+        return idPessoa;
+    }
+
+    public void setIdPessoa(int idPessoa) {
+        this.idPessoa = idPessoa;
     }
 
     public Date getData() {
         return data;
     }
 
-    public String getCartaoCredito() {
-        return cartaoCredito;
-    }
-
-    public double getValor() {
-        return valor;
-    }
-
-    public Date getDataInicio() {
-        return dataInicio;
-    }
-
-    public int getNumeroMesesAutorizados() {
-        return numeroMesesAutorizados;
-    }
-
-    public Date getDataCriacao() {
-        return dataCriacao;
-    }
-
-    public Date getDataModificacao() {
-        return dataModificacao;
-    }
-
-    // Setters
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
-    }
-
     public void setData(Date data) {
         this.data = data;
+    }
+
+    public String getCartaoCredito() {
+        return cartaoCredito;
     }
 
     public void setCartaoCredito(String cartaoCredito) {
         this.cartaoCredito = cartaoCredito;
     }
 
+    public double getValor() {
+        return valor;
+    }
+
     public void setValor(double valor) {
         this.valor = valor;
+    }
+
+    public Date getDataInicio() {
+        return dataInicio;
     }
 
     public void setDataInicio(Date dataInicio) {
         this.dataInicio = dataInicio;
     }
 
+    public int getNumeroMesesAutorizados() {
+        return numeroMesesAutorizados;
+    }
+
     public void setNumeroMesesAutorizados(int numeroMesesAutorizados) {
         this.numeroMesesAutorizados = numeroMesesAutorizados;
     }
 
+    public Date getDataCriacao() {
+        return dataCriacao;
+    }
+
     public void setDataCriacao(Date dataCriacao) {
         this.dataCriacao = dataCriacao;
+    }
+
+    public Date getDataModificacao() {
+        return dataModificacao;
     }
 
     public void setDataModificacao(Date dataModificacao) {
