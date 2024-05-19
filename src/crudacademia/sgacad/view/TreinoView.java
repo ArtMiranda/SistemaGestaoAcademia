@@ -189,7 +189,7 @@ public class TreinoView {
                 treino.setDataTermino(novaDataTermino);
             }
 
-            // Data de modificaçao
+            // Data de modificacao
             treino.setDataModificacao(Calendar.getInstance().getTime());
 
             System.out.print("\nDados do Treino atualizados com sucesso:");

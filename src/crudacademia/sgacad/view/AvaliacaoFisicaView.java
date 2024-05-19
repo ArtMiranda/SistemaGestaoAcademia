@@ -1,13 +1,16 @@
 package sgacad.view;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
 import sgacad.controller.AvaliacaoFisicaController;
 import sgacad.model.AvaliacaoFisica;
 
 public class AvaliacaoFisicaView {
-    public static AvaliacaoFisica[] avaliacoesFisicas;
-    public static int numAvaliacoes;
+    public static AvaliacaoFisica[] avaliacoesFisicas = new AvaliacaoFisica[100];
+    public static int numAvaliacoes = 0;
+    private static Scanner scanner = new Scanner(System.in);
 
     public static void calcularIMC(int id, int ultimoTreino, double peso, double altura){
 
@@ -31,42 +34,37 @@ public class AvaliacaoFisicaView {
 
         System.out.println("O IMC e: " + avFisicaResultado);
 
-        criaAvaliaçaoFisica(id, ultimoTreino, peso, altura, avFisicaResultado);
+        criaAvaliacaoFisica(id, ultimoTreino, peso, altura, avFisicaResultado);
     }
 
-    public static AvaliacaoFisica criaAvaliaçaoFisica(int id, int ultimoTreino, double peso, double altura, double imc) {
-        int indiceSatisfacao;
-        do {
-            System.out.println("Informe o indice de satisfaçao do resultado da avaliaçao fisica (1 a 10): ");
-            Scanner scanner = new Scanner(System.in);
-            while (!scanner.hasNextInt()) {
-            System.out.println("Entrada invalida. Por favor, informe um numero valido.");
-            scanner.next();
-            }
-            indiceSatisfacao = scanner.nextInt();
-            scanner.nextLine(); // consume the newline character
-            scanner.close();
-        } while (indiceSatisfacao < 1 || indiceSatisfacao > 10);
+    public static AvaliacaoFisica criaAvaliacaoFisica(int id, int ultimoTreino, double peso, double altura, double imc) {
+        System.out.print("\n\nInforme o indice de Satisfacão com o resultado: ");
+        int indiceSatisfacao = scanner.nextInt();
+        scanner.nextLine(); 
 
         AvaliacaoFisica avFisica = AvaliacaoFisicaController.geraAvaliacaoFisica(id, ultimoTreino, peso, altura, indiceSatisfacao);
         return avFisica;
     }
 
-    public void listarAvaliacoesFisicas() {
+    public static void listarAvaliacoesFisicas() {
         for (int i = 0; i < numAvaliacoes; i++) {
-            System.out.println("ID: " + avaliacoesFisicas[i].getId());
+            System.out.println("\n\nID: " + avaliacoesFisicas[i].getId());
             System.out.println("Nome: " + avaliacoesFisicas[i].getPessoa());
             System.out.println("ultimo treino: " + avaliacoesFisicas[i].getUltimoTreino());
             System.out.println("Peso: " + avaliacoesFisicas[i].getPeso());
             System.out.println("Altura: " + avaliacoesFisicas[i].getAltura());
             System.out.println("IMC: " + avaliacoesFisicas[i].getImc());
-            System.out.println("indice de satisfaçao: " + avaliacoesFisicas[i].getIndiceSatisfacaoResultado());
-            System.out.println("Data de criaçao: " + avaliacoesFisicas[i].getDataCriacao());
-            System.out.println("Data de modificaçao: " + avaliacoesFisicas[i].getDataModificacao());
+            System.out.println("indice de satisfacao: " + avaliacoesFisicas[i].getIndiceSatisfacaoResultado());
+            System.out.println("Data de criacao: " + formatarData(avaliacoesFisicas[i].getDataCriacao()));
+            System.out.println("Data de modificacao: " + formatarData(avaliacoesFisicas[i].getDataModificacao()));
         }
     }
 
-    public void listarAvaliacaoFisica(int id) {
+    public static void listarAvaliacaoFisica() {
+        System.out.print("\n\nInforme o ID da avaliacao fisica: ");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+
         AvaliacaoFisica avaliacaoFisica = AvaliacaoFisicaController.getAvaliacaoFisicaById(id);
         if (avaliacaoFisica != null) {
             System.out.println("ID: " + avaliacaoFisica.getId());
@@ -75,16 +73,30 @@ public class AvaliacaoFisicaView {
             System.out.println("Peso: " + avaliacaoFisica.getPeso());
             System.out.println("Altura: " + avaliacaoFisica.getAltura());
             System.out.println("IMC: " + avaliacaoFisica.getImc());
-            System.out.println("indice de satisfaçao: " + avaliacaoFisica.getIndiceSatisfacaoResultado());
-            System.out.println("Data de criaçao: " + avaliacaoFisica.getDataCriacao());
-            System.out.println("Data de modificaçao: " + avaliacaoFisica.getDataModificacao());
+            System.out.println("indice de satisfacao: " + avaliacaoFisica.getIndiceSatisfacaoResultado());
+            System.out.println("Data de criacao: " + formatarData(avaliacaoFisica.getDataCriacao()));
+            System.out.println("Data de modificacao: " + formatarData(avaliacaoFisica.getDataModificacao()));
         } else {
-            System.out.println("Avaliaçao fisica nao encontrada");
+            System.out.println("Avaliacao fisica nao encontrada");
         }
     }
 
-    public void removeAvaliacoesFisicas() {
-        AvaliacaoFisicaController.removeAvaliacoesFisicas();
+    public static void removeAvaliacoesFisicasPorId() {
+        System.out.print("\nInforme o ID da avaliacao fisica: ");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+
+        if(AvaliacaoFisicaController.getAvaliacaoFisicaById(id) == null){
+            System.out.println("Avaliacao fisica nao encontrada");
+            return;
+        } 
+            AvaliacaoFisicaController.removeAvaliacaoFisica(id);
+            System.out.println("\nAvaliacao fisica removida com sucesso\n");
+    }
+
+    private static String formatarData(Date data) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        return sdf.format(data);
     }
     
 }

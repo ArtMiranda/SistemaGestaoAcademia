@@ -98,6 +98,7 @@ public class MenuAcademia {
             System.out.println("9. CRUD Divisao de Treino Musculo");
             System.out.println("10. CRUD Treino Aplicacao");
             System.out.println("11. CRUD Avaliacao Fisica");
+            System.out.println("12. CRUD Mensalidade");
             System.out.println("0. Sair");
             System.out.print("Escolha uma opcao: ");
 
@@ -137,6 +138,9 @@ public class MenuAcademia {
                     break;
                 case 11:
                     exibirMenuCRUDAvaliacaoFisica();
+                    break;
+                case 12:
+                    exibirMenuMensalidade();
                     break;
                 case 0:
                     System.out.println("Deslogando...");
@@ -560,11 +564,11 @@ public class MenuAcademia {
     private static void exibirMenuCRUDTreinoAplicacao() {
         boolean loggedOut = false;
         while (!loggedOut) {
-            System.out.println("\n\n----- Menu de Treino Aplicaçao -----");
-            System.out.println("1. Criar Treino Aplicaçao");
-            System.out.println("2. Exibir todos os Treinos Aplicaçao");
-            System.out.println("3. Atualizar Treino Aplicaçao");
-            System.out.println("4. Remover Treino Aplicaçao por ID");
+            System.out.println("\n\n----- Menu de Treino Aplicacao -----");
+            System.out.println("1. Criar Treino Aplicacao");
+            System.out.println("2. Exibir todos os Treinos Aplicacao");
+            System.out.println("3. Atualizar Treino Aplicacao");
+            System.out.println("4. Remover Treino Aplicacao por ID");
             System.out.println("0. Voltar ao Menu Principal");
             System.out.print("Escolha uma opcao: ");
 
@@ -599,14 +603,13 @@ public class MenuAcademia {
     private static void exibirMenuCRUDAvaliacaoFisica() {
         boolean loggedOut = false;
         while (!loggedOut) {
-            System.out.println("\n\n----- Menu de Avaliaçao Fisica -----");
-            System.out.println("1. Criar Avaliaçao Fisica");
-            System.out.println("2. Exibir todas as Avaliaçoes Fisicas");
-            System.out.println("3. Exibir Dados da Avaliaçao Fisica por ID");
-            System.out.println("4. Atualizar Avaliaçao Fisica");
-            System.out.println("5. Remover Avaliaçao Fisica por ID");
+            System.out.println("\n\n----- Menu de Avaliacao Fisica -----");
+            System.out.println("1. Criar Avaliacao Fisica");
+            System.out.println("2. Exibir todas as Avaliacoes Fisicas");
+            System.out.println("3. Exibir Dados da Avaliacao Fisica por ID");
+            System.out.println("4. Remover Avaliacao Fisica por ID");
             System.out.println("0. Voltar ao Menu Principal");
-            System.out.print("Escolha uma opçao: ");
+            System.out.print("Escolha uma opcao: ");
 
             int opcao = scanner.nextInt();
             scanner.nextLine(); // Limpar o buffer do teclado
@@ -615,11 +618,21 @@ public class MenuAcademia {
                 case 1:
                     calcularIMC();
                     break;
+                case 2:
+                    AvaliacaoFisicaView.listarAvaliacoesFisicas();
+                    break;
+                case 3:
+                    AvaliacaoFisicaView.listarAvaliacaoFisica();
+                    break;
+                case 4:
+                    AvaliacaoFisicaView.listarAvaliacoesFisicas();
+                    AvaliacaoFisicaView.removeAvaliacoesFisicasPorId();
+                    break;
                 case 0:
                     loggedOut = true;
                     break;
                 default:
-                    System.out.println("Opçao invalida. Tente novamente.");
+                    System.out.println("Opcao invalida. Tente novamente.");
                     break;
             }
         }
@@ -627,14 +640,16 @@ public class MenuAcademia {
 
     private static void calcularIMC() {
         System.out.println("\n\n----- Calculo do indice de Massa Corporal (IMC) -----");
+        PessoaView.exibirTodosAlunos();
         System.out.print("Informe o ID do aluno: ");
         int id = scanner.nextInt();
         scanner.nextLine(); // Limpar o buffer do teclado
 
-        System.out.print("Informe o ID do ultimo treino: ");
+        TreinoView.exibirTodosTreinos();
+        System.out.print("\nInforme o ID do ultimo treino: ");
         int ultimoTreino = scanner.nextInt();
         scanner.nextLine(); // Limpar o buffer do teclado
-
+        
         System.out.print("Informe o peso (kg): ");
         double peso = scanner.nextDouble();
         scanner.nextLine(); // Limpar o buffer do teclado
@@ -645,6 +660,45 @@ public class MenuAcademia {
 
         AvaliacaoFisicaView.calcularIMC(id, ultimoTreino, peso, altura);
     }
+
+    private static void exibirMenuMensalidade() {
+        boolean loggedOut = false;
+        while (!loggedOut) {
+            System.out.println("\n\n----- Menu de Mensalidade -----");
+            System.out.println("1. Cadastrar Mensalidade");
+            System.out.println("2. Exibir Historico de Mensalidades");
+            System.out.println("3. Exibir Mensalidade Vigente");
+            System.out.println("4. Remover Mensalidade por ID");
+            System.out.println("0. Voltar ao Menu Principal");
+            System.out.print("Escolha uma opcao: ");
+
+            int opcao = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (opcao) {
+                case 1:
+                    MensalidadeVigenteView.criaMensalidadeVigente();
+                    break;
+                case 2:
+                    MensalidadeVigenteView.exibirHistoricoMensalidade();
+                    break;
+                case 3:
+                    MensalidadeVigenteView.exibirMensalidadeVigente();
+                    break;
+                case 4:
+                    MensalidadeVigenteView.exibirHistoricoMensalidade();
+                    MensalidadeVigenteView.removerMensalidade();
+                    break;
+                case 0:
+                    loggedOut = true;
+                    break;
+                default:
+                    System.out.println("Opcao invalida. Tente novamente.");
+                    break;
+            }
+        }
+    }
+
 
     
 

@@ -1,4 +1,5 @@
 package sgacad.model;
+
 import java.util.Date;
 
 public class MensalidadeVigente {
@@ -9,7 +10,6 @@ public class MensalidadeVigente {
     private Date dataCriacao;
     private Date dataModificacao;
 
-    // Construtor
     public MensalidadeVigente(int id, double valor, Date inicio, Date termino, Date dataCriacao, Date dataModificacao) {
         this.id = id;
         this.valor = valor;

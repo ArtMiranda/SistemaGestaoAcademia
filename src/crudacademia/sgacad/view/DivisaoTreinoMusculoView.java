@@ -53,7 +53,7 @@ public class DivisaoTreinoMusculoView {
             for (int i = 0; i < numDivisoesTreinoMusculo; i++) {
                 System.out.println(
                         "ID: " + divisoesTreinoMusculo[i].getId() +
-                                ", Descriçao: " + divisoesTreinoMusculo[i].getDescricao() +
+                                ", Descricao: " + divisoesTreinoMusculo[i].getDescricao() +
                                 ", Nome do Treino: " + divisoesTreinoMusculo[i].getNomeTreino());
             }
         }
@@ -83,7 +83,7 @@ public class DivisaoTreinoMusculoView {
             System.out.println("\nDados atuais da Divisao de Treino-musculo:");
             System.out.println(divisaoTreinoMusculo.exibirDetalhes());
 
-            System.out.print("Nova Descriçao: ");
+            System.out.print("Nova Descricao: ");
             String novaDescricao = scanner.nextLine().trim();
             if (!novaDescricao.isEmpty()) {
                 divisaoTreinoMusculo.setDescricao(novaDescricao);

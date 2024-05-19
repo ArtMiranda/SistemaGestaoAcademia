@@ -53,7 +53,7 @@ public class DivisaoTreinoView {
             for (int i = 0; i < DivisaoTreinoView.numDivisoesTreino; i++) {
                 System.out.println(
                         "ID: " + divisoesTreinos[i].getId() + ", Nome do Treino: " + divisoesTreinos[i].getNome()
-                                + ", Descriçao: " + divisoesTreinos[i].getDescricao());
+                                + ", Descricao: " + divisoesTreinos[i].getDescricao());
             }
         }
     }
@@ -86,7 +86,7 @@ public class DivisaoTreinoView {
     public static DivisaoTreino atualizarDivisaoTreino() {
         int idDivisaoTreino = 0;
 
-        // Loop de validaçao
+        // Loop de validacao
         boolean inputValido = false;
         while (!inputValido) {
             System.out.print("\n\nInforme o ID da divisao de treino que deseja atualizar: ");
@@ -107,14 +107,14 @@ public class DivisaoTreinoView {
 
             System.out.println("\nInforme os novos dados da divisao de treino:");
 
-            // Descriçao da divisao de treino
-            System.out.print("Nova Descriçao: ");
+            // Descricao da divisao de treino
+            System.out.print("Nova Descricao: ");
             String novaDescricao = scanner.nextLine().trim();
             if (!novaDescricao.isEmpty()) {
                 divisaoTreino.setDescricao(novaDescricao);
             }
 
-            // Data de modificaçao
+            // Data de modificacao
             divisaoTreino.setDataModificacao(Calendar.getInstance().getTime());
 
             System.out.println("\nDados da Divisao de Treino atualizados com sucesso:");
@@ -129,7 +129,7 @@ public class DivisaoTreinoView {
     public static void removerDivisaoTreino() {
         int idDivisaoTreino = 0;
 
-        // Loop de validaçao
+        // Loop de validacao
         boolean inputValido = false;
         while (!inputValido) {
             System.out.print("\n\nInforme o ID da divisao de treino que deseja remover: ");

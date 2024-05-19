@@ -16,7 +16,7 @@ public class TreinoAplicacaoView {
     private static Scanner scanner = new Scanner(System.in);
 
     public static TreinoAplicacao criaTreinoAplicacao() {
-        // Pedir ID de Treino e fazer a verificaçao
+        // Pedir ID de Treino e fazer a verificacao
         Treino treinoSelecionado = null;
         TreinoView.exibirTodosTreinos();
         while (treinoSelecionado == null) {
@@ -29,7 +29,7 @@ public class TreinoAplicacaoView {
             }
         }
 
-        // Pedir ID de Exercicio e fazer a verificaçao
+        // Pedir ID de Exercicio e fazer a verificacao
         Exercicio exercicioSelecionado = null;
         ExercicioView.exibirTodosExercicios();
         while (exercicioSelecionado == null) {
@@ -51,7 +51,7 @@ public class TreinoAplicacaoView {
 
     public static void exibirTodosTreinosAplicacao() {
         if (numTreinosAplicacao == 0) {
-            System.out.println("Nenhum treino aplicaçao cadastrado.");
+            System.out.println("Nenhum treino aplicacao cadastrado.");
         } else {
             System.out.println("Lista de Treinos Aplicacao:");
             for (int i = 0; i < numTreinosAplicacao; i++) {
@@ -61,7 +61,7 @@ public class TreinoAplicacaoView {
     }
 
     public static void exibirTreinoAplicacaoPorId() {
-        System.out.print("Informe o ID do treino aplicaçao: ");
+        System.out.print("Informe o ID do treino aplicacao: ");
         int id = scanner.nextInt();
         scanner.nextLine(); // Consome a nova linha
 
@@ -69,18 +69,18 @@ public class TreinoAplicacaoView {
         if (treinoAplicacao != null) {
             System.out.println(treinoAplicacao.exibirDetalhes());
         } else {
-            System.out.println("Treino aplicaçao nao encontrado.");
+            System.out.println("Treino aplicacao nao encontrado.");
         }
     }
 
     public static void atualizarTreinoAplicacao() {
-        System.out.print("Informe o ID do treino aplicaçao a ser atualizado: ");
+        System.out.print("Informe o ID do treino aplicacao a ser atualizado: ");
         int id = scanner.nextInt();
         scanner.nextLine(); // Consome a nova linha
 
         TreinoAplicacao treinoAplicacao = TreinoAplicacaoController.getTreinoAplicacaoById(id);
         if (treinoAplicacao == null) {
-            System.out.println("Treino aplicaçao nao encontrado.");
+            System.out.println("Treino aplicacao nao encontrado.");
             return;
         }
 
@@ -126,11 +126,11 @@ public class TreinoAplicacaoView {
         }
 
         treinoAplicacao.setDataModificacao(Calendar.getInstance().getTime());
-        System.out.println("Treino aplicaçao atualizado com sucesso.");
+        System.out.println("Treino aplicacao atualizado com sucesso.");
     }
 
     public static void removerTreinoAplicacao() {
-        System.out.print("Informe o ID do treino aplicaçao a ser removido: ");
+        System.out.print("Informe o ID do treino aplicacao a ser removido: ");
         int id = scanner.nextInt();
         scanner.nextLine(); // Consome a nova linha
 
@@ -142,14 +142,14 @@ public class TreinoAplicacaoView {
                 }
                 treinosAplicacao[numTreinosAplicacao - 1] = null;
                 numTreinosAplicacao--;
-                System.out.println("Treino aplicaçao removido com sucesso.");
+                System.out.println("Treino aplicacao removido com sucesso.");
                 encontrado = true;
                 break;
             }
         }
 
         if (!encontrado) {
-            System.out.println("Treino aplicaçao nao encontrado.");
+            System.out.println("Treino aplicacao nao encontrado.");
         }
     }
 }

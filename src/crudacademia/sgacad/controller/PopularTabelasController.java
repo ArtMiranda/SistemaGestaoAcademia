@@ -56,7 +56,7 @@ public class PopularTabelasController {
                 exercicioController.geraExercicio(0, "Supino", "Supino com barra"),
                 exercicioController.geraExercicio(1, "Agachamento", "Agachamento livre"),
                 exercicioController.geraExercicio(2, "Levantamento Terra", "Levantamento terra com barra"),
-                exercicioController.geraExercicio(3, "Flexao", "Flexao de braço"),
+                exercicioController.geraExercicio(3, "Flexao", "Flexao de braco"),
                 exercicioController.geraExercicio(4, "Rosca Direta", "Rosca direta com halteres"),
                 exercicioController.geraExercicio(5, "Cadeira Extensora", "Extensao de pernas na cadeira extensora"),
                 exercicioController.geraExercicio(6, "Puxada Frontal", "Puxada frontal na barra"),
@@ -82,8 +82,8 @@ public class PopularTabelasController {
 
         // Treino data
         Treino[] treinos = {
-                treinoController.geraTreino(0, "Fortificaçao", getDate(2025, 1, 15), getDate(2025, 6, 15)),
-                treinoController.geraTreino(1, "Preparaçao para competiçao", getDate(2025, 3, 10),
+                treinoController.geraTreino(0, "Fortificacao", getDate(2025, 1, 15), getDate(2025, 6, 15)),
+                treinoController.geraTreino(1, "Preparacao para competicao", getDate(2025, 3, 10),
                         getDate(2025, 9, 10)),
                 treinoController.geraTreino(2, "Emagrecimento", getDate(2025, 5, 20), getDate(2025, 11, 20)),
                 treinoController.geraTreino(3, "Hipertrofia", getDate(2025, 2, 5), getDate(2025, 8, 5))
@@ -91,17 +91,17 @@ public class PopularTabelasController {
 
         // DivisaoTreino data
         DivisaoTreino[] divisoesTreino = {
-            divisaoTreinoController.geraDivisaoTreino(0, "Fortificaçao", "Treino segunda sexta sabado"),
-            divisaoTreinoController.geraDivisaoTreino(1, "Preparaçao para competiçao", "Treino intenso, descansa 2 dias"),
+            divisaoTreinoController.geraDivisaoTreino(0, "Fortificacao", "Treino segunda sexta sabado"),
+            divisaoTreinoController.geraDivisaoTreino(1, "Preparacao para competicao", "Treino intenso, descansa 2 dias"),
             divisaoTreinoController.geraDivisaoTreino(2, "Emagrecimento", "Treino diario com dieta especifica"),
             divisaoTreinoController.geraDivisaoTreino(3, "Hipertrofia", "Treino focado em ganho de massa muscular")
         };
 
         // DivisaoTreinoMusculo data
         DivisaoTreinoMusculo[] divisoesTreinoMusculo = {
-            divisaoTreinoMusculoController.geraDivisaoTreinoMusculo(0, "Fortificaçao", "Treino segunda sexta sabado", "Peito"),
-            divisaoTreinoMusculoController.geraDivisaoTreinoMusculo(1, "Preparaçao para competiçao", "Treino intenso, descansa 2 dias", "Perna"),
-            divisaoTreinoMusculoController.geraDivisaoTreinoMusculo(2, "Emagrecimento", "Treino diario com dieta especifica", "Braço"),
+            divisaoTreinoMusculoController.geraDivisaoTreinoMusculo(0, "Fortificacao", "Treino segunda sexta sabado", "Peito"),
+            divisaoTreinoMusculoController.geraDivisaoTreinoMusculo(1, "Preparacao para competicao", "Treino intenso, descansa 2 dias", "Perna"),
+            divisaoTreinoMusculoController.geraDivisaoTreinoMusculo(2, "Emagrecimento", "Treino diario com dieta especifica", "Braco"),
             divisaoTreinoMusculoController.geraDivisaoTreinoMusculo(3, "Hipertrofia", "Treino focado em ganho de massa muscular", "Costas")
         };
         

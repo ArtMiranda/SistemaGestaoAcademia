@@ -103,7 +103,7 @@ public class TreinoAplicacao {
                 "\nDivisao Treino Musculo: " + divisaoTreinoMusculo +
                 "\nData de Inicio: " + sdf.format(dataInicio) +
                 "\nData de Termino: " + sdf.format(dataTermino) +
-                "\nData de Criaçao: " + sdf.format(dataCriacao) +
-                "\nData de Modificaçao: " + sdf.format(dataModificacao);
+                "\nData de Criacao: " + sdf.format(dataCriacao) +
+                "\nData de Modificacao: " + sdf.format(dataModificacao);
     }
 }

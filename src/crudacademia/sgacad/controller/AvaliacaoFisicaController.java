@@ -19,6 +19,7 @@ public class AvaliacaoFisicaController {
         
         String nomePessoa = PessoaController.getAlunoById(id).getNome();
         String ultimoTreino = TreinoController.getTreinoById(ultimoTreinoId).getObjetivo();
+
         Date currentDate = Calendar.getInstance().getTime();
 
         
@@ -37,8 +38,16 @@ public class AvaliacaoFisicaController {
         return null;
     }
 
-    public static void removeAvaliacoesFisicas() {
-        AvaliacaoFisicaView.avaliacoesFisicas = new AvaliacaoFisica[0];
-        AvaliacaoFisicaView.numAvaliacoes = 0;
+    public static void removeAvaliacaoFisica(int id) {
+        for (int i = 0; i < AvaliacaoFisicaView.numAvaliacoes; i++) {
+            if (AvaliacaoFisicaView.avaliacoesFisicas[i].getId() == id) {
+                AvaliacaoFisicaView.avaliacoesFisicas[i] = null;
+                for (int j = i; j < AvaliacaoFisicaView.numAvaliacoes - 1; j++) {
+                    AvaliacaoFisicaView.avaliacoesFisicas[j] = AvaliacaoFisicaView.avaliacoesFisicas[j + 1];
+                }
+                AvaliacaoFisicaView.numAvaliacoes--;
+                break;
+            }
+        }
     }
 }
