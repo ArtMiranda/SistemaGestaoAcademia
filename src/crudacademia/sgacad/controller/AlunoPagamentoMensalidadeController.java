@@ -37,15 +37,15 @@ public class AlunoPagamentoMensalidadeController {
     }
 
     public static boolean getPorIdAluno(int idAluno) {
-    
         for (int i = 0; i < AlunoPagamentoMensalidadeView.numPagamentos; i++) {
-            if (AlunoPagamentoMensalidadeView.alunosPagamentosMensalidades[i].getIdAluno() == idAluno) {
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(AlunoPagamentoMensalidadeView.alunosPagamentosMensalidades[i].getDataPagamento());
+            calendar.add(Calendar.DAY_OF_MONTH, 32); // Adiciona 32 dias para considerar o mês inteiro e dois dias de folga
+            if (AlunoPagamentoMensalidadeView.alunosPagamentosMensalidades[i].getIdAluno() == idAluno && calendar.getTime().before(Calendar.getInstance().getTime()) || calendar.getTime().equals(Calendar.getInstance().getTime())) {
                 return true;
             }
         }
         return false;
-        
-        
     }
 
     public static void removePagamento(int id) {
