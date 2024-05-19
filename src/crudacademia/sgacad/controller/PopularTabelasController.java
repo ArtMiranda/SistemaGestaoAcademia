@@ -99,9 +99,9 @@ public class PopularTabelasController {
         // DivisaoTreinoMusculo data
         DivisaoTreinoMusculo[] divisoesTreinoMusculo = {
             divisaoTreinoMusculoController.geraDivisaoTreinoMusculo(0, "Fortificacao", "Treino segunda sexta sabado", "Peito"),
-            divisaoTreinoMusculoController.geraDivisaoTreinoMusculo(1, "Preparacao para competicao", "Treino intenso, descansa 2 dias", "Perna"),
-            divisaoTreinoMusculoController.geraDivisaoTreinoMusculo(2, "Emagrecimento", "Treino diario com dieta especifica", "Braco"),
-            divisaoTreinoMusculoController.geraDivisaoTreinoMusculo(3, "Hipertrofia", "Treino focado em ganho de massa muscular", "Costas")
+            divisaoTreinoMusculoController.geraDivisaoTreinoMusculo(1, "Preparacao para competicao", "Treino intenso, descansa 2 dias", "Perna e Gluteo"),
+            divisaoTreinoMusculoController.geraDivisaoTreinoMusculo(2, "Emagrecimento", "Treino diario com dieta especifica", "Braco e Peito"),
+            divisaoTreinoMusculoController.geraDivisaoTreinoMusculo(3, "Hipertrofia", "Treino focado em ganho de massa muscular", "Costas e Ombro")
         };
 
         MensalidadeVigenteController.cadastrar(MensalidadeVigenteView.numMensalidades, 49.90, getDate(2021, 12, 11), getDate(2022, 12, 10));
@@ -127,7 +127,7 @@ public class PopularTabelasController {
         PagamentoRecorrenteController.cadastrarPagamentoRecorente(1, "5193 8824 5697 4135", 7);
         PagamentoRecorrenteController.cadastrarPagamentoRecorente(2, "6011 7291 2150 6230", 3);
         PagamentoRecorrenteController.cadastrarPagamentoRecorente(3, "3482 553022 56392", 7);
-        PagamentoRecorrenteController.cadastrarPagamentoRecorente(0, "6062 8261 1823 5928", 4);
+        PagamentoRecorrenteController.cadastrarPagamentoRecorente(4, "6062 8261 1823 5928", 4);
 
         PessoaView.alunos = alunos;
         PessoaView.numAlunos = alunos.length;
@@ -150,12 +150,6 @@ public class PopularTabelasController {
                 treinoAplicacaoController.geraTreinoAplicacao(0, 0),
                 treinoAplicacaoController.geraTreinoAplicacao(1, 1),
                 treinoAplicacaoController.geraTreinoAplicacao(2, 2),
-                treinoAplicacaoController.geraTreinoAplicacao(0, 1),
-                treinoAplicacaoController.geraTreinoAplicacao(1, 2),
-                treinoAplicacaoController.geraTreinoAplicacao(2, 3),
-                treinoAplicacaoController.geraTreinoAplicacao(0, 2),
-                treinoAplicacaoController.geraTreinoAplicacao(1, 0),
-                treinoAplicacaoController.geraTreinoAplicacao(2, 1)            
         };
 
         TreinoAplicacaoView.treinosAplicacao = treinosAplicacao;

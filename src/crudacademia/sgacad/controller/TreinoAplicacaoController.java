@@ -12,11 +12,11 @@ public class TreinoAplicacaoController {
         String treino = TreinoController.getTreinoById(id).getObjetivo();
         String exercicioAplicacao = ExercicioController.getExercicioById(idExercicio).getNome();
         String divisaoTreino = DivisaoTreinoController.getDivisaoTreinoById(idExercicio).getNome();
-        String divisaoTreinoAplicacao = DivisaoTreinoController.getDivisaoTreinoById(idExercicio).getNome();
+        String divisaoTreinoMusculo = DivisaoTreinoMusculoController.getDivisaoTreinoMusculoById(idExercicio).getDivisaoTreino();
         String exercicio = ExercicioController.getExercicioById(idExercicio).getNome();
         Date dataInicio = TreinoController.getTreinoById(id).getDataInicio();
         Date dataTermino = TreinoController.getTreinoById(id).getDataTermino();
-        TreinoAplicacao treinoAplicacao = new TreinoAplicacao(id, treino, exercicio, exercicioAplicacao, divisaoTreino, divisaoTreinoAplicacao, dataInicio, dataTermino, currentDate, currentDate);
+        TreinoAplicacao treinoAplicacao = new TreinoAplicacao(id, treino, exercicio, exercicioAplicacao, divisaoTreino, divisaoTreinoMusculo, dataInicio, dataTermino, currentDate, currentDate);
         return treinoAplicacao;
     }
 

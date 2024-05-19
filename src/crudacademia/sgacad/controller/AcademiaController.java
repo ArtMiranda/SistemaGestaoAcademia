@@ -11,6 +11,5 @@ public class AcademiaController {
                 Date currentDate = Calendar.getInstance().getTime();
                 Academia academia = new Academia(1, nomeAcademia, enderecoAcademia, currentDate, currentDate);
                 return academia;
-
     }
 }

@@ -8,6 +8,7 @@ import sgacad.controller.*;
 
 public class MenuAcademia {
     private static Scanner scanner = new Scanner(System.in);
+    private static int idAlunoLogado;
 
     public static void main(String[] args) {
         criarAdministradorPadrao();
@@ -78,6 +79,7 @@ public class MenuAcademia {
             if (login.equals(PessoaView.alunos[i].getLogin()) && senha.equals(PessoaView.alunos[i].getSenha())) {
                 if(AlunoPagamentoMensalidadeController.getPorIdAluno(PessoaView.alunos[i].getId()) == true){
                     EntradaAlunoController.gerarEntradaAluno(PessoaView.alunos[i].getId());
+                    idAlunoLogado = PessoaView.alunos[i].getId();
                     System.out.println("Login de Aluno bem-sucedido!");
                     exibirMenuALUNO();
                 }
@@ -245,16 +247,8 @@ public class MenuAcademia {
         while (!loggedOut) {
             System.out.println("\n\n----- Menu da Academia -----");
             System.out.println("1. Exibir Detalhes da Academia");
-            System.out.println("2. CRUD Aluno");
-            System.out.println("3. CRUD Administrador");
-            System.out.println("4. CRUD Professor/Instrutor");
-            System.out.println("5. CRUD Exercicios");
-            System.out.println("6. CRUD Exercicios Aplicacao");
-            System.out.println("7. CRUD Treino");
-            System.out.println("8. CRUD Divisao de Treino");
-            System.out.println("9. CRUD Divisao de Treino Musculo");
-            System.out.println("10. CRUD Treino Aplicacao");
-            System.out.println("11. CRUD Avaliacao Fisica");
+            System.out.println("2. Visualizar ficha de Treino");
+            System.out.println("3. CRUD Avaliacao Fisica");
             System.out.println("0. Sair");
             System.out.print("Escolha uma opcao: ");
 
@@ -266,33 +260,9 @@ public class MenuAcademia {
                     AcademiaView.exibirDetalhesAcademia(AcademiaView.academia);
                     break;
                 case 2:
-                    exibirMenuCRUDAluno();
+                    TreinoAplicacaoView.exibirFichaTreino(idAlunoLogado);
                     break;
                 case 3:
-                    exibirMenuCRUDAdministrador();
-                    break;
-                case 4:
-                    exibirMenuCRUDProfessor();
-                    break;
-                case 5:
-                    exibirMenuCRUDExercicios();
-                    break;
-                case 6:
-                    exibirMenuCRUDExerciciosAplicacao();
-                    break;
-                case 7:
-                    exibirMenuCRUDTreino();
-                    break;
-                case 8:
-                    exibirMenuCRUDDivisaoTreino();
-                    break;
-                case 9:
-                    exibirMenuCRUDDivisaoTreinoMusculo();
-                    break;
-                case 10:
-                    exibirMenuCRUDTreinoAplicacao();
-                    break;
-                case 11:
                     exibirMenuCRUDAvaliacaoFisica();
                     break;
                 case 0:
@@ -936,6 +906,7 @@ public class MenuAcademia {
             System.out.println("4. Exibir Movimentacao Financeira de Saida");
             System.out.println("5. Remover Movimentacao Financeira por ID");
             System.out.println("6. Relatório final de movimentacoes financeiras");
+            System.out.println("7. Relatório de alunos adimplentes");
             System.out.println("0. Voltar ao Menu Principal");
             System.out.print("Escolha uma opcao: ");
 
@@ -961,6 +932,9 @@ public class MenuAcademia {
                     break;
                 case 6:
                     MovimentacaoFinanceiraView.relatorioMovimentacoesFinaceiras();
+                    break;
+                case 7:
+                    MovimentacaoFinanceiraView.exibirAlunosAdimplentes();
                     break;
                 case 0:
                     loggedOut = true;
