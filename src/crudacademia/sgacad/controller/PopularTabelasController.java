@@ -35,12 +35,12 @@ public class PopularTabelasController {
         PessoaView.alunos[6] = new Pessoa(6, "Ricardo", 'M', getDate(1991, 6, 10), "ricardo", "ricardo", "Aluno", currentDate, currentDate);
         PessoaView.alunos[7] = new Pessoa(7, "Juliana", 'F', getDate(1994, 1, 22), "juliana", "juliana", "Aluno", currentDate, currentDate);        
 
-        PessoaView.numAlunos = 7;
+        PessoaView.numAlunos = 8;
 
         PessoaView.professoresInstrutores[0] = new Pessoa(0, "Rafael", 'M', getDate(1985, 5, 15), "rafael", "rafael", "Professor/Instrutor", currentDate, currentDate);
         PessoaView.professoresInstrutores[1] = new Pessoa(1, "Marcela", 'F', getDate(1987, 7, 10), "marcela", "marcela", "Professor/Instrutor", currentDate, currentDate);
 
-        PessoaView.numProfessoresInstrutores = 1;
+        PessoaView.numProfessoresInstrutores = 2;
 
         PessoaView.administradores[1] = new Pessoa(1, "Luciana", 'F', getDate(1980, 1, 1), "luciana", "luciana", "Administrador", currentDate, currentDate);
 
@@ -55,7 +55,7 @@ public class PopularTabelasController {
         ExercicioView.exercicios[6] = new Exercicio(6, "Puxada Frontal", "Puxada frontal na barra", currentDate, currentDate);
         ExercicioView.exercicios[7] = new Exercicio(7, "Desenvolvimento de Ombros", "Desenvolvimento de ombros com halteres", currentDate, currentDate);
 
-        ExercicioView.numExercicios = 7;
+        ExercicioView.numExercicios = 8;
 
         ExercicioAplicacaoView.exerciciosAplicacao[0] = new ExercicioAplicacao(0, "Supino", "Supino reto com peso", currentDate, currentDate);
         ExercicioAplicacaoView.exerciciosAplicacao[1] = new ExercicioAplicacao(1, "Agachamento", "Agachamento reto com peso", currentDate, currentDate);
@@ -66,7 +66,7 @@ public class PopularTabelasController {
         ExercicioAplicacaoView.exerciciosAplicacao[6] = new ExercicioAplicacao(6, "Puxada Frontal", "Puxada frontal com peso", currentDate, currentDate);
         ExercicioAplicacaoView.exerciciosAplicacao[7] = new ExercicioAplicacao(7, "Desenvolvimento de Ombros", "Desenvolvimento de ombros com halteres pesados", currentDate, currentDate);
 
-        ExercicioAplicacaoView.numExerciciosAplicacao = 7;
+        ExercicioAplicacaoView.numExerciciosAplicacao = 8;
 
 
         TreinoView.treinos[0] = new Treino(0, "Fortificacao", getDate(2025, 1, 15), getDate(2025, 6, 15), currentDate, currentDate);
@@ -74,14 +74,14 @@ public class PopularTabelasController {
         TreinoView.treinos[2] = new Treino(2, "Emagrecimento", getDate(2025, 5, 20), getDate(2025, 11, 20), currentDate, currentDate);
         TreinoView.treinos[3] = new Treino(3, "Hipertrofia", getDate(2025, 2, 5), getDate(2025, 8, 5), currentDate, currentDate);
 
-        TreinoView.numTreinos = 3;
+        TreinoView.numTreinos = 4;
 
         DivisaoTreinoView.divisoesTreinos[0] = new DivisaoTreino(0, "Fortificacao", "Treino segunda sexta sabado", currentDate, currentDate);
         DivisaoTreinoView.divisoesTreinos[1] = new DivisaoTreino(1, "Preparacao para competicao", "Treino intenso, descansa 2 dias", currentDate, currentDate);
         DivisaoTreinoView.divisoesTreinos[2] = new DivisaoTreino(2, "Emagrecimento", "Treino diario com dieta especifica", currentDate, currentDate);
         DivisaoTreinoView.divisoesTreinos[3] = new DivisaoTreino(3, "Hipertrofia", "Treino focado em ganho de massa muscular", currentDate, currentDate);
 
-        DivisaoTreinoView.numDivisoesTreino = 3;
+        DivisaoTreinoView.numDivisoesTreino = 4;
 
       
         DivisaoTreinoMusculoView.divisoesTreinoMusculo[0] = new DivisaoTreinoMusculo(0, "Fortificacao", "Treino segunda sexta sabado", "Peito", currentDate, currentDate);
@@ -89,7 +89,7 @@ public class PopularTabelasController {
         DivisaoTreinoMusculoView.divisoesTreinoMusculo[2] = new DivisaoTreinoMusculo(2, "Emagrecimento", "Treino diario com dieta especifica", "Braco e Peito", currentDate, currentDate);
         DivisaoTreinoMusculoView.divisoesTreinoMusculo[3] = new DivisaoTreinoMusculo(3, "Hipertrofia", "Treino focado em ganho de massa muscular", "Costas e Ombro", currentDate, currentDate);
 
-        DivisaoTreinoMusculoView.numDivisoesTreinoMusculo = 3;
+        DivisaoTreinoMusculoView.numDivisoesTreinoMusculo = 4;
 
         MensalidadeVigenteController.cadastrar(MensalidadeVigenteView.numMensalidades, 49.90, getDate(2021, 12, 11), getDate(2022, 12, 10));
         MensalidadeVigenteController.cadastrar(MensalidadeVigenteView.numMensalidades, 59.90, getDate(2022, 12, 11), getDate(2023, 12, 10));
@@ -121,7 +121,7 @@ public class PopularTabelasController {
         TreinoAplicacaoView.treinosAplicacao[1] = new TreinoAplicacao(1, "Preparacao para competicao", "Agachamento", "Agachamento reto com peso", "Treino intenso, descansa 2 dias", "Perna e Gluteo", getDate(2025, 3, 10), getDate(2025, 9, 10), currentDate, currentDate);
         TreinoAplicacaoView.treinosAplicacao[2] = new TreinoAplicacao(2, "Emagrecimento", "Levantamento Terra", "Levantamento terra com barra pesada", "Treino diario com dieta especifica", "Braco e Peito", getDate(2025, 5, 20), getDate(2025, 11, 20), currentDate, currentDate);
 
-        TreinoAplicacaoView.numTreinosAplicacao = 2;
+        TreinoAplicacaoView.numTreinosAplicacao = 3;
     }
 
     private static Date getDate(int year, int month, int day) {
