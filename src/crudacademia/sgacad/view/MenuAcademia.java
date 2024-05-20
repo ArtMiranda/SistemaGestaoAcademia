@@ -905,8 +905,8 @@ public class MenuAcademia {
             System.out.println("3. Exibir Movimentacao Financeira de Entrada");
             System.out.println("4. Exibir Movimentacao Financeira de Saida");
             System.out.println("5. Remover Movimentacao Financeira por ID");
-            System.out.println("6. Relatório final de movimentacoes financeiras");
-            System.out.println("7. Relatório de alunos adimplentes");
+            System.out.println("6. Relatorio final de movimentacoes financeiras");
+            System.out.println("7. Relatorio de alunos adimplentes");
             System.out.println("0. Voltar ao Menu Principal");
             System.out.print("Escolha uma opcao: ");
 

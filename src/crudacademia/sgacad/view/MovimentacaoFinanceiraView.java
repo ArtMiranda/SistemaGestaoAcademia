@@ -88,7 +88,7 @@ public class MovimentacaoFinanceiraView {
                 totalSaida += movimentacaoFinanceiras[i].getValor();
             }
         }
-        System.out.println("\n---- Relatório de Movimentacoes Financeiras ----");
+        System.out.println("\n---- Relatorio de Movimentacoes Financeiras ----");
 
         System.out.println("\n---- Entradas ----");
         listarMovimentacoesEntrada();

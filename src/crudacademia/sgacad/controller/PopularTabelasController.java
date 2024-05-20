@@ -23,86 +23,73 @@ public class PopularTabelasController {
 
     public static void main(String[] args) {
 
-        // Controllers
-        ExercicioController exercicioController = new ExercicioController();
-        ExercicioAplicacaoController exercicioAplicacaoController = new ExercicioAplicacaoController();
-        TreinoController treinoController = new TreinoController();
-        DivisaoTreinoController divisaoTreinoController = new DivisaoTreinoController();
-        DivisaoTreinoMusculoController divisaoTreinoMusculoController = new DivisaoTreinoMusculoController();
-        TreinoAplicacaoController treinoAplicacaoController = new TreinoAplicacaoController();
-        PessoaController pessoaController = new PessoaController();
-
+        Date currentDate = Calendar.getInstance().getTime();
 
         // Alunos data
-        Pessoa[] alunos = {
-            pessoaController.criarPessoa(0, "Pablo", 'M', getDate(1990, 3, 20), "pablo", "pablo", "Aluno"),
-            pessoaController.criarPessoa(1, "Elaine", 'F', getDate(1992, 8, 25), "elaine", "elaine", "Aluno"),
-            pessoaController.criarPessoa(2, "Alexandre", 'M', getDate(1995, 11, 12), "alexandre", "alexandre", "Aluno"),
-            pessoaController.criarPessoa(3, "Michelle", 'F', getDate(1988, 4, 5), "michelle", "michelle", "Aluno"),
-            pessoaController.criarPessoa(4, "Fernando", 'M', getDate(1993, 9, 30), "fernando", "fernando", "Aluno"),
-            pessoaController.criarPessoa(5, "Nathalie", 'f', getDate(1997, 12, 18), "nathalie", "nathalie", "Aluno")
-        };
+        PessoaView.alunos[0] = new Pessoa(0, "Pablo", 'M', getDate(1990, 3, 20), "pablo", "pablo", "Aluno", currentDate, currentDate);
+        PessoaView.alunos[1] = new Pessoa(1, "Elaine", 'F', getDate(1992, 8, 25), "elaine", "elaine", "Aluno", currentDate, currentDate);
+        PessoaView.alunos[2] = new Pessoa(2, "Alexandre", 'M', getDate(1995, 11, 12), "alexandre", "alexandre", "Aluno", currentDate, currentDate);
+        PessoaView.alunos[3] = new Pessoa(3, "Michelle", 'F', getDate(1988, 4, 5), "michelle", "michelle", "Aluno", currentDate, currentDate);
+        PessoaView.alunos[4] = new Pessoa(4, "Fernando", 'M', getDate(1993, 9, 30), "fernando", "fernando", "Aluno", currentDate, currentDate);
+        PessoaView.alunos[5] = new Pessoa(5, "Nathalie", 'f', getDate(1997, 12, 18), "nathalie", "nathalie", "Aluno", currentDate, currentDate);
+        PessoaView.alunos[6] = new Pessoa(6, "Ricardo", 'M', getDate(1991, 6, 10), "ricardo", "ricardo", "Aluno", currentDate, currentDate);
+        PessoaView.alunos[7] = new Pessoa(7, "Juliana", 'F', getDate(1994, 1, 22), "juliana", "juliana", "Aluno", currentDate, currentDate);        
 
-        Pessoa[] professores = {
-            pessoaController.criarPessoa(0, "Eduardo", 'M', getDate(1985, 5, 15), "eduardo", "eduardo", "Professor/Instrutor"),
-            pessoaController.criarPessoa(1, "Daniela", 'F', getDate(1978, 10, 8), "daniela", "daniela", "Professor/Instrutor")
-        };
+        PessoaView.numAlunos = 7;
 
-        Pessoa administrador = pessoaController.criarPessoa(1, "Jose Carlos", 'M', getDate(1980, 1, 1), "josecarlos", "josecarlos", "Administrador");
-    
-        // Exercicio data
-        Exercicio[] exercicios = {
-                exercicioController.geraExercicio(0, "Supino", "Supino com barra"),
-                exercicioController.geraExercicio(1, "Agachamento", "Agachamento livre"),
-                exercicioController.geraExercicio(2, "Levantamento Terra", "Levantamento terra com barra"),
-                exercicioController.geraExercicio(3, "Flexao", "Flexao de braco"),
-                exercicioController.geraExercicio(4, "Rosca Direta", "Rosca direta com halteres"),
-                exercicioController.geraExercicio(5, "Cadeira Extensora", "Extensao de pernas na cadeira extensora"),
-                exercicioController.geraExercicio(6, "Puxada Frontal", "Puxada frontal na barra"),
-                exercicioController.geraExercicio(7, "Desenvolvimento de Ombros",
-                        "Desenvolvimento de ombros com halteres")
-        };
+        PessoaView.professoresInstrutores[0] = new Pessoa(0, "Rafael", 'M', getDate(1985, 5, 15), "rafael", "rafael", "Professor/Instrutor", currentDate, currentDate);
+        PessoaView.professoresInstrutores[1] = new Pessoa(1, "Marcela", 'F', getDate(1987, 7, 10), "marcela", "marcela", "Professor/Instrutor", currentDate, currentDate);
 
-        // ExercicioAplicacao data
-        ExercicioAplicacao[] exerciciosAplicacao = {
-                exercicioAplicacaoController.geraExercicioAplicacao(0, "Supino", "Supino reto com peso"),
-                exercicioAplicacaoController.geraExercicioAplicacao(1, "Agachamento", "Agachamento reto com peso"),
-                exercicioAplicacaoController.geraExercicioAplicacao(2, "Levantamento Terra",
-                        "Levantamento terra com barra pesada"),
-                exercicioAplicacaoController.geraExercicioAplicacao(3, "Flexao", "Flexao normal sem peso"),
-                exercicioAplicacaoController.geraExercicioAplicacao(4, "Rosca Direta",
-                        "Rosca direta com halteres pesados"),
-                exercicioAplicacaoController.geraExercicioAplicacao(5, "Cadeira Extensora",
-                        "Extensao de pernas com carga"),
-                exercicioAplicacaoController.geraExercicioAplicacao(6, "Puxada Frontal", "Puxada frontal com peso"),
-                exercicioAplicacaoController.geraExercicioAplicacao(7, "Desenvolvimento de Ombros",
-                        "Desenvolvimento de ombros com halteres pesados")
-        };
+        PessoaView.numProfessoresInstrutores = 1;
 
-        // Treino data
-        Treino[] treinos = {
-                treinoController.geraTreino(0, "Fortificacao", getDate(2025, 1, 15), getDate(2025, 6, 15)),
-                treinoController.geraTreino(1, "Preparacao para competicao", getDate(2025, 3, 10),
-                        getDate(2025, 9, 10)),
-                treinoController.geraTreino(2, "Emagrecimento", getDate(2025, 5, 20), getDate(2025, 11, 20)),
-                treinoController.geraTreino(3, "Hipertrofia", getDate(2025, 2, 5), getDate(2025, 8, 5))
-        };
+        PessoaView.administradores[1] = new Pessoa(1, "Luciana", 'F', getDate(1980, 1, 1), "luciana", "luciana", "Administrador", currentDate, currentDate);
 
-        // DivisaoTreino data
-        DivisaoTreino[] divisoesTreino = {
-            divisaoTreinoController.geraDivisaoTreino(0, "Fortificacao", "Treino segunda sexta sabado"),
-            divisaoTreinoController.geraDivisaoTreino(1, "Preparacao para competicao", "Treino intenso, descansa 2 dias"),
-            divisaoTreinoController.geraDivisaoTreino(2, "Emagrecimento", "Treino diario com dieta especifica"),
-            divisaoTreinoController.geraDivisaoTreino(3, "Hipertrofia", "Treino focado em ganho de massa muscular")
-        };
+        PessoaView.numAdministradores = 2;
+        
+        ExercicioView.exercicios[0] = new Exercicio(0, "Supino", "Supino com barra", currentDate, currentDate);
+        ExercicioView.exercicios[1] = new Exercicio(1, "Agachamento", "Agachamento livre", currentDate, currentDate);
+        ExercicioView.exercicios[2] = new Exercicio(2, "Levantamento Terra", "Levantamento terra com barra", currentDate, currentDate);
+        ExercicioView.exercicios[3] = new Exercicio(3, "Flexao", "Flexao de braco", currentDate, currentDate);
+        ExercicioView.exercicios[4] = new Exercicio(4, "Rosca Direta", "Rosca direta com halteres", currentDate, currentDate);
+        ExercicioView.exercicios[5] = new Exercicio(5, "Cadeira Extensora", "Extensao de pernas na cadeira extensora", currentDate, currentDate);
+        ExercicioView.exercicios[6] = new Exercicio(6, "Puxada Frontal", "Puxada frontal na barra", currentDate, currentDate);
+        ExercicioView.exercicios[7] = new Exercicio(7, "Desenvolvimento de Ombros", "Desenvolvimento de ombros com halteres", currentDate, currentDate);
 
-        // DivisaoTreinoMusculo data
-        DivisaoTreinoMusculo[] divisoesTreinoMusculo = {
-            divisaoTreinoMusculoController.geraDivisaoTreinoMusculo(0, "Fortificacao", "Treino segunda sexta sabado", "Peito"),
-            divisaoTreinoMusculoController.geraDivisaoTreinoMusculo(1, "Preparacao para competicao", "Treino intenso, descansa 2 dias", "Perna e Gluteo"),
-            divisaoTreinoMusculoController.geraDivisaoTreinoMusculo(2, "Emagrecimento", "Treino diario com dieta especifica", "Braco e Peito"),
-            divisaoTreinoMusculoController.geraDivisaoTreinoMusculo(3, "Hipertrofia", "Treino focado em ganho de massa muscular", "Costas e Ombro")
-        };
+        ExercicioView.numExercicios = 7;
+
+        ExercicioAplicacaoView.exerciciosAplicacao[0] = new ExercicioAplicacao(0, "Supino", "Supino reto com peso", currentDate, currentDate);
+        ExercicioAplicacaoView.exerciciosAplicacao[1] = new ExercicioAplicacao(1, "Agachamento", "Agachamento reto com peso", currentDate, currentDate);
+        ExercicioAplicacaoView.exerciciosAplicacao[2] = new ExercicioAplicacao(2, "Levantamento Terra", "Levantamento terra com barra pesada", currentDate, currentDate);
+        ExercicioAplicacaoView.exerciciosAplicacao[3] = new ExercicioAplicacao(3, "Flexao", "Flexao normal sem peso", currentDate, currentDate);
+        ExercicioAplicacaoView.exerciciosAplicacao[4] = new ExercicioAplicacao(4, "Rosca Direta", "Rosca direta com halteres pesados", currentDate, currentDate);
+        ExercicioAplicacaoView.exerciciosAplicacao[5] = new ExercicioAplicacao(5, "Cadeira Extensora", "Extensao de pernas com carga", currentDate, currentDate);
+        ExercicioAplicacaoView.exerciciosAplicacao[6] = new ExercicioAplicacao(6, "Puxada Frontal", "Puxada frontal com peso", currentDate, currentDate);
+        ExercicioAplicacaoView.exerciciosAplicacao[7] = new ExercicioAplicacao(7, "Desenvolvimento de Ombros", "Desenvolvimento de ombros com halteres pesados", currentDate, currentDate);
+
+        ExercicioAplicacaoView.numExerciciosAplicacao = 7;
+
+
+        TreinoView.treinos[0] = new Treino(0, "Fortificacao", getDate(2025, 1, 15), getDate(2025, 6, 15), currentDate, currentDate);
+        TreinoView.treinos[1] = new Treino(1, "Preparacao para competicao", getDate(2025, 3, 10), getDate(2025, 9, 10), currentDate, currentDate);
+        TreinoView.treinos[2] = new Treino(2, "Emagrecimento", getDate(2025, 5, 20), getDate(2025, 11, 20), currentDate, currentDate);
+        TreinoView.treinos[3] = new Treino(3, "Hipertrofia", getDate(2025, 2, 5), getDate(2025, 8, 5), currentDate, currentDate);
+
+        TreinoView.numTreinos = 3;
+
+        DivisaoTreinoView.divisoesTreinos[0] = new DivisaoTreino(0, "Fortificacao", "Treino segunda sexta sabado", currentDate, currentDate);
+        DivisaoTreinoView.divisoesTreinos[1] = new DivisaoTreino(1, "Preparacao para competicao", "Treino intenso, descansa 2 dias", currentDate, currentDate);
+        DivisaoTreinoView.divisoesTreinos[2] = new DivisaoTreino(2, "Emagrecimento", "Treino diario com dieta especifica", currentDate, currentDate);
+        DivisaoTreinoView.divisoesTreinos[3] = new DivisaoTreino(3, "Hipertrofia", "Treino focado em ganho de massa muscular", currentDate, currentDate);
+
+        DivisaoTreinoView.numDivisoesTreino = 3;
+
+      
+        DivisaoTreinoMusculoView.divisoesTreinoMusculo[0] = new DivisaoTreinoMusculo(0, "Fortificacao", "Treino segunda sexta sabado", "Peito", currentDate, currentDate);
+        DivisaoTreinoMusculoView.divisoesTreinoMusculo[1] = new DivisaoTreinoMusculo(1, "Preparacao para competicao", "Treino intenso, descansa 2 dias", "Perna e Gluteo", currentDate, currentDate);
+        DivisaoTreinoMusculoView.divisoesTreinoMusculo[2] = new DivisaoTreinoMusculo(2, "Emagrecimento", "Treino diario com dieta especifica", "Braco e Peito", currentDate, currentDate);
+        DivisaoTreinoMusculoView.divisoesTreinoMusculo[3] = new DivisaoTreinoMusculo(3, "Hipertrofia", "Treino focado em ganho de massa muscular", "Costas e Ombro", currentDate, currentDate);
+
+        DivisaoTreinoMusculoView.numDivisoesTreinoMusculo = 3;
 
         MensalidadeVigenteController.cadastrar(MensalidadeVigenteView.numMensalidades, 49.90, getDate(2021, 12, 11), getDate(2022, 12, 10));
         MensalidadeVigenteController.cadastrar(MensalidadeVigenteView.numMensalidades, 59.90, getDate(2022, 12, 11), getDate(2023, 12, 10));
@@ -129,37 +116,18 @@ public class PopularTabelasController {
         PagamentoRecorrenteController.cadastrarPagamentoRecorente(3, "3482 553022 56392", 7);
         PagamentoRecorrenteController.cadastrarPagamentoRecorente(4, "6062 8261 1823 5928", 4);
 
-        PessoaView.alunos = alunos;
-        PessoaView.numAlunos = 5;
-        PessoaView.professoresInstrutores = professores;
-        PessoaView.numProfessoresInstrutores = 2;
-        PessoaView.administradores[1] = administrador;
-        PessoaView.numAdministradores = 2;
-        ExercicioView.exercicios = exercicios;
-        ExercicioView.numExercicios = exercicios.length;
-        ExercicioAplicacaoView.exerciciosAplicacao = exerciciosAplicacao;
-        ExercicioAplicacaoView.numExerciciosAplicacao = exerciciosAplicacao.length;
-        TreinoView.treinos = treinos;
-        TreinoView.numTreinos = treinos.length;
-        DivisaoTreinoView.divisoesTreinos = divisoesTreino;
-        DivisaoTreinoView.numDivisoesTreino = divisoesTreino.length;
-        DivisaoTreinoMusculoView.divisoesTreinoMusculo = divisoesTreinoMusculo;
-        DivisaoTreinoMusculoView.numDivisoesTreinoMusculo = divisoesTreinoMusculo.length;
 
-        TreinoAplicacao[] treinosAplicacao = {
-                treinoAplicacaoController.geraTreinoAplicacao(0, 0),
-                treinoAplicacaoController.geraTreinoAplicacao(1, 1),
-                treinoAplicacaoController.geraTreinoAplicacao(2, 2),
-        };
+        TreinoAplicacaoView.treinosAplicacao[0] = new TreinoAplicacao(0, "Fortificacao", "Supino", "Supino reto com peso", "Treino segunda sexta sabado", "Peito", getDate(2025, 1, 15), getDate(2025, 6, 15), currentDate, currentDate);
+        TreinoAplicacaoView.treinosAplicacao[1] = new TreinoAplicacao(1, "Preparacao para competicao", "Agachamento", "Agachamento reto com peso", "Treino intenso, descansa 2 dias", "Perna e Gluteo", getDate(2025, 3, 10), getDate(2025, 9, 10), currentDate, currentDate);
+        TreinoAplicacaoView.treinosAplicacao[2] = new TreinoAplicacao(2, "Emagrecimento", "Levantamento Terra", "Levantamento terra com barra pesada", "Treino diario com dieta especifica", "Braco e Peito", getDate(2025, 5, 20), getDate(2025, 11, 20), currentDate, currentDate);
 
-        TreinoAplicacaoView.treinosAplicacao = treinosAplicacao;
-        TreinoAplicacaoView.numTreinosAplicacao = treinosAplicacao.length;
+        TreinoAplicacaoView.numTreinosAplicacao = 2;
     }
 
     private static Date getDate(int year, int month, int day) {
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.YEAR, year);
-        cal.set(Calendar.MONTH, month - 1); // Month is zero-based in Calendar
+        cal.set(Calendar.MONTH, month - 1);
         cal.set(Calendar.DAY_OF_MONTH, day);
         return cal.getTime();
     }

@@ -23,7 +23,7 @@ public class PagamentoRecorrenteView {
         scanner.nextLine(); 
         
         if (PessoaController.getAlunoById(idPessoa) == null) {
-            System.out.println("Aluno não encontrado.");
+            System.out.println("Aluno nao encontrado.");
             return;
         }
         
@@ -59,7 +59,7 @@ public class PagamentoRecorrenteView {
         if (confirmacao.equalsIgnoreCase("S")) {
             System.out.println("Pagamento recorrente cadastrado com sucesso!");
         } else {
-            System.out.println("Operaçao cancelada.");
+            System.out.println("Operacao cancelada.");
             return;
         }
         
@@ -154,7 +154,7 @@ public class PagamentoRecorrenteView {
     }
 
     public static void simularAvancoTempo(){
-        System.out.print("\nInforme o número de meses a avançar: ");
+        System.out.print("\nInforme o número de meses a avancar: ");
         int mesesAvancar = scanner.nextInt();
         scanner.nextLine();
 
@@ -162,7 +162,7 @@ public class PagamentoRecorrenteView {
         calendar.setTime(new Date());
         calendar.add(Calendar.MONTH, mesesAvancar);
 
-        System.out.println("\nData avançada: " + formatarData(calendar.getTime()));
+        System.out.println("\nData avancada: " + formatarData(calendar.getTime()));
 
         PagamentoRecorrenteController.checarPagamentos(calendar.getTime());
     }
