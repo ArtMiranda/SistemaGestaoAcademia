@@ -130,9 +130,9 @@ public class PopularTabelasController {
         PagamentoRecorrenteController.cadastrarPagamentoRecorente(4, "6062 8261 1823 5928", 4);
 
         PessoaView.alunos = alunos;
-        PessoaView.numAlunos = alunos.length;
+        PessoaView.numAlunos = 5;
         PessoaView.professoresInstrutores = professores;
-        PessoaView.numProfessoresInstrutores = professores.length;
+        PessoaView.numProfessoresInstrutores = 2;
         PessoaView.administradores[1] = administrador;
         PessoaView.numAdministradores = 2;
         ExercicioView.exercicios = exercicios;

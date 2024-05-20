@@ -170,8 +170,10 @@ public class TreinoAplicacaoView {
                 System.out.println("Aluno(a): " + PessoaController.getAlunoById(idAluno).getNome());
                 System.out.println("Divisao de Treino: " + TreinoAplicacaoController.getTreinoAplicacaoById(idTreino).getDivisaoTreino());
                 System.out.println("Divisao Treino Musculo: " + TreinoAplicacaoController.getTreinoAplicacaoById(idTreino).getDivisaoTreinoAplicacao());
-                int duracaoTreinoSemanas = (int) ((TreinoAplicacaoController.getTreinoAplicacaoById(idTreino).getDataTermino().getTime() - TreinoAplicacaoController.getTreinoAplicacaoById(idTreino).getDataInicio().getTime()) / (1000 * 60 * 60 * 24 * 7));
-                System.out.println("Data de Inicio: " + formatarData(TreinoAplicacaoController.getTreinoAplicacaoById(idTreino).getDataInicio()) + " Data de Termino: " + formatarData(TreinoAplicacaoController.getTreinoAplicacaoById(idTreino).getDataTermino()) + " (" + duracaoTreinoSemanas + " semanas)");    
+                int duracaoTreinoSemanas = (int) ((TreinoAplicacaoController.getTreinoAplicacaoById(idTreino).getDataTermino().getTime() - 
+                TreinoAplicacaoController.getTreinoAplicacaoById(idTreino).getDataInicio().getTime()) / (1000 * 60 * 60 * 24 * 7));
+                System.out.println("Data de Inicio: " + formatarData(TreinoAplicacaoController.getTreinoAplicacaoById(idTreino).getDataInicio()) + " Data de Termino: " + 
+                formatarData(TreinoAplicacaoController.getTreinoAplicacaoById(idTreino).getDataTermino()) + " (" + duracaoTreinoSemanas + " semanas)");    
                 System.out.println("Treino: " + treino.getObjetivo());
                 System.out.println("Exercicios: " + TreinoAplicacaoController.getTreinoAplicacaoById(idTreino).getNomeExercicio());
                 System.out.println("Aplicacao de Exercicio: " + TreinoAplicacaoController.getTreinoAplicacaoById(idTreino).getExercicioAplicacao());    
