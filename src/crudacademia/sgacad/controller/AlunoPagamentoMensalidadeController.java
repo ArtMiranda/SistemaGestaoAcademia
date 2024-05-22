@@ -41,7 +41,8 @@ public class AlunoPagamentoMensalidadeController {
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(AlunoPagamentoMensalidadeView.alunosPagamentosMensalidades[i].getDataPagamento());
             calendar.add(Calendar.DAY_OF_MONTH, 32); // Adiciona 32 dias para considerar o mês inteiro e dois dias de folga
-            if (AlunoPagamentoMensalidadeView.alunosPagamentosMensalidades[i].getIdAluno() == idAluno && calendar.getTime().before(Calendar.getInstance().getTime()) || calendar.getTime().equals(Calendar.getInstance().getTime())) {
+            if (AlunoPagamentoMensalidadeView.alunosPagamentosMensalidades[i].getIdAluno() == idAluno && 
+            AlunoPagamentoMensalidadeView.alunosPagamentosMensalidades[i].getDataVencimento().before(calendar.getTime())) {
                 return true;
             }
         }

@@ -34,14 +34,6 @@ public class Academia {
         detalhes += "Endereco: " + endereco + "\n";
         detalhes += "Data de Criacao: " + formatarData(dataCriacao) + "\n";
         detalhes += "Data de Modificacao: " + formatarData(dataModificacao) + "\n";
-        if (numAlunosMatriculados > 0) {
-            detalhes += "Alunos Matriculados:\n";
-            for (int i = 0; i < numAlunosMatriculados; i++) {
-                detalhes += "Nome: " + alunosMatriculados[i].getNome() + "\n";
-            }
-        } else {
-            detalhes += "Nenhum aluno matriculado.\n";
-        }
         return detalhes;
     }
 
