@@ -1,72 +1,69 @@
 package sgacad.view;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 import sgacad.controller.MensalidadeVigenteController;
 import sgacad.model.MensalidadeVigente;
 
 public class MensalidadeVigenteView {
+
     public static MensalidadeVigente[] mensalidades = new MensalidadeVigente[100];
     public static int numMensalidades = 0;
     private static Scanner scanner = new Scanner(System.in);
 
-
-    public static void criaMensalidadeVigente(){
+    public static void criaMensalidadeVigente() {
 
         System.out.print("\nDigite o valor da mensalidade: ");
         double valor = scanner.nextDouble();
         scanner.nextLine();
 
-        Date dataInicio = null;
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        LocalDate dataInicio = null;
         boolean dataValida = false;
         while (!dataValida) {
             try {
                 System.out.print("\nInforme a data de Inicio (dd/MM/yyyy): ");
                 String dataInicioStr = scanner.nextLine().trim();
-                dataInicio = sdf.parse(dataInicioStr);
-                Calendar calendar = Calendar.getInstance();
-                calendar.add(Calendar.DAY_OF_MONTH, -1);
-                if (dataInicio.before(calendar.getTime())) {
+                dataInicio = LocalDate.parse(dataInicioStr);
+
+                if (dataInicio.isBefore(LocalDate.now())) {
                     System.out.print("\nData de inicio nao pode ser no passado. Informe novamente.");
                 } else {
-                    if(dataInicio.before(Calendar.getInstance().getTime()) || dataInicio.before(MensalidadeVigenteController.getMensalidadeVigente().getTermino())){
+                    if (dataInicio.isBefore(MensalidadeVigenteController.getMensalidadeVigente().getTermino())) {
                         System.out.println("\nRemova a data de inicio da mensalidade vigente antes de cadastrar uma nova.");
                         return;
                     }
                     dataValida = true;
                 }
-            } catch (ParseException e) {
+            } catch (Exception e) {
                 System.out.print("\nFormato de data invalido. Use o formato dd/MM/yyyy.");
             }
         }
 
         // Data de Termino
-        Date dataTermino = null;
+        LocalDate dataTermino = null;
         dataValida = false;
         while (!dataValida) {
             try {
                 System.out.print("\nInforme a data de Termino (dd/MM/yyyy): ");
                 String dataTerminoStr = scanner.nextLine().trim();
-                dataTermino = sdf.parse(dataTerminoStr);
-                if (dataTermino.before(dataInicio)) {
+                dataTermino = LocalDate.parse(dataTerminoStr);
+
+                if (dataTermino.isBefore(dataInicio)) {
                     System.out.print("\nData de termino deve ser posterior à data de inicio. Informe novamente.");
                 } else {
-                    if(dataTermino.before(MensalidadeVigenteController.getMensalidadeVigente().getTermino())){
-                    System.out.println("\nRemova a mensalidade vigente antes de cadastrar uma nova.");
-                    return;
+                    if (dataTermino.isBefore(MensalidadeVigenteController.getMensalidadeVigente().getTermino())) {
+                        System.out.println("\nRemova a mensalidade vigente antes de cadastrar uma nova.");
+                        return;
                     }
                     dataValida = true;
                 }
-            } catch (ParseException e) {
+            } catch (Exception e) {
                 System.out.print("\nFormato de data invalido. Use o formato dd/MM/yyyy.");
             }
         }
-        
+
         MensalidadeVigenteController.cadastrar(numMensalidades, valor, dataInicio, dataTermino);
     }
 
@@ -83,50 +80,51 @@ public class MensalidadeVigenteView {
         }
     }
 
-    public static void exibirMensalidadeVigente(){
+    public static void exibirMensalidadeVigente() {
         if (numMensalidades == 0) {
             System.out.println("\n\nNenhuma mensalidade cadastrada ainda.");
         } else {
             System.out.println("\n\nMensalidade Vigente:");
             for (int i = 0; i < numMensalidades; i++) {
-                if (mensalidades[i].getTermino().after(Calendar.getInstance().getTime()) && mensalidades[i].getInicio().before(Calendar.getInstance().getTime())) {
+                if (mensalidades[i].getTermino().isAfter(LocalDate.now()) && mensalidades[i].getInicio().isBefore(LocalDate.now())) {
                     System.out.println(
                             "ID: " + mensalidades[i].getId() + ", Valor: " + mensalidades[i].getValor()
-                                    + ", Inicio: " + formatarData(mensalidades[i].getInicio()) + ", Termino: " + formatarData(mensalidades[i].getTermino()));
-                }
+                            + ", Inicio: " + formatarData(mensalidades[i].getInicio()) + ", Termino: " + formatarData(mensalidades[i].getTermino()));
             }
         }
-    }
-
-    public static void removerMensalidade() {
-        if (numMensalidades == 0) {
-            System.out.println("\n\nNenhuma mensalidade cadastrada ainda.");
-        } else {
-            System.out.print("\nInforme o ID da mensalidade a ser removida: ");
-            int id = scanner.nextInt();
-            scanner.nextLine();
-
-            boolean encontrada = false;
-            for (int i = 0; i < numMensalidades; i++) {
-                if (mensalidades[i].getId() == id) {
-                    encontrada = true;
-                    for (int j = i; j < numMensalidades - 1; j++) {
-                        mensalidades[j] = mensalidades[j + 1];
-                    }
-                    numMensalidades--;
-                    System.out.println("\nMensalidade removida com sucesso.");
-                    break;
-                }
-            }
-
-            if (!encontrada) {
-                System.out.println("\nMensalidade nao encontrada.");
-            }
-        }
-    }
-
-    private static String formatarData(Date data) {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        return sdf.format(data);
     }
 }
+
+public static void removerMensalidade() {
+    if (numMensalidades == 0) {
+        System.out.println("\n\nNenhuma mensalidade cadastrada ainda.");
+    } else {
+        System.out.print("\nInforme o ID da mensalidade a ser removida: ");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+
+        boolean encontrada = false;
+        for (int i = 0; i < numMensalidades; i++) {
+            if (mensalidades[i].getId() == id) {
+                encontrada = true;
+                for (int j = i; j < numMensalidades - 1; j++) {
+                    mensalidades[j] = mensalidades[j + 1];
+                }
+                numMensalidades--;
+                System.out.println("\nMensalidade removida com sucesso.");
+                break;
+            }
+        }
+
+        if (!encontrada) {
+            System.out.println("\nMensalidade nao encontrada.");
+        }
+    }
+}
+
+private static String formatarData(LocalDate data) {
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    return data.format(formatter);
+}
+}
+

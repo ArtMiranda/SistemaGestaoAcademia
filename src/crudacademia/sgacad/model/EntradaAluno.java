@@ -1,14 +1,14 @@
 package sgacad.model;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class EntradaAluno {
     private int id;
     private int idAluno;
-    private Date dataHora;
-    private Date dataCriacao;
-    private Date dataModificacao;
+    private LocalDate dataHora;
+    private LocalDate dataCriacao;
+    private LocalDate dataModificacao;
 
-    public EntradaAluno(int id, int idAluno, Date dataHora, Date dataCriacao, Date dataModificacao) {
+    public EntradaAluno(int id, int idAluno, LocalDate dataHora, LocalDate dataCriacao, LocalDate dataModificacao) {
         this.id = id;
         this.idAluno = idAluno;
         this.dataHora = dataHora;
@@ -32,27 +32,27 @@ public class EntradaAluno {
         this.idAluno = idAluno;
     }
 
-    public Date getDataHora() {
+    public LocalDate getDataHora() {
         return dataHora;
     }
 
-    public void setDataHora(Date dataHora) {
+    public void setDataHora(LocalDate dataHora) {
         this.dataHora = dataHora;
     }
 
-    public Date getDataCriacao() {
+    public LocalDate getDataCriacao() {
         return dataCriacao;
     }
 
-    public void setDataCriacao(Date dataCriacao) {
+    public void setDataCriacao(LocalDate dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
 
-    public Date getDataModificacao() {
+    public LocalDate getDataModificacao() {
         return dataModificacao;
     }
 
-    public void setDataModificacao(Date dataModificacao) {
+    public void setDataModificacao(LocalDate dataModificacao) {
         this.dataModificacao = dataModificacao;
     }
 }

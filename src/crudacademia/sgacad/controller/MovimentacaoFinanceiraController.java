@@ -1,7 +1,6 @@
 package sgacad.controller;
 
-import java.util.Calendar;
-import java.util.Date;
+import java.time.LocalDate;
 import sgacad.model.MovimentacaoFinanceira;
 import sgacad.view.MovimentacaoFinanceiraView;
 
@@ -9,7 +8,7 @@ public class MovimentacaoFinanceiraController {
     
 
     public static void cadastrar(double valor, int tipoId, String descricao) {
-    Date currentDate = Calendar.getInstance().getTime();
+    LocalDate currentDate = LocalDate.now();
     
     String tipo = "";
 

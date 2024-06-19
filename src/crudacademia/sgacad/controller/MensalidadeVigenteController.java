@@ -1,25 +1,25 @@
 package sgacad.controller;
 
-import java.util.Calendar;
-import java.util.Date;
+import java.time.LocalDate;
+
 import sgacad.model.MensalidadeVigente;
 import sgacad.view.MensalidadeVigenteView;
 
 public class MensalidadeVigenteController {
 
-    public static void cadastrar(int id, double valor, Date inicio, Date termino) {
-        Date currentDate = Calendar.getInstance().getTime();
+    public static void cadastrar(int id, double valor, LocalDate inicio, LocalDate termino) {
+        LocalDate currentDate = LocalDate.now();
         MensalidadeVigenteView.mensalidades[MensalidadeVigenteView.numMensalidades] = new MensalidadeVigente(id, valor, inicio, termino, currentDate, currentDate);
         MensalidadeVigenteView.numMensalidades++;
     }
 
     public static MensalidadeVigente getMensalidadeVigente() {
         MensalidadeVigente mensalidadeVigente = null;
-        Date currentDate = Calendar.getInstance().getTime();
+        LocalDate currentDate = LocalDate.now();
 
         for (int i = 0; i < MensalidadeVigenteView.numMensalidades; i++) {
             MensalidadeVigente mensalidade = MensalidadeVigenteView.mensalidades[i];
-            if (mensalidade.getInicio().before(currentDate) && mensalidade.getTermino().after(currentDate)) {
+            if (mensalidade.getInicio().isBefore(currentDate) && mensalidade.getTermino().isAfter(currentDate)) {
                 mensalidadeVigente = mensalidade;
                 break;
             }
@@ -28,3 +28,4 @@ public class MensalidadeVigenteController {
         return mensalidadeVigente;
     }
 }
+ 

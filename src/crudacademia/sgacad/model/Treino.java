@@ -1,20 +1,20 @@
 package sgacad.model;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Treino {
     private int id;
     private String objetivo;
-    private Date dataInicio;
-    private Date dataTermino;
-    private Date dataCriacao;
-    private Date dataModificacao;
+    private LocalDate dataInicio;
+    private LocalDate dataTermino;
+    private LocalDate dataCriacao;
+    private LocalDate dataModificacao;
 
     // Construtor
-    public Treino(int id, String objetivo, Date dataInicio, Date dataTermino,
-            Date dataCriacao,
-            Date dataModificacao) {
+    public Treino(int id, String objetivo, LocalDate dataInicio, LocalDate dataTermino,
+            LocalDate dataCriacao,
+            LocalDate dataModificacao) {
         this.id = id;
         this.objetivo = objetivo;
         this.dataInicio = dataInicio;
@@ -32,35 +32,35 @@ public class Treino {
         this.id = id;
     }
 
-    public Date getDataInicio() {
+    public LocalDate getDataInicio() {
         return dataInicio;
     }
 
-    public void setDataInicio(Date dataInicio) {
+    public void setDataInicio(LocalDate dataInicio) {
         this.dataInicio = dataInicio;
     }
 
-    public Date getDataTermino() {
+    public LocalDate getDataTermino() {
         return dataTermino;
     }
 
-    public void setDataTermino(Date dataTermino) {
+    public void setDataTermino(LocalDate dataTermino) {
         this.dataTermino = dataTermino;
     }
 
-    public Date getDataCriacao() {
+    public LocalDate getDataCriacao() {
         return dataCriacao;
     }
 
-    public void setDataCriacao(Date dataCriacao) {
+    public void setDataCriacao(LocalDate dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
 
-    public Date getDataModificacao() {
+    public LocalDate getDataModificacao() {
         return dataModificacao;
     }
 
-    public void setDataModificacao(Date dataModificacao) {
+    public void setDataModificacao(LocalDate dataModificacao) {
         this.dataModificacao = dataModificacao;
     }
 
@@ -83,8 +83,8 @@ public class Treino {
         return detalhes;
     }
 
-    public String formatarData(Date data) {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        return sdf.format(data);
+ private String formatarData(LocalDate data) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return data.format(formatter);
     }
 }

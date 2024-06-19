@@ -1,13 +1,12 @@
 package sgacad.controller;
 
-import java.util.Calendar;
-import java.util.Date;
+import java.time.LocalDate;
 import sgacad.model.ExercicioAplicacao;
 
 public class ExercicioAplicacaoController {
 
     public ExercicioAplicacao geraExercicioAplicacao(int id, String nome, String nomedetalhado) {
-        Date currentDate = Calendar.getInstance().getTime();
+        LocalDate currentDate = LocalDate.now();
         ExercicioAplicacao exercicioAplicacao = new ExercicioAplicacao(id, nome, nomedetalhado, currentDate,
                 currentDate);
         return exercicioAplicacao;

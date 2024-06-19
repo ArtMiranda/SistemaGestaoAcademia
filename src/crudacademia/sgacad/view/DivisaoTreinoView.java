@@ -1,8 +1,7 @@
 package sgacad.view;
 
-import java.util.Calendar;
+import java.time.LocalDate;
 import java.util.Scanner;
-
 import sgacad.controller.TreinoController;
 import sgacad.controller.DivisaoTreinoController;
 import sgacad.model.DivisaoTreino;
@@ -115,7 +114,7 @@ public class DivisaoTreinoView {
             }
 
             // Data de modificacao
-            divisaoTreino.setDataModificacao(Calendar.getInstance().getTime());
+            divisaoTreino.setDataModificacao(LocalDate.now());
 
             System.out.println("\nDados da Divisao de Treino atualizados com sucesso:");
             System.out.println(divisaoTreino.exibirDetalhes());

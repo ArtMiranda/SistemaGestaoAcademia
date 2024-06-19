@@ -1,8 +1,7 @@
 package sgacad.view;
 
-import java.util.Calendar;
 import java.util.Scanner;
-
+import java.time.LocalDate;
 import sgacad.controller.ExercicioController;
 import sgacad.model.Exercicio;
 
@@ -119,7 +118,7 @@ public class ExercicioView {
                 }
 
                 // Data de modificacao
-                exercicios[i].setDataModificacao(Calendar.getInstance().getTime());
+                exercicios[i].setDataModificacao(LocalDate.now());
 
                 System.out.println("\nDados do Exercicio atualizados com sucesso:");
                 System.out.println(exercicios[i].exibirDetalhes());

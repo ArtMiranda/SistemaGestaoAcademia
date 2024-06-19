@@ -1,7 +1,6 @@
 package sgacad.controller;
 
-import java.util.Calendar;
-import java.util.Date;
+import java.time.LocalDate;
 
 import sgacad.model.AvaliacaoFisica;
 import sgacad.view.AvaliacaoFisicaView;
@@ -20,7 +19,7 @@ public class AvaliacaoFisicaController {
         String nomePessoa = PessoaController.getAlunoById(id).getNome();
         String ultimoTreino = TreinoController.getTreinoById(ultimoTreinoId).getObjetivo();
 
-        Date currentDate = Calendar.getInstance().getTime();
+        LocalDate currentDate = LocalDate.now();
 
         
         AvaliacaoFisica avaliacaoFisica = new AvaliacaoFisica(id, nomePessoa, ultimoTreino, peso, altura, indiceSatisfacaoResultado, currentDate, currentDate);

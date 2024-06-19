@@ -1,6 +1,6 @@
 package sgacad.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class AvaliacaoFisica {
     private int id;
@@ -10,11 +10,11 @@ public class AvaliacaoFisica {
     private double altura;
     private double imc;
     private int indiceSatisfacaoResultado;
-    private Date dataCriacao;
-    private Date dataModificacao;
+    private LocalDate dataCriacao;
+    private LocalDate dataModificacao;
 
     // Construtor
-    public AvaliacaoFisica(int id, String nomePessoa, String ultimoTreino, double peso, double altura, int indiceSatisfacaoResultado, Date dataCriacao, Date dataModificacao) {
+    public AvaliacaoFisica(int id, String nomePessoa, String ultimoTreino, double peso, double altura, int indiceSatisfacaoResultado, LocalDate dataCriacao, LocalDate dataModificacao) {
         this.id = id;
         this.nomePessoa = nomePessoa;
         this.ultimoTreino = ultimoTreino;
@@ -84,19 +84,19 @@ public class AvaliacaoFisica {
         this.indiceSatisfacaoResultado = indiceSatisfacaoResultado;
     }
 
-    public Date getDataCriacao() {
+    public LocalDate getDataCriacao() {
         return dataCriacao;
     }
 
-    public void setDataCriacao(Date dataCriacao) {
+    public void setDataCriacao(LocalDate dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
 
-    public Date getDataModificacao() {
+    public LocalDate getDataModificacao() {
         return dataModificacao;
     }
 
-    public void setDataModificacao(Date dataModificacao) {
+    public void setDataModificacao(LocalDate dataModificacao) {
         this.dataModificacao = dataModificacao;
     }
 }

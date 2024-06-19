@@ -1,15 +1,14 @@
 package sgacad.controller;
 
-import java.util.Calendar;
-import java.util.Date;
+import java.time.LocalDate;
 import sgacad.model.Treino;
 import sgacad.view.TreinoView;
 
 public class TreinoController {
 
     // Metodo para criar um novo treino
-    public Treino geraTreino(int id, String objetivo, Date dataInicio, Date dataTermino) {
-        Date currentDate = Calendar.getInstance().getTime();
+    public Treino geraTreino(int id, String objetivo, LocalDate dataInicio, LocalDate dataTermino) {
+        LocalDate currentDate = LocalDate.now();
         Treino treino = new Treino(id, objetivo, dataInicio, dataTermino, currentDate, currentDate);
         return treino;
     }

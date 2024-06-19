@@ -1,6 +1,6 @@
 package sgacad.controller;
 
-import java.util.Calendar;
+import java.time.LocalDate;
 import sgacad.model.DivisaoTreinoMusculo;
 import sgacad.view.DivisaoTreinoMusculoView;
 
@@ -9,7 +9,7 @@ public class DivisaoTreinoMusculoController {
     public DivisaoTreinoMusculo geraDivisaoTreinoMusculo(int id, String nomeTreino, String descricao,
             String divisaoTreinoMusculo) {
         DivisaoTreinoMusculo novo = new DivisaoTreinoMusculo(id, nomeTreino, descricao, divisaoTreinoMusculo,
-                Calendar.getInstance().getTime(), Calendar.getInstance().getTime());
+                LocalDate.now(), LocalDate.now());
         return novo;
 
     }

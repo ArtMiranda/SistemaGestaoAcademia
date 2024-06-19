@@ -1,10 +1,9 @@
 package sgacad.view;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.Scanner;
-
 import sgacad.controller.ExercicioController;
 import sgacad.controller.PessoaController;
 import sgacad.controller.TreinoAplicacaoController;
@@ -46,7 +45,8 @@ public class TreinoAplicacaoView {
         }
 
         TreinoAplicacaoController controller = new TreinoAplicacaoController();
-        TreinoAplicacao treinoAplicacao = controller.geraTreinoAplicacao(treinoSelecionado.getId(), exercicioSelecionado.getId());
+        TreinoAplicacao treinoAplicacao = controller.geraTreinoAplicacao(treinoSelecionado.getId(),
+                exercicioSelecionado.getId());
         treinosAplicacao[numTreinosAplicacao] = treinoAplicacao;
         numTreinosAplicacao++;
         return treinoAplicacao;
@@ -125,10 +125,11 @@ public class TreinoAplicacaoView {
         }
 
         if (exercicioSelecionado != null) {
-            treinoAplicacao.setExercicio(exercicioSelecionado.getNome());;
+            treinoAplicacao.setExercicio(exercicioSelecionado.getNome());
+            ;
         }
 
-        treinoAplicacao.setDataModificacao(Calendar.getInstance().getTime());
+        treinoAplicacao.setDataModificacao(LocalDate.now());
         System.out.println("Treino aplicacao atualizado com sucesso.");
     }
 
@@ -156,36 +157,40 @@ public class TreinoAplicacaoView {
         }
     }
 
-    public static void exibirFichaTreino(int idAluno){
+    public static void exibirFichaTreino(int idAluno) {
         System.out.println("Informe o Treino que deseja visualizar a ficha: ");
         exibirTodosTreinosAplicacao();
         System.out.print("\nInforme o ID do treino: ");
         int idTreino = scanner.nextInt();
         scanner.nextLine();
+
         Treino treino = TreinoController.getTreinoById(idTreino);
-        for (int i = 0; i < numTreinosAplicacao; i++) {
-            if(TreinoAplicacaoController.getTreinoAplicacaoById(idTreino).getId() == idTreino){
-                System.out.println("\n\n--- Ficha do Treino: ---");
-                System.out.println("Academia: " + AcademiaView.academia.getNome());
-                System.out.println("Aluno(a): " + PessoaController.getAlunoById(idAluno).getNome());
-                System.out.println("Divisao de Treino: " + TreinoAplicacaoController.getTreinoAplicacaoById(idTreino).getDivisaoTreino());
-                System.out.println("Divisao Treino Musculo: " + TreinoAplicacaoController.getTreinoAplicacaoById(idTreino).getDivisaoTreinoAplicacao());
-                int duracaoTreinoSemanas = (int) ((TreinoAplicacaoController.getTreinoAplicacaoById(idTreino).getDataTermino().getTime() - 
-                TreinoAplicacaoController.getTreinoAplicacaoById(idTreino).getDataInicio().getTime()) / (1000 * 60 * 60 * 24 * 7));
-                System.out.println("Data de Inicio: " + formatarData(TreinoAplicacaoController.getTreinoAplicacaoById(idTreino).getDataInicio()) + " Data de Termino: " + 
-                formatarData(TreinoAplicacaoController.getTreinoAplicacaoById(idTreino).getDataTermino()) + " (" + duracaoTreinoSemanas + " semanas)");    
-                System.out.println("Treino: " + treino.getObjetivo());
-                System.out.println("Exercicios: " + TreinoAplicacaoController.getTreinoAplicacaoById(idTreino).getNomeExercicio());
-                System.out.println("Aplicacao de Exercicio: " + TreinoAplicacaoController.getTreinoAplicacaoById(idTreino).getExercicioAplicacao());    
-            }
-            
-        } if(TreinoAplicacaoController.getTreinoAplicacaoById(idTreino) == null){
-            System.out.println("\nTreino nao encontrado.");
+        TreinoAplicacao treinoAplicacao = TreinoAplicacaoController.getTreinoAplicacaoById(idTreino);
+
+        if (treinoAplicacao != null) {
+            System.out.println("\n\n--- Ficha do Treino: ---");
+            System.out.println("Academia: " + AcademiaView.academia.getNome());
+            System.out.println("Aluno(a): " + PessoaController.getAlunoById(idAluno).getNome());
+            System.out.println("Divisao de Treino: " + treinoAplicacao.getDivisaoTreino());
+            System.out.println("Divisao Treino Musculo: " + treinoAplicacao.getDivisaoTreinoAplicacao());
+
+            long duracaoTreinoSemanas = ChronoUnit.WEEKS.between(treinoAplicacao.getDataInicio(),
+                    treinoAplicacao.getDataTermino());
+            System.out.println("Data de Inicio: " + formatarData(treinoAplicacao.getDataInicio()) +
+                    " Data de Termino: " + formatarData(treinoAplicacao.getDataTermino()) +
+                    " (" + duracaoTreinoSemanas + " semanas)");
+
+            System.out.println("Treino: " + treino.getObjetivo());
+            System.out.println("Exercicios: " + treinoAplicacao.getNomeExercicio());
+            System.out.println("Aplicacao de Exercicio: " + treinoAplicacao.getExercicioAplicacao());
+        } else {
+            System.out.println("\nTreino não encontrado.");
         }
     }
 
-    public static String formatarData(Date data){
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        return sdf.format(data);
+    private static String formatarData(LocalDate data) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return data.format(formatter);
     }
+
 }

@@ -1,16 +1,16 @@
 package sgacad.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class MensalidadeVigente {
     private int id;
     private double valor;
-    private Date inicio;
-    private Date termino;
-    private Date dataCriacao;
-    private Date dataModificacao;
+    private LocalDate inicio;
+    private LocalDate termino;
+    private LocalDate dataCriacao;
+    private LocalDate dataModificacao;
 
-    public MensalidadeVigente(int id, double valor, Date inicio, Date termino, Date dataCriacao, Date dataModificacao) {
+    public MensalidadeVigente(int id, double valor, LocalDate inicio, LocalDate termino, LocalDate dataCriacao, LocalDate dataModificacao) {
         this.id = id;
         this.valor = valor;
         this.inicio = inicio;
@@ -36,35 +36,35 @@ public class MensalidadeVigente {
         this.valor = valor;
     }
 
-    public Date getInicio() {
+    public LocalDate getInicio() {
         return inicio;
     }
 
-    public void setInicio(Date inicio) {
+    public void setInicio(LocalDate inicio) {
         this.inicio = inicio;
     }
 
-    public Date getTermino() {
+    public LocalDate getTermino() {
         return termino;
     }
 
-    public void setTermino(Date termino) {
+    public void setTermino(LocalDate termino) {
         this.termino = termino;
     }
 
-    public Date getDataCriacao() {
+    public LocalDate getDataCriacao() {
         return dataCriacao;
     }
 
-    public void setDataCriacao(Date dataCriacao) {
+    public void setDataCriacao(LocalDate dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
 
-    public Date getDataModificacao() {
+    public LocalDate getDataModificacao() {
         return dataModificacao;
     }
 
-    public void setDataModificacao(Date dataModificacao) {
+    public void setDataModificacao(LocalDate dataModificacao) {
         this.dataModificacao = dataModificacao;
     }
 }

@@ -1,6 +1,6 @@
 package sgacad.view;
 
-import java.util.Calendar;
+import java.time.LocalDate;
 import java.util.Scanner;
 import sgacad.controller.DivisaoTreinoController;
 import sgacad.controller.DivisaoTreinoMusculoController;
@@ -89,7 +89,7 @@ public class DivisaoTreinoMusculoView {
                 divisaoTreinoMusculo.setDescricao(novaDescricao);
             }
 
-            divisaoTreinoMusculo.setDataModificacao(Calendar.getInstance().getTime());
+            divisaoTreinoMusculo.setDataModificacao(LocalDate.now());
 
             System.out.println("\nDados da Divisao de Treino-musculo atualizados com sucesso:");
             System.out.println(divisaoTreinoMusculo.exibirDetalhes());

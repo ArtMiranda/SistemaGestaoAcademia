@@ -1,14 +1,13 @@
 package sgacad.controller;
 
-import java.util.Calendar;
-import java.util.Date;
+import java.time.LocalDate;
 
 import sgacad.model.DivisaoTreino;
 import sgacad.view.DivisaoTreinoView;
 
 public class DivisaoTreinoController {
     public DivisaoTreino geraDivisaoTreino(int id, String nome, String descricao) {
-        Date currentDate = Calendar.getInstance().getTime();
+        LocalDate currentDate = LocalDate.now();
 
         DivisaoTreino divisaoTreino = new DivisaoTreino(id, nome, descricao, currentDate, currentDate);
         return divisaoTreino;

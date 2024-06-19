@@ -1,18 +1,18 @@
 package sgacad.model;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class PagamentoRecorrente {
     private int id;
     private int idPessoa;
-    private Date data;
+    private LocalDate data;
     private String cartaoCredito;
     private double valor;
-    private Date dataInicio;
+    private LocalDate dataInicio;
     private int numeroMesesAutorizados;
-    private Date dataCriacao;
-    private Date dataModificacao;
+    private LocalDate dataCriacao;
+    private LocalDate dataModificacao;
 
-    public PagamentoRecorrente(int id, int idPessoa, Date data, String cartaoCredito, double valor, Date dataInicio, int numeroMesesAutorizados, Date dataCriacao, Date dataModificacao) {
+    public PagamentoRecorrente(int id, int idPessoa, LocalDate data, String cartaoCredito, double valor, LocalDate dataInicio, int numeroMesesAutorizados, LocalDate dataCriacao, LocalDate dataModificacao) {
         this.id = id;
         this.idPessoa = idPessoa;
         this.data = data;
@@ -40,11 +40,11 @@ public class PagamentoRecorrente {
         this.idPessoa = idPessoa;
     }
 
-    public Date getData() {
+    public LocalDate getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(LocalDate data) {
         this.data = data;
     }
 
@@ -64,11 +64,11 @@ public class PagamentoRecorrente {
         this.valor = valor;
     }
 
-    public Date getDataInicio() {
+    public LocalDate getDataInicio() {
         return dataInicio;
     }
 
-    public void setDataInicio(Date dataInicio) {
+    public void setDataInicio(LocalDate dataInicio) {
         this.dataInicio = dataInicio;
     }
 
@@ -80,19 +80,19 @@ public class PagamentoRecorrente {
         this.numeroMesesAutorizados = numeroMesesAutorizados;
     }
 
-    public Date getDataCriacao() {
+    public LocalDate getDataCriacao() {
         return dataCriacao;
     }
 
-    public void setDataCriacao(Date dataCriacao) {
+    public void setDataCriacao(LocalDate dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
 
-    public Date getDataModificacao() {
+    public LocalDate getDataModificacao() {
         return dataModificacao;
     }
 
-    public void setDataModificacao(Date dataModificacao) {
+    public void setDataModificacao(LocalDate dataModificacao) {
         this.dataModificacao = dataModificacao;
     }
 }

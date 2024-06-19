@@ -1,7 +1,6 @@
 package sgacad.controller;
 
-import java.util.Calendar;
-import java.util.Date;
+import java.time.LocalDate;
 
 import sgacad.model.DivisaoTreino;
 import sgacad.model.DivisaoTreinoMusculo;
@@ -23,7 +22,7 @@ public class PopularTabelasController {
 
     public static void main(String[] args) {
 
-        Date currentDate = Calendar.getInstance().getTime();
+        LocalDate currentDate = LocalDate.now();
 
         // Alunos data
         PessoaView.alunos[0] = new Pessoa(0, "Pablo", 'M', getDate(1990, 3, 20), "pablo", "pablo", "Aluno", currentDate, currentDate);
@@ -111,10 +110,10 @@ public class PopularTabelasController {
         MovimentacaoFinanceiraController.cadastrar(5000, 2, "Venda de equipamentos");
 
 
-        PagamentoRecorrenteController.cadastrarPagamentoRecorente(1, "5193 8824 5697 4135", 7);
-        PagamentoRecorrenteController.cadastrarPagamentoRecorente(2, "6011 7291 2150 6230", 3);
-        PagamentoRecorrenteController.cadastrarPagamentoRecorente(3, "3482 553022 56392", 7);
-        PagamentoRecorrenteController.cadastrarPagamentoRecorente(4, "6062 8261 1823 5928", 4);
+        PagamentoRecorrenteController.cadastrarPagamentoRecorrente(1, "5193 8824 5697 4135", 7);
+        PagamentoRecorrenteController.cadastrarPagamentoRecorrente(2, "6011 7291 2150 6230", 3);
+        PagamentoRecorrenteController.cadastrarPagamentoRecorrente(3, "3482 553022 56392", 7);
+        PagamentoRecorrenteController.cadastrarPagamentoRecorrente(4, "6062 8261 1823 5928", 4);
 
 
         TreinoAplicacaoView.treinosAplicacao[0] = new TreinoAplicacao(0, "Fortificacao", "Supino", "Supino reto com peso", "Treino segunda sexta sabado", "Peito", getDate(2025, 1, 15), getDate(2025, 6, 15), currentDate, currentDate);
@@ -124,12 +123,7 @@ public class PopularTabelasController {
         TreinoAplicacaoView.numTreinosAplicacao = 3;
     }
 
-    private static Date getDate(int year, int month, int day) {
-        Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.YEAR, year);
-        cal.set(Calendar.MONTH, month - 1);
-        cal.set(Calendar.DAY_OF_MONTH, day);
-        return cal.getTime();
+    private static LocalDate getDate(int year, int month, int day) {
+        return LocalDate.of(year, month, day);
     }
-
 }

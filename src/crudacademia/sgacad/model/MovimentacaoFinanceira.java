@@ -1,16 +1,16 @@
 package sgacad.model;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class MovimentacaoFinanceira {
     private int id;
     private double valor;
     private String tipo;
     private String descricao;
-    private Date dataCriacao;
-    private Date dataModificacao;
+    private LocalDate dataCriacao;
+    private LocalDate dataModificacao;
 
     // Construtor
-    public MovimentacaoFinanceira(int id, double valor, String tipo, String descricao, Date dataCriacao, Date dataModificacao) {
+    public MovimentacaoFinanceira(int id, double valor, String tipo, String descricao, LocalDate dataCriacao, LocalDate dataModificacao) {
         this.id = id;
         this.valor = valor;
         this.tipo = tipo;
@@ -52,19 +52,19 @@ public class MovimentacaoFinanceira {
         this.descricao = descricao;
     }
 
-    public Date getDataCriacao() {
+    public LocalDate getDataCriacao() {
         return dataCriacao;
     }
 
-    public void setDataCriacao(Date dataCriacao) {
+    public void setDataCriacao(LocalDate dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
 
-    public Date getDataModificacao() {
+    public LocalDate getDataModificacao() {
         return dataModificacao;
     }
 
-    public void setDataModificacao(Date dataModificacao) {
+    public void setDataModificacao(LocalDate dataModificacao) {
         this.dataModificacao = dataModificacao;
     }
 }

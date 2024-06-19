@@ -1,21 +1,21 @@
 package sgacad.model;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Pessoa {
     private int id;
     private String nome;
     private char sexo;
-    private Date nascimento;
+    private LocalDate nascimento;
     private String login;
     private String senha;
     private String tipoUsuario;
-    private Date dataCriacao;
-    private Date dataModificacao;
+    private LocalDate dataCriacao;
+    private LocalDate dataModificacao;
 
     // Construtor
-    public Pessoa(int id, String nome, char sexo, Date nascimento, String login, String senha, String tipoUsuario,
-            Date dataCriacao, Date dataModificacao) {
+    public Pessoa(int id, String nome, char sexo, LocalDate nascimento, String login, String senha, String tipoUsuario,
+    LocalDate dataCriacao, LocalDate dataModificacao) {
         this.id = id;
         this.nome = nome;
         this.sexo = sexo;
@@ -52,11 +52,11 @@ public class Pessoa {
         this.sexo = sexo;
     }
 
-    public Date getNascimento() {
+    public LocalDate getNascimento() {
         return nascimento;
     }
 
-    public void setNascimento(Date nascimento) {
+    public void setNascimento(LocalDate nascimento) {
         this.nascimento = nascimento;
     }
 
@@ -84,19 +84,19 @@ public class Pessoa {
         this.tipoUsuario = tipoUsuario;
     }
 
-    public Date getDataCriacao() {
+    public LocalDate getDataCriacao() {
         return dataCriacao;
     }
 
-    public void setDataCriacao(Date dataCriacao) {
+    public void setDataCriacao(LocalDate dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
 
-    public Date getDataModificacao() {
+    public LocalDate getDataModificacao() {
         return dataModificacao;
     }
 
-    public void setDataModificacao(Date dataModificacao) {
+    public void setDataModificacao(LocalDate dataModificacao) {
         this.dataModificacao = dataModificacao;
     }
 
@@ -114,9 +114,9 @@ public class Pessoa {
         return detalhes;
     }
 
-    private String formatarData(Date data) {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        return sdf.format(data);
+    private String formatarData(LocalDate data) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return data.format(formatter);
     }
 
 }

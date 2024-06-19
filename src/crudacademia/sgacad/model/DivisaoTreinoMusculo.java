@@ -1,20 +1,19 @@
 package sgacad.model;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class DivisaoTreinoMusculo {
     private int id;
     private String nomeTreino;
     private String descricao;
     private String divisaoTreinoMusculo;
-    private Date dataCriacao;
-    private Date dataModificacao;
+    private LocalDate dataCriacao;
+    private LocalDate dataModificacao;
 
     // Construtor
     public DivisaoTreinoMusculo(int id, String nomeTreino, String descricao, String divisaoTreinoMusculo,
-            Date dataCriacao,
-            Date dataModificacao) {
+            LocalDate dataCriacao,
+            LocalDate dataModificacao) {
         this.id = id;
         this.nomeTreino = nomeTreino;
         this.descricao = descricao;
@@ -56,19 +55,19 @@ public class DivisaoTreinoMusculo {
         this.divisaoTreinoMusculo = divisaoTreinoMusculo;
     }
 
-    public Date getDataCriacao() {
+    public LocalDate getDataCriacao() {
         return dataCriacao;
     }
 
-    public void setDataCriacao(Date dataCriacao) {
+    public void setDataCriacao(LocalDate dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
 
-    public Date getDataModificacao() {
+    public LocalDate getDataModificacao() {
         return dataModificacao;
     }
 
-    public void setDataModificacao(Date dataModificacao) {
+    public void setDataModificacao(LocalDate dataModificacao) {
         this.dataModificacao = dataModificacao;
     }
 
@@ -81,9 +80,8 @@ public class DivisaoTreinoMusculo {
         return detalhes;
     }
 
-    // Metodo para formatar datas
-    public String formatarData(Date data) {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        return sdf.format(data);
+    private String formatarData(LocalDate data) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return data.format(formatter);
     }
 }

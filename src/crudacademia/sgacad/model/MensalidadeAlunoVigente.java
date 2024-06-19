@@ -1,16 +1,17 @@
 package sgacad.model;
-import java.util.Date;
+
+import java.time.LocalDate;
 
 public class MensalidadeAlunoVigente {
     private int id;
     private Pessoa aluno; // Modificado para usar a classe Pessoa
-    private Date vencimento;
+    private LocalDate vencimento;
     private MensalidadeVigente mensalidade;
-    private Date dataCriacao;
-    private Date dataModificacao;
+    private LocalDate dataCriacao;
+    private LocalDate dataModificacao;
 
     // Construtor
-    public MensalidadeAlunoVigente(int id, Pessoa aluno, Date vencimento, MensalidadeVigente mensalidade, Date dataCriacao, Date dataModificacao) {
+    public MensalidadeAlunoVigente(int id, Pessoa aluno, LocalDate vencimento, MensalidadeVigente mensalidade, LocalDate dataCriacao, LocalDate dataModificacao) {
         this.id = id;
         this.aluno = aluno;
         this.vencimento = vencimento;
@@ -28,7 +29,7 @@ public class MensalidadeAlunoVigente {
         return aluno;
     }
 
-    public Date getVencimento() {
+    public LocalDate getVencimento() {
         return vencimento;
     }
 
@@ -36,11 +37,11 @@ public class MensalidadeAlunoVigente {
         return mensalidade;
     }
 
-    public Date getDataCriacao() {
+    public LocalDate getDataCriacao() {
         return dataCriacao;
     }
 
-    public Date getDataModificacao() {
+    public LocalDate getDataModificacao() {
         return dataModificacao;
     }
 
@@ -53,7 +54,7 @@ public class MensalidadeAlunoVigente {
         this.aluno = aluno;
     }
 
-    public void setVencimento(Date vencimento) {
+    public void setVencimento(LocalDate vencimento) {
         this.vencimento = vencimento;
     }
 
@@ -61,11 +62,11 @@ public class MensalidadeAlunoVigente {
         this.mensalidade = mensalidade;
     }
 
-    public void setDataCriacao(Date dataCriacao) {
+    public void setDataCriacao(LocalDate dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
 
-    public void setDataModificacao(Date dataModificacao) {
+    public void setDataModificacao(LocalDate dataModificacao) {
         this.dataModificacao = dataModificacao;
     }
 }

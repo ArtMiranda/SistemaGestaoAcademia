@@ -1,7 +1,7 @@
 package sgacad.model;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class TreinoAplicacao {
     private int id;
@@ -10,12 +10,12 @@ public class TreinoAplicacao {
     private String exercicioAplicacao;
     private String divisaoTreino;
     private String divisaoTreinoMusculo;
-    private Date dataInicio;
-    private Date dataTermino;
-    private Date dataCriacao;
-    private Date dataModificacao;
+    private LocalDate dataInicio;
+    private LocalDate dataTermino;
+    private LocalDate dataCriacao;
+    private LocalDate dataModificacao;
 
-    public TreinoAplicacao(int id, String treino, String exercicio, String exercicioAplicacao, String divisaoTreino, String divisaoTreinoMusculo, Date dataInicio, Date dataTermino, Date dataCriacao, Date dataModificacao) {
+    public TreinoAplicacao(int id, String treino, String exercicio, String exercicioAplicacao, String divisaoTreino, String divisaoTreinoMusculo, LocalDate dataInicio, LocalDate dataTermino, LocalDate dataCriacao, LocalDate dataModificacao) {
         this.id = id;
         this.treino = treino;
         this.exercicio = exercicio;
@@ -73,23 +73,23 @@ public class TreinoAplicacao {
         this.divisaoTreinoMusculo = divisaoTreinoMusculo;
     }
 
-    public Date getDataInicio() {
+    public LocalDate getDataInicio() {
         return dataInicio;
     }
 
-    public Date getDataTermino() {
+    public LocalDate getDataTermino() {
         return dataTermino;
     }
 
-    public Date getDataCriacao() {
+    public LocalDate getDataCriacao() {
         return dataCriacao;
     }
 
-    public Date getDataModificacao() {
+    public LocalDate getDataModificacao() {
         return dataModificacao;
     }
 
-    public void setDataModificacao(Date dataModificacao) {
+    public void setDataModificacao(LocalDate dataModificacao) {
         this.dataModificacao = dataModificacao;
     }
 

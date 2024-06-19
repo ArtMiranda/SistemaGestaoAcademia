@@ -1,7 +1,6 @@
 package sgacad.view;
 
-import java.util.Calendar;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Scanner;
 import sgacad.model.*;
 import sgacad.controller.*;
@@ -33,7 +32,7 @@ public class MenuAcademia {
         String senhaPadrao = "adm";
 
         // Definir a data de nascimento como a data atual
-        Date dataAtual = Calendar.getInstance().getTime();
+        LocalDate dataAtual = LocalDate.now();
 
         PessoaController administradorController = new PessoaController();
         // Criar o objeto Pessoa para representar o administrador padrao
@@ -963,7 +962,7 @@ public class MenuAcademia {
 
             switch (opcao) {
                 case 1:
-                    PagamentoRecorrenteView.cadastrarPagamentoRecorente();
+                    PagamentoRecorrenteView.cadastrarPagamentoRecorrente();
                     break;
                 case 2:
                     PagamentoRecorrenteView.listarPagamentosRecorrentes();

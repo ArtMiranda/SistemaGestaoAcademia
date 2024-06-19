@@ -1,21 +1,20 @@
 package sgacad.controller;
 
-import java.util.Calendar;
-import java.util.Date;
+import java.time.LocalDate;
 
 import sgacad.model.TreinoAplicacao;
 import sgacad.view.TreinoAplicacaoView;
 
 public class TreinoAplicacaoController {
     public TreinoAplicacao geraTreinoAplicacao(int id, int idExercicio) {
-        Date currentDate = Calendar.getInstance().getTime();
+        LocalDate currentDate = LocalDate.now();
         String treino = TreinoController.getTreinoById(id).getObjetivo();
         String exercicioAplicacao = ExercicioController.getExercicioById(idExercicio).getNome();
         String divisaoTreino = DivisaoTreinoController.getDivisaoTreinoById(idExercicio).getNome();
         String divisaoTreinoMusculo = DivisaoTreinoMusculoController.getDivisaoTreinoMusculoById(idExercicio).getDivisaoTreino();
         String exercicio = ExercicioController.getExercicioById(idExercicio).getNome();
-        Date dataInicio = TreinoController.getTreinoById(id).getDataInicio();
-        Date dataTermino = TreinoController.getTreinoById(id).getDataTermino();
+        LocalDate dataInicio = TreinoController.getTreinoById(id).getDataInicio();
+        LocalDate dataTermino = TreinoController.getTreinoById(id).getDataTermino();
         TreinoAplicacao treinoAplicacao = new TreinoAplicacao(id, treino, exercicio, exercicioAplicacao, divisaoTreino, divisaoTreinoMusculo, dataInicio, dataTermino, currentDate, currentDate);
         return treinoAplicacao;
     }
@@ -37,7 +36,7 @@ public class TreinoAplicacaoController {
             if (novoExercicioAplicacao != null) treinoAplicacao.setExercicioAplicacao(novoExercicioAplicacao);
             if (novaDivisaoTreino != null) treinoAplicacao.setDivisaoTreino(novaDivisaoTreino);
             if (novaDivisaoTreinoMusculo != null) treinoAplicacao.setDivisaoTreinoMusculo(novaDivisaoTreinoMusculo);
-            treinoAplicacao.setDataModificacao(Calendar.getInstance().getTime());
+            treinoAplicacao.setDataModificacao(LocalDate.now());
         }
     }
     

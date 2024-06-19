@@ -1,18 +1,17 @@
 package sgacad.model;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 public class Academia {
     private int id;
     private String nome;
     private String endereco;
-    private Date dataCriacao;
-    private Date dataModificacao;
+    private LocalDate dataCriacao;
+    private LocalDate dataModificacao;
     private Pessoa[] alunosMatriculados;
     private int numAlunosMatriculados;
 
     // Construtor
-    public Academia(int id, String nome, String endereco, Date dataCriacao, Date dataModificacao) {
+    public Academia(int id, String nome, String endereco, LocalDate dataCriacao, LocalDate dataModificacao) {
         this.id = id;
         this.nome = nome;
         this.endereco = endereco;
@@ -23,8 +22,8 @@ public class Academia {
     }
 
     public static Academia criarAcademia(int id, String nome, String endereco) {
-        Date dataCriacao = new Date();
-        Date dataModificacao = new Date();
+        LocalDate dataCriacao = LocalDate.now();
+        LocalDate dataModificacao = LocalDate.now();
         return new Academia(id, nome, endereco, dataCriacao, dataModificacao);
     }
 
@@ -37,9 +36,9 @@ public class Academia {
         return detalhes;
     }
 
-    private String formatarData(Date data) {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        return sdf.format(data);
+    private String formatarData(LocalDate data) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return data.format(formatter);
     }
 
     // Metodo para matricular um aluno
@@ -74,19 +73,19 @@ public class Academia {
         this.endereco = endereco;
     }
 
-    public Date getDataCriacao() {
+    public LocalDate getDataCriacao() {
         return dataCriacao;
     }
 
-    public void setDataCriacao(Date dataCriacao) {
+    public void setDataCriacao(LocalDate dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
 
-    public Date getDataModificacao() {
+    public LocalDate getDataModificacao() {
         return dataModificacao;
     }
 
-    public void setDataModificacao(Date dataModificacao) {
+    public void setDataModificacao(LocalDate dataModificacao) {
         this.dataModificacao = dataModificacao;
     }
 

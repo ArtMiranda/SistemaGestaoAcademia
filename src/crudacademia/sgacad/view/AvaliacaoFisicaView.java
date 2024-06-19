@@ -1,7 +1,7 @@
 package sgacad.view;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 import sgacad.controller.AvaliacaoFisicaController;
@@ -94,9 +94,9 @@ public class AvaliacaoFisicaView {
             System.out.println("\nAvaliacao fisica removida com sucesso\n");
     }
 
-    private static String formatarData(Date data) {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        return sdf.format(data);
+    private static String formatarData(LocalDate data) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return data.format(formatter);
     }
     
 }
