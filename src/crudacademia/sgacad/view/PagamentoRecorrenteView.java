@@ -2,7 +2,6 @@ package sgacad.view;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
 import java.util.Scanner;
 
 import sgacad.controller.MensalidadeVigenteController;

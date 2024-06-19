@@ -1,9 +1,8 @@
 package sgacad.view;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 import sgacad.controller.TreinoController;
@@ -24,38 +23,38 @@ public class TreinoView {
         }
 
         // Data de Inicio
-        Date dataInicio = null;
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        LocalDate dataInicio = null;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         boolean dataValida = false;
         while (!dataValida) {
             try {
                 System.out.print("\nInforme a data de Inicio (dd/MM/yyyy): ");
                 String dataInicioStr = scanner.nextLine().trim();
-                dataInicio = sdf.parse(dataInicioStr);
-                if (dataInicio.before(Calendar.getInstance().getTime())) {
+                dataInicio = LocalDate.parse(dataInicioStr, formatter);
+                if (dataInicio.isBefore(LocalDate.now())) {
                     System.out.print("\nData de inicio nao pode ser no passado. Informe novamente.");
                 } else {
                     dataValida = true;
                 }
-            } catch (ParseException e) {
+            } catch (DateTimeParseException e) {
                 System.out.print("\nFormato de data invalido. Use o formato dd/MM/yyyy.");
             }
         }
 
         // Data de Termino
-        Date dataTermino = null;
+        LocalDate dataTermino = null;
         dataValida = false;
         while (!dataValida) {
             try {
                 System.out.print("\nInforme a data de Termino (dd/MM/yyyy): ");
                 String dataTerminoStr = scanner.nextLine().trim();
-                dataTermino = sdf.parse(dataTerminoStr);
-                if (dataTermino.before(dataInicio)) {
+                dataTermino = LocalDate.parse(dataTerminoStr, formatter);
+                if (dataTermino.isBefore(dataInicio)) {
                     System.out.print("\nData de termino deve ser posterior à data de inicio. Informe novamente.");
                 } else {
                     dataValida = true;
                 }
-            } catch (ParseException e) {
+            } catch (DateTimeParseException e) {
                 System.out.print("\nFormato de data invalido. Use o formato dd/MM/yyyy.");
             }
         }
@@ -141,8 +140,8 @@ public class TreinoView {
             }
 
             // Data de Inicio
-            Date novaDataInicio = null;
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            LocalDate novaDataInicio = null;
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             boolean dataValida = false;
             while (!dataValida) {
                 try {
@@ -151,13 +150,13 @@ public class TreinoView {
                     if (dataInicioStr.isEmpty()) {
                         break;
                     }
-                    novaDataInicio = sdf.parse(dataInicioStr);
-                    if (novaDataInicio.before(Calendar.getInstance().getTime())) {
+                    novaDataInicio = LocalDate.parse(dataInicioStr, formatter);
+                    if (novaDataInicio.isBefore(LocalDate.now())) {
                         System.out.print("\nData de inicio nao pode ser no passado. Informe novamente.");
                     } else {
                         dataValida = true;
                     }
-                } catch (ParseException e) {
+                } catch (DateTimeParseException e) {
                     System.out.print("\nFormato de data invalido. Use o formato dd/MM/yyyy.");
                 }
             }
@@ -166,7 +165,7 @@ public class TreinoView {
             }
 
             // Data de Termino
-            Date novaDataTermino = null;
+            LocalDate novaDataTermino = null;
             dataValida = false;
             while (!dataValida) {
                 try {
@@ -175,13 +174,13 @@ public class TreinoView {
                     if (dataTerminoStr.isEmpty()) {
                         break;
                     }
-                    novaDataTermino = sdf.parse(dataTerminoStr);
-                    if (novaDataTermino.before(novaDataInicio != null ? novaDataInicio : treino.getDataInicio())) {
+                    novaDataTermino = LocalDate.parse(dataTerminoStr, formatter);
+                    if (novaDataTermino.isBefore(novaDataInicio != null ? novaDataInicio : treino.getDataInicio())) {
                         System.out.print("\nData de termino deve ser posterior à data de inicio. Informe novamente.");
                     } else {
                         dataValida = true;
                     }
-                } catch (ParseException e) {
+                } catch (DateTimeParseException e) {
                     System.out.print("\nFormato de data invalido. Use o formato dd/MM/yyyy.");
                 }
             }
@@ -190,7 +189,7 @@ public class TreinoView {
             }
 
             // Data de modificacao
-            treino.setDataModificacao(Calendar.getInstance().getTime());
+            treino.setDataModificacao(LocalDate.now());
 
             System.out.print("\nDados do Treino atualizados com sucesso:");
             System.out.print("\n" + treino.exibirDetalhes());

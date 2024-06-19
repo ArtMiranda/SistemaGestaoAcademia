@@ -76,14 +76,14 @@ public class MenuAcademia {
         }
         for (int i = 0; i < PessoaView.numAlunos; i++) {
             if (login.equals(PessoaView.alunos[i].getLogin()) && senha.equals(PessoaView.alunos[i].getSenha())) {
-                if(AlunoPagamentoMensalidadeController.getPorIdAluno(PessoaView.alunos[i].getId()) == true){
+                if (AlunoPagamentoMensalidadeController.getPorIdAluno(PessoaView.alunos[i].getId()) == true) {
                     EntradaAlunoController.gerarEntradaAluno(PessoaView.alunos[i].getId());
                     idAlunoLogado = PessoaView.alunos[i].getId();
                     System.out.println("Login de Aluno bem-sucedido!");
                     exibirMenuALUNO();
-                }
-                else{
-                    System.out.println("Mensalidade nao esta paga! Procure alunoPagamentoMensalidade na recepcao e registre seu pagamento!");
+                } else {
+                    System.out.println(
+                            "Mensalidade nao esta paga! Procure alunoPagamentoMensalidade na recepcao e registre seu pagamento!");
                 }
                 return true;
             }
@@ -241,7 +241,7 @@ public class MenuAcademia {
         }
     }
 
-    public static void exibirMenuALUNO(){
+    public static void exibirMenuALUNO() {
         boolean loggedOut = false;
         while (!loggedOut) {
             System.out.println("\n\n----- Menu da Academia -----");
@@ -273,8 +273,6 @@ public class MenuAcademia {
             }
         }
     }
-
-
 
     private static void exibirMenuCRUDAluno() {
         boolean sair = false;
@@ -773,7 +771,7 @@ public class MenuAcademia {
         System.out.print("\nInforme o ID do ultimo treino: ");
         int ultimoTreino = scanner.nextInt();
         scanner.nextLine(); // Limpar o buffer do teclado
-        
+
         System.out.print("Informe o peso (kg): ");
         double peso = scanner.nextDouble();
         scanner.nextLine(); // Limpar o buffer do teclado
@@ -823,7 +821,7 @@ public class MenuAcademia {
         }
     }
 
-    public static void exibirMenuCRUDAlunoPagamentoMensalidade(){
+    public static void exibirMenuCRUDAlunoPagamentoMensalidade() {
         boolean loggedOut = false;
         while (!loggedOut) {
             System.out.println("\n\n----- Menu de Pagamento de Mensalidade -----");
@@ -861,7 +859,7 @@ public class MenuAcademia {
         }
     }
 
-    public static void exibirMenuCRUDEntradaAluno(){
+    public static void exibirMenuCRUDEntradaAluno() {
         boolean loggedOut = false;
         while (!loggedOut) {
             System.out.println("\n\n----- Menu de Entrada de Aluno -----");
@@ -895,7 +893,7 @@ public class MenuAcademia {
         }
     }
 
-    public static void exibirMenuCRUDMovimentacoesFinanceiras(){
+    public static void exibirMenuCRUDMovimentacoesFinanceiras() {
         boolean loggedOut = false;
         while (!loggedOut) {
             System.out.println("\n\n----- Menu de Movimentacoes Financeiras -----");
@@ -945,7 +943,7 @@ public class MenuAcademia {
         }
     }
 
-    public static void exibirMenuCRUDPagamentoRecorrente(){
+    public static void exibirMenuCRUDPagamentoRecorrente() {
         boolean loggedOut = false;
         while (!loggedOut) {
             System.out.println("\n\n----- Menu de Pagamento Recorrente -----");
@@ -985,6 +983,5 @@ public class MenuAcademia {
             }
         }
     }
-
 
 }
