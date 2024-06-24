@@ -1,8 +1,9 @@
 package sgacad.view;
 
 import sgacad.model.Academia;
-import java.util.Scanner;
 import sgacad.controller.AcademiaController;
+
+import java.util.Scanner;
 
 public class AcademiaView {
     private static Scanner scanner = new Scanner(System.in);
@@ -28,6 +29,17 @@ public class AcademiaView {
         if (academia != null) {
             System.out.println("\n\n----- Detalhes da Academia -----");
             System.out.println(academia.exibirDetalhes());
+        } else {
+            System.out.println("Nenhuma academia criada ainda.");
+        }
+    }
+
+    public static void buscarAcademiaUnica() {
+        AcademiaController academiaController = new AcademiaController();
+        Academia academia = academiaController.buscarAcademiaUnica();
+
+        if (academia != null) {
+            exibirDetalhesAcademia(academia);
         } else {
             System.out.println("Nenhuma academia criada ainda.");
         }
