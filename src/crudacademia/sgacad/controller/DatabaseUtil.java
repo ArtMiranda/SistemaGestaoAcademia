@@ -19,7 +19,7 @@ public class DatabaseUtil {
 
     public static void createDatabase() {
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-             Statement statement = connection.createStatement()) {
+                Statement statement = connection.createStatement()) {
             statement.executeUpdate("DROP DATABASE IF EXISTS " + DATABASE_NAME);
             statement.executeUpdate("CREATE DATABASE " + DATABASE_NAME);
         } catch (SQLException e) {
@@ -29,7 +29,7 @@ public class DatabaseUtil {
 
     public static void createTables() {
         try (Connection connection = getConnection();
-             Statement statement = connection.createStatement()) {
+                Statement statement = connection.createStatement()) {
             statement.executeUpdate("USE " + DATABASE_NAME);
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS academia (" +
                     "id INT AUTO_INCREMENT PRIMARY KEY," +
@@ -75,6 +75,7 @@ public class DatabaseUtil {
                     "login VARCHAR(50) NOT NULL UNIQUE," +
                     "senha VARCHAR(50) NOT NULL," +
                     "data_modificacao DATE)");
+
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS aluno_pagamento_mensalidade (" +
                     "id INT AUTO_INCREMENT PRIMARY KEY," +
                     "mensalidade_vigente DOUBLE NOT NULL," +
@@ -86,12 +87,19 @@ public class DatabaseUtil {
                     "data_criacao DATE NOT NULL," +
                     "data_modificacao DATE NOT NULL," +
                     "FOREIGN KEY (id_aluno) REFERENCES Alunos(id))");
-    
+
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS entradas_aluno (" +
+                    "id INT AUTO_INCREMENT PRIMARY KEY," +
+                    "id_aluno INT NOT NULL," +
+                    "data_hora DATETIME NOT NULL," +
+                    "data_criacao DATE NOT NULL," +
+                    "data_modificacao DATE NOT NULL," +
+                    "FOREIGN KEY (id_aluno) REFERENCES Alunos(id))");
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-    
 
     public static void main(String[] args) {
         createDatabase();
