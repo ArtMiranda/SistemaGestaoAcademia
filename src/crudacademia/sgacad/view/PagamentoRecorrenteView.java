@@ -16,12 +16,12 @@ public class PagamentoRecorrenteView {
     private static Scanner scanner = new Scanner(System.in);
 
     public static void cadastrarPagamentoRecorrente() {
-        PessoaView.exibirTodosAlunos();
+        PessoaView.exibirTodos("Aluno");
         System.out.print("\nInforme o ID do aluno: ");
         int idPessoa = scanner.nextInt();
         scanner.nextLine();
 
-        if (PessoaController.getAlunoById(idPessoa) == null) {
+        if (PessoaController.getPessoaById(idPessoa, "Aluno") == null) {
             System.out.println("Aluno não encontrado.");
             return;
         }
@@ -48,7 +48,7 @@ public class PagamentoRecorrenteView {
 
         System.out.println("\n\nConfirme os dados: ");
         System.out.println("Aluno de ID: " + idPessoa);
-        System.out.println("Nome do Aluno: " + PessoaController.getAlunoById(idPessoa).getNome());
+        System.out.println("Nome do Aluno: " + PessoaController.getPessoaById(idPessoa, "Aluno").getNome());
         System.out.println("Nº do Cartão de Crédito: " + cartaoCredito);
         System.out.println("Nº de Meses Restantes: " + numeroMesesAutorizados);
         System.out.println("Valor Mensalidade: "
@@ -84,12 +84,12 @@ public class PagamentoRecorrenteView {
     }
 
     public static void listarPagamentosRecorrentesPorIdPessoa() {
-        PessoaView.exibirTodosAlunos();
+        PessoaView.exibirTodos("Aluno");
         System.out.print("\nInforme o ID do aluno: ");
         int idPessoa = scanner.nextInt();
         scanner.nextLine();
 
-        if (PessoaController.getAlunoById(idPessoa) == null) {
+        if (PessoaController.getPessoaById(idPessoa, "Aluno") == null) {
             System.out.println("Aluno não encontrado.");
             return;
         }

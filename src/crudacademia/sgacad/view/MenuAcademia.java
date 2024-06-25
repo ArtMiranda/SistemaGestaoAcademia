@@ -1,6 +1,5 @@
 package sgacad.view;
 
-import java.time.LocalDate;
 import java.util.Scanner;
 import sgacad.model.*;
 import sgacad.controller.*;
@@ -10,7 +9,6 @@ public class MenuAcademia {
     private static int idAlunoLogado;
 
     public static void main(String[] args) {
-        criarAdministradorPadrao();
 
         while (true) {
             if (AcademiaView.academia == null) {
@@ -24,31 +22,31 @@ public class MenuAcademia {
         }
     }
 
-    private static void criarAdministradorPadrao() {
-        // Definir os dados do administrador padrao
-        String nomePadrao = "Administrador Padrao";
-        char sexoPadrao = 'F';
-        String loginPadrao = "adm";
-        String senhaPadrao = "adm";
+    // private static void criarAdministradorPadrao() {
+    //     // Definir os dados do administrador padrao
+    //     String nomePadrao = "Administrador Padrao";
+    //     char sexoPadrao = 'F';
+    //     String loginPadrao = "adm";
+    //     String senhaPadrao = "adm";
 
-        // Definir a data de nascimento como a data atual
-        LocalDate dataAtual = LocalDate.now();
+    //     // Definir a data de nascimento como a data atual
+    //     LocalDate dataAtual = LocalDate.now();
 
-        PessoaController administradorController = new PessoaController();
-        // Criar o objeto Pessoa para representar o administrador padrao
-        Pessoa administradorPadrao = administradorController.criarPessoa(PessoaView.numAdministradores,
-                nomePadrao,
-                sexoPadrao,
-                dataAtual, loginPadrao, senhaPadrao, "Administrador");
+    //     PessoaController administradorController = new PessoaController();
+    //     // Criar o objeto Pessoa para representar o administrador padrao
+    //     Pessoa administradorPadrao = administradorController.criarPessoa(PessoaView.numAdministradores,
+    //             nomePadrao,
+    //             sexoPadrao,
+    //             dataAtual, loginPadrao, senhaPadrao, "Administrador");
 
-        // Adicionar o administrador padrao ao array de administradores
-        PessoaView.administradores[PessoaView.numAdministradores] = administradorPadrao;
-        PessoaView.numAdministradores++;
-        System.out.println("Administrador padrao criado com sucesso!");
-    }
+    //     // Adicionar o administrador padrao ao array de administradores
+    //     PessoaView.administradores[PessoaView.numAdministradores] = administradorPadrao;
+    //     PessoaView.numAdministradores++;
+    //     System.out.println("Administrador padrao criado com sucesso!");
+    // }
 
     private static boolean efetuarLogin() {
-        System.out.println("\n\n----- Faca login ou digite 'sair' para sair do programa -----");
+        System.out.println("\n\n----- Faça login ou digite 'sair' para sair do programa -----");
         System.out.print("Login: ");
         String login = scanner.nextLine();
         if (login.equalsIgnoreCase("sair")) {
@@ -57,39 +55,42 @@ public class MenuAcademia {
         }
         System.out.print("Senha: ");
         String senha = scanner.nextLine();
-
-        for (int i = 0; i < PessoaView.numAdministradores; i++) {
-            if (login.equals(PessoaView.administradores[i].getLogin())
-                    && senha.equals(PessoaView.administradores[i].getSenha())) {
-                System.out.println("Login de Administrador bem-sucedido!");
-                exibirMenuADM();
-                return true;
-            }
+    
+        // Tentativa de autenticar como administrador
+        Pessoa administrador = PessoaController.autenticarPessoa(login, senha, "Administrador");
+        if (administrador != null) {
+            System.out.println("Login de Administrador bem-sucedido!");
+            exibirMenuADM();
+            return true;
         }
-        for (int i = 0; i < PessoaView.numProfessoresInstrutores; i++) {
-            if (login.equals(PessoaView.professoresInstrutores[i].getLogin())
-                    && senha.equals(PessoaView.professoresInstrutores[i].getSenha())) {
-                System.out.println("Login de Professor/Instrutor bem-sucedido!");
-                exibirMenuPRO();
-                return true;
-            }
+    
+        // Tentativa de autenticar como professor/instrutor
+        Pessoa professorInstrutor = PessoaController.autenticarPessoa(login, senha, "Professor/Instrutor");
+        if (professorInstrutor != null) {
+            System.out.println("Login de Professor/Instrutor bem-sucedido!");
+            exibirMenuPRO();
+            return true;
         }
-        for (int i = 0; i < PessoaView.numAlunos; i++) {
-            if (login.equals(PessoaView.alunos[i].getLogin()) && senha.equals(PessoaView.alunos[i].getSenha())) {
-                if (AlunoPagamentoMensalidadeController.getPorIdAluno(PessoaView.alunos[i].getId()) == true) {
-                    EntradaAlunoController.gerarEntradaAluno(PessoaView.alunos[i].getId());
-                    idAlunoLogado = PessoaView.alunos[i].getId();
-                    System.out.println("Login de Aluno bem-sucedido!");
-                    exibirMenuALUNO();
-                } else {
-                    System.out.println(
-                            "Mensalidade nao esta paga! Procure alunoPagamentoMensalidade na recepcao e registre seu pagamento!");
-                }
-                return true;
+    
+        // Tentativa de autenticar como aluno
+        Pessoa aluno = PessoaController.autenticarPessoa(login, senha, "Aluno");
+        if (aluno != null) {
+            if (AlunoPagamentoMensalidadeController.getPorIdAluno(aluno.getId())) {
+                EntradaAlunoController.gerarEntradaAluno(aluno.getId());
+                idAlunoLogado = aluno.getId();
+                System.out.println("Login de Aluno bem-sucedido!");
+                exibirMenuALUNO();
+            } else {
+                System.out.println("Mensalidade nao esta paga, procure alguem na secretaria e regularize sua matricula!");
             }
+            return true;
         }
+    
+        // Se nenhum usuário foi autenticado
+        System.out.println("Login ou senha incorretos.");
         return false;
     }
+    
 
     private static void exibirMenuADM() {
         boolean loggedOut = false;
@@ -294,20 +295,19 @@ public class MenuAcademia {
                     criarAluno();
                     break;
                 case 2:
-                    PessoaView.exibirTodosAlunos();
-                    break;
+                PessoaView.exibirTodos("Aluno");
+                break;
                 case 3:
-                    PessoaView.exibirTodosAlunos();
-                    PessoaView.exibirDadosAlunoPorId();
+                PessoaView.exibirTodos("Aluno");
+                PessoaView.exibirDadosPorId("Aluno");
                     break;
                 case 4:
-                    PessoaView.exibirTodosAlunos();
-                    PessoaView.atualizarAluno();
+                PessoaView.exibirTodos("Aluno");
+                PessoaView.atualizarPessoa("Aluno");
                     break;
                 case 5:
-                    PessoaView.exibirTodosAlunos();
-
-                    PessoaView.removerAlunoPorId();
+                PessoaView.exibirTodos("Aluno");
+                PessoaView.removerPessoaPorId("Aluno");
                     break;
                 case 0:
                     sair = true;
@@ -318,13 +318,9 @@ public class MenuAcademia {
         }
     }
 
-    public static Pessoa criarAluno() {
+    public static void criarAluno() {
         System.out.println("\n\n----- Criacao da Conta de Aluno -----");
-        Pessoa aluno = PessoaView.criarPessoa("Aluno");
-
-        PessoaView.alunos[PessoaView.numAlunos] = aluno;
-        PessoaView.numAlunos++;
-        return aluno;
+        PessoaView.criarPessoa("Aluno");
     }
 
     private static void exibirMenuCRUDAdministrador() {
@@ -347,19 +343,19 @@ public class MenuAcademia {
                     criarContaAdministrador();
                     break;
                 case 2:
-                    PessoaView.exibirTodosAdministradores();
+                    PessoaView.exibirTodos("Administrador");
                     break;
                 case 3:
-                    PessoaView.exibirTodosAdministradores();
-                    PessoaView.exibirDadosAdministradorPorId();
+                PessoaView.exibirTodos("Administrador");
+                PessoaView.exibirDadosPorId("Administrador");
                     break;
                 case 4:
-                    PessoaView.exibirTodosAdministradores();
-                    PessoaView.atualizarAdministrador();
+                    PessoaView.exibirTodos("Administrador");
+                    PessoaView.atualizarPessoa("Administrador");
                     break;
                 case 5:
-                    PessoaView.exibirTodosAdministradores();
-                    PessoaView.removerAdministradorPorId();
+                PessoaView.exibirTodos("Administrador");
+                PessoaView.removerPessoaPorId("Administrador");
                     break;
                 case 0:
                     System.out.println("Retornando ao Menu Principal...");
@@ -373,16 +369,12 @@ public class MenuAcademia {
 
     private static void criarContaAdministrador() {
         System.out.println("\n\n----- Criacao da Conta do Administrador -----");
-        PessoaView.administradores[PessoaView.numAdministradores] = criarAdministrador();
-        PessoaView.numAdministradores++;
+        criarAdministrador();
     }
 
-    private static Pessoa criarAdministrador() {
+    private static void criarAdministrador() {
         System.out.println("Informe os dados para criar o Administrador:");
-
-        Pessoa admin = PessoaView.criarPessoa("Administrador");
-
-        return admin;
+        PessoaView.criarPessoa("Administrador");
     }
 
     private static void exibirMenuCRUDProfessor() {
@@ -405,20 +397,19 @@ public class MenuAcademia {
                     criarContaProfessor();
                     break;
                 case 2:
-                    PessoaView.exibirTodosProfessoresInstrutores();
+                PessoaView.exibirTodos("Professor/Instrutor");
                     break;
                 case 3:
-                    PessoaView.exibirTodosProfessoresInstrutores();
-                    PessoaView.exibirDadosProfessorPorId();
+                PessoaView.exibirTodos("Professor/Instrutor");
+                PessoaView.exibirDadosPorId("Professor/Instrutor");
                     break;
                 case 4:
-                    PessoaView.exibirTodosProfessoresInstrutores();
-
-                    PessoaView.atualizarProfessorInstrutor();
+                PessoaView.exibirTodos("Professor/Instrutor");
+                PessoaView.atualizarPessoa("Professor/Instrutor");
                     break;
                 case 5:
-                    PessoaView.exibirTodosProfessoresInstrutores();
-                    PessoaView.removerProfessorPorId();
+                PessoaView.exibirTodos("Professor/Instrutor");
+                PessoaView.removerPessoaPorId("Professor/Instrutor");
                     break;
                 case 0:
                     System.out.println("Retornando ao Menu Principal...");
@@ -432,16 +423,12 @@ public class MenuAcademia {
 
     private static void criarContaProfessor() {
         System.out.println("\n\n----- Criacao da Conta do Professor/Instrutor -----");
-        PessoaView.professoresInstrutores[PessoaView.numProfessoresInstrutores] = criarProfessorInstrutor();
-        PessoaView.numProfessoresInstrutores++;
+        criarProfessorInstrutor();
     }
 
-    private static Pessoa criarProfessorInstrutor() {
+    private static void criarProfessorInstrutor() {
         System.out.println("Informe os dados para criar o Professor/Instrutor:");
-
-        Pessoa prof = PessoaView.criarPessoa("Professor/Instrutor");
-
-        return prof;
+        PessoaView.criarPessoa("Professor/Instrutor");
     }
 
     private static void exibirMenuCRUDExercicios() {
@@ -762,7 +749,7 @@ public class MenuAcademia {
 
     private static void calcularIMC() {
         System.out.println("\n\n----- Calculo do Indice de Massa Corporal (IMC) -----");
-        PessoaView.exibirTodosAlunos();
+        PessoaView.exibirTodos("Aluno");
         System.out.print("Informe o ID do aluno: ");
         int id = scanner.nextInt();
         scanner.nextLine(); // Limpar o buffer do teclado
@@ -931,7 +918,7 @@ public class MenuAcademia {
                     MovimentacaoFinanceiraView.relatorioMovimentacoesFinaceiras();
                     break;
                 case 7:
-                    MovimentacaoFinanceiraView.exibirAlunosAdimplentes();
+                    // MovimentacaoFinanceiraView.exib/ir();
                     break;
                 case 0:
                     loggedOut = true;

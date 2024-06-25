@@ -24,10 +24,10 @@ public class EntradaAlunoView {
     }
 
     public static void visualizarEntradaPorAluno(){
-        PessoaView.exibirTodosAlunos();
+        PessoaView.exibirTodos("Aluno");
         System.out.print("\nDigite o ID do aluno: ");
         int idAluno = scanner.nextInt();
-        if(PessoaController.getAlunoById(idAluno) == null){
+        if(PessoaController.getPessoaById(idAluno, "Aluno") == null){
             System.out.println("Aluno nao encontrado.");
             return;
         }

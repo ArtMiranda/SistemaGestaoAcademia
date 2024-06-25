@@ -25,8 +25,6 @@ public class TreinoController {
             // Obter o ID gerado para o treino e definir no objeto Treino
             ResultSet rs = stmt.getGeneratedKeys();
             if (rs.next()) {
-                int id = rs.getInt(1);
-                Treino treino = new Treino(id, objetivo, dataInicio, dataTermino, LocalDate.now(), LocalDate.now());
             }
         } catch (SQLException e) {
             e.printStackTrace();

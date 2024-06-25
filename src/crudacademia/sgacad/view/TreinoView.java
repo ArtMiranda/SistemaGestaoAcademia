@@ -57,7 +57,7 @@ public class TreinoView {
             }
         }
 
-        treinoController.adicionarTreino(objetivo, dataInicio, dataTermino);
+        TreinoController.adicionarTreino(objetivo, dataInicio, dataTermino);
         System.out.println("\nTreino criado com sucesso!");
         return null; // Não estamos mais retornando um treino aqui, apenas adicionando ao banco de dados
     }
@@ -73,7 +73,7 @@ public class TreinoView {
         int idBusca = scanner.nextInt();
         scanner.nextLine(); // Limpar o buffer do teclado
 
-        Treino treino = treinoController.getTreinoById(idBusca);
+        Treino treino = TreinoController.getTreinoById(idBusca);
         if (treino != null) {
             System.out.println("\n----- Dados do Treino -----");
             System.out.println(treino.exibirDetalhes());
@@ -87,7 +87,7 @@ public class TreinoView {
         int idTreino = scanner.nextInt();
         scanner.nextLine(); // Limpar o buffer do teclado
 
-        Treino treino = treinoController.getTreinoById(idTreino);
+        Treino treino = TreinoController.getTreinoById(idTreino);
         if (treino != null) {
             System.out.println("\nDados atuais do Treino:");
             System.out.println(treino.exibirDetalhes());
@@ -146,7 +146,7 @@ public class TreinoView {
             treinoController.atualizarTreino(idTreino, novoObjetivo, novaDataInicio, novaDataTermino);
 
             System.out.println("\nDados do Treino atualizados com sucesso:");
-            Treino treinoAtualizado = treinoController.getTreinoById(idTreino);
+            Treino treinoAtualizado = TreinoController.getTreinoById(idTreino);
             System.out.println(treinoAtualizado.exibirDetalhes());
         } else {
             System.out.println("\nTreino com ID " + idTreino + " nao encontrado.");

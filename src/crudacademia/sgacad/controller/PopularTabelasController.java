@@ -4,19 +4,13 @@ import java.time.LocalDate;
 
 import sgacad.model.DivisaoTreino;
 import sgacad.model.DivisaoTreinoMusculo;
-import sgacad.model.Exercicio;
 import sgacad.model.ExercicioAplicacao;
-import sgacad.model.Pessoa;
-import sgacad.model.Treino;
 import sgacad.model.TreinoAplicacao;
 import sgacad.view.DivisaoTreinoMusculoView;
 import sgacad.view.DivisaoTreinoView;
 import sgacad.view.ExercicioAplicacaoView;
-import sgacad.view.ExercicioView;
 import sgacad.view.MensalidadeVigenteView;
-import sgacad.view.PessoaView;
 import sgacad.view.TreinoAplicacaoView;
-import sgacad.view.TreinoView;
 
 public class PopularTabelasController {
 
@@ -25,25 +19,39 @@ public class PopularTabelasController {
         LocalDate currentDate = LocalDate.now();
 
         // Alunos data
-        PessoaView.alunos[0] = new Pessoa(0, "Pablo", 'M', getDate(1990, 3, 20), "pablo", "pablo", "Aluno", currentDate, currentDate);
-        PessoaView.alunos[1] = new Pessoa(1, "Elaine", 'F', getDate(1992, 8, 25), "elaine", "elaine", "Aluno", currentDate, currentDate);
-        PessoaView.alunos[2] = new Pessoa(2, "Alexandre", 'M', getDate(1995, 11, 12), "alexandre", "alexandre", "Aluno", currentDate, currentDate);
-        PessoaView.alunos[3] = new Pessoa(3, "Michelle", 'F', getDate(1988, 4, 5), "michelle", "michelle", "Aluno", currentDate, currentDate);
-        PessoaView.alunos[4] = new Pessoa(4, "Fernando", 'M', getDate(1993, 9, 30), "fernando", "fernando", "Aluno", currentDate, currentDate);
-        PessoaView.alunos[5] = new Pessoa(5, "Nathalie", 'f', getDate(1997, 12, 18), "nathalie", "nathalie", "Aluno", currentDate, currentDate);
-        PessoaView.alunos[6] = new Pessoa(6, "Ricardo", 'M', getDate(1991, 6, 10), "ricardo", "ricardo", "Aluno", currentDate, currentDate);
-        PessoaView.alunos[7] = new Pessoa(7, "Juliana", 'F', getDate(1994, 1, 22), "juliana", "juliana", "Aluno", currentDate, currentDate);
+        // PessoaView.alunos[0] = new Pessoa(0, "Pablo", 'M', getDate(1990, 3, 20), "pablo", "pablo", "Aluno", currentDate, currentDate);
+        // PessoaView.alunos[1] = new Pessoa(1, "Elaine", 'F', getDate(1992, 8, 25), "elaine", "elaine", "Aluno", currentDate, currentDate);
+        // PessoaView.alunos[2] = new Pessoa(2, "Alexandre", 'M', getDate(1995, 11, 12), "alexandre", "alexandre", "Aluno", currentDate, currentDate);
+        // PessoaView.alunos[3] = new Pessoa(3, "Michelle", 'F', getDate(1988, 4, 5), "michelle", "michelle", "Aluno", currentDate, currentDate);
+        // PessoaView.alunos[4] = new Pessoa(4, "Fernando", 'M', getDate(1993, 9, 30), "fernando", "fernando", "Aluno", currentDate, currentDate);
+        // PessoaView.alunos[5] = new Pessoa(5, "Nathalie", 'f', getDate(1997, 12, 18), "nathalie", "nathalie", "Aluno", currentDate, currentDate);
+        // PessoaView.alunos[6] = new Pessoa(6, "Ricardo", 'M', getDate(1991, 6, 10), "ricardo", "ricardo", "Aluno", currentDate, currentDate);
+        // PessoaView.alunos[7] = new Pessoa(7, "Juliana", 'F', getDate(1994, 1, 22), "juliana", "juliana", "Aluno", currentDate, currentDate);
 
-        PessoaView.numAlunos = 8;
+        // PessoaView.numAlunos = 8;
 
-        PessoaView.professoresInstrutores[0] = new Pessoa(0, "Rafael", 'M', getDate(1985, 5, 15), "rafael", "rafael", "Professor/Instrutor", currentDate, currentDate);
-        PessoaView.professoresInstrutores[1] = new Pessoa(1, "Marcela", 'F', getDate(1987, 7, 10), "marcela", "marcela", "Professor/Instrutor", currentDate, currentDate);
+        // PessoaView.professoresInstrutores[0] = new Pessoa(0, "Rafael", 'M', getDate(1985, 5, 15), "rafael", "rafael", "Professor/Instrutor", currentDate, currentDate);
+        // PessoaView.professoresInstrutores[1] = new Pessoa(1, "Marcela", 'F', getDate(1987, 7, 10), "marcela", "marcela", "Professor/Instrutor", currentDate, currentDate);
 
-        PessoaView.numProfessoresInstrutores = 2;
+        // PessoaView.numProfessoresInstrutores = 2;
 
-        PessoaView.administradores[1] = new Pessoa(1, "Luciana", 'F', getDate(1980, 1, 1), "luciana", "luciana", "Administrador", currentDate, currentDate);
+        // PessoaView.administradores[1] = new Pessoa(1, "Luciana", 'F', getDate(1980, 1, 1), "luciana", "luciana", "Administrador", currentDate, currentDate);
 
-        PessoaView.numAdministradores = 2;
+        // PessoaView.numAdministradores = 2;
+
+        PessoaController.criarPessoa("Administradora Padrão", 'F', getDate(1990, 3, 20), "adm", "adm", "Administrador");
+        PessoaController.criarPessoa("Professor Padrão", 'M', getDate(1990, 3, 20), "prof", "prof", "Professor/Instrutor");
+        PessoaController.criarPessoa("Aluno Padrão", 'M', getDate(1990, 3, 20), "aluno", "aluno", "Aluno");
+        PessoaController.criarPessoa("Pablo", 'M', getDate(1990, 3, 20), "pablo", "pablo", "Aluno");
+        PessoaController.criarPessoa("Elaine", 'F', getDate(1992, 8, 25), "elaine", "elaine", "Aluno");
+        PessoaController.criarPessoa("Alexandre", 'M', getDate(1995, 11, 12), "alexandre", "alexandre", "Aluno");
+        PessoaController.criarPessoa("Michelle", 'F', getDate(1988, 4, 5), "michelle", "michelle", "Aluno");
+        PessoaController.criarPessoa("Fernando", 'M', getDate(1993, 9, 30), "fernando", "fernando", "Aluno");
+        PessoaController.criarPessoa("Nathalie", 'f', getDate(1997, 12, 18), "nathalie", "nathalie", "Aluno");
+        PessoaController.criarPessoa("Ricardo", 'M', getDate(1991, 6, 10), "ricardo", "ricardo", "Aluno");
+        PessoaController.criarPessoa("Juliana", 'F', getDate(1994, 1, 22), "juliana", "juliana", "Aluno");
+        PessoaController.criarPessoa("Rafael", 'M', getDate(1985, 5, 15), "rafael", "rafael", "Professor/Instrutor");
+        PessoaController.criarPessoa("Marcela", 'F', getDate(1987, 7, 10), "marcela", "marcela", "Professor/Instrutor");
 
 
         ExercicioController.adicionarExercicio("Supino", "Supino com barra");
@@ -54,7 +62,7 @@ public class PopularTabelasController {
         ExercicioController.adicionarExercicio("Cadeira Extensora", "Extensao de pernas na cadeira extensora");
         ExercicioController.adicionarExercicio("Puxada Frontal", "Puxada frontal na barra");
         ExercicioController.adicionarExercicio("Desenvolvimento de Ombros", "Desenvolvimento de ombros com halteres");
-        
+
 
         // ExercicioView.exercicios[0] = new Exercicio(0, "Supino", "Supino com barra", currentDate, currentDate);
         // ExercicioView.exercicios[1] = new Exercicio(1, "Agachamento", "Agachamento livre", currentDate, currentDate);
@@ -107,11 +115,11 @@ public class PopularTabelasController {
         MensalidadeVigenteController.cadastrar(MensalidadeVigenteView.numMensalidades, 69.90, getDate(2023, 12, 11), getDate(2024, 12, 10));
         MensalidadeVigenteController.cadastrar(MensalidadeVigenteView.numMensalidades, 79.90, getDate(2024, 12, 11), getDate(2025, 12, 10));
 
-        AlunoPagamentoMensalidadeController.gerarAlunoPagamentoMensalidade(MensalidadeVigenteController.getMensalidadeVigente().getValor(), 0, "PIX");
-        AlunoPagamentoMensalidadeController.gerarAlunoPagamentoMensalidade(MensalidadeVigenteController.getMensalidadeVigente().getValor() * 2, 1, "Dinheiro");
-        AlunoPagamentoMensalidadeController.gerarAlunoPagamentoMensalidade(MensalidadeVigenteController.getMensalidadeVigente().getValor() * 3, 2, "Debito automatico");
-        AlunoPagamentoMensalidadeController.gerarAlunoPagamentoMensalidade(MensalidadeVigenteController.getMensalidadeVigente().getValor() * 2, 3, "PIX");
-        AlunoPagamentoMensalidadeController.gerarAlunoPagamentoMensalidade(MensalidadeVigenteController.getMensalidadeVigente().getValor(), 4, "Pagamento reccorente");
+        AlunoPagamentoMensalidadeController.gerarAlunoPagamentoMensalidade(MensalidadeVigenteController.getMensalidadeVigente().getValor(), 1, "PIX");
+        AlunoPagamentoMensalidadeController.gerarAlunoPagamentoMensalidade(MensalidadeVigenteController.getMensalidadeVigente().getValor() * 2, 2, "Dinheiro");
+        AlunoPagamentoMensalidadeController.gerarAlunoPagamentoMensalidade(MensalidadeVigenteController.getMensalidadeVigente().getValor() * 3, 3, "Debito automatico");
+        AlunoPagamentoMensalidadeController.gerarAlunoPagamentoMensalidade(MensalidadeVigenteController.getMensalidadeVigente().getValor() * 2, 4, "PIX");
+        AlunoPagamentoMensalidadeController.gerarAlunoPagamentoMensalidade(MensalidadeVigenteController.getMensalidadeVigente().getValor(), 5, "Pagamento reccorente");
 
         MovimentacaoFinanceiraController.cadastrar(1200, 1, "Aluguel do Imovel");
         MovimentacaoFinanceiraController.cadastrar(650, 1, "Campanha de marketing");

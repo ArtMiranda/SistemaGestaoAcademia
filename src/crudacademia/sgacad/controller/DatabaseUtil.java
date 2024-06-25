@@ -1,11 +1,11 @@
 package sgacad.controller;
 
-import sgacad.view.MenuAcademia;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import sgacad.view.MenuAcademia;
 
 public class DatabaseUtil {
     private static final String URL = "jdbc:mysql://localhost:3306/";
@@ -37,16 +37,6 @@ public class DatabaseUtil {
                     "endereco VARCHAR(255) NOT NULL," +
                     "data_criacao DATE NOT NULL," +
                     "data_modificacao DATE NOT NULL)");
-            statement.executeUpdate("CREATE TABLE IF NOT EXISTS usuarios (" +
-                    "id INT AUTO_INCREMENT PRIMARY KEY," +
-                    "nome VARCHAR(255) NOT NULL," +
-                    "sexo VARCHAR(255) NOT NULL," +
-                    "nascimento DATE NOT NULL," +
-                    "login VARCHAR(255) NOT NULL," +
-                    "senha VARCHAR(255) NOT NULL," +
-                    "tipo_usuario VARCHAR(255) NOT NULL," +
-                    "data_criacao DATE NOT NULL," +
-                    "data_modificacao DATE NOT NULL)");
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS treinos (" +
                     "id INT AUTO_INCREMENT PRIMARY KEY," +
                     "objetivo VARCHAR(255) NOT NULL," +
@@ -60,16 +50,53 @@ public class DatabaseUtil {
                     "descricao TEXT NOT NULL," +
                     "dataCriacao DATE NOT NULL," +
                     "dataModificacao DATE NOT NULL)");
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS Administradores (" +
+                    "id INT PRIMARY KEY AUTO_INCREMENT," +
+                    "nome VARCHAR(100) NOT NULL," +
+                    "sexo CHAR(1) NOT NULL," +
+                    "nascimento DATE NOT NULL," +
+                    "login VARCHAR(50) NOT NULL UNIQUE," +
+                    "senha VARCHAR(50) NOT NULL," +
+                    "data_modificacao DATE)");
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS Alunos (" +
+                    "id INT PRIMARY KEY AUTO_INCREMENT," +
+                    "nome VARCHAR(100) NOT NULL," +
+                    "sexo CHAR(1) NOT NULL," +
+                    "nascimento DATE NOT NULL," +
+                    "login VARCHAR(50) NOT NULL UNIQUE," +
+                    "senha VARCHAR(50) NOT NULL," +
+                    "data_modificacao DATE)");
+
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS ProfessoresInstrutores (" +
+                    "id INT PRIMARY KEY AUTO_INCREMENT," +
+                    "nome VARCHAR(100) NOT NULL," +
+                    "sexo CHAR(1) NOT NULL," +
+                    "nascimento DATE NOT NULL," +
+                    "login VARCHAR(50) NOT NULL UNIQUE," +
+                    "senha VARCHAR(50) NOT NULL," +
+                    "data_modificacao DATE)");
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS aluno_pagamento_mensalidade (" +
+                    "id INT AUTO_INCREMENT PRIMARY KEY," +
+                    "mensalidade_vigente DOUBLE NOT NULL," +
+                    "data_vencimento DATE NOT NULL," +
+                    "data_pagamento DATE NOT NULL," +
+                    "valor_pago DOUBLE NOT NULL," +
+                    "id_aluno INT NOT NULL," +
+                    "modalidade VARCHAR(255) NOT NULL," +
+                    "data_criacao DATE NOT NULL," +
+                    "data_modificacao DATE NOT NULL," +
+                    "FOREIGN KEY (id_aluno) REFERENCES Alunos(id))");
+    
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+    
 
     public static void main(String[] args) {
         createDatabase();
         createTables();
         System.out.println("Banco de dados e tabelas criados com sucesso.");
-
         MenuAcademia.main(args);
     }
 }

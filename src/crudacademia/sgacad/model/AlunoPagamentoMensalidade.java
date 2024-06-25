@@ -1,5 +1,4 @@
 package sgacad.model;
-
 import java.time.LocalDate;
 
 public class AlunoPagamentoMensalidade {
@@ -13,6 +12,7 @@ public class AlunoPagamentoMensalidade {
     private LocalDate dataCriacao;
     private LocalDate dataModificacao;
 
+
     public AlunoPagamentoMensalidade(int id, double mensalidadeVigente, LocalDate dataVencimento, LocalDate dataPagamento, double valorPago, int idAluno, String modalidade, LocalDate dataCriacao, LocalDate dataModificacao) {
         this.id = id;
         this.mensalidadeVigente = mensalidadeVigente;
@@ -24,6 +24,7 @@ public class AlunoPagamentoMensalidade {
         this.dataCriacao = dataCriacao;
         this.dataModificacao = dataModificacao;
     }
+
 
     public int getId() {
         return id;

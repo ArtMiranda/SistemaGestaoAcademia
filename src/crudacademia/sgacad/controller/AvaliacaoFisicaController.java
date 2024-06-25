@@ -16,7 +16,7 @@ public class AvaliacaoFisicaController {
 
     public static AvaliacaoFisica geraAvaliacaoFisica(int id, int ultimoTreinoId, double peso, double altura, int indiceSatisfacaoResultado) {
         
-        String nomePessoa = PessoaController.getAlunoById(id).getNome();
+        String nomePessoa = PessoaController.getPessoaById(id, "Aluno").getNome();
         String ultimoTreino = TreinoController.getTreinoById(ultimoTreinoId).getObjetivo();
 
         LocalDate currentDate = LocalDate.now();

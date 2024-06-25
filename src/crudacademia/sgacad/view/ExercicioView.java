@@ -28,7 +28,6 @@ public class ExercicioView {
             descricao = scanner.nextLine().trim();
         }
 
-        exercicioController.adicionarExercicio(nome, descricao);
         return null; // Não estamos mais retornando um exercício aqui, apenas adicionando ao banco de dados
     }
 
@@ -37,7 +36,7 @@ public class ExercicioView {
             System.out.println("\n\nNenhum exercicio cadastrado ainda.");
         } else {
             System.out.println("\n\nLista de Exercicios:");
-            for (Exercicio exercicio : exercicioController.listarExercicios()) {
+            for (Exercicio exercicio : ExercicioController.listarExercicios()) {
                 if (exercicio != null) {
                     System.out.println("ID: " + exercicio.getId() + ", Nome: " + exercicio.getNome());
                 }
@@ -63,7 +62,7 @@ public class ExercicioView {
             }
         }
 
-        Exercicio exercicio = exercicioController.getExercicioById(idBusca);
+        Exercicio exercicio = ExercicioController.getExercicioById(idBusca);
         if (exercicio != null) {
             System.out.println("\n\n----- Dados do Exercicio -----\n\n");
             System.out.println(exercicio.exibirDetalhes());
@@ -90,7 +89,7 @@ public class ExercicioView {
             }
         }
 
-        Exercicio exercicio = exercicioController.getExercicioById(idExercicio);
+        Exercicio exercicio = ExercicioController.getExercicioById(idExercicio);
         if (exercicio != null) {
             System.out.println("\nDados atuais do Exercicio:");
             System.out.println(exercicio.exibirDetalhes());
@@ -140,7 +139,7 @@ public class ExercicioView {
             }
         }
 
-        Exercicio exercicio = exercicioController.getExercicioById(idExercicio);
+        Exercicio exercicio = ExercicioController.getExercicioById(idExercicio);
         if (exercicio != null) {
             exercicioController.removerExercicio(idExercicio);
             System.out.println("\nExercicio removido com sucesso!");

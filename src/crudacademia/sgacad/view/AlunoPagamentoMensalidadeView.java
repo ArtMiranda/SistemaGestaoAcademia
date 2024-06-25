@@ -1,22 +1,24 @@
 package sgacad.view;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 import sgacad.controller.AlunoPagamentoMensalidadeController;
+import sgacad.controller.DatabaseUtil;
 import sgacad.controller.MensalidadeVigenteController;
 import sgacad.controller.PessoaController;
 import sgacad.model.AlunoPagamentoMensalidade;
 
-
 public class AlunoPagamentoMensalidadeView {
-    public static AlunoPagamentoMensalidade[] alunosPagamentosMensalidades = new AlunoPagamentoMensalidade[100];
-    public static int numPagamentos = 0;
     private static Scanner scanner = new Scanner(System.in);
 
-    public static void gerarAlunoPagamentoMensalidade(){
-        PessoaView.exibirTodosAlunos();
+    public static void gerarAlunoPagamentoMensalidade() {
+        PessoaView.exibirTodos("Aluno");
         System.out.print("\n\nInforme o ID do Aluno: ");
         int idAluno = scanner.nextInt();
         scanner.nextLine();
@@ -52,24 +54,33 @@ public class AlunoPagamentoMensalidadeView {
         System.out.println("Valor total: " + String.format("%.2f", mesesPagos * MensalidadeVigenteController.getMensalidadeVigente().getValor()));
         System.out.print("\n\nConfirma pagamento? (S/N): ");
         String confirmacao = scanner.nextLine();
-        if (confirmacao.equals("S") || confirmacao.equals("s")) {
-        double valorPago = mesesPagos * MensalidadeVigenteController.getMensalidadeVigente().getValor();
-        AlunoPagamentoMensalidadeController.gerarAlunoPagamentoMensalidade(valorPago, idAluno, modalidade);
-
-        }
-        else {
+        if (confirmacao.equalsIgnoreCase("S")) {
+            double valorPago = mesesPagos * MensalidadeVigenteController.getMensalidadeVigente().getValor();
+            AlunoPagamentoMensalidadeController.gerarAlunoPagamentoMensalidade(valorPago, idAluno, modalidade);
+        } else {
             System.out.println("Pagamento cancelado");
-            return;
         }
     }
 
     public static void listarPagamentos() {
-        for (int i = 0; i < numPagamentos; i++) {
-            System.out.println("\n\nID: " + alunosPagamentosMensalidades[i].getId());
-            System.out.println("Mensalidade vigente: " + String.format("%.2f", alunosPagamentosMensalidades[i].getMensalidadeVigente()));
-            System.out.println("Data de pagamento: " + formatarData(alunosPagamentosMensalidades[i].getDataPagamento()));
-            System.out.println("Valor pago: " + String.format("%.2f", alunosPagamentosMensalidades[i].getValorPago()));
-            System.out.println("Nome do Aluno: " + PessoaController.getAlunoById(alunosPagamentosMensalidades[i].getIdAluno()).getNome());
+        try (Connection connection = DatabaseUtil.getConnection()) {
+            String sql = "SELECT * FROM aluno_pagamento_mensalidade";
+            try (PreparedStatement stmt = connection.prepareStatement(sql);
+                 ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    System.out.println("\n\nID: " + rs.getInt("id"));
+                    System.out.println("Mensalidade vigente: " + String.format("%.2f", rs.getDouble("mensalidade_vigente")));
+                    System.out.println("Data de vencimento: " + formatarData(rs.getDate("data_vencimento").toLocalDate()));
+                    System.out.println("Data de pagamento: " + formatarData(rs.getDate("data_pagamento").toLocalDate()));
+                    System.out.println("Valor pago: " + String.format("%.2f", rs.getDouble("valor_pago")));
+                    System.out.println("Nome do Aluno: " + PessoaController.getPessoaById(rs.getInt("id_aluno"), "Aluno").getNome());
+                    System.out.println("Modalidade: " + rs.getString("modalidade"));
+                    System.out.println("Data de criacao: " + formatarData(rs.getDate("data_criacao").toLocalDate()));
+                    System.out.println("Data de modificacao: " + formatarData(rs.getDate("data_modificacao").toLocalDate()));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
@@ -85,7 +96,7 @@ public class AlunoPagamentoMensalidadeView {
             System.out.println("Data de vencimento: " + formatarData(alunoPagamentoMensalidade.getDataVencimento()));
             System.out.println("Data de pagamento: " + formatarData(alunoPagamentoMensalidade.getDataPagamento()));
             System.out.println("Valor pago: " + String.format("%.2f", alunoPagamentoMensalidade.getValorPago()));
-            System.out.println("Nome do Aluno: " + PessoaController.getAlunoById(alunoPagamentoMensalidade.getIdAluno()).getNome());
+            System.out.println("Nome do Aluno: " + PessoaController.getPessoaById(alunoPagamentoMensalidade.getIdAluno(), "Aluno").getNome());
             System.out.println("Modalidade: " + alunoPagamentoMensalidade.getModalidade());
             System.out.println("Data de criacao: " + formatarData(alunoPagamentoMensalidade.getDataCriacao()));
             System.out.println("Data de modificacao: " + formatarData(alunoPagamentoMensalidade.getDataModificacao()));
@@ -99,15 +110,15 @@ public class AlunoPagamentoMensalidadeView {
         int id = scanner.nextInt();
         scanner.nextLine();
 
-        if(AlunoPagamentoMensalidadeController.getPorId(id) == null){
+        if (AlunoPagamentoMensalidadeController.getPorId(id) == null) {
             System.out.println("Pagamento nao encontrado");
             return;
-        } 
-            AlunoPagamentoMensalidadeController.removePagamento(id);
-            System.out.println("\nPagamento removido com sucesso\n");
+        }
+        AlunoPagamentoMensalidadeController.removePagamento(id);
+        System.out.println("\nPagamento removido com sucesso\n");
     }
 
- private static String formatarData(LocalDate data) {
+    private static String formatarData(LocalDate data) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return data.format(formatter);
     }

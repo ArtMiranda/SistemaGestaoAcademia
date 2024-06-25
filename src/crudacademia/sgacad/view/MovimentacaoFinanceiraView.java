@@ -4,7 +4,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 import sgacad.model.MovimentacaoFinanceira;
-import sgacad.controller.AlunoPagamentoMensalidadeController;
 import sgacad.controller.MovimentacaoFinanceiraController;
 
 public class MovimentacaoFinanceiraView {
@@ -119,15 +118,15 @@ public class MovimentacaoFinanceiraView {
         }
     }
 
-    public static void exibirAlunosAdimplentes(){
-        System.out.println("\n--- Alunos adimplentes ---");
-        for(int i = 0; i < PessoaView.numAlunos; i++){
-            if(AlunoPagamentoMensalidadeController.getPorIdAluno(PessoaView.alunos[i].getId())){
-               System.out.println("ID: " + PessoaView.alunos[i].getId() + ", Nome: " + PessoaView.alunos[i].getNome());
-            }
-        }
+    // public static void exibirAlunosAdimplentes(){
+    //     System.out.println("\n--- Alunos adimplentes ---");
+    //     for(int i = 0; i < PessoaView.numAlunos; i++){
+    //         if(AlunoPagamentoMensalidadeController.getPorIdAluno(PessoaView.alunos[i].getId())){
+    //            System.out.println("ID: " + PessoaView.alunos[i].getId() + ", Nome: " + PessoaView.alunos[i].getNome());
+    //         }
+    //     }
     
-    }
+    // }
 
 
 
