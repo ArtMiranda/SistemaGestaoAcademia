@@ -3,6 +3,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "CrudAcademia",
+      "request": "launch",
+      "mainClass": "sgacad.view.CrudAcademia",
+      "projectName": "SistemaGestaoAcademia_ffdda2ce"
+    },
+    {
+      "type": "java",
       "name": "PopularTabelasController",
       "request": "launch",
       "mainClass": "sgacad.controller.PopularTabelasController",

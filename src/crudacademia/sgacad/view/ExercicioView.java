@@ -9,6 +9,7 @@ public class ExercicioView {
     public static Exercicio[] exercicios = new Exercicio[100]; // Array de exercicios
     public static int numExercicios = 0;
     private static Scanner scanner = new Scanner(System.in);
+    private static ExercicioController exercicioController = new ExercicioController();
 
     public static Exercicio criaExercicio() {
         // Nome do Exercicio
@@ -27,10 +28,8 @@ public class ExercicioView {
             descricao = scanner.nextLine().trim();
         }
 
-        ExercicioController exercicioController = new ExercicioController();
-
-        Exercicio exercicio = exercicioController.geraExercicio(numExercicios, nome, descricao);
-        return exercicio;
+        exercicioController.adicionarExercicio(nome, descricao);
+        return null; // Não estamos mais retornando um exercício aqui, apenas adicionando ao banco de dados
     }
 
     public static void exibirTodosExercicios() {
@@ -38,8 +37,10 @@ public class ExercicioView {
             System.out.println("\n\nNenhum exercicio cadastrado ainda.");
         } else {
             System.out.println("\n\nLista de Exercicios:");
-            for (int i = 0; i < ExercicioView.numExercicios; i++) {
-                System.out.println("ID: " + exercicios[i].getId() + ", Nome: " + exercicios[i].getNome());
+            for (Exercicio exercicio : exercicioController.listarExercicios()) {
+                if (exercicio != null) {
+                    System.out.println("ID: " + exercicio.getId() + ", Nome: " + exercicio.getNome());
+                }
             }
         }
     }
@@ -62,20 +63,14 @@ public class ExercicioView {
             }
         }
 
-        boolean encontrado = false;
-        for (int i = 0; i < ExercicioView.numExercicios; i++) {
-            if (exercicios[i].getId() == idBusca) {
-                System.out.println("\n\n----- Dados do Exercicio -----\n\n");
-                System.out.println(exercicios[i].exibirDetalhes());
-                encontrado = true;
-                break;
-            }
-        }
-        if (!encontrado) {
+        Exercicio exercicio = exercicioController.getExercicioById(idBusca);
+        if (exercicio != null) {
+            System.out.println("\n\n----- Dados do Exercicio -----\n\n");
+            System.out.println(exercicio.exibirDetalhes());
+        } else {
             System.out.println("\n\nExercicio nao encontrado.");
         }
     }
-
 
     public static void atualizarExercicio(){
 
@@ -95,38 +90,34 @@ public class ExercicioView {
             }
         }
 
-        boolean encontrado = false;
-        for (int i = 0; i < ExercicioView.numExercicios; i++) {
-            if (exercicios[i].getId() == idExercicio) {
-                System.out.println("\nDados atuais do Exercicio:");
-                System.out.println(exercicios[i].exibirDetalhes());
+        Exercicio exercicio = exercicioController.getExercicioById(idExercicio);
+        if (exercicio != null) {
+            System.out.println("\nDados atuais do Exercicio:");
+            System.out.println(exercicio.exibirDetalhes());
 
-                System.out.println("\nInforme os novos dados do exercicio:");
+            System.out.println("\nInforme os novos dados do exercicio:");
 
-                // Nome do exercicio
-                System.out.print("Novo Nome: ");
-                String novoNome = scanner.nextLine().trim();
-                if (!novoNome.isEmpty()) {
-                    exercicios[i].setNome(novoNome);
-                }
-
-                // Descricao/Foto do exercicio
-                System.out.print("Nova Descricao/Foto: ");
-                String novaDescricaoFoto = scanner.nextLine().trim();
-                if (!novaDescricaoFoto.isEmpty()) {
-                    exercicios[i].setDescricaoFoto(novaDescricaoFoto);
-                }
-
-                // Data de modificacao
-                exercicios[i].setDataModificacao(LocalDate.now());
-
-                System.out.println("\nDados do Exercicio atualizados com sucesso:");
-                System.out.println(exercicios[i].exibirDetalhes());
-                break;
+            // Nome do exercicio
+            System.out.print("Novo Nome: ");
+            String novoNome = scanner.nextLine().trim();
+            if (!novoNome.isEmpty()) {
+                exercicio.setNome(novoNome);
             }
-        }
 
-        if (!encontrado) {
+            // Descricao/Foto do exercicio
+            System.out.print("Nova Descricao/Foto: ");
+            String novaDescricaoFoto = scanner.nextLine().trim();
+            if (!novaDescricaoFoto.isEmpty()) {
+                exercicio.setDescricaoFoto(novaDescricaoFoto);
+            }
+
+            // Data de modificacao
+            exercicio.setDataModificacao(LocalDate.now());
+
+            exercicioController.atualizarExercicio(idExercicio, novoNome, novaDescricaoFoto);
+            System.out.println("\nDados do Exercicio atualizados com sucesso:");
+            System.out.println(exercicio.exibirDetalhes());
+        } else {
             System.out.println("\nExercicio com ID " + idExercicio + " nao encontrado.");
         }
     }
@@ -149,21 +140,12 @@ public class ExercicioView {
             }
         }
 
-        boolean encontrado = false;
-        for (int i = 0; i < ExercicioView.numExercicios; i++) {
-            if (exercicios[i].getId() == idExercicio) {
-                for (int j = i; j < ExercicioView.numExercicios - 1; j++) {
-                    exercicios[j] = exercicios[j + 1];
-                }
-                exercicios[ExercicioView.numExercicios - 1] = null;
-                ExercicioView.numExercicios--;
-                System.out.println("\n\nExercicio removido com sucesso.");
-                encontrado = true;
-                break;
-            }
-        }
-        if (!encontrado) {
-            System.out.println("\n\nExercicio com ID " + idExercicio + " nao encontrado.");
+        Exercicio exercicio = exercicioController.getExercicioById(idExercicio);
+        if (exercicio != null) {
+            exercicioController.removerExercicio(idExercicio);
+            System.out.println("\nExercicio removido com sucesso!");
+        } else {
+            System.out.println("\nExercicio com ID " + idExercicio + " nao encontrado.");
         }
     }
 }

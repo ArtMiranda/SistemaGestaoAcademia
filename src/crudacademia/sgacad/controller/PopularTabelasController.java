@@ -45,16 +45,27 @@ public class PopularTabelasController {
 
         PessoaView.numAdministradores = 2;
 
-        ExercicioView.exercicios[0] = new Exercicio(0, "Supino", "Supino com barra", currentDate, currentDate);
-        ExercicioView.exercicios[1] = new Exercicio(1, "Agachamento", "Agachamento livre", currentDate, currentDate);
-        ExercicioView.exercicios[2] = new Exercicio(2, "Levantamento Terra", "Levantamento terra com barra", currentDate, currentDate);
-        ExercicioView.exercicios[3] = new Exercicio(3, "Flexao", "Flexao de braco", currentDate, currentDate);
-        ExercicioView.exercicios[4] = new Exercicio(4, "Rosca Direta", "Rosca direta com halteres", currentDate, currentDate);
-        ExercicioView.exercicios[5] = new Exercicio(5, "Cadeira Extensora", "Extensao de pernas na cadeira extensora", currentDate, currentDate);
-        ExercicioView.exercicios[6] = new Exercicio(6, "Puxada Frontal", "Puxada frontal na barra", currentDate, currentDate);
-        ExercicioView.exercicios[7] = new Exercicio(7, "Desenvolvimento de Ombros", "Desenvolvimento de ombros com halteres", currentDate, currentDate);
 
-        ExercicioView.numExercicios = 8;
+        ExercicioController.adicionarExercicio("Supino", "Supino com barra");
+        ExercicioController.adicionarExercicio("Agachamento", "Agachamento livre");
+        ExercicioController.adicionarExercicio("Levantamento Terra", "Levantamento terra com barra");
+        ExercicioController.adicionarExercicio("Flexao", "Flexao de braco");
+        ExercicioController.adicionarExercicio("Rosca Direta", "Rosca direta com halteres");
+        ExercicioController.adicionarExercicio("Cadeira Extensora", "Extensao de pernas na cadeira extensora");
+        ExercicioController.adicionarExercicio("Puxada Frontal", "Puxada frontal na barra");
+        ExercicioController.adicionarExercicio("Desenvolvimento de Ombros", "Desenvolvimento de ombros com halteres");
+        
+
+        // ExercicioView.exercicios[0] = new Exercicio(0, "Supino", "Supino com barra", currentDate, currentDate);
+        // ExercicioView.exercicios[1] = new Exercicio(1, "Agachamento", "Agachamento livre", currentDate, currentDate);
+        // ExercicioView.exercicios[2] = new Exercicio(2, "Levantamento Terra", "Levantamento terra com barra", currentDate, currentDate);
+        // ExercicioView.exercicios[3] = new Exercicio(3, "Flexao", "Flexao de braco", currentDate, currentDate);
+        // ExercicioView.exercicios[4] = new Exercicio(4, "Rosca Direta", "Rosca direta com halteres", currentDate, currentDate);
+        // ExercicioView.exercicios[5] = new Exercicio(5, "Cadeira Extensora", "Extensao de pernas na cadeira extensora", currentDate, currentDate);
+        // ExercicioView.exercicios[6] = new Exercicio(6, "Puxada Frontal", "Puxada frontal na barra", currentDate, currentDate);
+        // ExercicioView.exercicios[7] = new Exercicio(7, "Desenvolvimento de Ombros", "Desenvolvimento de ombros com halteres", currentDate, currentDate);
+
+        // ExercicioView.numExercicios = 8;
 
 //        ExercicioController.criarExercicio("Supino", "Supino com barra");
 

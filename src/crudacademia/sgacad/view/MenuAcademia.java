@@ -493,7 +493,7 @@ public class MenuAcademia {
 
         Exercicio exercicio = ExercicioView.criaExercicio();
 
-        ExercicioView.exercicios[ExercicioView.numExercicios++] = exercicio;
+        // ExercicioView.exercicios[ExercicioView.numExercicios++] = exercicio;
 
         return exercicio;
     }
