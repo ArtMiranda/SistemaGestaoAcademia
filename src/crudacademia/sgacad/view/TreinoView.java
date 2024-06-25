@@ -97,9 +97,6 @@ public class TreinoView {
             // Objetivo do treino
             System.out.print("\nNovo Objetivo: ");
             String novoObjetivo = scanner.nextLine().trim();
-            if (!novoObjetivo.isEmpty()) {
-                treinoController.atualizarTreino(idTreino, novoObjetivo, null, null);
-            }
 
             // Data de Inicio
             LocalDate novaDataInicio = null;
@@ -109,21 +106,19 @@ public class TreinoView {
                 try {
                     System.out.print("\nNova data de Inicio (dd/MM/yyyy): ");
                     String dataInicioStr = scanner.nextLine().trim();
-                    if (dataInicioStr.isEmpty()) {
-                        break;
-                    }
-                    novaDataInicio = LocalDate.parse(dataInicioStr, formatter);
-                    if (novaDataInicio.isBefore(LocalDate.now())) {
-                        System.out.print("\nData de inicio nao pode ser no passado. Informe novamente.");
+                    if (!dataInicioStr.isEmpty()) {
+                        novaDataInicio = LocalDate.parse(dataInicioStr, formatter);
+                        if (novaDataInicio.isBefore(LocalDate.now())) {
+                            System.out.print("\nData de inicio nao pode ser no passado. Informe novamente.");
+                        } else {
+                            dataValida = true;
+                        }
                     } else {
-                        dataValida = true;
+                        break; // Sai do loop se a data for vazia
                     }
                 } catch (DateTimeParseException e) {
                     System.out.print("\nFormato de data invalido. Use o formato dd/MM/yyyy.");
                 }
-            }
-            if (novaDataInicio != null) {
-                treinoController.atualizarTreino(idTreino, null, novaDataInicio, null);
             }
 
             // Data de Termino
@@ -133,22 +128,22 @@ public class TreinoView {
                 try {
                     System.out.print("\nNova data de Termino (dd/MM/yyyy): ");
                     String dataTerminoStr = scanner.nextLine().trim();
-                    if (dataTerminoStr.isEmpty()) {
-                        break;
-                    }
-                    novaDataTermino = LocalDate.parse(dataTerminoStr, formatter);
-                    if (novaDataTermino.isBefore(novaDataInicio != null ? novaDataInicio : treino.getDataInicio())) {
-                        System.out.print("\nData de termino deve ser posterior à data de inicio. Informe novamente.");
+                    if (!dataTerminoStr.isEmpty()) {
+                        novaDataTermino = LocalDate.parse(dataTerminoStr, formatter);
+                        if (novaDataTermino.isBefore(novaDataInicio != null ? novaDataInicio : treino.getDataInicio())) {
+                            System.out.print("\nData de termino deve ser posterior à data de inicio. Informe novamente.");
+                        } else {
+                            dataValida = true;
+                        }
                     } else {
-                        dataValida = true;
+                        break; // Sai do loop se a data for vazia
                     }
                 } catch (DateTimeParseException e) {
                     System.out.print("\nFormato de data invalido. Use o formato dd/MM/yyyy.");
                 }
             }
-            if (novaDataTermino != null) {
-                treinoController.atualizarTreino(idTreino, null, null, novaDataTermino);
-            }
+
+            treinoController.atualizarTreino(idTreino, novoObjetivo, novaDataInicio, novaDataTermino);
 
             System.out.println("\nDados do Treino atualizados com sucesso:");
             Treino treinoAtualizado = treinoController.getTreinoById(idTreino);
@@ -157,6 +152,7 @@ public class TreinoView {
             System.out.println("\nTreino com ID " + idTreino + " nao encontrado.");
         }
     }
+
 
     public static void removerTreino() {
         System.out.print("\nInforme o ID do treino que deseja remover: ");
