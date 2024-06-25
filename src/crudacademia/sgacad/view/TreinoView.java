@@ -4,17 +4,15 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
-
 import sgacad.controller.TreinoController;
 import sgacad.model.Treino;
 
 public class TreinoView {
-    public static Treino[] treinos = new Treino[100]; // Array de treinos
-    public static int numTreinos = 0;
+
+    private static TreinoController treinoController = new TreinoController();
     private static Scanner scanner = new Scanner(System.in);
 
     public static Treino criaTreino() {
-
         System.out.print("\nInforme o objetivo: ");
         String objetivo = scanner.nextLine().trim();
         while (objetivo.isEmpty()) {
@@ -59,84 +57,48 @@ public class TreinoView {
             }
         }
 
-        TreinoController treinoController = new TreinoController();
-        Treino treino = treinoController.geraTreino(numTreinos, objetivo, dataInicio, dataTermino);
-        treinos[numTreinos] = treino;
-        numTreinos++;
-        return treino;
+        treinoController.adicionarTreino(objetivo, dataInicio, dataTermino);
+        System.out.println("\nTreino criado com sucesso!");
+        return null; // Não estamos mais retornando um treino aqui, apenas adicionando ao banco de dados
     }
 
     public static void exibirTodosTreinos() {
-        if (TreinoView.numTreinos == 0) {
-            System.out.print("\n\nNenhum treino cadastrado ainda.");
-        } else {
-            System.out.print("\n\nLista de Treinos:");
-            for (int i = 0; i < TreinoView.numTreinos; i++) {
-                System.out.print("\nID: " + treinos[i].getId() + ", Nome: " + treinos[i].getObjetivo());
-            }
-        }
+        System.out.println("\nLista de Treinos:");
+        treinoController.listarTreinos().forEach(treino ->
+                System.out.println("ID: " + treino.getId() + ", Objetivo: " + treino.getObjetivo()));
     }
 
     public static void exibirDadosTreinoPorId() {
-        int idBusca = 0;
+        System.out.print("\nInforme o ID do treino: ");
+        int idBusca = scanner.nextInt();
+        scanner.nextLine(); // Limpar o buffer do teclado
 
-        // Loop de validacao
-        boolean inputValido = false;
-        while (!inputValido) {
-            System.out.print("\n\nInforme o ID do treino: ");
-            if (scanner.hasNextInt()) {
-                idBusca = scanner.nextInt();
-                scanner.nextLine(); // Limpar o buffer do teclado
-                inputValido = true;
-            } else {
-                System.out.print("\nPor favor, insira apenas numeros inteiros.");
-                scanner.nextLine(); // Limpar o buffer do teclado
-            }
-        }
-
-        boolean encontrado = false;
-        for (int i = 0; i < TreinoView.numTreinos; i++) {
-            if (treinos[i].getId() == idBusca) {
-                System.out.print("\n\n----- Dados do Treino -----\n\n");
-                System.out.print("\n\n" + treinos[i].exibirDetalhes());
-                encontrado = true;
-                break;
-            }
-        }
-        if (!encontrado) {
-            System.out.print("\n\nTreino nao encontrado.");
+        Treino treino = treinoController.getTreinoById(idBusca);
+        if (treino != null) {
+            System.out.println("\n----- Dados do Treino -----");
+            System.out.println(treino.exibirDetalhes());
+        } else {
+            System.out.println("\nTreino não encontrado.");
         }
     }
 
     public static void atualizarTreino() {
-        int idTreino = 0;
+        System.out.print("\nInforme o ID do treino que deseja atualizar: ");
+        int idTreino = scanner.nextInt();
+        scanner.nextLine(); // Limpar o buffer do teclado
 
-        // Loop de validacao
-        boolean inputValido = false;
-        while (!inputValido) {
-            System.out.print("\n\nInforme o ID do treino que deseja atualizar: ");
-            if (scanner.hasNextInt()) {
-                idTreino = scanner.nextInt();
-                scanner.nextLine(); // Limpar o buffer do teclado
-                inputValido = true;
-            } else {
-                System.out.print("Por favor, insira apenas numeros inteiros.");
-                scanner.nextLine(); // Limpar o buffer do teclado
-            }
-        }
-
-        Treino treino = TreinoController.getTreinoById(idTreino);
+        Treino treino = treinoController.getTreinoById(idTreino);
         if (treino != null) {
-            System.out.print("\nDados atuais do Treino:");
-            System.out.print(treino.exibirDetalhes());
+            System.out.println("\nDados atuais do Treino:");
+            System.out.println(treino.exibirDetalhes());
 
-            System.out.print("\nInforme os novos dados do treino:");
+            System.out.println("\nInforme os novos dados do treino:");
 
             // Objetivo do treino
-            System.out.print("\n\nNovo Objetivo: ");
+            System.out.print("\nNovo Objetivo: ");
             String novoObjetivo = scanner.nextLine().trim();
             if (!novoObjetivo.isEmpty()) {
-                treino.setObjetivo(novoObjetivo);
+                treinoController.atualizarTreino(idTreino, novoObjetivo, null, null);
             }
 
             // Data de Inicio
@@ -161,7 +123,7 @@ public class TreinoView {
                 }
             }
             if (novaDataInicio != null) {
-                treino.setDataInicio(novaDataInicio);
+                treinoController.atualizarTreino(idTreino, null, novaDataInicio, null);
             }
 
             // Data de Termino
@@ -185,51 +147,23 @@ public class TreinoView {
                 }
             }
             if (novaDataTermino != null) {
-                treino.setDataTermino(novaDataTermino);
+                treinoController.atualizarTreino(idTreino, null, null, novaDataTermino);
             }
 
-            // Data de modificacao
-            treino.setDataModificacao(LocalDate.now());
-
-            System.out.print("\nDados do Treino atualizados com sucesso:");
-            System.out.print("\n" + treino.exibirDetalhes());
+            System.out.println("\nDados do Treino atualizados com sucesso:");
+            Treino treinoAtualizado = treinoController.getTreinoById(idTreino);
+            System.out.println(treinoAtualizado.exibirDetalhes());
         } else {
-            System.out.print("\nTreino com ID " + idTreino + " nao encontrado.");
+            System.out.println("\nTreino com ID " + idTreino + " nao encontrado.");
         }
     }
 
     public static void removerTreino() {
-        int idTreino = 0;
+        System.out.print("\nInforme o ID do treino que deseja remover: ");
+        int idTreino = scanner.nextInt();
+        scanner.nextLine(); // Limpar o buffer do teclado
 
-        // Loop de validacao
-        boolean inputValido = false;
-        while (!inputValido) {
-            System.out.print("\n\nInforme o ID do treino que deseja remover: ");
-            if (scanner.hasNextInt()) {
-                idTreino = scanner.nextInt();
-                scanner.nextLine(); // Limpar o buffer do teclado
-                inputValido = true;
-            } else {
-                System.out.print("\nPor favor, insira apenas numeros inteiros.");
-                scanner.nextLine(); // Limpar o buffer do teclado
-            }
-        }
-
-        boolean encontrado = false;
-        for (int i = 0; i < TreinoView.numTreinos; i++) {
-            if (treinos[i].getId() == idTreino) {
-                for (int j = i; j < TreinoView.numTreinos - 1; j++) {
-                    treinos[j] = treinos[j + 1];
-                }
-                treinos[TreinoView.numTreinos - 1] = null;
-                TreinoView.numTreinos--;
-                System.out.print("\n\nTreino removido com sucesso.");
-                encontrado = true;
-                break;
-            }
-        }
-        if (!encontrado) {
-            System.out.print("\n\nTreino com ID " + idTreino + " nao encontrado.");
-        }
+        treinoController.removerTreino(idTreino);
+        System.out.println("\nTreino removido com sucesso.");
     }
 }

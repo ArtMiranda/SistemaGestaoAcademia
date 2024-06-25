@@ -32,7 +32,7 @@ public class PopularTabelasController {
         PessoaView.alunos[4] = new Pessoa(4, "Fernando", 'M', getDate(1993, 9, 30), "fernando", "fernando", "Aluno", currentDate, currentDate);
         PessoaView.alunos[5] = new Pessoa(5, "Nathalie", 'f', getDate(1997, 12, 18), "nathalie", "nathalie", "Aluno", currentDate, currentDate);
         PessoaView.alunos[6] = new Pessoa(6, "Ricardo", 'M', getDate(1991, 6, 10), "ricardo", "ricardo", "Aluno", currentDate, currentDate);
-        PessoaView.alunos[7] = new Pessoa(7, "Juliana", 'F', getDate(1994, 1, 22), "juliana", "juliana", "Aluno", currentDate, currentDate);        
+        PessoaView.alunos[7] = new Pessoa(7, "Juliana", 'F', getDate(1994, 1, 22), "juliana", "juliana", "Aluno", currentDate, currentDate);
 
         PessoaView.numAlunos = 8;
 
@@ -44,7 +44,7 @@ public class PopularTabelasController {
         PessoaView.administradores[1] = new Pessoa(1, "Luciana", 'F', getDate(1980, 1, 1), "luciana", "luciana", "Administrador", currentDate, currentDate);
 
         PessoaView.numAdministradores = 2;
-        
+
         ExercicioView.exercicios[0] = new Exercicio(0, "Supino", "Supino com barra", currentDate, currentDate);
         ExercicioView.exercicios[1] = new Exercicio(1, "Agachamento", "Agachamento livre", currentDate, currentDate);
         ExercicioView.exercicios[2] = new Exercicio(2, "Levantamento Terra", "Levantamento terra com barra", currentDate, currentDate);
@@ -55,6 +55,8 @@ public class PopularTabelasController {
         ExercicioView.exercicios[7] = new Exercicio(7, "Desenvolvimento de Ombros", "Desenvolvimento de ombros com halteres", currentDate, currentDate);
 
         ExercicioView.numExercicios = 8;
+
+//        ExercicioController.criarExercicio("Supino", "Supino com barra");
 
         ExercicioAplicacaoView.exerciciosAplicacao[0] = new ExercicioAplicacao(0, "Supino", "Supino reto com peso", currentDate, currentDate);
         ExercicioAplicacaoView.exerciciosAplicacao[1] = new ExercicioAplicacao(1, "Agachamento", "Agachamento reto com peso", currentDate, currentDate);
@@ -68,12 +70,11 @@ public class PopularTabelasController {
         ExercicioAplicacaoView.numExerciciosAplicacao = 8;
 
 
-        TreinoView.treinos[0] = new Treino(0, "Fortificacao", getDate(2025, 1, 15), getDate(2025, 6, 15), currentDate, currentDate);
-        TreinoView.treinos[1] = new Treino(1, "Preparacao para competicao", getDate(2025, 3, 10), getDate(2025, 9, 10), currentDate, currentDate);
-        TreinoView.treinos[2] = new Treino(2, "Emagrecimento", getDate(2025, 5, 20), getDate(2025, 11, 20), currentDate, currentDate);
-        TreinoView.treinos[3] = new Treino(3, "Hipertrofia", getDate(2025, 2, 5), getDate(2025, 8, 5), currentDate, currentDate);
+        TreinoController.adicionarTreino("Fortificacao", getDate(2025, 1, 15), getDate(2025, 6, 15));
+        TreinoController.adicionarTreino("Preparacao para competicao", getDate(2025, 1, 15), getDate(2025, 9, 10));
+        TreinoController.adicionarTreino("Emagrecimento", getDate(2025, 5, 20), getDate(2025, 11, 20));
+        TreinoController.adicionarTreino("Hipertrofia", getDate(2025, 1, 15), getDate(2025, 6, 15));
 
-        TreinoView.numTreinos = 4;
 
         DivisaoTreinoView.divisoesTreinos[0] = new DivisaoTreino(0, "Fortificacao", "Treino segunda sexta sabado", currentDate, currentDate);
         DivisaoTreinoView.divisoesTreinos[1] = new DivisaoTreino(1, "Preparacao para competicao", "Treino intenso, descansa 2 dias", currentDate, currentDate);
@@ -82,7 +83,7 @@ public class PopularTabelasController {
 
         DivisaoTreinoView.numDivisoesTreino = 4;
 
-      
+
         DivisaoTreinoMusculoView.divisoesTreinoMusculo[0] = new DivisaoTreinoMusculo(0, "Fortificacao", "Treino segunda sexta sabado", "Peito", currentDate, currentDate);
         DivisaoTreinoMusculoView.divisoesTreinoMusculo[1] = new DivisaoTreinoMusculo(1, "Preparacao para competicao", "Treino intenso, descansa 2 dias", "Perna e Gluteo", currentDate, currentDate);
         DivisaoTreinoMusculoView.divisoesTreinoMusculo[2] = new DivisaoTreinoMusculo(2, "Emagrecimento", "Treino diario com dieta especifica", "Braco e Peito", currentDate, currentDate);

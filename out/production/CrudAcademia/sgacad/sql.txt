@@ -1,0 +1,41 @@
+CREATE DATABASE sgacad;
+USE sgacad;
+
+
+CREATE TABLE academia (
+    id INT DEFAULT 0 PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    endereco VARCHAR(255) NOT NULL,
+    data_criacao DATE NOT NULL,
+    data_modificacao DATE NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS usuarios (
+    id INTEGER PRIMARY KEY,
+    nome TEXT NOT NULL,
+    sexo TEXT NOT NULL,
+    nascimento TEXT NOT NULL,
+    login TEXT NOT NULL,
+    senha TEXT NOT NULL,
+    tipo_usuario TEXT NOT NULL,
+    data_criacao TEXT NOT NULL,
+    data_modificacao TEXT NOT NULL
+);
+
+
+CREATE TABLE IF NOT EXISTS treinos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    objetivo VARCHAR(255) NOT NULL,
+    dataInicio DATE NOT NULL,
+    dataTermino DATE NOT NULL,
+    dataCriacao DATE NOT NULL,
+    dataModificacao DATE NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS exercicios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    descricao TEXT NOT NULL,
+    dataCriacao DATE NOT NULL,
+    dataModificacao DATE NOT NULL
+);
