@@ -1,3 +1,5 @@
+DROP DATABASE sgacad;
+
 CREATE DATABASE sgacad;
 USE sgacad;
 
@@ -9,6 +11,7 @@ CREATE TABLE academia (
     data_criacao DATE NOT NULL,
     data_modificacao DATE NOT NULL
 );
+
 
 CREATE TABLE IF NOT EXISTS usuarios (
     id INTEGER PRIMARY KEY,
@@ -23,19 +26,12 @@ CREATE TABLE IF NOT EXISTS usuarios (
 );
 
 
+
 CREATE TABLE IF NOT EXISTS treinos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     objetivo VARCHAR(255) NOT NULL,
     dataInicio DATE NOT NULL,
     dataTermino DATE NOT NULL,
-    dataCriacao DATE NOT NULL,
-    dataModificacao DATE NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS exercicios (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(255) NOT NULL,
-    descricao TEXT NOT NULL,
     dataCriacao DATE NOT NULL,
     dataModificacao DATE NOT NULL
 );

@@ -1,3 +1,5 @@
+DROP DATABASE sgacad;
+
 CREATE DATABASE sgacad;
 USE sgacad;
 
@@ -25,3 +27,11 @@ CREATE TABLE IF NOT EXISTS usuarios (
 
 
 
+CREATE TABLE IF NOT EXISTS treinos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    objetivo VARCHAR(255) NOT NULL,
+    dataInicio DATE NOT NULL,
+    dataTermino DATE NOT NULL,
+    dataCriacao DATE NOT NULL,
+    dataModificacao DATE NOT NULL
+);

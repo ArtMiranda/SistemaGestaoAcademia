@@ -34,7 +34,7 @@ public class TreinoController {
     }
 
     // Método para buscar um treino pelo ID
-    public Treino getTreinoById(int id) {
+    public static Treino getTreinoById(int id) {
         String sql = "SELECT * FROM treinos WHERE id = ?";
         Treino treino = null;
 
