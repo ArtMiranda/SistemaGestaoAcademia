@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,12 +15,12 @@ public class EntradaAlunoController {
 
     public static void gerarEntradaAluno(int idAluno) {
         LocalDate currentDate = LocalDate.now();
-        
+        LocalDateTime currentDateTime = LocalDateTime.now();
         // Obtenha o próximo valor do ID
         int nextId = getNextIdFromDatabase();
 
         // Crie uma nova entrada de aluno
-        EntradaAluno entradaAluno = new EntradaAluno(nextId, idAluno, currentDate, currentDate, currentDate);
+        EntradaAluno entradaAluno = new EntradaAluno(nextId, idAluno, currentDateTime, currentDate, currentDate);
         
         // Salve a entrada do aluno no banco de dados
         salvarEntradaAlunoNoBancoDeDados(entradaAluno);
@@ -30,7 +31,7 @@ public class EntradaAlunoController {
              PreparedStatement preparedStatement = connection.prepareStatement(
                      "INSERT INTO entradas_aluno (id_aluno, data_hora, data_criacao, data_modificacao) VALUES (?, ?, ?, ?)")) {
             preparedStatement.setInt(1, entradaAluno.getIdAluno());
-            preparedStatement.setDate(2, java.sql.Date.valueOf(entradaAluno.getDataHora()));
+            preparedStatement.setTimestamp(2, java.sql.Timestamp.valueOf(entradaAluno.getDataHora()));
             preparedStatement.setDate(3, java.sql.Date.valueOf(entradaAluno.getDataCriacao()));
             preparedStatement.setDate(4, java.sql.Date.valueOf(entradaAluno.getDataModificacao()));
             
@@ -86,7 +87,7 @@ public class EntradaAlunoController {
             if (resultSet.next()) {
                 int id = resultSet.getInt("id"); // Corrigir para idEntrada (variável local
                 int idAluno = resultSet.getInt("id_aluno");
-                LocalDate dataHora = resultSet.getDate("data_hora").toLocalDate();
+                LocalDateTime dataHora = resultSet.getTimestamp("data_hora").toLocalDateTime();
                 LocalDate dataCriacao = resultSet.getDate("data_criacao").toLocalDate();
                 LocalDate dataModificacao = resultSet.getDate("data_modificacao").toLocalDate();
                 
@@ -112,7 +113,7 @@ public class EntradaAlunoController {
             
             while (resultSet.next()) {
                 int idEntrada = resultSet.getInt("id");
-                LocalDate dataHora = resultSet.getDate("data_hora").toLocalDate();
+                LocalDateTime dataHora = resultSet.getTimestamp("data_hora").toLocalDateTime();
                 LocalDate dataCriacao = resultSet.getDate("data_criacao").toLocalDate();
                 LocalDate dataModificacao = resultSet.getDate("data_modificacao").toLocalDate();
                 
@@ -142,7 +143,7 @@ public class EntradaAlunoController {
             while (resultSet.next()) {
                 int idEntrada = resultSet.getInt("id");
                 int idAluno = resultSet.getInt("id_aluno");
-                LocalDate dataHora = resultSet.getDate("data_hora").toLocalDate();
+                LocalDateTime dataHora = resultSet.getTimestamp("data_hora").toLocalDateTime();
                 LocalDate dataCriacao = resultSet.getDate("data_criacao").toLocalDate();
                 LocalDate dataModificacao = resultSet.getDate("data_modificacao").toLocalDate();
                 

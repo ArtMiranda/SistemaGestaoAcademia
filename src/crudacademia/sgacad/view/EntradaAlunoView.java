@@ -1,6 +1,7 @@
 package sgacad.view;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Scanner;
@@ -65,8 +66,8 @@ public class EntradaAlunoView {
         }
     }
     
-    private static String formatarDataHora(LocalDate data) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private static String formatarDataHora(LocalDateTime data) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         return data.format(formatter);
     }
 
