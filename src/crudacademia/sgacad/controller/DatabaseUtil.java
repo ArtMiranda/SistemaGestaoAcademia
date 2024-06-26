@@ -60,7 +60,8 @@ public class DatabaseUtil {
                     "nascimento DATE NOT NULL," +
                     "login VARCHAR(50) NOT NULL UNIQUE," +
                     "senha VARCHAR(50) NOT NULL," +
-                    "data_modificacao DATE)");
+                    "data_criacao DATE NOT NULL," +
+                    "data_modificacao DATE NOT NULL)");
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS Alunos (" +
                     "id INT PRIMARY KEY AUTO_INCREMENT," +
                     "nome VARCHAR(100) NOT NULL," +
@@ -68,7 +69,8 @@ public class DatabaseUtil {
                     "nascimento DATE NOT NULL," +
                     "login VARCHAR(50) NOT NULL UNIQUE," +
                     "senha VARCHAR(50) NOT NULL," +
-                    "data_modificacao DATE)");
+                    "data_criacao DATE NOT NULL," +
+                    "data_modificacao DATE NOT NULL)");
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS ProfessoresInstrutores (" +
                     "id INT PRIMARY KEY AUTO_INCREMENT," +
                     "nome VARCHAR(100) NOT NULL," +
@@ -76,7 +78,8 @@ public class DatabaseUtil {
                     "nascimento DATE NOT NULL," +
                     "login VARCHAR(50) NOT NULL UNIQUE," +
                     "senha VARCHAR(50) NOT NULL," +
-                    "data_modificacao DATE)");
+                    "data_criacao DATE NOT NULL," +
+                    "data_modificacao DATE NOT NULL)");
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS aluno_pagamento_mensalidade (" +
                     "id INT AUTO_INCREMENT PRIMARY KEY," +
                     "mensalidade_vigente DOUBLE NOT NULL," +

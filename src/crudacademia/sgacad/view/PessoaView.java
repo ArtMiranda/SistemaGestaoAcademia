@@ -12,7 +12,7 @@ public class PessoaView {
     private static Scanner scanner = new Scanner(System.in);
     private static PessoaController pessoaController = new PessoaController();
 
-    public static void criarPessoa(String tipousuario) {
+    public static void criarPessoa(String tipoUsuario) {
         System.out.print("Nome: ");
         String nome = scanner.nextLine().trim();
         while (nome.isEmpty()) {
@@ -60,71 +60,64 @@ public class PessoaView {
             senha = scanner.nextLine().trim();
         }
 
-        PessoaController.criarPessoa(nome, sexoAdmin, dtNascimento, login, senha, tipousuario);
+        pessoaController.criarPessoa(nome, sexoAdmin, dtNascimento, login, senha, tipoUsuario);
     }
 
-    public static void atualizarPessoa(String tipo){
+    public static void atualizarPessoa(String tipo) {
         int id = solicitarId(tipo);
         Pessoa pessoa = pessoaController.buscarPessoaPorId(id, tipo);
         if (pessoa != null) {
             System.out.println(tipo + " encontrado. Insira os novos dados:");
 
-            // Nome do usuario
             System.out.print("Novo Nome: ");
             String novoNome = scanner.nextLine().trim();
             if (!novoNome.isEmpty()) {
                 pessoa.setNome(novoNome);
             }
 
-            // Sexo do usuario
             char novoSexo;
             String novoSexoInput = "";
             while (!(novoSexoInput.equalsIgnoreCase("M") || novoSexoInput.equalsIgnoreCase("F"))) {
-            System.out.print("Novo Sexo (M/F): ");
-            novoSexoInput = scanner.nextLine();
-            novoSexo = novoSexoInput.toUpperCase().charAt(0);
-            pessoa.setSexo(novoSexo);
-        }
-
-        
-
-        // Data de nascimento do usuario
-        LocalDate novaDataNascimento = null;
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        boolean dataValida = false;
-        while (!dataValida) {
-            try {
-                System.out.print("Nova Data de nascimento (dd/MM/yyyy): ");
-                String novaDataNascimentoStr = scanner.nextLine();
-                novaDataNascimento = LocalDate.parse(novaDataNascimentoStr, dtf);
-                if (novaDataNascimento.isAfter(LocalDate.now())) {
-                    System.out.println("Data de nascimento invalida! Informe uma data anterior à data atual.");
-                } else {
-                    dataValida = true;
-                }
-            } catch (DateTimeParseException e) {
-                System.out.println("Formato de data invalido! Use o formato dd/MM/yyyy.");
+                System.out.print("Novo Sexo (M/F): ");
+                novoSexoInput = scanner.nextLine();
+                novoSexo = novoSexoInput.toUpperCase().charAt(0);
+                pessoa.setSexo(novoSexo);
             }
+
+            LocalDate novaDataNascimento = null;
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            boolean dataValida = false;
+            while (!dataValida) {
+                try {
+                    System.out.print("Nova Data de nascimento (dd/MM/yyyy): ");
+                    String novaDataNascimentoStr = scanner.nextLine();
+                    novaDataNascimento = LocalDate.parse(novaDataNascimentoStr, dtf);
+                    if (novaDataNascimento.isAfter(LocalDate.now())) {
+                        System.out.println("Data de nascimento invalida! Informe uma data anterior à data atual.");
+                    } else {
+                        dataValida = true;
+                    }
+                } catch (DateTimeParseException e) {
+                    System.out.println("Formato de data invalido! Use o formato dd/MM/yyyy.");
+                }
+            }
+            pessoa.setNascimento(novaDataNascimento);
+
+            System.out.print("Novo Login: ");
+            String novoLogin = scanner.nextLine().trim();
+            if (!novoLogin.isEmpty()) {
+                pessoa.setLogin(novoLogin);
+            }
+
+            System.out.print("Nova Senha: ");
+            String novaSenha = scanner.nextLine().trim();
+            if (!novaSenha.isEmpty()) {
+                pessoa.setSenha(novaSenha);
+            }
+
+            pessoaController.atualizarPessoa(pessoa);
+            System.out.println(tipo + " atualizado com sucesso!");
         }
-        pessoa.setNascimento(novaDataNascimento);
-
-        System.out.print("Novo Login: ");
-        String novoLogin = scanner.nextLine().trim();
-        if (!novoLogin.isEmpty()) {
-            pessoa.setLogin(novoLogin);
-        }
-
-        System.out.print("Nova Senha: ");
-        String novaSenha = scanner.nextLine().trim();
-        if (!novaSenha.isEmpty()) {
-            pessoa.setSenha(novaSenha);
-        }
-
-        pessoaController.atualizarPessoa(pessoa);
-        System.out.println(tipo + " atualizado com sucesso!");
-    }
-
-
     }
 
     public static void exibirTodos(String tipo) {
@@ -141,6 +134,7 @@ public class PessoaView {
             System.out.println("Sexo: " + pessoa.getSexo());
             System.out.println("Data de nascimento: " + pessoa.getNascimento());
             System.out.println("Login: " + pessoa.getLogin());
+            System.out.println("Data de Criacao: " + pessoa.getDataCriacao());
             System.out.println("Data de Modificacao: " + pessoa.getDataModificacao());
             System.out.println("----------------------------");
         }
@@ -158,7 +152,7 @@ public class PessoaView {
 
     public static void exibirDadosPorId(String tipo) {
         int id = solicitarId(tipo);
-        Pessoa pessoa = PessoaController.getPessoaById(id, tipo);
+        Pessoa pessoa = pessoaController.getPessoaById(id, tipo);
         if (pessoa != null) {
             System.out.println("\n\n----- Dados do " + tipo + " -----\n\n");
             System.out.println(pessoa.exibirDetalhes());
@@ -170,7 +164,6 @@ public class PessoaView {
     private static int solicitarId(String tipo) {
         int id = 0;
 
-        // Loop de validacao
         boolean inputValido = false;
         while (!inputValido) {
             System.out.print("\n\nInforme o ID do " + tipo + ": ");
