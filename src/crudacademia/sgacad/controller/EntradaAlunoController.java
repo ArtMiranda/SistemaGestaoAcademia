@@ -16,7 +16,7 @@ public class EntradaAlunoController {
     public static void gerarEntradaAluno(int idAluno) {
         LocalDate currentDate = LocalDate.now();
         LocalDateTime currentDateTime = LocalDateTime.now();
-        // Obtenha o próximo valor do ID
+        // Obtenha o proximo valor do ID
         int nextId = getNextIdFromDatabase();
 
         // Crie uma nova entrada de aluno
@@ -56,7 +56,7 @@ public class EntradaAlunoController {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("Erro ao buscar o próximo ID de entrada do aluno no banco de dados.");
+            System.out.println("Erro ao buscar o proximo ID de entrada do aluno no banco de dados.");
         }
         return nextId;
     }
@@ -85,7 +85,7 @@ public class EntradaAlunoController {
             ResultSet resultSet = preparedStatement.executeQuery();
             
             if (resultSet.next()) {
-                int id = resultSet.getInt("id"); // Corrigir para idEntrada (variável local
+                int id = resultSet.getInt("id"); // Corrigir para idEntrada (variavel local
                 int idAluno = resultSet.getInt("id_aluno");
                 LocalDateTime dataHora = resultSet.getTimestamp("data_hora").toLocalDateTime();
                 LocalDate dataCriacao = resultSet.getDate("data_criacao").toLocalDate();
@@ -93,7 +93,7 @@ public class EntradaAlunoController {
                 
                 return new EntradaAluno(id, idAluno, dataHora, dataCriacao, dataModificacao);
             } else {
-                System.out.println("Entrada do aluno não encontrada.");
+                System.out.println("Entrada do aluno nao encontrada.");
             }
         } catch (SQLException e) {
             e.printStackTrace();

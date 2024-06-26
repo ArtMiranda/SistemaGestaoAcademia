@@ -35,7 +35,7 @@ public class PessoaController {
                 sql = "SELECT * FROM ProfessoresInstrutores WHERE login = ? AND senha = ?";
                 break;
             default:
-                // Tipo de usuário não reconhecido
+                // Tipo de usuario nao reconhecido
                 return null;
         }
 

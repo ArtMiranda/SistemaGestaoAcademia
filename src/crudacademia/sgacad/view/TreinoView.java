@@ -59,7 +59,7 @@ public class TreinoView {
 
         TreinoController.adicionarTreino(objetivo, dataInicio, dataTermino);
         System.out.println("\nTreino criado com sucesso!");
-        return null; // Não estamos mais retornando um treino aqui, apenas adicionando ao banco de dados
+        return null; // Nao estamos mais retornando um treino aqui, apenas adicionando ao banco de dados
     }
 
     public static void exibirTodosTreinos() {
@@ -78,7 +78,7 @@ public class TreinoView {
             System.out.println("\n----- Dados do Treino -----");
             System.out.println(treino.exibirDetalhes());
         } else {
-            System.out.println("\nTreino não encontrado.");
+            System.out.println("\nTreino nao encontrado.");
         }
     }
 

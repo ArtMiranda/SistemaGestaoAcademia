@@ -184,7 +184,7 @@ public class TreinoAplicacaoView {
             System.out.println("Exercicios: " + treinoAplicacao.getNomeExercicio());
             System.out.println("Aplicacao de Exercicio: " + treinoAplicacao.getExercicioAplicacao());
         } else {
-            System.out.println("\nTreino não encontrado.");
+            System.out.println("\nTreino nao encontrado.");
         }
     }
 

@@ -46,7 +46,7 @@ public class MenuAcademia {
     // }
 
     private static boolean efetuarLogin() {
-        System.out.println("\n\n----- Faça login ou digite 'sair' para sair do programa -----");
+        System.out.println("\n\n----- Faca login ou digite 'sair' para sair do programa -----");
         System.out.print("Login: ");
         String login = scanner.nextLine();
         if (login.equalsIgnoreCase("sair")) {
@@ -86,7 +86,7 @@ public class MenuAcademia {
             return true;
         }
     
-        // Se nenhum usuário foi autenticado
+        // Se nenhum usuario foi autenticado
         System.out.println("Login ou senha incorretos.");
         return false;
     }

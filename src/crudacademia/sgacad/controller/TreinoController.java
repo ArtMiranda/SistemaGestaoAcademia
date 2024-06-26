@@ -8,7 +8,7 @@ import java.util.List;
 
 public class TreinoController {
 
-    // Método para criar um novo treino no banco de dados
+    // Metodo para criar um novo treino no banco de dados
     public static void adicionarTreino(String objetivo, LocalDate dataInicio, LocalDate dataTermino) {
         String sql = "INSERT INTO treinos (objetivo, dataInicio, dataTermino, dataCriacao, dataModificacao) VALUES (?, ?, ?, ?, ?)";
 
@@ -31,7 +31,7 @@ public class TreinoController {
         }
     }
 
-    // Método para buscar um treino pelo ID
+    // Metodo para buscar um treino pelo ID
     public static Treino getTreinoById(int id) {
         String sql = "SELECT * FROM treinos WHERE id = ?";
         Treino treino = null;
@@ -58,7 +58,7 @@ public class TreinoController {
         return treino;
     }
 
-    // Método para atualizar um treino no banco de dados
+    // Metodo para atualizar um treino no banco de dados
     public void atualizarTreino(int id, String novoObjetivo, LocalDate novaDataInicio, LocalDate novaDataTermino) {
         String sql = "UPDATE treinos SET objetivo = ?, dataInicio = ?, dataTermino = ?, dataModificacao = ? WHERE id = ?";
 
@@ -76,7 +76,7 @@ public class TreinoController {
         }
     }
 
-    // Método para listar todos os treinos do banco de dados
+    // Metodo para listar todos os treinos do banco de dados
     public List<Treino> listarTreinos() {
         List<Treino> treinos = new ArrayList<>();
         String sql = "SELECT * FROM treinos";
@@ -103,7 +103,7 @@ public class TreinoController {
         return treinos;
     }
 
-    // Método para excluir um treino do banco de dados
+    // Metodo para excluir um treino do banco de dados
     public void removerTreino(int id) {
         String sql = "DELETE FROM treinos WHERE id = ?";
 

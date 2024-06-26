@@ -22,41 +22,41 @@ public class PagamentoRecorrenteView {
         scanner.nextLine();
 
         if (PessoaController.getPessoaById(idPessoa, "Aluno") == null) {
-            System.out.println("Aluno não encontrado.");
+            System.out.println("Aluno nao encontrado.");
             return;
         }
 
         for (int i = 0; i < numPagamentosRecorrentes; i++) {
             if (pagamentoRecorrente[i].getIdPessoa() == idPessoa) {
                 System.out.println(
-                        "Já existe um pagamento recorrente cadastrado para esse aluno. Efetue o cancelamento desse pagamento para cadastrar um novo.");
+                        "Ja existe um pagamento recorrente cadastrado para esse aluno. Efetue o cancelamento desse pagamento para cadastrar um novo.");
                 return;
             }
         }
 
-        System.out.print("\nInforme o número do cartão de crédito: ");
+        System.out.print("\nInforme o numero do cartao de credito: ");
         String cartaoCredito = scanner.nextLine();
 
-        System.out.print("\nInforme o número de meses autorizados: ");
+        System.out.print("\nInforme o numero de meses autorizados: ");
         int numeroMesesAutorizados = scanner.nextInt();
         scanner.nextLine();
 
         if (numeroMesesAutorizados <= 1) {
-            System.out.println("O número de meses autorizados deve ser maior que 1.");
+            System.out.println("O numero de meses autorizados deve ser maior que 1.");
             return;
         }
 
         System.out.println("\n\nConfirme os dados: ");
         System.out.println("Aluno de ID: " + idPessoa);
         System.out.println("Nome do Aluno: " + PessoaController.getPessoaById(idPessoa, "Aluno").getNome());
-        System.out.println("Nº do Cartão de Crédito: " + cartaoCredito);
+        System.out.println("Nº do Cartao de Credito: " + cartaoCredito);
         System.out.println("Nº de Meses Restantes: " + numeroMesesAutorizados);
         System.out.println("Valor Mensalidade: "
                 + String.format("%.2f", MensalidadeVigenteController.getMensalidadeVigente().getValor()));
         System.out.println("Valor Total: " + String.format("%.2f",
                 MensalidadeVigenteController.getMensalidadeVigente().getValor() * numeroMesesAutorizados));
         System.out.println("-----------------");
-        System.out.print("\nO crédito será realizado no cartão de crédito informado em " + numeroMesesAutorizados
+        System.out.print("\nO credito sera realizado no cartao de credito informado em " + numeroMesesAutorizados
                 + " parcelas de R$"
                 + String.format("%.2f", MensalidadeVigenteController.getMensalidadeVigente().getValor())
                 + ". Deseja continuar? (S/N): ");
@@ -64,7 +64,7 @@ public class PagamentoRecorrenteView {
         if (confirmacao.equalsIgnoreCase("S")) {
             System.out.println("Pagamento recorrente cadastrado com sucesso!");
         } else {
-            System.out.println("Operação cancelada.");
+            System.out.println("Operacao cancelada.");
             return;
         }
 
@@ -75,11 +75,11 @@ public class PagamentoRecorrenteView {
         for (int i = 0; i < numPagamentosRecorrentes; i++) {
             System.out.println("\nID: " + pagamentoRecorrente[i].getId());
             System.out.println("ID Pessoa: " + pagamentoRecorrente[i].getIdPessoa());
-            System.out.println("Cartão de Crédito: " + pagamentoRecorrente[i].getCartaoCredito());
-            System.out.println("Número de Meses Restantes: " + pagamentoRecorrente[i].getNumeroMesesAutorizados());
+            System.out.println("Cartao de Credito: " + pagamentoRecorrente[i].getCartaoCredito());
+            System.out.println("Numero de Meses Restantes: " + pagamentoRecorrente[i].getNumeroMesesAutorizados());
             System.out.println("Valor: " + String.format("%.2f", pagamentoRecorrente[i].getValor()));
-            System.out.println("Data de Criação: " + formatarData(pagamentoRecorrente[i].getData()));
-            System.out.println("Data de Modificação: " + formatarData(pagamentoRecorrente[i].getDataModificacao()));
+            System.out.println("Data de Criacao: " + formatarData(pagamentoRecorrente[i].getData()));
+            System.out.println("Data de Modificacao: " + formatarData(pagamentoRecorrente[i].getDataModificacao()));
         }
     }
 
@@ -90,7 +90,7 @@ public class PagamentoRecorrenteView {
         scanner.nextLine();
 
         if (PessoaController.getPessoaById(idPessoa, "Aluno") == null) {
-            System.out.println("Aluno não encontrado.");
+            System.out.println("Aluno nao encontrado.");
             return;
         }
 
@@ -100,11 +100,11 @@ public class PagamentoRecorrenteView {
                 pagamentoEncontrado = true;
                 System.out.println("\n\nID: " + pagamentoRecorrente[i].getId());
                 System.out.println("ID Pessoa: " + pagamentoRecorrente[i].getIdPessoa());
-                System.out.println("Cartão de Crédito: " + pagamentoRecorrente[i].getCartaoCredito());
-                System.out.println("Número de Meses Restantes: " + pagamentoRecorrente[i].getNumeroMesesAutorizados());
+                System.out.println("Cartao de Credito: " + pagamentoRecorrente[i].getCartaoCredito());
+                System.out.println("Numero de Meses Restantes: " + pagamentoRecorrente[i].getNumeroMesesAutorizados());
                 System.out.println("Valor: " + String.format("%.2f", pagamentoRecorrente[i].getValor()));
-                System.out.println("Data de Criação: " + formatarData(pagamentoRecorrente[i].getDataCriacao()));
-                System.out.println("Data de Modificação: " + formatarData(pagamentoRecorrente[i].getDataModificacao()));
+                System.out.println("Data de Criacao: " + formatarData(pagamentoRecorrente[i].getDataCriacao()));
+                System.out.println("Data de Modificacao: " + formatarData(pagamentoRecorrente[i].getDataModificacao()));
             }
         }
 
@@ -131,11 +131,11 @@ public class PagamentoRecorrenteView {
             System.out.println("Pagamento recorrente encontrado:");
             System.out.println("\n\nID: " + pagamentoRecorrente[index].getId());
             System.out.println("ID Pessoa: " + pagamentoRecorrente[index].getIdPessoa());
-            System.out.println("Cartão de Crédito: " + pagamentoRecorrente[index].getCartaoCredito());
-            System.out.println("Número de Meses Restantes: " + pagamentoRecorrente[index].getNumeroMesesAutorizados());
+            System.out.println("Cartao de Credito: " + pagamentoRecorrente[index].getCartaoCredito());
+            System.out.println("Numero de Meses Restantes: " + pagamentoRecorrente[index].getNumeroMesesAutorizados());
             System.out.println("Valor: " + String.format("%.2f", pagamentoRecorrente[index].getValor()));
-            System.out.println("Data de Criação: " + formatarData(pagamentoRecorrente[index].getDataCriacao()));
-            System.out.println("Data de Modificação: " + formatarData(pagamentoRecorrente[index].getDataModificacao()));
+            System.out.println("Data de Criacao: " + formatarData(pagamentoRecorrente[index].getDataCriacao()));
+            System.out.println("Data de Modificacao: " + formatarData(pagamentoRecorrente[index].getDataModificacao()));
 
             System.out.print("\nDeseja remover o pagamento recorrente? (S/N): ");
             String confirmacao = scanner.nextLine();
@@ -146,10 +146,10 @@ public class PagamentoRecorrenteView {
                 numPagamentosRecorrentes--;
                 System.out.println("Pagamento recorrente removido com sucesso!");
             } else {
-                System.out.println("Operação cancelada.");
+                System.out.println("Operacao cancelada.");
             }
         } else {
-            System.out.println("Pagamento recorrente não encontrado.");
+            System.out.println("Pagamento recorrente nao encontrado.");
         }
     }
 
@@ -159,14 +159,14 @@ public class PagamentoRecorrenteView {
     }
 
     public static void simularAvancoTempo() {
-        System.out.print("\nInforme o número de meses a avançar: ");
+        System.out.print("\nInforme o numero de meses a avancar: ");
         int mesesAvancar = scanner.nextInt();
         scanner.nextLine();
 
         // Removed the Calendar usage and replaced with LocalDate
         LocalDate dataAvancada = LocalDate.now().plusMonths(mesesAvancar);
 
-        System.out.println("\nData avançada: " + formatarData(dataAvancada));
+        System.out.println("\nData avancada: " + formatarData(dataAvancada));
 
         PagamentoRecorrenteController.checarPagamentos(dataAvancada);
     }

@@ -40,7 +40,7 @@ public class ExercicioAplicacaoView {
                     System.out.print("Descricao nao pode estar vazio. Informe novamente: ");
                     descricao = scanner.nextLine().trim();
                 }
-                ExercicioAplicacao exercicio = exercicioAplicacaoController.geraExercicioAplicacao(idExercicio, exercicioNome, descricao);
+                ExercicioAplicacao exercicio = ExercicioAplicacaoController.geraExercicioAplicacao(idExercicio, exercicioNome, descricao);
                 return exercicio;
             }
         }

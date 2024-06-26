@@ -33,7 +33,7 @@ public class EntradaAlunoView {
         System.out.print("\nDigite o ID do aluno: ");
         int idAluno = scanner.nextInt();
         if(PessoaController.getPessoaById(idAluno, "Aluno") == null){
-            System.out.println("Aluno não encontrado.");
+            System.out.println("Aluno nao encontrado.");
             return;
         }
 
@@ -62,7 +62,7 @@ public class EntradaAlunoView {
         if (removido) {
             System.out.println("Entrada removida com sucesso.");
         } else {
-            System.out.println("Entrada não encontrada.");
+            System.out.println("Entrada nao encontrada.");
         }
     }
     

@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 public class ExercicioController {
 
-    // Método para criar um novo exercício no banco de dados
+    // Metodo para criar um novo exercicio no banco de dados
     public static void adicionarExercicio(String nome, String descricao) {
         String sql = "INSERT INTO exercicios (nome, descricao, dataCriacao, dataModificacao) VALUES (?, ?, ?, ?)";
 
@@ -21,7 +21,7 @@ public class ExercicioController {
             stmt.setDate(4, Date.valueOf(LocalDate.now()));
             stmt.executeUpdate();
 
-            // Obter o ID gerado para o exercício e definir no objeto Exercicio
+            // Obter o ID gerado para o exercicio e definir no objeto Exercicio
             ResultSet rs = stmt.getGeneratedKeys();
             if (rs.next()) {
                 int id = rs.getInt(1);
@@ -33,7 +33,7 @@ public class ExercicioController {
         }
     }
 
-    // Método para buscar um exercício pelo ID
+    // Metodo para buscar um exercicio pelo ID
     public static Exercicio getExercicioById(int id) {
         String sql = "SELECT * FROM exercicios WHERE id = ?";
         Exercicio exercicio = null;
@@ -59,7 +59,7 @@ public class ExercicioController {
         return exercicio;
     }
 
-    // Método para atualizar um exercício no banco de dados
+    // Metodo para atualizar um exercicio no banco de dados
     public void atualizarExercicio(int id, String novoNome, String novaDescricao) {
         String sql = "UPDATE exercicios SET nome = ?, descricao = ?, dataModificacao = ? WHERE id = ?";
 
@@ -76,7 +76,7 @@ public class ExercicioController {
         }
     }
 
-    // Método para listar todos os exercícios do banco de dados
+    // Metodo para listar todos os exercicios do banco de dados
     public static Exercicio[] listarExercicios() {
         String sql = "SELECT * FROM exercicios";
         Exercicio[] exercicios = new Exercicio[100];
@@ -102,7 +102,7 @@ public class ExercicioController {
         return exercicios;
     }
 
-    // Método para excluir um exercício do banco de dados
+    // Metodo para excluir um exercicio do banco de dados
     public void removerExercicio(int id) {
         String sql = "DELETE FROM exercicios WHERE id = ?";
 

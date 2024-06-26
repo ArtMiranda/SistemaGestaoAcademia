@@ -101,7 +101,15 @@ public class DatabaseUtil {
                     "nomeDetalhado TEXT NOT NULL," +
                     "dataCriacao DATE NOT NULL," +
                     "dataModificacao DATE NOT NULL)");
-
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS AvaliacaoFisica (" +
+                    "id INT AUTO_INCREMENT PRIMARY KEY," +
+                    "nomePessoa VARCHAR(255) NOT NULL," +
+                    "ultimoTreino VARCHAR(255) NOT NULL," +
+                    "peso DOUBLE NOT NULL," +
+                    "altura DOUBLE NOT NULL," +
+                    "indiceSatisfacaoResultado INT NOT NULL," +
+                    "dataCriacao DATE NOT NULL," +
+                    "dataModificacao DATE NOT NULL)");
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

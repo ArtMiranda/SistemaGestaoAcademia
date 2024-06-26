@@ -28,7 +28,7 @@ public class ExercicioView {
             descricao = scanner.nextLine().trim();
         }
 
-        return null; // Não estamos mais retornando um exercício aqui, apenas adicionando ao banco de dados
+        return null; // Nao estamos mais retornando um exercicio aqui, apenas adicionando ao banco de dados
     }
 
     public static void exibirTodosExercicios() {

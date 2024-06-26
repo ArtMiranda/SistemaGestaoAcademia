@@ -37,9 +37,9 @@ public class PopularTabelasController {
 
         // PessoaView.numAdministradores = 2;
 
-        PessoaController.criarPessoa("Administradora Padrão", 'F', getDate(1990, 3, 20), "adm", "adm", "Administrador");
-        PessoaController.criarPessoa("Professor Padrão", 'M', getDate(1990, 3, 20), "prof", "prof", "Professor/Instrutor");
-        PessoaController.criarPessoa("Aluno Padrão", 'M', getDate(1990, 3, 20), "aluno", "aluno", "Aluno");
+        PessoaController.criarPessoa("Administradora Padrao", 'F', getDate(1990, 3, 20), "adm", "adm", "Administrador");
+        PessoaController.criarPessoa("Professor Padrao", 'M', getDate(1990, 3, 20), "prof", "prof", "Professor/Instrutor");
+        PessoaController.criarPessoa("Aluno Padrao", 'M', getDate(1990, 3, 20), "aluno", "aluno", "Aluno");
         PessoaController.criarPessoa("Pablo", 'M', getDate(1990, 3, 20), "pablo", "pablo", "Aluno");
         PessoaController.criarPessoa("Elaine", 'F', getDate(1992, 8, 25), "elaine", "elaine", "Aluno");
         PessoaController.criarPessoa("Alexandre", 'M', getDate(1995, 11, 12), "alexandre", "alexandre", "Aluno");
