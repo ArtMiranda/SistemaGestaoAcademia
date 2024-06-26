@@ -4,11 +4,9 @@ import java.time.LocalDate;
 
 import sgacad.model.DivisaoTreino;
 import sgacad.model.DivisaoTreinoMusculo;
-import sgacad.model.ExercicioAplicacao;
 import sgacad.model.TreinoAplicacao;
 import sgacad.view.DivisaoTreinoMusculoView;
 import sgacad.view.DivisaoTreinoView;
-import sgacad.view.ExercicioAplicacaoView;
 import sgacad.view.MensalidadeVigenteView;
 import sgacad.view.TreinoAplicacaoView;
 
@@ -77,17 +75,26 @@ public class PopularTabelasController {
 
 //        ExercicioController.criarExercicio("Supino", "Supino com barra");
 
-        ExercicioAplicacaoView.exerciciosAplicacao[0] = new ExercicioAplicacao(0, "Supino", "Supino reto com peso", currentDate, currentDate);
-        ExercicioAplicacaoView.exerciciosAplicacao[1] = new ExercicioAplicacao(1, "Agachamento", "Agachamento reto com peso", currentDate, currentDate);
-        ExercicioAplicacaoView.exerciciosAplicacao[2] = new ExercicioAplicacao(2, "Levantamento Terra", "Levantamento terra com barra pesada", currentDate, currentDate);
-        ExercicioAplicacaoView.exerciciosAplicacao[3] = new ExercicioAplicacao(3, "Flexao", "Flexao normal sem peso", currentDate, currentDate);
-        ExercicioAplicacaoView.exerciciosAplicacao[4] = new ExercicioAplicacao(4, "Rosca Direta", "Rosca direta com halteres pesados", currentDate, currentDate);
-        ExercicioAplicacaoView.exerciciosAplicacao[5] = new ExercicioAplicacao(5, "Cadeira Extensora", "Extensao de pernas com carga", currentDate, currentDate);
-        ExercicioAplicacaoView.exerciciosAplicacao[6] = new ExercicioAplicacao(6, "Puxada Frontal", "Puxada frontal com peso", currentDate, currentDate);
-        ExercicioAplicacaoView.exerciciosAplicacao[7] = new ExercicioAplicacao(7, "Desenvolvimento de Ombros", "Desenvolvimento de ombros com halteres pesados", currentDate, currentDate);
+        // ExercicioAplicacaoView.exerciciosAplicacao[0] = new ExercicioAplicacao(0, "Supino", "Supino reto com peso", currentDate, currentDate);
+        // ExercicioAplicacaoView.exerciciosAplicacao[1] = new ExercicioAplicacao(1, "Agachamento", "Agachamento reto com peso", currentDate, currentDate);
+        // ExercicioAplicacaoView.exerciciosAplicacao[2] = new ExercicioAplicacao(2, "Levantamento Terra", "Levantamento terra com barra pesada", currentDate, currentDate);
+        // ExercicioAplicacaoView.exerciciosAplicacao[3] = new ExercicioAplicacao(3, "Flexao", "Flexao normal sem peso", currentDate, currentDate);
+        // ExercicioAplicacaoView.exerciciosAplicacao[4] = new ExercicioAplicacao(4, "Rosca Direta", "Rosca direta com halteres pesados", currentDate, currentDate);
+        // ExercicioAplicacaoView.exerciciosAplicacao[5] = new ExercicioAplicacao(5, "Cadeira Extensora", "Extensao de pernas com carga", currentDate, currentDate);
+        // ExercicioAplicacaoView.exerciciosAplicacao[6] = new ExercicioAplicacao(6, "Puxada Frontal", "Puxada frontal com peso", currentDate, currentDate);
+        // ExercicioAplicacaoView.exerciciosAplicacao[7] = new ExercicioAplicacao(7, "Desenvolvimento de Ombros", "Desenvolvimento de ombros com halteres pesados", currentDate, currentDate);
 
-        ExercicioAplicacaoView.numExerciciosAplicacao = 8;
+        // ExercicioAplicacaoView.numExerciciosAplicacao = 8;
 
+
+        ExercicioAplicacaoController.geraExercicioAplicacao(1, "Supino", "Supino reto com peso");
+        ExercicioAplicacaoController.geraExercicioAplicacao(2, "Agachamento", "Agachamento reto com peso");
+        ExercicioAplicacaoController.geraExercicioAplicacao(3, "Levantamento Terra", "Levantamento terra com barra pesada");
+        ExercicioAplicacaoController.geraExercicioAplicacao(4, "Flexao", "Flexao normal sem peso");
+        ExercicioAplicacaoController.geraExercicioAplicacao(5, "Rosca Direta", "Rosca direta com halteres pesados");
+        ExercicioAplicacaoController.geraExercicioAplicacao(6, "Cadeira Extensora", "Extensao de pernas com carga");
+        ExercicioAplicacaoController.geraExercicioAplicacao(7, "Puxada Frontal", "Puxada frontal com peso");
+        ExercicioAplicacaoController.geraExercicioAplicacao(8, "Desenvolvimento de Ombros", "Desenvolvimento de ombros com halteres pesados");
 
         TreinoController.adicionarTreino("Fortificacao", getDate(2025, 1, 15), getDate(2025, 6, 15));
         TreinoController.adicionarTreino("Preparacao para competicao", getDate(2025, 1, 15), getDate(2025, 9, 10));

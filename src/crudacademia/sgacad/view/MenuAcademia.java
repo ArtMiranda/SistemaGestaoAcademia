@@ -533,9 +533,7 @@ public class MenuAcademia {
 
     private static void criaExercicioAplicacao() {
         System.out.println("\n\n----- Criacao da Aplicacao de Exercicio -----");
-        ExercicioAplicacao exercicioAplicacao = ExercicioAplicacaoView.criarExercicioAplicacao();
-
-        ExercicioAplicacaoView.exerciciosAplicacao[ExercicioAplicacaoView.numExerciciosAplicacao++] = exercicioAplicacao;
+        ExercicioAplicacaoView.criarExercicioAplicacao();
     }
 
     private static void exibirMenuCRUDTreino() {

@@ -19,7 +19,7 @@ public class DatabaseUtil {
 
     public static void createDatabase() {
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-             Statement statement = connection.createStatement()) {
+                Statement statement = connection.createStatement()) {
             statement.executeUpdate("DROP DATABASE IF EXISTS " + DATABASE_NAME);
             statement.executeUpdate("CREATE DATABASE " + DATABASE_NAME);
         } catch (SQLException e) {
@@ -95,12 +95,21 @@ public class DatabaseUtil {
                     "data_criacao DATE NOT NULL," +
                     "data_modificacao DATE NOT NULL," +
                     "FOREIGN KEY (id_aluno) REFERENCES Alunos(id))");
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS ExercicioAplicacao (" +
+                    "id INT AUTO_INCREMENT PRIMARY KEY," +
+                    "nome VARCHAR(255) NOT NULL," +
+                    "nomeDetalhado TEXT NOT NULL," +
+                    "dataCriacao DATE NOT NULL," +
+                    "dataModificacao DATE NOT NULL)");
+
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             try {
-                if (statement != null) statement.close();
-                if (connection != null) connection.close();
+                if (statement != null)
+                    statement.close();
+                if (connection != null)
+                    connection.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
