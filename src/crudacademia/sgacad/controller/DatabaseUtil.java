@@ -134,6 +134,13 @@ public class DatabaseUtil {
                     "termino DATE NOT NULL," +
                     "data_criacao DATE NOT NULL," +
                     "data_modificacao DATE NOT NULL)");
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS movimentacao_financeira (" +
+                    "id INT AUTO_INCREMENT PRIMARY KEY," +
+                    "valor DOUBLE NOT NULL," +
+                    "tipo VARCHAR(10) NOT NULL," +
+                    "descricao TEXT NOT NULL," +
+                    "data_criacao DATE NOT NULL," +
+                    "data_modificacao DATE NOT NULL)");
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

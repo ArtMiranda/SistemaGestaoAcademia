@@ -910,13 +910,13 @@ public class MenuAcademia {
                     break;
                 case 5:
                     MovimentacaoFinanceiraView.listarMovimentacoesFinanceiras();
-                    MovimentacaoFinanceiraView.removerMovimentacaoFinaceiraPorId();
+                    MovimentacaoFinanceiraView.removerMovimentacaoFinanceiraPorId();
                     break;
                 case 6:
-                    MovimentacaoFinanceiraView.relatorioMovimentacoesFinaceiras();
+                    MovimentacaoFinanceiraView.relatorioMovimentacoesFinanceiras();
                     break;
                 case 7:
-                    // MovimentacaoFinanceiraView.exib/ir();
+                    MovimentacaoFinanceiraView.exibirAlunosAdimplentes();
                     break;
                 case 0:
                     loggedOut = true;

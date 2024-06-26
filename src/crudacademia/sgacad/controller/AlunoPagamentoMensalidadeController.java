@@ -1,6 +1,7 @@
 package sgacad.controller;
 
 import sgacad.model.AlunoPagamentoMensalidade;
+import sgacad.model.Pessoa;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,6 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AlunoPagamentoMensalidadeController {
 
@@ -95,5 +98,35 @@ public class AlunoPagamentoMensalidadeController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public static List<Pessoa> getAlunosAdimplentes() {
+        List<Pessoa> alunosAdimplentes = new ArrayList<>();
+        LocalDate currentDate = LocalDate.now();
+        String sql = "SELECT a.id, a.nome, a.sexo, a.nascimento, a.login, a.senha, a.data_modificacao " +
+                     "FROM Alunos a " +
+                     "JOIN aluno_pagamento_mensalidade apm ON a.id = apm.id_aluno " +
+                     "WHERE apm.data_vencimento >= ? AND apm.data_pagamento <= apm.data_vencimento";
+
+        try (Connection connection = DatabaseUtil.getConnection();
+             PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setDate(1, java.sql.Date.valueOf(currentDate));
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    int id = rs.getInt("id");
+                    String nome = rs.getString("nome");
+                    char sexo = rs.getString("sexo").charAt(0);
+                    LocalDate nascimento = rs.getDate("nascimento").toLocalDate();
+                    String login = rs.getString("login");
+                    String senha = rs.getString("senha");
+                    LocalDate dataModificacao = rs.getDate("data_modificacao").toLocalDate();
+                    Pessoa aluno = new Pessoa(id, nome, sexo, nascimento, login, senha, "Aluno", dataModificacao, dataModificacao);
+                    alunosAdimplentes.add(aluno);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return alunosAdimplentes;
     }
 }
