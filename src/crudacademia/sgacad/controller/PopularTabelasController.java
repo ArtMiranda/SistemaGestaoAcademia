@@ -102,13 +102,18 @@ public class PopularTabelasController {
         TreinoController.adicionarTreino("Hipertrofia", getDate(2025, 1, 15), getDate(2025, 6, 15));
 
 
-        DivisaoTreinoView.divisoesTreinos[0] = new DivisaoTreino(0, "Fortificacao", "Treino segunda sexta sabado", currentDate, currentDate);
-        DivisaoTreinoView.divisoesTreinos[1] = new DivisaoTreino(1, "Preparacao para competicao", "Treino intenso, descansa 2 dias", currentDate, currentDate);
-        DivisaoTreinoView.divisoesTreinos[2] = new DivisaoTreino(2, "Emagrecimento", "Treino diario com dieta especifica", currentDate, currentDate);
-        DivisaoTreinoView.divisoesTreinos[3] = new DivisaoTreino(3, "Hipertrofia", "Treino focado em ganho de massa muscular", currentDate, currentDate);
+        // DivisaoTreinoView.divisoesTreinos[0] = new DivisaoTreino(0, "Fortificacao", "Treino segunda sexta sabado", currentDate, currentDate);
+        // DivisaoTreinoView.divisoesTreinos[1] = new DivisaoTreino(1, "Preparacao para competicao", "Treino intenso, descansa 2 dias", currentDate, currentDate);
+        // DivisaoTreinoView.divisoesTreinos[2] = new DivisaoTreino(2, "Emagrecimento", "Treino diario com dieta especifica", currentDate, currentDate);
+        // DivisaoTreinoView.divisoesTreinos[3] = new DivisaoTreino(3, "Hipertrofia", "Treino focado em ganho de massa muscular", currentDate, currentDate);
 
-        DivisaoTreinoView.numDivisoesTreino = 4;
+        // DivisaoTreinoView.numDivisoesTreino = 4;
 
+        DivisaoTreinoController.geraDivisaoTreino("Fortificacao", "Treino segunda sexta sabado");
+        DivisaoTreinoController.geraDivisaoTreino("Preparacao para competicao", "Treino intenso, descansa 2 dias");
+        DivisaoTreinoController.geraDivisaoTreino("Emagrecimento", "Treino diario com dieta especifica");
+        DivisaoTreinoController.geraDivisaoTreino("Hipertrofia", "Treino focado em ganho de massa muscular");
+        
 
         DivisaoTreinoMusculoView.divisoesTreinoMusculo[0] = new DivisaoTreinoMusculo(0, "Fortificacao", "Treino segunda sexta sabado", "Peito", currentDate, currentDate);
         DivisaoTreinoMusculoView.divisoesTreinoMusculo[1] = new DivisaoTreinoMusculo(1, "Preparacao para competicao", "Treino intenso, descansa 2 dias", "Perna e Gluteo", currentDate, currentDate);

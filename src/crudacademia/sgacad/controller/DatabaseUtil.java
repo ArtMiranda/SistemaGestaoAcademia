@@ -110,6 +110,12 @@ public class DatabaseUtil {
                     "indiceSatisfacaoResultado INT NOT NULL," +
                     "dataCriacao DATE NOT NULL," +
                     "dataModificacao DATE NOT NULL)");
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS divisao_treino (" +
+                    "id INT AUTO_INCREMENT PRIMARY KEY," +
+                    "nome VARCHAR(255) NOT NULL," +
+                    "descricao TEXT NOT NULL," +
+                    "data_criacao DATE NOT NULL," +
+                    "data_modificacao DATE NOT NULL)");
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
