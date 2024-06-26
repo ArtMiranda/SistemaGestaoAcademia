@@ -73,6 +73,7 @@ public class DivisaoTreinoMusculo {
 
     public String exibirDetalhes() {
         String detalhes = "ID: " + id + "\n";
+        detalhes += "Nome do Treino: " + nomeTreino + "\n";
         detalhes += "Descricao: " + descricao + "\n";
         detalhes += "Divisao de Treino: " + divisaoTreinoMusculo + "\n";
         detalhes += "Data de Criacao: " + formatarData(dataCriacao) + "\n";

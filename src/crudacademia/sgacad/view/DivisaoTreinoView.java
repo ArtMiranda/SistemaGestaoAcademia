@@ -12,18 +12,18 @@ public class DivisaoTreinoView {
     private static Scanner scanner = new Scanner(System.in);
     private static DivisaoTreinoController divisaoTreinoController = new DivisaoTreinoController();
 
-    public static DivisaoTreino criaDivisaoTreino() {
+    public static DivisaoTreino criaOuAtualizaDivisaoTreino() {
         TreinoView.exibirTodosTreinos();
         System.out.print("\n\nInforme o Treino: ");
-        int treino = scanner.nextInt();
+        int treinoId = scanner.nextInt();
         scanner.nextLine(); // Consumir a linha nova apos o proximo int
 
-        Treino treinoSelecionado = TreinoController.getTreinoById(treino);
+        Treino treinoSelecionado = TreinoController.getTreinoById(treinoId);
         while (treinoSelecionado == null) {
             System.out.print("Treino invalido. Informe novamente: ");
-            treino = scanner.nextInt();
+            treinoId = scanner.nextInt();
             scanner.nextLine(); // Consumir a linha nova apos o proximo int
-            treinoSelecionado = TreinoController.getTreinoById(treino);
+            treinoSelecionado = TreinoController.getTreinoById(treinoId);
         }
 
         System.out.print("Descricao da Divisao de Treino: ");
@@ -35,11 +35,11 @@ public class DivisaoTreinoView {
 
         String nome = treinoSelecionado.getObjetivo();
 
-        DivisaoTreino divisaoTreino = divisaoTreinoController.geraDivisaoTreino(nome, descricao);
+        DivisaoTreino divisaoTreino = DivisaoTreinoController.geraDivisaoTreino(treinoId, nome, descricao);
         if (divisaoTreino != null) {
-            System.out.println("Divisao de treino criada com sucesso: " + divisaoTreino.exibirDetalhes());
+            System.out.println("Divisao de treino criada ou atualizada com sucesso: " + divisaoTreino.exibirDetalhes());
         } else {
-            System.out.println("Erro ao criar divisao de treino.");
+            System.out.println("Erro ao criar ou atualizar divisao de treino.");
         }
         return divisaoTreino;
     }
@@ -61,7 +61,7 @@ public class DivisaoTreinoView {
         int idBusca = scanner.nextInt();
         scanner.nextLine(); // Limpar o buffer do teclado
 
-        DivisaoTreino divisaoTreino = divisaoTreinoController.getDivisaoTreinoById(idBusca);
+        DivisaoTreino divisaoTreino = DivisaoTreinoController.getDivisaoTreinoById(idBusca);
         if (divisaoTreino != null) {
             System.out.println(divisaoTreino.exibirDetalhes());
         } else {
@@ -74,7 +74,7 @@ public class DivisaoTreinoView {
         int idDivisaoTreino = scanner.nextInt();
         scanner.nextLine(); // Limpar o buffer do teclado
 
-        DivisaoTreino divisaoTreino = divisaoTreinoController.getDivisaoTreinoById(idDivisaoTreino);
+        DivisaoTreino divisaoTreino = DivisaoTreinoController.getDivisaoTreinoById(idDivisaoTreino);
         if (divisaoTreino != null) {
             System.out.println("\nDados atuais da Divisao de Treino:");
             System.out.println(divisaoTreino.exibirDetalhes());
@@ -88,7 +88,7 @@ public class DivisaoTreinoView {
             }
 
             divisaoTreino.setDataModificacao(LocalDate.now());
-            divisaoTreinoController.updateDivisaoTreino(divisaoTreino);
+            DivisaoTreinoController.updateDivisaoTreino(divisaoTreino);
 
             System.out.println("\nDados da Divisao de Treino atualizados com sucesso:");
             System.out.println(divisaoTreino.exibirDetalhes());
@@ -103,7 +103,7 @@ public class DivisaoTreinoView {
         int idDivisaoTreino = scanner.nextInt();
         scanner.nextLine(); // Limpar o buffer do teclado
 
-        DivisaoTreino divisaoTreino = divisaoTreinoController.getDivisaoTreinoById(idDivisaoTreino);
+        DivisaoTreino divisaoTreino = DivisaoTreinoController.getDivisaoTreinoById(idDivisaoTreino);
         if (divisaoTreino != null) {
             divisaoTreinoController.deleteDivisaoTreino(idDivisaoTreino);
             System.out.println("\n\nDivisao de treino removida com sucesso.");

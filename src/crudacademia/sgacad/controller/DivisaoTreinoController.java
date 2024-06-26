@@ -11,30 +11,33 @@ import java.util.List;
 import sgacad.model.DivisaoTreino;
 
 public class DivisaoTreinoController {
-    public static DivisaoTreino geraDivisaoTreino(String nome, String descricao) {
+    public static DivisaoTreino geraDivisaoTreino(int treinoId, String nome, String descricao) {
         LocalDate currentDate = LocalDate.now();
-        DivisaoTreino divisaoTreino = null;
+        DivisaoTreino divisaoTreino = getDivisaoTreinoById(treinoId);
 
-        String sql = "INSERT INTO divisao_treino (nome, descricao, data_criacao, data_modificacao) VALUES (?, ?, ?, ?)";
-        
-        try (Connection connection = DatabaseUtil.getConnection();
-             PreparedStatement pstmt = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
-            pstmt.setString(1, nome);
-            pstmt.setString(2, descricao);
-            pstmt.setDate(3, java.sql.Date.valueOf(currentDate));
-            pstmt.setDate(4, java.sql.Date.valueOf(currentDate));
-            int affectedRows = pstmt.executeUpdate();
+        if (divisaoTreino == null) {
+            String sql = "INSERT INTO divisao_treino (id, nome, descricao, data_criacao, data_modificacao) VALUES (?, ?, ?, ?, ?)";
+            
+            try (Connection connection = DatabaseUtil.getConnection();
+                 PreparedStatement pstmt = connection.prepareStatement(sql)) {
+                pstmt.setInt(1, treinoId);
+                pstmt.setString(2, nome);
+                pstmt.setString(3, descricao);
+                pstmt.setDate(4, java.sql.Date.valueOf(currentDate));
+                pstmt.setDate(5, java.sql.Date.valueOf(currentDate));
+                int affectedRows = pstmt.executeUpdate();
 
-            if (affectedRows > 0) {
-                try (ResultSet generatedKeys = pstmt.getGeneratedKeys()) {
-                    if (generatedKeys.next()) {
-                        int id = generatedKeys.getInt(1);
-                        divisaoTreino = new DivisaoTreino(id, nome, descricao, currentDate, currentDate);
-                    }
+                if (affectedRows > 0) {
+                    divisaoTreino = new DivisaoTreino(treinoId, nome, descricao, currentDate, currentDate);
                 }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } else {
+            divisaoTreino.setNome(nome);
+            divisaoTreino.setDescricao(descricao);
+            divisaoTreino.setDataModificacao(currentDate);
+            updateDivisaoTreino(divisaoTreino);
         }
         return divisaoTreino;
     }
@@ -83,7 +86,7 @@ public class DivisaoTreinoController {
         return divisoesTreino;
     }
 
-    public void updateDivisaoTreino(DivisaoTreino divisaoTreino) {
+    public static void updateDivisaoTreino(DivisaoTreino divisaoTreino) {
         String sql = "UPDATE divisao_treino SET nome = ?, descricao = ?, data_modificacao = ? WHERE id = ?";
 
         try (Connection connection = DatabaseUtil.getConnection();

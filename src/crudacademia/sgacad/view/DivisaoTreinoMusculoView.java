@@ -1,19 +1,18 @@
 package sgacad.view;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Scanner;
 import sgacad.controller.DivisaoTreinoController;
 import sgacad.controller.DivisaoTreinoMusculoController;
-import sgacad.controller.TreinoController;
 import sgacad.model.DivisaoTreino;
 import sgacad.model.DivisaoTreinoMusculo;
 
 public class DivisaoTreinoMusculoView {
-    public static DivisaoTreinoMusculo[] divisoesTreinoMusculo = new DivisaoTreinoMusculo[100];
-    public static int numDivisoesTreinoMusculo = 0;
     private static Scanner scanner = new Scanner(System.in);
+    private static DivisaoTreinoMusculoController divisaoTreinoMusculoController = new DivisaoTreinoMusculoController();
 
-    public static DivisaoTreinoMusculo criaDivisaoTreinoMusculo() {
+    public static DivisaoTreinoMusculo criaOuAtualizaDivisaoTreinoMusculo() {
         DivisaoTreinoView.exibirTodasDivisoesTreino();
         System.out.print("\n\nInforme o ID da Divisao de Treino: ");
         int divisaoTreinoId = scanner.nextInt();
@@ -28,33 +27,33 @@ public class DivisaoTreinoMusculoView {
         }
 
         System.out.print("Descricao da Divisao de Treino-musculo: ");
-        String descricao = scanner.nextLine().trim();
-        while (descricao.isEmpty()) {
-            System.out.print("Descricao nao pode estar vazio. Informe novamente: ");
-            descricao = scanner.nextLine().trim();
+        String divTreinoMusculo = scanner.nextLine().trim();
+        while (divTreinoMusculo.isEmpty()) {
+            System.out.print("Descricao nao pode estar vazia. Informe novamente: ");
+            divTreinoMusculo = scanner.nextLine().trim();
         }
 
-        DivisaoTreinoMusculoController divisaoTreinoMusculoController = new DivisaoTreinoMusculoController();
-        DivisaoTreinoMusculo divisaoTreinoMusculo = divisaoTreinoMusculoController
-                .geraDivisaoTreinoMusculo(divisaoTreinoId,
-                        TreinoController.getTreinoById(divisaoTreinoId).getObjetivo(),
-                        descricao, descricao);
+        String nomeTreino = divisaoTreinoSelecionada.getNome();
+        String descricao = divisaoTreinoSelecionada.getDescricao();
 
-        divisoesTreinoMusculo[numDivisoesTreinoMusculo] = divisaoTreinoMusculo;
-        numDivisoesTreinoMusculo++;
+        DivisaoTreinoMusculo divisaoTreinoMusculo = DivisaoTreinoMusculoController
+                .geraOuAtualizaDivisaoTreinoMusculo(divisaoTreinoId, nomeTreino, descricao, divTreinoMusculo);
+        if (divisaoTreinoMusculo != null) {
+            System.out.println("Divisao de treino-musculo criada ou atualizada com sucesso: " + divisaoTreinoMusculo.exibirDetalhes());
+        } else {
+            System.out.println("Erro ao criar ou atualizar divisao de treino-musculo.");
+        }
         return divisaoTreinoMusculo;
     }
 
     public static void exibirTodasDivisoesTreinoMusculo() {
-        if (numDivisoesTreinoMusculo == 0) {
+        List<DivisaoTreinoMusculo> divisoesTreinoMusculo = divisaoTreinoMusculoController.getAllDivisoesTreinoMusculo();
+        if (divisoesTreinoMusculo.isEmpty()) {
             System.out.println("\n\nNenhuma divisao de treino-musculo cadastrada ainda.");
         } else {
             System.out.println("\n\nLista de Divisoes de Treino-musculo:");
-            for (int i = 0; i < numDivisoesTreinoMusculo; i++) {
-                System.out.println(
-                        "ID: " + divisoesTreinoMusculo[i].getId() +
-                                ", Descricao: " + divisoesTreinoMusculo[i].getDescricao() +
-                                ", Nome do Treino: " + divisoesTreinoMusculo[i].getNomeTreino());
+            for (DivisaoTreinoMusculo divisaoTreinoMusculo : divisoesTreinoMusculo) {
+                System.out.println(divisaoTreinoMusculo.exibirDetalhes());
             }
         }
     }
@@ -89,14 +88,20 @@ public class DivisaoTreinoMusculoView {
                 divisaoTreinoMusculo.setDescricao(novaDescricao);
             }
 
+            System.out.print("Novo Nome: ");
+            String novoNome = scanner.nextLine().trim();
+            if (!novoNome.isEmpty()) {
+                divisaoTreinoMusculo.setNomeTreino(novoNome);
+            }
+
             divisaoTreinoMusculo.setDataModificacao(LocalDate.now());
+            DivisaoTreinoMusculoController.updateDivisaoTreinoMusculo(divisaoTreinoMusculo);
 
             System.out.println("\nDados da Divisao de Treino-musculo atualizados com sucesso:");
             System.out.println(divisaoTreinoMusculo.exibirDetalhes());
         } else {
             System.out.println("\nDivisao de Treino-musculo com ID " + idDivisaoTreinoMusculo + " nao encontrada.");
         }
-
         return divisaoTreinoMusculo;
     }
 
@@ -105,20 +110,11 @@ public class DivisaoTreinoMusculoView {
         int idDivisaoTreinoMusculo = scanner.nextInt();
         scanner.nextLine(); // Limpar o buffer do teclado
 
-        boolean encontrado = false;
-        for (int i = 0; i < numDivisoesTreinoMusculo; i++) {
-            if (divisoesTreinoMusculo[i].getId() == idDivisaoTreinoMusculo) {
-                for (int j = i; j < numDivisoesTreinoMusculo - 1; j++) {
-                    divisoesTreinoMusculo[j] = divisoesTreinoMusculo[j + 1];
-                }
-                divisoesTreinoMusculo[numDivisoesTreinoMusculo - 1] = null;
-                numDivisoesTreinoMusculo--;
-                System.out.println("\n\nDivisao de treino-musculo removida com sucesso.");
-                encontrado = true;
-                break;
-            }
-        }
-        if (!encontrado) {
+        DivisaoTreinoMusculo divisaoTreinoMusculo = DivisaoTreinoMusculoController.getDivisaoTreinoMusculoById(idDivisaoTreinoMusculo);
+        if (divisaoTreinoMusculo != null) {
+            divisaoTreinoMusculoController.deleteDivisaoTreinoMusculo(idDivisaoTreinoMusculo);
+            System.out.println("\n\nDivisao de treino-musculo removida com sucesso.");
+        } else {
             System.out.println("\n\nDivisao de treino-musculo com ID " + idDivisaoTreinoMusculo + " nao encontrada.");
         }
     }

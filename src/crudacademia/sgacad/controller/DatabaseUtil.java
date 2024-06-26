@@ -111,9 +111,27 @@ public class DatabaseUtil {
                     "dataCriacao DATE NOT NULL," +
                     "dataModificacao DATE NOT NULL)");
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS divisao_treino (" +
-                    "id INT AUTO_INCREMENT PRIMARY KEY," +
+                    "id INT NOT NULL," +
                     "nome VARCHAR(255) NOT NULL," +
                     "descricao TEXT NOT NULL," +
+                    "data_criacao DATE NOT NULL," +
+                    "data_modificacao DATE NOT NULL," +
+                    "PRIMARY KEY (id)," +
+                    "FOREIGN KEY (id) REFERENCES treinos(id))");
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS divisao_treino_musculo (" +
+                    "id INT NOT NULL," +
+                    "nome_treino VARCHAR(255) NOT NULL," +
+                    "descricao TEXT NOT NULL," +
+                    "divisao_treino_musculo VARCHAR(255) NOT NULL," +
+                    "data_criacao DATE NOT NULL," +
+                    "data_modificacao DATE NOT NULL," +
+                    "PRIMARY KEY (id)," +
+                    "FOREIGN KEY (id) REFERENCES divisao_treino(id))");
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS mensalidade_vigente (" +
+                    "id INT AUTO_INCREMENT PRIMARY KEY," +
+                    "valor DOUBLE NOT NULL," +
+                    "inicio DATE NOT NULL," +
+                    "termino DATE NOT NULL," +
                     "data_criacao DATE NOT NULL," +
                     "data_modificacao DATE NOT NULL)");
         } catch (SQLException e) {

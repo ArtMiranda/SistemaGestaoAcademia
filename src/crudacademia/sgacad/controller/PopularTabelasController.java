@@ -1,13 +1,7 @@
 package sgacad.controller;
 
 import java.time.LocalDate;
-
-import sgacad.model.DivisaoTreino;
-import sgacad.model.DivisaoTreinoMusculo;
 import sgacad.model.TreinoAplicacao;
-import sgacad.view.DivisaoTreinoMusculoView;
-import sgacad.view.DivisaoTreinoView;
-import sgacad.view.MensalidadeVigenteView;
 import sgacad.view.TreinoAplicacaoView;
 
 public class PopularTabelasController {
@@ -109,23 +103,32 @@ public class PopularTabelasController {
 
         // DivisaoTreinoView.numDivisoesTreino = 4;
 
-        DivisaoTreinoController.geraDivisaoTreino("Fortificacao", "Treino segunda sexta sabado");
-        DivisaoTreinoController.geraDivisaoTreino("Preparacao para competicao", "Treino intenso, descansa 2 dias");
-        DivisaoTreinoController.geraDivisaoTreino("Emagrecimento", "Treino diario com dieta especifica");
-        DivisaoTreinoController.geraDivisaoTreino("Hipertrofia", "Treino focado em ganho de massa muscular");
-        
+        DivisaoTreinoController.geraDivisaoTreino(1, "Fortificacao", "Treino segunda sexta sabado");
+        DivisaoTreinoController.geraDivisaoTreino(2, "Preparacao para competicao", "Treino intenso, descansa 2 dias");
+        DivisaoTreinoController.geraDivisaoTreino(3, "Emagrecimento", "Treino diario com dieta especifica");
+        DivisaoTreinoController.geraDivisaoTreino(4, "Hipertrofia", "Treino focado em ganho de massa muscular");
 
-        DivisaoTreinoMusculoView.divisoesTreinoMusculo[0] = new DivisaoTreinoMusculo(0, "Fortificacao", "Treino segunda sexta sabado", "Peito", currentDate, currentDate);
-        DivisaoTreinoMusculoView.divisoesTreinoMusculo[1] = new DivisaoTreinoMusculo(1, "Preparacao para competicao", "Treino intenso, descansa 2 dias", "Perna e Gluteo", currentDate, currentDate);
-        DivisaoTreinoMusculoView.divisoesTreinoMusculo[2] = new DivisaoTreinoMusculo(2, "Emagrecimento", "Treino diario com dieta especifica", "Braco e Peito", currentDate, currentDate);
-        DivisaoTreinoMusculoView.divisoesTreinoMusculo[3] = new DivisaoTreinoMusculo(3, "Hipertrofia", "Treino focado em ganho de massa muscular", "Costas e Ombro", currentDate, currentDate);
+        DivisaoTreinoMusculoController.geraOuAtualizaDivisaoTreinoMusculo(1, "Fortificacao", "Treino segunda sexta sabado", "Peito");
+        DivisaoTreinoMusculoController.geraOuAtualizaDivisaoTreinoMusculo(2, "Preparacao para competicao", "Treino intenso, descansa 2 dias", "Perna e Gluteo");
+        DivisaoTreinoMusculoController.geraOuAtualizaDivisaoTreinoMusculo(3, "Emagrecimento", "Treino diario com dieta especifica", "Braco e Peito");
+        DivisaoTreinoMusculoController.geraOuAtualizaDivisaoTreinoMusculo(4, "Hipertrofia", "Treino focado em ganho de massa muscular", "Costas e Ombro");
 
-        DivisaoTreinoMusculoView.numDivisoesTreinoMusculo = 4;
+        // DivisaoTreinoMusculoView.divisoesTreinoMusculo[0] = new DivisaoTreinoMusculo(0, "Fortificacao", "Treino segunda sexta sabado", "Peito", currentDate, currentDate);
+        // DivisaoTreinoMusculoView.divisoesTreinoMusculo[1] = new DivisaoTreinoMusculo(1, "Preparacao para competicao", "Treino intenso, descansa 2 dias", "Perna e Gluteo", currentDate, currentDate);
+        // DivisaoTreinoMusculoView.divisoesTreinoMusculo[2] = new DivisaoTreinoMusculo(2, "Emagrecimento", "Treino diario com dieta especifica", "Braco e Peito", currentDate, currentDate);
+        // DivisaoTreinoMusculoView.divisoesTreinoMusculo[3] = new DivisaoTreinoMusculo(3, "Hipertrofia", "Treino focado em ganho de massa muscular", "Costas e Ombro", currentDate, currentDate);
 
-        MensalidadeVigenteController.cadastrar(MensalidadeVigenteView.numMensalidades, 49.90, getDate(2021, 12, 11), getDate(2022, 12, 10));
-        MensalidadeVigenteController.cadastrar(MensalidadeVigenteView.numMensalidades, 59.90, getDate(2022, 12, 11), getDate(2023, 12, 10));
-        MensalidadeVigenteController.cadastrar(MensalidadeVigenteView.numMensalidades, 69.90, getDate(2023, 12, 11), getDate(2024, 12, 10));
-        MensalidadeVigenteController.cadastrar(MensalidadeVigenteView.numMensalidades, 79.90, getDate(2024, 12, 11), getDate(2025, 12, 10));
+        // DivisaoTreinoMusculoView.numDivisoesTreinoMusculo = 4;
+
+        // MensalidadeVigenteController.cadastrar(MensalidadeVigenteView.numMensalidades, 49.90, getDate(2021, 12, 11), getDate(2022, 12, 10));
+        // MensalidadeVigenteController.cadastrar(MensalidadeVigenteView.numMensalidades, 59.90, getDate(2022, 12, 11), getDate(2023, 12, 10));
+        // MensalidadeVigenteController.cadastrar(MensalidadeVigenteView.numMensalidades, 69.90, getDate(2023, 12, 11), getDate(2024, 12, 10));
+        // MensalidadeVigenteController.cadastrar(MensalidadeVigenteView.numMensalidades, 79.90, getDate(2024, 12, 11), getDate(2025, 12, 10));
+
+        MensalidadeVigenteController.cadastrarOuAtualizar(1, 49.90, getDate(2021, 12, 11), getDate(2022, 12, 10));
+        MensalidadeVigenteController.cadastrarOuAtualizar(2, 59.90, getDate(2022, 12, 11), getDate(2023, 12, 10));
+        MensalidadeVigenteController.cadastrarOuAtualizar(3, 69.90, getDate(2023, 12, 11), getDate(2024, 12, 10));
+        // MensalidadeVigenteController.cadastrarOuAtualizar(4, 79.90, getDate(2024, 12, 11), getDate(2025, 12, 10));
 
         AlunoPagamentoMensalidadeController.gerarAlunoPagamentoMensalidade(MensalidadeVigenteController.getMensalidadeVigente().getValor(), 1, "PIX");
         AlunoPagamentoMensalidadeController.gerarAlunoPagamentoMensalidade(MensalidadeVigenteController.getMensalidadeVigente().getValor() * 2, 2, "Dinheiro");
@@ -142,10 +145,10 @@ public class PopularTabelasController {
         MovimentacaoFinanceiraController.cadastrar(5000, 2, "Venda de equipamentos");
 
 
-        PagamentoRecorrenteController.cadastrarPagamentoRecorrente(1, "5193 8824 5697 4135", 7);
-        PagamentoRecorrenteController.cadastrarPagamentoRecorrente(2, "6011 7291 2150 6230", 3);
-        PagamentoRecorrenteController.cadastrarPagamentoRecorrente(3, "3482 553022 56392", 7);
-        PagamentoRecorrenteController.cadastrarPagamentoRecorrente(4, "6062 8261 1823 5928", 4);
+        // PagamentoRecorrenteController.cadastrarPagamentoRecorrente(1, "5193 8824 5697 4135", 7);
+        // PagamentoRecorrenteController.cadastrarPagamentoRecorrente(2, "6011 7291 2150 6230", 3);
+        // PagamentoRecorrenteController.cadastrarPagamentoRecorrente(3, "3482 553022 56392", 7);
+        // PagamentoRecorrenteController.cadastrarPagamentoRecorrente(4, "6062 8261 1823 5928", 4);
 
 
         TreinoAplicacaoView.treinosAplicacao[0] = new TreinoAplicacao(0, "Fortificacao", "Supino", "Supino reto com peso", "Treino segunda sexta sabado", "Peito", getDate(2025, 1, 15), getDate(2025, 6, 15), currentDate, currentDate);

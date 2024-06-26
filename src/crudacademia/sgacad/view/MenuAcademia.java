@@ -597,7 +597,7 @@ public class MenuAcademia {
 
             switch (opcao) {
                 case 1:
-                    DivisaoTreinoView.criaDivisaoTreino();
+                    DivisaoTreinoView.criaOuAtualizaDivisaoTreino();
                     break;
                 case 2:
                     DivisaoTreinoView.exibirTodasDivisoesTreino();
@@ -641,7 +641,7 @@ public class MenuAcademia {
 
             switch (opcao) {
                 case 1:
-                    DivisaoTreinoMusculoView.criaDivisaoTreinoMusculo();
+                    DivisaoTreinoMusculoView.criaOuAtualizaDivisaoTreinoMusculo();
                     break;
                 case 2:
                     DivisaoTreinoMusculoView.exibirTodasDivisoesTreinoMusculo();
