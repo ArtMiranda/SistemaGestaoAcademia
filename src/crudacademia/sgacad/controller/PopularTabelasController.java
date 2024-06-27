@@ -1,14 +1,10 @@
 package sgacad.controller;
 
 import java.time.LocalDate;
-import sgacad.model.TreinoAplicacao;
-import sgacad.view.TreinoAplicacaoView;
-
 public class PopularTabelasController {
 
     public static void main(String[] args) {
 
-        LocalDate currentDate = LocalDate.now();
 
         // Alunos data
         // PessoaView.alunos[0] = new Pessoa(0, "Pablo", 'M', getDate(1990, 3, 20), "pablo", "pablo", "Aluno", currentDate, currentDate);
@@ -151,11 +147,17 @@ public class PopularTabelasController {
         PagamentoRecorrenteController.cadastrarPagamentoRecorrente(4, "6062 8205 8700 8502", 4);
 
 
-        TreinoAplicacaoView.treinosAplicacao[0] = new TreinoAplicacao(0, "Fortificacao", "Supino", "Supino reto com peso", "Treino segunda sexta sabado", "Peito", getDate(2025, 1, 15), getDate(2025, 6, 15), currentDate, currentDate);
-        TreinoAplicacaoView.treinosAplicacao[1] = new TreinoAplicacao(1, "Preparacao para competicao", "Agachamento", "Agachamento reto com peso", "Treino intenso, descansa 2 dias", "Perna e Gluteo", getDate(2025, 3, 10), getDate(2025, 9, 10), currentDate, currentDate);
-        TreinoAplicacaoView.treinosAplicacao[2] = new TreinoAplicacao(2, "Emagrecimento", "Levantamento Terra", "Levantamento terra com barra pesada", "Treino diario com dieta especifica", "Braco e Peito", getDate(2025, 5, 20), getDate(2025, 11, 20), currentDate, currentDate);
+        // TreinoAplicacaoView.treinosAplicacao[0] = new TreinoAplicacao(0, "Fortificacao", "Supino", "Supino reto com peso", "Treino segunda sexta sabado", "Peito", getDate(2025, 1, 15), getDate(2025, 6, 15), currentDate, currentDate);
+        // TreinoAplicacaoView.treinosAplicacao[1] = new TreinoAplicacao(1, "Preparacao para competicao", "Agachamento", "Agachamento reto com peso", "Treino intenso, descansa 2 dias", "Perna e Gluteo", getDate(2025, 3, 10), getDate(2025, 9, 10), currentDate, currentDate);
+        // TreinoAplicacaoView.treinosAplicacao[2] = new TreinoAplicacao(2, "Emagrecimento", "Levantamento Terra", "Levantamento terra com barra pesada", "Treino diario com dieta especifica", "Braco e Peito", getDate(2025, 5, 20), getDate(2025, 11, 20), currentDate, currentDate);
 
-        TreinoAplicacaoView.numTreinosAplicacao = 3;
+        // TreinoAplicacaoView.numTreinosAplicacao = 3;
+
+        TreinoAplicacaoController.geraTreinoAplicacao(1, 1);
+        TreinoAplicacaoController.geraTreinoAplicacao(2, 2);
+        TreinoAplicacaoController.geraTreinoAplicacao(3, 3);
+        TreinoAplicacaoController.geraTreinoAplicacao(1, 2);
+
     }
 
     private static LocalDate getDate(int year, int month, int day) {

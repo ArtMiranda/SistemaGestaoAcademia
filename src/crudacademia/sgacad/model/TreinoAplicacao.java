@@ -1,7 +1,7 @@
 package sgacad.model;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class TreinoAplicacao {
     private int id;
@@ -31,6 +31,10 @@ public class TreinoAplicacao {
     // Getters e Setters
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTreino() {
@@ -94,16 +98,16 @@ public class TreinoAplicacao {
     }
 
     public String exibirDetalhes() {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return "ID: " + id +
                 "\nTreino: " + treino +
-                "\nExerc: " + exercicio +
-                "\nExercicio Aplicacao: " + exercicioAplicacao +
-                "\nDivisao Treino: " + divisaoTreino +
-                "\nDivisao Treino Musculo: " + divisaoTreinoMusculo +
-                "\nData de Inicio: " + sdf.format(dataInicio) +
-                "\nData de Termino: " + sdf.format(dataTermino) +
-                "\nData de Criacao: " + sdf.format(dataCriacao) +
-                "\nData de Modificacao: " + sdf.format(dataModificacao);
+                "\nExercício: " + exercicio +
+                "\nExercício Aplicação: " + exercicioAplicacao +
+                "\nDivisão Treino: " + divisaoTreino +
+                "\nDivisão Treino Músculo: " + divisaoTreinoMusculo +
+                "\nData de Início: " + formatter.format(dataInicio) +
+                "\nData de Término: " + formatter.format(dataTermino) +
+                "\nData de Criação: " + formatter.format(dataCriacao) +
+                "\nData de Modificação: " + formatter.format(dataModificacao);
     }
 }

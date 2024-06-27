@@ -3,7 +3,9 @@ package sgacad.view;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
 import java.util.Scanner;
+
 import sgacad.controller.ExercicioController;
 import sgacad.controller.PessoaController;
 import sgacad.controller.TreinoAplicacaoController;
@@ -13,8 +15,6 @@ import sgacad.model.Treino;
 import sgacad.model.TreinoAplicacao;
 
 public class TreinoAplicacaoView {
-    public static TreinoAplicacao[] treinosAplicacao = new TreinoAplicacao[100];
-    public static int numTreinosAplicacao = 0;
     private static Scanner scanner = new Scanner(System.in);
 
     public static TreinoAplicacao criaTreinoAplicacao() {
@@ -44,21 +44,19 @@ public class TreinoAplicacaoView {
             }
         }
 
-        TreinoAplicacaoController controller = new TreinoAplicacaoController();
-        TreinoAplicacao treinoAplicacao = controller.geraTreinoAplicacao(treinoSelecionado.getId(),
+        TreinoAplicacao treinoAplicacao = TreinoAplicacaoController.geraTreinoAplicacao(treinoSelecionado.getId(),
                 exercicioSelecionado.getId());
-        treinosAplicacao[numTreinosAplicacao] = treinoAplicacao;
-        numTreinosAplicacao++;
         return treinoAplicacao;
     }
 
     public static void exibirTodosTreinosAplicacao() {
-        if (numTreinosAplicacao == 0) {
+        List<TreinoAplicacao> treinosAplicacao = TreinoAplicacaoController.getAllTreinosAplicacao();
+        if (treinosAplicacao.isEmpty()) {
             System.out.println("Nenhum treino aplicacao cadastrado.");
         } else {
             System.out.println("Lista de Treinos Aplicacao:");
-            for (int i = 0; i < numTreinosAplicacao; i++) {
-                System.out.println("\n\n" + treinosAplicacao[i].exibirDetalhes());
+            for (TreinoAplicacao treinoAplicacao : treinosAplicacao) {
+                System.out.println("\n\n" + treinoAplicacao.exibirDetalhes());
             }
         }
     }
@@ -126,10 +124,10 @@ public class TreinoAplicacaoView {
 
         if (exercicioSelecionado != null) {
             treinoAplicacao.setExercicio(exercicioSelecionado.getNome());
-            ;
         }
 
         treinoAplicacao.setDataModificacao(LocalDate.now());
+        TreinoAplicacaoController.atualizarTreinoAplicacao(treinoAplicacao);
         System.out.println("Treino aplicacao atualizado com sucesso.");
     }
 
@@ -138,23 +136,8 @@ public class TreinoAplicacaoView {
         int id = scanner.nextInt();
         scanner.nextLine(); // Consome a nova linha
 
-        boolean encontrado = false;
-        for (int i = 0; i < numTreinosAplicacao; i++) {
-            if (treinosAplicacao[i].getId() == id) {
-                for (int j = i; j < numTreinosAplicacao - 1; j++) {
-                    treinosAplicacao[j] = treinosAplicacao[j + 1];
-                }
-                treinosAplicacao[numTreinosAplicacao - 1] = null;
-                numTreinosAplicacao--;
-                System.out.println("Treino aplicacao removido com sucesso.");
-                encontrado = true;
-                break;
-            }
-        }
-
-        if (!encontrado) {
-            System.out.println("Treino aplicacao nao encontrado.");
-        }
+        TreinoAplicacaoController.removerTreinoAplicacao(id);
+        System.out.println("Treino aplicacao removido com sucesso.");
     }
 
     public static void exibirFichaTreino(int idAluno) {
@@ -174,8 +157,7 @@ public class TreinoAplicacaoView {
             System.out.println("Divisao de Treino: " + treinoAplicacao.getDivisaoTreino());
             System.out.println("Divisao Treino Musculo: " + treinoAplicacao.getDivisaoTreinoAplicacao());
 
-            long duracaoTreinoSemanas = ChronoUnit.WEEKS.between(treinoAplicacao.getDataInicio(),
-                    treinoAplicacao.getDataTermino());
+            long duracaoTreinoSemanas = ChronoUnit.WEEKS.between(treinoAplicacao.getDataInicio(), treinoAplicacao.getDataTermino());
             System.out.println("Data de Inicio: " + formatarData(treinoAplicacao.getDataInicio()) +
                     " Data de Termino: " + formatarData(treinoAplicacao.getDataTermino()) +
                     " (" + duracaoTreinoSemanas + " semanas)");
@@ -192,5 +174,4 @@ public class TreinoAplicacaoView {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return data.format(formatter);
     }
-
 }
