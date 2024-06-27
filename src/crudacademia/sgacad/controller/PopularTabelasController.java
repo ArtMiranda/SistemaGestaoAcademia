@@ -145,10 +145,10 @@ public class PopularTabelasController {
         MovimentacaoFinanceiraController.cadastrar(5000, 2, "Venda de equipamentos");
 
 
-        // PagamentoRecorrenteController.cadastrarPagamentoRecorrente(1, "5193 8824 5697 4135", 7);
-        // PagamentoRecorrenteController.cadastrarPagamentoRecorrente(2, "6011 7291 2150 6230", 3);
-        // PagamentoRecorrenteController.cadastrarPagamentoRecorrente(3, "3482 553022 56392", 7);
-        // PagamentoRecorrenteController.cadastrarPagamentoRecorrente(4, "6062 8261 1823 5928", 4);
+        PagamentoRecorrenteController.cadastrarPagamentoRecorrente(1, "5193 8824 5697 4135", 7);
+        PagamentoRecorrenteController.cadastrarPagamentoRecorrente(2, "6011 7291 2150 6230", 3);
+        PagamentoRecorrenteController.cadastrarPagamentoRecorrente(3, "5195 3574 4540 5663", 7);
+        PagamentoRecorrenteController.cadastrarPagamentoRecorrente(4, "6062 8205 8700 8502", 4);
 
 
         TreinoAplicacaoView.treinosAplicacao[0] = new TreinoAplicacao(0, "Fortificacao", "Supino", "Supino reto com peso", "Treino segunda sexta sabado", "Peito", getDate(2025, 1, 15), getDate(2025, 6, 15), currentDate, currentDate);

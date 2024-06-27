@@ -144,6 +144,17 @@ public class DatabaseUtil {
                     "descricao TEXT NOT NULL," +
                     "data_criacao DATE NOT NULL," +
                     "data_modificacao DATE NOT NULL)");
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS pagamento_recorrente (" +
+                    "id INT AUTO_INCREMENT PRIMARY KEY," +
+                    "id_pessoa INT NOT NULL," +
+                    "data DATE NOT NULL," +
+                    "cartao_credito VARCHAR(255) NOT NULL," +
+                    "valor DOUBLE NOT NULL," +
+                    "data_inicio DATE NOT NULL," +
+                    "numero_meses_autorizados INT NOT NULL," +
+                    "data_criacao DATE NOT NULL," +
+                    "data_modificacao DATE NOT NULL," +
+                    "FOREIGN KEY (id_pessoa) REFERENCES Alunos(id))");
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

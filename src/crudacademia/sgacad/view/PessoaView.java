@@ -60,7 +60,7 @@ public class PessoaView {
             senha = scanner.nextLine().trim();
         }
 
-        pessoaController.criarPessoa(nome, sexoAdmin, dtNascimento, login, senha, tipoUsuario);
+        PessoaController.criarPessoa(nome, sexoAdmin, dtNascimento, login, senha, tipoUsuario);
     }
 
     public static void atualizarPessoa(String tipo) {
@@ -152,7 +152,7 @@ public class PessoaView {
 
     public static void exibirDadosPorId(String tipo) {
         int id = solicitarId(tipo);
-        Pessoa pessoa = pessoaController.getPessoaById(id, tipo);
+        Pessoa pessoa = PessoaController.getPessoaById(id, tipo);
         if (pessoa != null) {
             System.out.println("\n\n----- Dados do " + tipo + " -----\n\n");
             System.out.println(pessoa.exibirDetalhes());
