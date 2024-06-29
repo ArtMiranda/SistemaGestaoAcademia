@@ -20,8 +20,7 @@ public class DatabaseUtil {
     public static void createDatabase() {
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
                 Statement statement = connection.createStatement()) {
-            statement.executeUpdate("DROP DATABASE IF EXISTS " + DATABASE_NAME);
-            statement.executeUpdate("CREATE DATABASE " + DATABASE_NAME);
+            statement.executeUpdate("CREATE DATABASE IF NOT EXISTS " + DATABASE_NAME);
         } catch (SQLException e) {
             e.printStackTrace();
         }

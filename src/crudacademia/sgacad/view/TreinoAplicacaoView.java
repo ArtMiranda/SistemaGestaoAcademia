@@ -6,6 +6,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Scanner;
 
+import sgacad.controller.AcademiaController;
 import sgacad.controller.ExercicioController;
 import sgacad.controller.PessoaController;
 import sgacad.controller.TreinoAplicacaoController;
@@ -152,7 +153,7 @@ public class TreinoAplicacaoView {
 
         if (treinoAplicacao != null) {
             System.out.println("\n\n--- Ficha do Treino: ---");
-            System.out.println("Academia: " + AcademiaView.academia.getNome());
+            System.out.println("Academia: " + AcademiaController.buscarAcademiaUnica().getNome());
             System.out.println("Aluno(a): " + PessoaController.getPessoaById(idAluno, "Aluno").getNome());
             System.out.println("Divisao de Treino: " + treinoAplicacao.getDivisaoTreino());
             System.out.println("Divisao Treino Musculo: " + treinoAplicacao.getDivisaoTreinoAplicacao());

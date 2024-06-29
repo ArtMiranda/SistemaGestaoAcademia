@@ -67,8 +67,8 @@ public class PessoaController {
                 sql = "SELECT * FROM Administradores WHERE login = ? AND senha = ?";
                 break;
             case "Aluno":
-                sql = "SELECT * FROM Alunos WHERE login = ? AND senha = ?";
-                break;
+            sql = "SELECT * FROM Alunos WHERE login = ? AND senha = ?";
+            break;
             case "Professor/Instrutor":
                 sql = "SELECT * FROM ProfessoresInstrutores WHERE login = ? AND senha = ?";
                 break;

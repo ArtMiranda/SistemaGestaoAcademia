@@ -55,7 +55,7 @@ public class AvaliacaoFisicaView {
             System.out.println("Ultimo treino: " + avaliacao.getUltimoTreino());
             System.out.println("Peso: " + avaliacao.getPeso());
             System.out.println("Altura: " + avaliacao.getAltura());
-            System.out.println("IMC: " + avaliacao.getImc());
+            System.out.printf("IMC: %.2f\n", avaliacao.getImc());
             System.out.println("Indice de satisfacao: " + avaliacao.getIndiceSatisfacaoResultado());
             System.out.println("Data de criacao: " + formatarData(avaliacao.getDataCriacao()));
             System.out.println("Data de modificacao: " + formatarData(avaliacao.getDataModificacao()));
@@ -74,7 +74,7 @@ public class AvaliacaoFisicaView {
             System.out.println("Ultimo treino: " + avaliacaoFisica.getUltimoTreino());
             System.out.println("Peso: " + avaliacaoFisica.getPeso());
             System.out.println("Altura: " + avaliacaoFisica.getAltura());
-            System.out.println("IMC: " + avaliacaoFisica.getImc());
+            System.out.printf("IMC: %.2f\n", avaliacaoFisica.getImc());
             System.out.println("indice de satisfacao: " + avaliacaoFisica.getIndiceSatisfacaoResultado());
             System.out.println("Data de criacao: " + formatarData(avaliacaoFisica.getDataCriacao()));
             System.out.println("Data de modificacao: " + formatarData(avaliacaoFisica.getDataModificacao()));

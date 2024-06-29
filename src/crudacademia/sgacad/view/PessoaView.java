@@ -127,7 +127,10 @@ public class PessoaView {
             return;
         }
 
-        System.out.println("\n\nLista de todos os " + tipo.toLowerCase() + "s:");
+
+        String string = tipo.toLowerCase().equals("aluno") ? "s" : "es";
+
+        System.out.println("\n\nLista de todos os " + tipo.toLowerCase() + string + ":");
         for (Pessoa pessoa : pessoas) {
             System.out.println("ID: " + pessoa.getId());
             System.out.println("Nome: " + pessoa.getNome());

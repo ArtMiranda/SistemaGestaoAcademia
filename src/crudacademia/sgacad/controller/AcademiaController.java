@@ -31,6 +31,7 @@ public class AcademiaController {
 
             stmt.executeUpdate();
 
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -38,7 +39,7 @@ public class AcademiaController {
         return academia;
     }
 
-    public Academia buscarAcademiaUnica() {
+    public static Academia buscarAcademiaUnica() {
         Academia academia = null;
         String sql = "SELECT * FROM academia LIMIT 1";
 
@@ -74,5 +75,18 @@ public class AcademiaController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+
+    public static Boolean checarExistenciaAcademia(){
+        String sql = "SELECT * FROM academia";
+        try (Connection conn = DatabaseUtil.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+            return rs.next();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

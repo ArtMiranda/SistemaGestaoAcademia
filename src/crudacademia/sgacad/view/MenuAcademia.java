@@ -11,7 +11,8 @@ public class MenuAcademia {
     public static void main(String[] args) {
 
         while (true) {
-            if (AcademiaView.academia == null) {
+
+            if (AcademiaController.checarExistenciaAcademia() == false){
                 AcademiaView.criarAcademia();
                 PopularTabelasController.main(args);
             } else {
@@ -21,29 +22,6 @@ public class MenuAcademia {
             }
         }
     }
-
-    // private static void criarAdministradorPadrao() {
-    //     // Definir os dados do administrador padrao
-    //     String nomePadrao = "Administrador Padrao";
-    //     char sexoPadrao = 'F';
-    //     String loginPadrao = "adm";
-    //     String senhaPadrao = "adm";
-
-    //     // Definir a data de nascimento como a data atual
-    //     LocalDate dataAtual = LocalDate.now();
-
-    //     PessoaController administradorController = new PessoaController();
-    //     // Criar o objeto Pessoa para representar o administrador padrao
-    //     Pessoa administradorPadrao = administradorController.criarPessoa(PessoaView.numAdministradores,
-    //             nomePadrao,
-    //             sexoPadrao,
-    //             dataAtual, loginPadrao, senhaPadrao, "Administrador");
-
-    //     // Adicionar o administrador padrao ao array de administradores
-    //     PessoaView.administradores[PessoaView.numAdministradores] = administradorPadrao;
-    //     PessoaView.numAdministradores++;
-    //     System.out.println("Administrador padrao criado com sucesso!");
-    // }
 
     private static boolean efetuarLogin() {
         System.out.println("\n\n----- Faca login ou digite 'sair' para sair do programa -----");
@@ -86,8 +64,6 @@ public class MenuAcademia {
             return true;
         }
     
-        // Se nenhum usuario foi autenticado
-        System.out.println("Login ou senha incorretos.");
         return false;
     }
     
@@ -120,7 +96,7 @@ public class MenuAcademia {
 
             switch (opcao) {
                 case 1:
-                    AcademiaView.exibirDetalhesAcademia(AcademiaView.academia);
+                    AcademiaView.exibirDetalhesAcademia(AcademiaController.buscarAcademiaUnica());
                     break;
                 case 2:
                     exibirMenuCRUDAluno();
@@ -200,7 +176,7 @@ public class MenuAcademia {
 
             switch (opcao) {
                 case 1:
-                    AcademiaView.exibirDetalhesAcademia(AcademiaView.academia);
+                    AcademiaView.exibirDetalhesAcademia(AcademiaController.buscarAcademiaUnica());
                     break;
                 case 2:
                     exibirMenuCRUDAluno();
@@ -257,7 +233,7 @@ public class MenuAcademia {
 
             switch (opcao) {
                 case 1:
-                    AcademiaView.exibirDetalhesAcademia(AcademiaView.academia);
+                    AcademiaView.exibirDetalhesAcademia(AcademiaController.buscarAcademiaUnica());
                     break;
                 case 2:
                     TreinoAplicacaoView.exibirFichaTreino(idAlunoLogado);

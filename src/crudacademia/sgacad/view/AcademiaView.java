@@ -26,17 +26,16 @@ public class AcademiaView {
     }
 
     public static void exibirDetalhesAcademia(Academia academia) {
-        if (academia != null) {
+        if (AcademiaController.checarExistenciaAcademia() != false) {
             System.out.println("\n\n----- Detalhes da Academia -----");
-            System.out.println(academia.exibirDetalhes());
+            System.out.println(AcademiaController.buscarAcademiaUnica().exibirDetalhes());
         } else {
             System.out.println("Nenhuma academia criada ainda.");
         }
     }
 
     public static void buscarAcademiaUnica() {
-        AcademiaController academiaController = new AcademiaController();
-        Academia academia = academiaController.buscarAcademiaUnica();
+        Academia academia = AcademiaController.buscarAcademiaUnica();
 
         if (academia != null) {
             exibirDetalhesAcademia(academia);
