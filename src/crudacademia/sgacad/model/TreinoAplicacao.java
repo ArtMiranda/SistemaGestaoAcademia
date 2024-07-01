@@ -101,13 +101,13 @@ public class TreinoAplicacao {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return "ID: " + id +
                 "\nTreino: " + treino +
-                "\nExercício: " + exercicio +
-                "\nExercício Aplicação: " + exercicioAplicacao +
+                "\nExercicio: " + exercicio +
+                "\nExercicio Aplicacão: " + exercicioAplicacao +
                 "\nDivisão Treino: " + divisaoTreino +
-                "\nDivisão Treino Músculo: " + divisaoTreinoMusculo +
-                "\nData de Início: " + formatter.format(dataInicio) +
-                "\nData de Término: " + formatter.format(dataTermino) +
-                "\nData de Criação: " + formatter.format(dataCriacao) +
-                "\nData de Modificação: " + formatter.format(dataModificacao);
+                "\nDivisão Treino Musculo: " + divisaoTreinoMusculo +
+                "\nData de Inicio: " + formatter.format(dataInicio) +
+                "\nData de Termino: " + formatter.format(dataTermino) +
+                "\nData de Criacão: " + formatter.format(dataCriacao) +
+                "\nData de Modificacão: " + formatter.format(dataModificacao);
     }
 }

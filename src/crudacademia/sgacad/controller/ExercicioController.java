@@ -1,10 +1,11 @@
 package sgacad.controller;
 
 import sgacad.model.Exercicio;
-import sgacad.view.ExercicioView;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ExercicioController {
 
@@ -21,13 +22,6 @@ public class ExercicioController {
             stmt.setDate(4, Date.valueOf(LocalDate.now()));
             stmt.executeUpdate();
 
-            // Obter o ID gerado para o exercicio e definir no objeto Exercicio
-            ResultSet rs = stmt.getGeneratedKeys();
-            if (rs.next()) {
-                int id = rs.getInt(1);
-                Exercicio exercicio = new Exercicio(id, nome, descricao, LocalDate.now(), LocalDate.now());
-                ExercicioView.exercicios[ExercicioView.numExercicios++] = exercicio;
-            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -79,13 +73,12 @@ public class ExercicioController {
     // Metodo para listar todos os exercicios do banco de dados
     public static Exercicio[] listarExercicios() {
         String sql = "SELECT * FROM exercicios";
-        Exercicio[] exercicios = new Exercicio[100];
+        List<Exercicio> exercicioList = new ArrayList<>();
 
         try (Connection connection = DatabaseUtil.getConnection();
              Statement stmt = connection.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
 
-            int i = 0;
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String nome = rs.getString("nome");
@@ -93,13 +86,14 @@ public class ExercicioController {
                 LocalDate dataCriacao = rs.getDate("dataCriacao").toLocalDate();
                 LocalDate dataModificacao = rs.getDate("dataModificacao").toLocalDate();
 
-                exercicios[i++] = new Exercicio(id, nome, descricao, dataCriacao, dataModificacao);
+                Exercicio exercicio = new Exercicio(id, nome, descricao, dataCriacao, dataModificacao);
+                exercicioList.add(exercicio);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return exercicios;
+        return exercicioList.toArray(new Exercicio[0]);
     }
 
     // Metodo para excluir um exercicio do banco de dados

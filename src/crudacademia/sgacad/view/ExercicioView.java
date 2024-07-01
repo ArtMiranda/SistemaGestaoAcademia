@@ -1,17 +1,14 @@
 package sgacad.view;
 
 import java.util.Scanner;
-import java.time.LocalDate;
 import sgacad.controller.ExercicioController;
 import sgacad.model.Exercicio;
 
 public class ExercicioView {
-    public static Exercicio[] exercicios = new Exercicio[100]; // Array de exercicios
-    public static int numExercicios = 0;
     private static Scanner scanner = new Scanner(System.in);
     private static ExercicioController exercicioController = new ExercicioController();
 
-    public static Exercicio criaExercicio() {
+    public static void criaExercicio() {
         // Nome do Exercicio
         System.out.print("Nome do exercicio: ");
         String nome = scanner.nextLine().trim();
@@ -28,27 +25,23 @@ public class ExercicioView {
             descricao = scanner.nextLine().trim();
         }
 
-        return null; // Nao estamos mais retornando um exercicio aqui, apenas adicionando ao banco de dados
+        ExercicioController.adicionarExercicio(nome, descricao);
     }
 
     public static void exibirTodosExercicios() {
-        if (ExercicioView.numExercicios == 0) {
+        Exercicio[] exercicios = ExercicioController.listarExercicios();
+        if (exercicios.length == 0) {
             System.out.println("\n\nNenhum exercicio cadastrado ainda.");
         } else {
             System.out.println("\n\nLista de Exercicios:");
-            for (Exercicio exercicio : ExercicioController.listarExercicios()) {
-                if (exercicio != null) {
-                    System.out.println("ID: " + exercicio.getId() + ", Nome: " + exercicio.getNome());
-                }
+            for (Exercicio exercicio : exercicios) {
+                System.out.println("ID: " + exercicio.getId() + ", Nome: " + exercicio.getNome());
             }
         }
     }
 
     public static void exibirDadosExercicioPorId() {
-        
         int idBusca = 0;
-
-        // Loop de validacao
         boolean inputValido = false;
         while (!inputValido) {
             System.out.print("\n\nInforme o ID do exercicio: ");
@@ -71,11 +64,8 @@ public class ExercicioView {
         }
     }
 
-    public static void atualizarExercicio(){
-
+    public static void atualizarExercicio() {
         int idExercicio = 0;
-
-        // Loop de validacao
         boolean inputValido = false;
         while (!inputValido) {
             System.out.print("\n\nInforme o ID do exercicio que deseja atualizar: ");
@@ -110,9 +100,6 @@ public class ExercicioView {
                 exercicio.setDescricaoFoto(novaDescricaoFoto);
             }
 
-            // Data de modificacao
-            exercicio.setDataModificacao(LocalDate.now());
-
             exercicioController.atualizarExercicio(idExercicio, novoNome, novaDescricaoFoto);
             System.out.println("\nDados do Exercicio atualizados com sucesso:");
             System.out.println(exercicio.exibirDetalhes());
@@ -122,10 +109,7 @@ public class ExercicioView {
     }
 
     public static void removerExercicio() {
-        
         int idExercicio = 0;
-
-        // Loop de validacao
         boolean inputValido = false;
         while (!inputValido) {
             System.out.print("\n\nInforme o ID do exercicio que deseja remover: ");

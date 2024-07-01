@@ -34,7 +34,7 @@ public class MovimentacaoFinanceiraView {
         System.out.println("\n1 - Saida\n2 - Entrada");
         System.out.print("\nDigite o tipo da movimentacao: ");
         int tipo = scanner.nextInt();
-        scanner.nextLine(); // Consumir a linha nova após o próximo int
+        scanner.nextLine(); // Consumir a linha nova apos o proximo int
 
         System.out.print("Descricao da movimentacao: ");
         String descricao = scanner.nextLine().trim();
@@ -113,7 +113,7 @@ public class MovimentacaoFinanceiraView {
     public static void removerMovimentacaoFinanceiraPorId() {
         System.out.print("\nDigite o ID da movimentacao que deseja remover: ");
         int id = scanner.nextInt();
-        scanner.nextLine(); // Consumir a linha nova após o próximo int
+        scanner.nextLine(); // Consumir a linha nova apos o proximo int
 
         MovimentacaoFinanceiraController.removerMovimentacaoFinanceiraPorId(id);
         System.out.println("\nMovimentacao removida com sucesso.");

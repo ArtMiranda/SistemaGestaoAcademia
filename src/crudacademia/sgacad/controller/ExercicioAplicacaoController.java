@@ -56,7 +56,7 @@ public class ExercicioAplicacaoController {
         return exercicios;
     }
 
-    public ExercicioAplicacao buscarExercicioAplicacaoPorId(int id) {
+    public static ExercicioAplicacao buscarExercicioAplicacaoPorId(int id) {
         String sql = "SELECT * FROM ExercicioAplicacao WHERE id = ?";
         ExercicioAplicacao exercicio = null;
         try (Connection connection = DatabaseUtil.getConnection();

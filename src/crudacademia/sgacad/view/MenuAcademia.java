@@ -451,14 +451,13 @@ public class MenuAcademia {
         }
     }
 
-    private static Exercicio criaExercicio() {
+    private static void criaExercicio() {
         System.out.println("Informe os dados para criar o Administrador:");
 
-        Exercicio exercicio = ExercicioView.criaExercicio();
+        ExercicioView.criaExercicio();
 
         // ExercicioView.exercicios[ExercicioView.numExercicios++] = exercicio;
 
-        return exercicio;
     }
 
     private static void exibirMenuCRUDExerciciosAplicacao() {

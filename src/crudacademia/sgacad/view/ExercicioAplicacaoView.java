@@ -5,13 +5,15 @@ import java.util.List;
 import java.util.Scanner;
 
 import sgacad.controller.ExercicioAplicacaoController;
+import sgacad.controller.ExercicioController;
 import sgacad.model.ExercicioAplicacao;
+import sgacad.model.Exercicio;
 
 public class ExercicioAplicacaoView {
     private static Scanner scanner = new Scanner(System.in);
     private static ExercicioAplicacaoController exercicioAplicacaoController = new ExercicioAplicacaoController();
 
-    public static ExercicioAplicacao criarExercicioAplicacao() {
+    public static void criarExercicioAplicacao() {
         int idExercicio = 0;
 
         // Loop de validacao
@@ -28,11 +30,11 @@ public class ExercicioAplicacaoView {
             }
         }
 
-        boolean encontrado = false;
-        for (int i = 0; i < ExercicioView.numExercicios; i++) {
-            if (ExercicioView.exercicios[i].getId() == idExercicio) {
-                String exercicioNome = ExercicioView.exercicios[i].getNome();
-
+        Exercicio exercicio = ExercicioController.getExercicioById(idExercicio);
+        if (exercicio != null) {
+            if(ExercicioAplicacaoController.buscarExercicioAplicacaoPorId(idExercicio) == null){
+                String exercicioNome = exercicio.getNome();
+    
                 // Descricao do exercicio
                 System.out.print("Descricao detalhada do exercicio: ");
                 String descricao = scanner.nextLine().trim();
@@ -40,16 +42,17 @@ public class ExercicioAplicacaoView {
                     System.out.print("Descricao nao pode estar vazio. Informe novamente: ");
                     descricao = scanner.nextLine().trim();
                 }
-                ExercicioAplicacao exercicio = ExercicioAplicacaoController.geraExercicioAplicacao(idExercicio, exercicioNome, descricao);
-                return exercicio;
-            }
-        }
+                ExercicioAplicacao exercicioAplicacao = ExercicioAplicacaoController.geraExercicioAplicacao(idExercicio, exercicioNome, descricao);
+                System.out.println("Exercicio criado com sucesso: ");
+                System.out.println(exercicioAplicacao.exibirDetalhes());
 
-        if (!encontrado) {
+            }
+            else{
+                System.out.println("\n\nExercicio ja possui aplicacao definida, atualize a aplicacao");
+            }
+        } else {
             System.out.println("\n\nExercicio com ID " + idExercicio + " nao encontrado.");
         }
-
-        return null;
     }
 
     public static void exibirTodosExerciciosAplicacao() {
@@ -83,7 +86,7 @@ public class ExercicioAplicacaoView {
             }
         }
 
-        ExercicioAplicacao exercicio = exercicioAplicacaoController.buscarExercicioAplicacaoPorId(idBusca);
+        ExercicioAplicacao exercicio = ExercicioAplicacaoController.buscarExercicioAplicacaoPorId(idBusca);
         if (exercicio != null) {
             System.out.println("\n\n----- Dados da Aplicacao de Exercicio -----\n\n");
             System.out.println(exercicio.exibirDetalhes());
@@ -109,7 +112,7 @@ public class ExercicioAplicacaoView {
             }
         }
 
-        ExercicioAplicacao exercicio = exercicioAplicacaoController.buscarExercicioAplicacaoPorId(idExercicioAplicacao);
+        ExercicioAplicacao exercicio = ExercicioAplicacaoController.buscarExercicioAplicacaoPorId(idExercicioAplicacao);
         if (exercicio != null) {
             System.out.println("Aplicacao de Exercicio encontrada. Insira os novos dados:");
 
@@ -146,7 +149,7 @@ public class ExercicioAplicacaoView {
             }
         }
 
-        ExercicioAplicacao exercicio = exercicioAplicacaoController.buscarExercicioAplicacaoPorId(idExercicioAplicacao);
+        ExercicioAplicacao exercicio = ExercicioAplicacaoController.buscarExercicioAplicacaoPorId(idExercicioAplicacao);
         if (exercicio != null) {
             exercicioAplicacaoController.deletarExercicioAplicacao(idExercicioAplicacao);
             System.out.println("\n\nAplicacao de Exercicio removida com sucesso.");
