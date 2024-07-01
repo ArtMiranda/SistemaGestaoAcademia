@@ -12,7 +12,6 @@ public class AvaliacaoFisicaView {
     private static Scanner scanner = new Scanner(System.in);
 
     public static void calcularIMC(int id, int ultimoTreino, double peso, double altura) {
-        System.out.println(AvaliacaoFisicaController.calculaAvaliacaoFisica(id, ultimoTreino, peso, altura));
 
         double avFisicaResultado = Double.parseDouble(AvaliacaoFisicaController.calculaAvaliacaoFisica(id, ultimoTreino, peso, altura));
 
