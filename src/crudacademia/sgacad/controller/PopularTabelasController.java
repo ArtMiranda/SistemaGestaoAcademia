@@ -6,27 +6,6 @@ public class PopularTabelasController {
     public static void main(String[] args) {
 
 
-        // Alunos data
-        // PessoaView.alunos[0] = new Pessoa(0, "Pablo", 'M', getDate(1990, 3, 20), "pablo", "pablo", "Aluno", currentDate, currentDate);
-        // PessoaView.alunos[1] = new Pessoa(1, "Elaine", 'F', getDate(1992, 8, 25), "elaine", "elaine", "Aluno", currentDate, currentDate);
-        // PessoaView.alunos[2] = new Pessoa(2, "Alexandre", 'M', getDate(1995, 11, 12), "alexandre", "alexandre", "Aluno", currentDate, currentDate);
-        // PessoaView.alunos[3] = new Pessoa(3, "Michelle", 'F', getDate(1988, 4, 5), "michelle", "michelle", "Aluno", currentDate, currentDate);
-        // PessoaView.alunos[4] = new Pessoa(4, "Fernando", 'M', getDate(1993, 9, 30), "fernando", "fernando", "Aluno", currentDate, currentDate);
-        // PessoaView.alunos[5] = new Pessoa(5, "Nathalie", 'f', getDate(1997, 12, 18), "nathalie", "nathalie", "Aluno", currentDate, currentDate);
-        // PessoaView.alunos[6] = new Pessoa(6, "Ricardo", 'M', getDate(1991, 6, 10), "ricardo", "ricardo", "Aluno", currentDate, currentDate);
-        // PessoaView.alunos[7] = new Pessoa(7, "Juliana", 'F', getDate(1994, 1, 22), "juliana", "juliana", "Aluno", currentDate, currentDate);
-
-        // PessoaView.numAlunos = 8;
-
-        // PessoaView.professoresInstrutores[0] = new Pessoa(0, "Rafael", 'M', getDate(1985, 5, 15), "rafael", "rafael", "Professor/Instrutor", currentDate, currentDate);
-        // PessoaView.professoresInstrutores[1] = new Pessoa(1, "Marcela", 'F', getDate(1987, 7, 10), "marcela", "marcela", "Professor/Instrutor", currentDate, currentDate);
-
-        // PessoaView.numProfessoresInstrutores = 2;
-
-        // PessoaView.administradores[1] = new Pessoa(1, "Luciana", 'F', getDate(1980, 1, 1), "luciana", "luciana", "Administrador", currentDate, currentDate);
-
-        // PessoaView.numAdministradores = 2;
-
         PessoaController.criarPessoa("Administradora Padrao", 'F', getDate(1990, 3, 20), "adm", "adm", "Administrador");
         PessoaController.criarPessoa("Professor Padrao", 'M', getDate(1990, 3, 20), "prof", "prof", "Professor/Instrutor");
         PessoaController.criarPessoa("Aluno Padrao", 'M', getDate(1990, 3, 20), "aluno", "aluno", "Aluno");
@@ -50,31 +29,6 @@ public class PopularTabelasController {
         ExercicioController.adicionarExercicio("Cadeira Extensora", "Extensao de pernas na cadeira extensora");
         ExercicioController.adicionarExercicio("Puxada Frontal", "Puxada frontal na barra");
         ExercicioController.adicionarExercicio("Desenvolvimento de Ombros", "Desenvolvimento de ombros com halteres");
-
-
-        // ExercicioView.exercicios[0] = new Exercicio(0, "Supino", "Supino com barra", currentDate, currentDate);
-        // ExercicioView.exercicios[1] = new Exercicio(1, "Agachamento", "Agachamento livre", currentDate, currentDate);
-        // ExercicioView.exercicios[2] = new Exercicio(2, "Levantamento Terra", "Levantamento terra com barra", currentDate, currentDate);
-        // ExercicioView.exercicios[3] = new Exercicio(3, "Flexao", "Flexao de braco", currentDate, currentDate);
-        // ExercicioView.exercicios[4] = new Exercicio(4, "Rosca Direta", "Rosca direta com halteres", currentDate, currentDate);
-        // ExercicioView.exercicios[5] = new Exercicio(5, "Cadeira Extensora", "Extensao de pernas na cadeira extensora", currentDate, currentDate);
-        // ExercicioView.exercicios[6] = new Exercicio(6, "Puxada Frontal", "Puxada frontal na barra", currentDate, currentDate);
-        // ExercicioView.exercicios[7] = new Exercicio(7, "Desenvolvimento de Ombros", "Desenvolvimento de ombros com halteres", currentDate, currentDate);
-
-        // ExercicioView.numExercicios = 8;
-
-//        ExercicioController.criarExercicio("Supino", "Supino com barra");
-
-        // ExercicioAplicacaoView.exerciciosAplicacao[0] = new ExercicioAplicacao(0, "Supino", "Supino reto com peso", currentDate, currentDate);
-        // ExercicioAplicacaoView.exerciciosAplicacao[1] = new ExercicioAplicacao(1, "Agachamento", "Agachamento reto com peso", currentDate, currentDate);
-        // ExercicioAplicacaoView.exerciciosAplicacao[2] = new ExercicioAplicacao(2, "Levantamento Terra", "Levantamento terra com barra pesada", currentDate, currentDate);
-        // ExercicioAplicacaoView.exerciciosAplicacao[3] = new ExercicioAplicacao(3, "Flexao", "Flexao normal sem peso", currentDate, currentDate);
-        // ExercicioAplicacaoView.exerciciosAplicacao[4] = new ExercicioAplicacao(4, "Rosca Direta", "Rosca direta com halteres pesados", currentDate, currentDate);
-        // ExercicioAplicacaoView.exerciciosAplicacao[5] = new ExercicioAplicacao(5, "Cadeira Extensora", "Extensao de pernas com carga", currentDate, currentDate);
-        // ExercicioAplicacaoView.exerciciosAplicacao[6] = new ExercicioAplicacao(6, "Puxada Frontal", "Puxada frontal com peso", currentDate, currentDate);
-        // ExercicioAplicacaoView.exerciciosAplicacao[7] = new ExercicioAplicacao(7, "Desenvolvimento de Ombros", "Desenvolvimento de ombros com halteres pesados", currentDate, currentDate);
-
-        // ExercicioAplicacaoView.numExerciciosAplicacao = 8;
 
 
         ExercicioAplicacaoController.geraExercicioAplicacao(1, "Supino", "Supino reto com peso");

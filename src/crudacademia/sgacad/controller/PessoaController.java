@@ -238,7 +238,7 @@ public class PessoaController {
         return pessoasList.toArray(new Pessoa[0]);
     }
 
-    public Pessoa buscarPessoaPorId(int id, String tipoUsuario) {
+    public Pessoa  (int id, String tipoUsuario) {
         String sql = null;
         Pessoa pessoa = null;
 
